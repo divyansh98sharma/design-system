@@ -1,0 +1,23 @@
+<div class="ds-color-palette">
+  @for (group of groups; track group.name) {
+    <section class="color-group">
+      <h3 class="color-group__name">{{ group.name }}</h3>
+      <div class="color-swatches">
+        @for (swatch of group.swatches; track swatch.name) {
+          <div class="color-swatch">
+            <div
+              class="color-swatch__preview"
+              [class.color-swatch__preview--light]="isLight(swatch.hex)"
+              [style.background-color]="'#' + swatch.hex"
+            ></div>
+            <div class="color-swatch__info">
+              <span class="color-swatch__name">{{ swatch.name }}</span>
+              <span class="color-swatch__hex">#{{ swatch.hex.toUpperCase() }}</span>
+              <span class="color-swatch__var">{{ swatch.cssVar }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+  }
+</div>

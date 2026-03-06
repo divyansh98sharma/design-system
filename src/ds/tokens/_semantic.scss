@@ -1,0 +1,100 @@
+// ============================================================
+// SEMANTIC TOKENS
+// Intent-based aliases derived from primitives.
+// Use these in component styles and layouts.
+// ============================================================
+
+:root {
+  // ----------------------------------------------------------
+  // Surface
+  // ----------------------------------------------------------
+  --color-surface: var(--color-white);
+  --color-surface-hover: var(--color-hover);
+  --color-surface-selected: var(--color-select);
+  --color-surface-subtle: var(--color-secondary-10);
+  --color-surface-disabled: var(--color-secondary-20);
+
+  // ----------------------------------------------------------
+  // Text
+  // ----------------------------------------------------------
+  --color-text-primary: var(--color-secondary-100);
+  --color-text-secondary: var(--color-secondary-80);
+  --color-text-disabled: var(--color-secondary-60);
+  --color-text-inverse: var(--color-white);
+  --color-text-link: var(--color-user-base);
+  --color-text-link-hover: var(--color-user-60);
+
+  // ----------------------------------------------------------
+  // Border
+  // ----------------------------------------------------------
+  --color-border-default: var(--color-secondary-40);
+  --color-border-strong: var(--color-secondary-60);
+  --color-border-focus: var(--color-user-base);
+  --color-border-error: var(--color-error-base);
+
+  // ----------------------------------------------------------
+  // Brand — User (primary blue)
+  // ----------------------------------------------------------
+  --color-brand-primary: var(--color-user-base);
+  --color-brand-primary-subtle: var(--color-user-5);
+  --color-brand-primary-hover: var(--color-user-60);
+  --color-brand-primary-text: var(--color-white);
+
+  // ----------------------------------------------------------
+  // Brand — Admin (orange)
+  // ----------------------------------------------------------
+  --color-brand-admin: var(--color-admin-base);
+  --color-brand-admin-subtle: var(--color-admin-5);
+  --color-brand-admin-hover: var(--color-admin-60);
+  --color-brand-admin-text: var(--color-white);
+
+  // ----------------------------------------------------------
+  // Status — Success
+  // ----------------------------------------------------------
+  --color-status-success: var(--color-green-base);
+  --color-status-success-subtle: var(--color-green-5);
+  --color-status-success-text: var(--color-green-60);
+
+  // ----------------------------------------------------------
+  // Status — Warning
+  // ----------------------------------------------------------
+  --color-status-warning: var(--color-warning-base);
+  --color-status-warning-subtle: var(--color-warning-5);
+  --color-status-warning-text: var(--color-warning-70);
+
+  // ----------------------------------------------------------
+  // Status — Error
+  // ----------------------------------------------------------
+  --color-status-error: var(--color-error-base);
+  --color-status-error-subtle: var(--color-error-5);
+  --color-status-error-text: var(--color-error-60);
+
+  // ----------------------------------------------------------
+  // AI
+  // ----------------------------------------------------------
+  --color-ai: var(--color-ai-base);
+  --color-ai-subtle: var(--color-ai-5);
+  --color-ai-text: var(--color-ai-60);
+
+  // ----------------------------------------------------------
+  // Sunoh
+  // ----------------------------------------------------------
+  --color-sunoh: var(--color-sunoh-base);
+  --color-sunoh-subtle: var(--color-sunoh-5);
+  --color-sunoh-text: var(--color-sunoh-60);
+
+  // ----------------------------------------------------------
+  // Shadow elevation aliases
+  // ----------------------------------------------------------
+  --shadow-sm: var(--shadow-light-50);
+  --shadow-md: var(--shadow-light-100);
+  --shadow-lg: var(--shadow-light-200);
+  --shadow-xl: var(--shadow-light-300);
+
+  // ----------------------------------------------------------
+  // Radius aliases
+  // ----------------------------------------------------------
+  --radius-standard: var(--radius-4);
+  --radius-large: var(--radius-8);
+  --radius-xl: var(--radius-12);
+}

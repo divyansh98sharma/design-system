@@ -1,0 +1,198 @@
+// ============================================================
+// PRIMITIVE TOKENS
+// Raw design values sourced directly from Figma variables.
+// Do not reference these directly in components — use semantic
+// or component tokens instead.
+// ============================================================
+
+:root {
+  // ----------------------------------------------------------
+  // FONT FAMILY
+  // ----------------------------------------------------------
+  --font-family-base: 'Open Sans', system-ui, -apple-system, sans-serif;
+
+  // ----------------------------------------------------------
+  // FONT SIZE
+  // ----------------------------------------------------------
+  --font-size-10: 10px;
+  --font-size-12: 12px;
+  --font-size-13: 13px;
+  --font-size-14: 14px;
+  --font-size-16: 16px;
+
+  // ----------------------------------------------------------
+  // LINE HEIGHT
+  // ----------------------------------------------------------
+  --line-height-16: 16px;
+  --line-height-20: 20px;
+
+  // ----------------------------------------------------------
+  // FONT WEIGHT
+  // ----------------------------------------------------------
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // ----------------------------------------------------------
+  // SPACING
+  // ----------------------------------------------------------
+  --spacing-xx-small: 2px;
+  --spacing-x-small: 4px;
+  --spacing-small: 8px;
+  --spacing-medium: 12px;
+  --spacing-large: 16px;
+  --spacing-x-large: 20px;
+  --spacing-xx-large: 24px;
+
+  // ----------------------------------------------------------
+  // BORDER RADIUS
+  // ----------------------------------------------------------
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-pill: 999px;
+
+  // ----------------------------------------------------------
+  // SHADOWS
+  // ----------------------------------------------------------
+  --shadow-light-50: 0px 4px 8px -2px rgba(0, 0, 0, 0.08);
+  --shadow-light-100: 0px 8px 16px -4px rgba(0, 0, 0, 0.16);
+  --shadow-light-200: 0px 12px 24px -4px rgba(0, 0, 0, 0.12);
+  --shadow-light-300: 0px 20px 36px 0px rgba(0, 0, 0, 0.12);
+
+  // ----------------------------------------------------------
+  // COLORS — Global
+  // ----------------------------------------------------------
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-hover: #fbf3e6;
+  --color-select: #f7e7ce;
+
+  // ----------------------------------------------------------
+  // COLORS — User (Blue)
+  // ----------------------------------------------------------
+  --color-user-base: #0378a7;
+  --color-user-5: #f1fbff;
+  --color-user-10: #cde4ed;
+  --color-user-20: #abd2e2;
+  --color-user-30: #81bbd3;
+  --color-user-40: #57a5c4;
+  --color-user-50: #2d8eb6;
+  --color-user-60: #03648b;
+  --color-user-70: #02506f;
+  --color-user-80: #023c54;
+  --color-user-90: #012837;
+  --color-user-100: #011821;
+
+  // ----------------------------------------------------------
+  // COLORS — Admin (Orange)
+  // ----------------------------------------------------------
+  --color-admin-base: #e88842;
+  --color-admin-5: #fff3ea;
+  --color-admin-10: #fae7d9;
+  --color-admin-20: #f7d7c0;
+  --color-admin-30: #f3c3a0;
+  --color-admin-40: #f0b081;
+  --color-admin-50: #ec9c62;
+  --color-admin-60: #c17137;
+  --color-admin-70: #9b5b2c;
+  --color-admin-80: #744421;
+  --color-admin-90: #4d2d16;
+  --color-admin-100: #2e1b0d;
+
+  // ----------------------------------------------------------
+  // COLORS — Secondary (Gray)
+  // ----------------------------------------------------------
+  --color-secondary-base: #e1e1e1;
+  --color-secondary-5: #fbfbfb;
+  --color-secondary-10: #f7f7f7;
+  --color-secondary-20: #f5f5f5;
+  --color-secondary-30: #f0f0f0;
+  --color-secondary-40: #ebebeb;
+  --color-secondary-50: #e6e6e6;
+  --color-secondary-60: #bcbcbc;
+  --color-secondary-70: #969696;
+  --color-secondary-80: #717171;
+  --color-secondary-90: #4b4b4b;
+  --color-secondary-100: #2d2d2d;
+
+  // ----------------------------------------------------------
+  // COLORS — Warning (Yellow)
+  // ----------------------------------------------------------
+  --color-warning-base: #fbce2a;
+  --color-warning-5: #fff9eb;
+  --color-warning-10: #fef5d4;
+  --color-warning-20: #feefb8;
+  --color-warning-30: #fde795;
+  --color-warning-40: #fcde71;
+  --color-warning-50: #fcd64e;
+  --color-warning-60: #d1ac23;
+  --color-warning-70: #a7891c;
+  --color-warning-80: #7e6715;
+  --color-warning-90: #54450e;
+  --color-warning-100: #322908;
+
+  // ----------------------------------------------------------
+  // COLORS — Error (Red)
+  // ----------------------------------------------------------
+  --color-error-base: #d82727;
+  --color-error-5: #ffefef;
+  --color-error-10: #f7d4d4;
+  --color-error-20: #f2b7b7;
+  --color-error-30: #ec9393;
+  --color-error-40: #e56f6f;
+  --color-error-50: #df4b4b;
+  --color-error-60: #b42121;
+  --color-error-70: #901a1a;
+  --color-error-80: #6c1414;
+  --color-error-90: #480d0d;
+  --color-error-100: #2b0808;
+
+  // ----------------------------------------------------------
+  // COLORS — Green (Success)
+  // ----------------------------------------------------------
+  --color-green-base: #018145;
+  --color-green-5: #f1fef8;
+  --color-green-10: #cce6da;
+  --color-green-20: #aad5c1;
+  --color-green-30: #80c0a2;
+  --color-green-40: #56ab83;
+  --color-green-50: #2b9664;
+  --color-green-60: #016c3a;
+  --color-green-70: #01562e;
+  --color-green-80: #014123;
+  --color-green-90: #002b17;
+  --color-green-100: #001a0e;
+
+  // ----------------------------------------------------------
+  // COLORS — AI (Purple)
+  // ----------------------------------------------------------
+  --color-ai-base: #7d58da;
+  --color-ai-5: #f7f2ff;
+  --color-ai-10: #e5def8;
+  --color-ai-20: #d4c7f3;
+  --color-ai-30: #beabec;
+  --color-ai-40: #a890e6;
+  --color-ai-50: #9374e0;
+  --color-ai-60: #6849b6;
+  --color-ai-70: #533b91;
+  --color-ai-80: #3f2c6d;
+  --color-ai-90: #2a1d49;
+  --color-ai-100: #19122c;
+
+  // ----------------------------------------------------------
+  // COLORS — Sunoh (Pink)
+  // ----------------------------------------------------------
+  --color-sunoh-base: #fb2b66;
+  --color-sunoh-5: #ffebf0;
+  --color-sunoh-10: #fed5e0;
+  --color-sunoh-20: #feb8cc;
+  --color-sunoh-30: #fd95b3;
+  --color-sunoh-40: #fc7299;
+  --color-sunoh-50: #fc4e80;
+  --color-sunoh-60: #d12455;
+  --color-sunoh-70: #a71d44;
+  --color-sunoh-80: #7e1633;
+  --color-sunoh-90: #540e22;
+  --color-sunoh-100: #320914;
+}
