@@ -1,0 +1,116 @@
+// ─── Radio Button ─────────────────────────────────────────────────────────────
+
+.ds-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-x-small); // 4px
+  min-height: 16px;
+  max-height: 16px;
+  cursor: pointer;
+  user-select: none;
+
+  // Hide native input visually
+  &__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+  }
+
+  // ─── Outer circle ────────────────────────────────────────────────────────
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--color-secondary-60); // #bcbcbc — default
+    border-radius: var(--radius-pill);
+    background: var(--color-white, #fff);
+    transition: border-color 120ms ease, background 120ms ease;
+    position: relative;
+
+    // ── Checked state ────────────────────────────────────────────────────────
+
+    &--checked {
+      border-color: var(--color-user-base); // #0378a7
+      background: var(--color-white, #fff);
+    }
+
+    // ── Disabled state ────────────────────────────────────────────────────────
+
+    &--disabled {
+      border-color: var(--color-secondary-60);
+      background: var(--color-white, #fff);
+      opacity: 0.6;
+    }
+
+    &--checked#{&}--disabled {
+      border-color: var(--color-secondary-60);
+    }
+  }
+
+  // ─── Inner dot (checked only) ─────────────────────────────────────────────
+
+  &__dot {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--color-user-base); // #0378a7
+    transition: transform 120ms ease;
+  }
+
+  // ─── Label ────────────────────────────────────────────────────────────────
+
+  &__label {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    color: var(--color-black, #000);
+    white-space: nowrap;
+  }
+
+  // ─── Hover ───────────────────────────────────────────────────────────────
+
+  &:not(.ds-radio--disabled):hover &__button:not(.ds-radio__button--checked) {
+    border-color: var(--color-user-70); // #02506f
+  }
+
+  &:not(.ds-radio--disabled):hover &__button--checked {
+    border-color: var(--color-user-70);
+
+    .ds-radio__dot {
+      background: var(--color-user-70);
+    }
+  }
+
+  // ─── Focus ring ───────────────────────────────────────────────────────────
+
+  &:focus-visible {
+    outline: none;
+
+    .ds-radio__button {
+      outline: 2px solid var(--color-user-base);
+      outline-offset: 2px;
+    }
+  }
+
+  // ─── Disabled ─────────────────────────────────────────────────────────────
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .ds-radio__label {
+      color: var(--color-secondary-70); // #969696 — muted
+    }
+
+    .ds-radio__dot {
+      background: var(--color-secondary-60);
+    }
+  }
+}
