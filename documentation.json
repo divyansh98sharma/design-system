@@ -82,14 +82,47 @@
             "extends": []
         },
         {
-            "name": "ModalAction",
-            "id": "interface-ModalAction-0bb46b2e542f8bf36eaeb60f09146c0e85921adedfdbadfe6aa8e7c3671b9b3bb509b3be2fbfccf8e47116aaeaa266b4ef951961a1ec03568358f35d7c518307",
-            "file": "src/ds/modal/modal.component.ts",
+            "name": "LeftNavItem",
+            "id": "interface-LeftNavItem-3957a4636b9d5fea05fa201f122be049a313d7ddabe0ff531ed5a4f41d5b0bf223331191151586890767aa57517c5157394e8efaf6ec6f762c23888b895f0a09",
+            "file": "src/ds/left-nav/left-nav.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  HostListener,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport type ModalTheme = 'user' | 'admin' | 'green' | 'sunoh' | 'ai';\n\n/**\n * Modal size — maps to recommended width × height from the design spec:\n * - `small`   → 420 × 420 px\n * - `medium`  → 720 × 620 px\n * - `large`   → 1000 × 620 px\n * - `xlarge`  → 1240 × 620 px\n * - `xxlarge` → 1340 × 620 px\n */\nexport type ModalSize = 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';\n\n/** Configuration for a footer action button. */\nexport interface ModalAction {\n  /** Button label. */\n  label: string;\n  /** Optional value emitted on click (falls back to `label`). */\n  value?: string;\n  /**\n   * Button style:\n   * - `'primary'` — themed filled button (matches modal theme colour).\n   * - `'secondary'` — neutral gray button.\n   */\n  variant?: 'primary' | 'secondary';\n}\n\n/**\n * Modal dialog component — themed header, scrollable body, fixed footer.\n *\n * **5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n *\n * **5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).\n *\n * Structure:\n * - **Header** — 36 px, themed background, semibold heading, close ×.\n * - **Body** — flex-1, white, scrollable; project content via `<ng-content>`.\n * - **Footer** — 40 px, white bg, top border; left & right button areas.\n *\n * Shadow: `0 0 6 px rgba(0, 0, 0, 0.3)`.\n */\n@Component({\n  selector: 'ds-modal',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './modal.component.html',\n  styleUrl: './modal.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ModalComponent {\n  /** Colour theme applied to the header bar and primary action buttons. */\n  @Input() theme: ModalTheme = 'user';\n\n  /** Size variant — controls width and height. */\n  @Input() size: ModalSize = 'medium';\n\n  /** Heading text displayed in the header bar. */\n  @Input() heading = 'Heading';\n\n  /**\n   * When `true`, shows a yellow \"dirty flag\" warning indicator in the header,\n   * signalling unsaved changes.\n   */\n  @Input() showDirtyFlag = false;\n\n  /**\n   * Footer buttons on the **left** side (typically secondary / cancel actions).\n   * Pass an empty array to hide the left section.\n   */\n  @Input() footerLeftActions: ModalAction[] = [{ label: 'Cancel', variant: 'secondary' }];\n\n  /**\n   * Footer buttons on the **right** side (typically save / primary actions).\n   * First item with `variant: 'primary'` gets the themed filled style.\n   */\n  @Input() footerRightActions: ModalAction[] = [\n    { label: 'Save', variant: 'primary' },\n    { label: 'Close', variant: 'secondary' },\n  ];\n\n  /** Emits when the header close (×) button is clicked. */\n  @Output() closed = new EventEmitter<void>();\n\n  /** Emits the action `value` (or `label`) when a footer button is clicked. */\n  @Output() actionClick = new EventEmitter<string>();\n\n  onAction(action: ModalAction): void {\n    this.actionClick.emit(action.value ?? action.label);\n  }\n\n  @HostListener('keydown.escape')\n  onEscape(): void {\n    this.closed.emit();\n  }\n\n  get modalClasses(): Record<string, boolean> {\n    return {\n      'ds-modal': true,\n      [`ds-modal--${this.theme}`]: true,\n      [`ds-modal--${this.size}`]: true,\n    };\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n * A single left-navigation item — icon path (24 × 24 viewBox SVG) + label.\n */\nexport interface LeftNavItem {\n  /** Unique key used for active-state tracking and event emission. */\n  key: string;\n  /** Short label displayed below the icon (10 px, white). */\n  label: string;\n  /**\n   * SVG `<path d=\"…\">` data for the icon.\n   * Use a 24 × 24 viewBox path — it renders at 24 × 24 px.\n   */\n  iconPath: string;\n  /** When true, the item is highlighted as the active / selected route. */\n  active?: boolean;\n}\n\n// ─── Default icon paths (Material Design) ────────────────────────────────────\n\nconst ICON_MENU       = 'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z';\nconst ICON_STAR       = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';\nconst ICON_ADMIN      = 'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z';\nconst ICON_PRACTICE   = 'M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z';\nconst ICON_CCMR       = 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z';\nconst ICON_RESIDENTIAL= 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z';\nconst ICON_REGISTRY   = 'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z';\nconst ICON_REFERRALS  = 'M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z';\nconst ICON_MESSAGES   = 'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z';\nconst ICON_DOCUMENTS  = 'M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z';\nconst ICON_BILLING    = 'M19.5 3.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2 4.5 3.5 3 2v20l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5zM19 19.09H5V4.91h14v14.18zM6 15h12v2H6zm0-4h12v2H6zm0-4h12v2H6z';\nconst ICON_RCM        = 'M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z';\nconst ICON_PRM        = 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z';\nconst ICON_AFTER_CARE = 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z';\n\n/** Default navigation items matching the Figma design. */\nexport const DEFAULT_LEFT_NAV_ITEMS: LeftNavItem[] = [\n  { key: 'menu',       label: 'Menu',       iconPath: ICON_MENU },\n  { key: 'favorites',  label: 'Favorites',  iconPath: ICON_STAR },\n  { key: 'admin',      label: 'Admin',      iconPath: ICON_ADMIN },\n  { key: 'practice',   label: 'Practice',   iconPath: ICON_PRACTICE },\n  { key: 'ccmr',       label: 'CCMR',       iconPath: ICON_CCMR },\n  { key: 'residential',label: 'Residential',iconPath: ICON_RESIDENTIAL },\n  { key: 'registry',   label: 'Registry',   iconPath: ICON_REGISTRY },\n  { key: 'referrals',  label: 'Referrals',  iconPath: ICON_REFERRALS },\n  { key: 'messages',   label: 'Messages',   iconPath: ICON_MESSAGES },\n  { key: 'documents',  label: 'Documents',  iconPath: ICON_DOCUMENTS },\n  { key: 'billing',    label: 'Billing',    iconPath: ICON_BILLING },\n  { key: 'rcm',        label: 'RCM',        iconPath: ICON_RCM },\n  { key: 'prm',        label: 'PRM',        iconPath: ICON_PRM },\n  { key: 'after-care', label: 'After Care', iconPath: ICON_AFTER_CARE },\n];\n\n/**\n * Left navigation sidebar — 60 px wide, dark navy vertical column.\n *\n * Each item is an icon + label stacked vertically. A top scroll button, a\n * scrollable link list, a bottom scroll button, and a Logout row complete\n * the component.\n *\n * The `activeItem` key highlights the corresponding item.\n */\n@Component({\n  selector: 'ds-left-nav',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './left-nav.component.html',\n  styleUrl: './left-nav.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LeftNavComponent {\n  /** Navigation items shown in the scrollable list. */\n  @Input() items: LeftNavItem[] = DEFAULT_LEFT_NAV_ITEMS;\n\n  /** Key of the currently active / selected item. */\n  @Input() activeItem: string | null = null;\n\n  /** Emits the item `key` when a nav item is clicked. */\n  @Output() itemClick = new EventEmitter<string>();\n\n  /** Emits when the Logout button is clicked. */\n  @Output() logout = new EventEmitter<void>();\n\n  /** Emits when the main menu toggle is clicked. */\n  @Output() menuToggle = new EventEmitter<void>();\n}\n",
             "properties": [
+                {
+                    "name": "active",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>When true, the item is highlighted as the active / selected route.</p>\n",
+                    "line": 24,
+                    "rawdescription": "\nWhen true, the item is highlighted as the active / selected route."
+                },
+                {
+                    "name": "iconPath",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>SVG <code>&lt;path d=&quot;…&quot;&gt;</code> data for the icon.\nUse a 24 × 24 viewBox path — it renders at 24 × 24 px.</p>\n",
+                    "line": 22,
+                    "rawdescription": "\n\nSVG `<path d=\"…\">` data for the icon.\nUse a 24 × 24 viewBox path — it renders at 24 × 24 px.\n"
+                },
+                {
+                    "name": "key",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Unique key used for active-state tracking and event emission.</p>\n",
+                    "line": 15,
+                    "rawdescription": "\nUnique key used for active-state tracking and event emission."
+                },
                 {
                     "name": "label",
                     "deprecated": false,
@@ -97,37 +130,15 @@
                     "type": "string",
                     "indexKey": "",
                     "optional": false,
-                    "description": "<p>Button label.</p>\n",
-                    "line": 26,
-                    "rawdescription": "\nButton label."
-                },
-                {
-                    "name": "value",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "<p>Optional value emitted on click (falls back to <code>label</code>).</p>\n",
-                    "line": 28,
-                    "rawdescription": "\nOptional value emitted on click (falls back to `label`)."
-                },
-                {
-                    "name": "variant",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "\"primary\" | \"secondary\"",
-                    "indexKey": "",
-                    "optional": true,
-                    "description": "<p>Button style:</p>\n<ul>\n<li><code>&#39;primary&#39;</code> — themed filled button (matches modal theme colour).</li>\n<li><code>&#39;secondary&#39;</code> — neutral gray button.</li>\n</ul>\n",
-                    "line": 34,
-                    "rawdescription": "\n\nButton style:\n- `'primary'` — themed filled button (matches modal theme colour).\n- `'secondary'` — neutral gray button.\n"
+                    "description": "<p>Short label displayed below the icon (10 px, white).</p>\n",
+                    "line": 17,
+                    "rawdescription": "\nShort label displayed below the icon (10 px, white)."
                 }
             ],
             "indexSignatures": [],
             "kind": 172,
-            "description": "<p>Configuration for a footer action button.</p>\n",
-            "rawdescription": "\nConfiguration for a footer action button.",
+            "description": "<p>A single left-navigation item — icon path (24 × 24 viewBox SVG) + label.</p>\n",
+            "rawdescription": "\n\nA single left-navigation item — icon path (24 × 24 viewBox SVG) + label.\n",
             "methods": [],
             "extends": []
         },
@@ -666,180 +677,85 @@
             "templateData": "<div class=\"ds-color-palette\">\n  @for (group of groups; track group.name) {\n    <section class=\"color-group\">\n      <h3 class=\"color-group__name\">{{ group.name }}</h3>\n      <div class=\"color-swatches\">\n        @for (swatch of group.swatches; track swatch.name) {\n          <div class=\"color-swatch\">\n            <div\n              class=\"color-swatch__preview\"\n              [class.color-swatch__preview--light]=\"isLight(swatch.hex)\"\n              [style.background-color]=\"'#' + swatch.hex\"\n            ></div>\n            <div class=\"color-swatch__info\">\n              <span class=\"color-swatch__name\">{{ swatch.name }}</span>\n              <span class=\"color-swatch__hex\">#{{ swatch.hex.toUpperCase() }}</span>\n              <span class=\"color-swatch__var\">{{ swatch.cssVar }}</span>\n            </div>\n          </div>\n        }\n      </div>\n    </section>\n  }\n</div>\n"
         },
         {
-            "name": "ModalComponent",
-            "id": "component-ModalComponent-0bb46b2e542f8bf36eaeb60f09146c0e85921adedfdbadfe6aa8e7c3671b9b3bb509b3be2fbfccf8e47116aaeaa266b4ef951961a1ec03568358f35d7c518307",
-            "file": "src/ds/modal/modal.component.ts",
+            "name": "LeftNavComponent",
+            "id": "component-LeftNavComponent-3957a4636b9d5fea05fa201f122be049a313d7ddabe0ff531ed5a4f41d5b0bf223331191151586890767aa57517c5157394e8efaf6ec6f762c23888b895f0a09",
+            "file": "src/ds/left-nav/left-nav.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "ds-modal",
+            "selector": "ds-left-nav",
             "styleUrls": [],
             "styles": [],
             "templateUrl": [
-                "./modal.component.html"
+                "./left-nav.component.html"
             ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "footerLeftActions",
-                    "defaultValue": "[{ label: 'Cancel', variant: 'secondary' }]",
+                    "name": "activeItem",
+                    "defaultValue": "null",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nFooter buttons on the **left** side (typically secondary / cancel actions).\nPass an empty array to hide the left section.\n",
-                    "description": "<p>Footer buttons on the <strong>left</strong> side (typically secondary / cancel actions).\nPass an empty array to hide the left section.</p>\n",
-                    "line": 79,
-                    "type": "ModalAction[]",
+                    "rawdescription": "\nKey of the currently active / selected item.",
+                    "description": "<p>Key of the currently active / selected item.</p>\n",
+                    "line": 84,
+                    "type": "string | null",
                     "decorators": []
                 },
                 {
-                    "name": "footerRightActions",
-                    "defaultValue": "[\n    { label: 'Save', variant: 'primary' },\n    { label: 'Close', variant: 'secondary' },\n  ]",
+                    "name": "items",
+                    "defaultValue": "DEFAULT_LEFT_NAV_ITEMS",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\n\nFooter buttons on the **right** side (typically save / primary actions).\nFirst item with `variant: 'primary'` gets the themed filled style.\n",
-                    "description": "<p>Footer buttons on the <strong>right</strong> side (typically save / primary actions).\nFirst item with <code>variant: &#39;primary&#39;</code> gets the themed filled style.</p>\n",
-                    "line": 85,
-                    "type": "ModalAction[]",
-                    "decorators": []
-                },
-                {
-                    "name": "heading",
-                    "defaultValue": "'Heading'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nHeading text displayed in the header bar.",
-                    "description": "<p>Heading text displayed in the header bar.</p>\n",
-                    "line": 67,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "showDirtyFlag",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nWhen `true`, shows a yellow \"dirty flag\" warning indicator in the header,\nsignalling unsaved changes.\n",
-                    "description": "<p>When <code>true</code>, shows a yellow &quot;dirty flag&quot; warning indicator in the header,\nsignalling unsaved changes.</p>\n",
-                    "line": 73,
-                    "type": "boolean",
-                    "decorators": []
-                },
-                {
-                    "name": "size",
-                    "defaultValue": "'medium'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nSize variant — controls width and height.",
-                    "description": "<p>Size variant — controls width and height.</p>\n",
-                    "line": 64,
-                    "type": "ModalSize",
-                    "decorators": []
-                },
-                {
-                    "name": "theme",
-                    "defaultValue": "'user'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\nColour theme applied to the header bar and primary action buttons.",
-                    "description": "<p>Colour theme applied to the header bar and primary action buttons.</p>\n",
-                    "line": 61,
-                    "type": "ModalTheme",
+                    "rawdescription": "\nNavigation items shown in the scrollable list.",
+                    "description": "<p>Navigation items shown in the scrollable list.</p>\n",
+                    "line": 81,
+                    "type": "LeftNavItem[]",
                     "decorators": []
                 }
             ],
             "outputsClass": [
                 {
-                    "name": "actionClick",
+                    "name": "itemClick",
                     "defaultValue": "new EventEmitter<string>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nEmits the action `value` (or `label`) when a footer button is clicked.",
-                    "description": "<p>Emits the action <code>value</code> (or <code>label</code>) when a footer button is clicked.</p>\n",
-                    "line": 94,
+                    "rawdescription": "\nEmits the item `key` when a nav item is clicked.",
+                    "description": "<p>Emits the item <code>key</code> when a nav item is clicked.</p>\n",
+                    "line": 87,
                     "type": "EventEmitter"
                 },
                 {
-                    "name": "closed",
+                    "name": "logout",
                     "defaultValue": "new EventEmitter<void>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nEmits when the header close (×) button is clicked.",
-                    "description": "<p>Emits when the header close (×) button is clicked.</p>\n",
-                    "line": 91,
+                    "rawdescription": "\nEmits when the Logout button is clicked.",
+                    "description": "<p>Emits when the Logout button is clicked.</p>\n",
+                    "line": 90,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "menuToggle",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the main menu toggle is clicked.",
+                    "description": "<p>Emits when the main menu toggle is clicked.</p>\n",
+                    "line": 93,
                     "type": "EventEmitter"
                 }
             ],
             "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "onAction",
-                    "args": [
-                        {
-                            "name": "action",
-                            "type": "ModalAction",
-                            "optional": false,
-                            "dotDotDotToken": false,
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 96,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "name": "action",
-                            "type": "ModalAction",
-                            "optional": false,
-                            "dotDotDotToken": false,
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "onEscape",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 101,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "decorators": [
-                        {
-                            "name": "HostListener",
-                            "stringifiedArguments": "'keydown.escape'"
-                        }
-                    ],
-                    "modifierKind": [
-                        171
-                    ]
-                }
-            ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
-            "hostListeners": [
-                {
-                    "name": "keydown.escape",
-                    "args": [],
-                    "argsDecorator": [],
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 101
-                }
-            ],
+            "hostListeners": [],
             "standalone": true,
             "imports": [
                 {
@@ -847,27 +763,16 @@
                     "type": "module"
                 }
             ],
-            "description": "<p>Modal dialog component — themed header, scrollable body, fixed footer.</p>\n<p><strong>5 colour themes:</strong> <code>user</code> (blue) · <code>admin</code> (orange) · <code>green</code> · <code>sunoh</code> (pink) · <code>ai</code> (purple).</p>\n<p><strong>5 sizes:</strong> <code>small</code> (420×420) · <code>medium</code> (720×620) · <code>large</code> (1000×620) · <code>xlarge</code> (1240×620) · <code>xxlarge</code> (1340×620).</p>\n<p>Structure:</p>\n<ul>\n<li><strong>Header</strong> — 36 px, themed background, semibold heading, close ×.</li>\n<li><strong>Body</strong> — flex-1, white, scrollable; project content via <code>&lt;ng-content&gt;</code>.</li>\n<li><strong>Footer</strong> — 40 px, white bg, top border; left &amp; right button areas.</li>\n</ul>\n<p>Shadow: <code>0 0 6 px rgba(0, 0, 0, 0.3)</code>.</p>\n",
-            "rawdescription": "\n\nModal dialog component — themed header, scrollable body, fixed footer.\n\n**5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n\n**5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).\n\nStructure:\n- **Header** — 36 px, themed background, semibold heading, close ×.\n- **Body** — flex-1, white, scrollable; project content via `<ng-content>`.\n- **Footer** — 40 px, white bg, top border; left & right button areas.\n\nShadow: `0 0 6 px rgba(0, 0, 0, 0.3)`.\n",
+            "description": "<p>Left navigation sidebar — 60 px wide, dark navy vertical column.</p>\n<p>Each item is an icon + label stacked vertically. A top scroll button, a\nscrollable link list, a bottom scroll button, and a Logout row complete\nthe component.</p>\n<p>The <code>activeItem</code> key highlights the corresponding item.</p>\n",
+            "rawdescription": "\n\nLeft navigation sidebar — 60 px wide, dark navy vertical column.\n\nEach item is an icon + label stacked vertically. A top scroll button, a\nscrollable link list, a bottom scroll button, and a Logout row complete\nthe component.\n\nThe `activeItem` key highlights the corresponding item.\n",
             "type": "component",
-            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  HostListener,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport type ModalTheme = 'user' | 'admin' | 'green' | 'sunoh' | 'ai';\n\n/**\n * Modal size — maps to recommended width × height from the design spec:\n * - `small`   → 420 × 420 px\n * - `medium`  → 720 × 620 px\n * - `large`   → 1000 × 620 px\n * - `xlarge`  → 1240 × 620 px\n * - `xxlarge` → 1340 × 620 px\n */\nexport type ModalSize = 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';\n\n/** Configuration for a footer action button. */\nexport interface ModalAction {\n  /** Button label. */\n  label: string;\n  /** Optional value emitted on click (falls back to `label`). */\n  value?: string;\n  /**\n   * Button style:\n   * - `'primary'` — themed filled button (matches modal theme colour).\n   * - `'secondary'` — neutral gray button.\n   */\n  variant?: 'primary' | 'secondary';\n}\n\n/**\n * Modal dialog component — themed header, scrollable body, fixed footer.\n *\n * **5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n *\n * **5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).\n *\n * Structure:\n * - **Header** — 36 px, themed background, semibold heading, close ×.\n * - **Body** — flex-1, white, scrollable; project content via `<ng-content>`.\n * - **Footer** — 40 px, white bg, top border; left & right button areas.\n *\n * Shadow: `0 0 6 px rgba(0, 0, 0, 0.3)`.\n */\n@Component({\n  selector: 'ds-modal',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './modal.component.html',\n  styleUrl: './modal.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ModalComponent {\n  /** Colour theme applied to the header bar and primary action buttons. */\n  @Input() theme: ModalTheme = 'user';\n\n  /** Size variant — controls width and height. */\n  @Input() size: ModalSize = 'medium';\n\n  /** Heading text displayed in the header bar. */\n  @Input() heading = 'Heading';\n\n  /**\n   * When `true`, shows a yellow \"dirty flag\" warning indicator in the header,\n   * signalling unsaved changes.\n   */\n  @Input() showDirtyFlag = false;\n\n  /**\n   * Footer buttons on the **left** side (typically secondary / cancel actions).\n   * Pass an empty array to hide the left section.\n   */\n  @Input() footerLeftActions: ModalAction[] = [{ label: 'Cancel', variant: 'secondary' }];\n\n  /**\n   * Footer buttons on the **right** side (typically save / primary actions).\n   * First item with `variant: 'primary'` gets the themed filled style.\n   */\n  @Input() footerRightActions: ModalAction[] = [\n    { label: 'Save', variant: 'primary' },\n    { label: 'Close', variant: 'secondary' },\n  ];\n\n  /** Emits when the header close (×) button is clicked. */\n  @Output() closed = new EventEmitter<void>();\n\n  /** Emits the action `value` (or `label`) when a footer button is clicked. */\n  @Output() actionClick = new EventEmitter<string>();\n\n  onAction(action: ModalAction): void {\n    this.actionClick.emit(action.value ?? action.label);\n  }\n\n  @HostListener('keydown.escape')\n  onEscape(): void {\n    this.closed.emit();\n  }\n\n  get modalClasses(): Record<string, boolean> {\n    return {\n      'ds-modal': true,\n      [`ds-modal--${this.theme}`]: true,\n      [`ds-modal--${this.size}`]: true,\n    };\n  }\n}\n",
-            "styleUrl": "./modal.component.scss",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\n/**\n * A single left-navigation item — icon path (24 × 24 viewBox SVG) + label.\n */\nexport interface LeftNavItem {\n  /** Unique key used for active-state tracking and event emission. */\n  key: string;\n  /** Short label displayed below the icon (10 px, white). */\n  label: string;\n  /**\n   * SVG `<path d=\"…\">` data for the icon.\n   * Use a 24 × 24 viewBox path — it renders at 24 × 24 px.\n   */\n  iconPath: string;\n  /** When true, the item is highlighted as the active / selected route. */\n  active?: boolean;\n}\n\n// ─── Default icon paths (Material Design) ────────────────────────────────────\n\nconst ICON_MENU       = 'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z';\nconst ICON_STAR       = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';\nconst ICON_ADMIN      = 'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z';\nconst ICON_PRACTICE   = 'M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z';\nconst ICON_CCMR       = 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z';\nconst ICON_RESIDENTIAL= 'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z';\nconst ICON_REGISTRY   = 'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z';\nconst ICON_REFERRALS  = 'M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z';\nconst ICON_MESSAGES   = 'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z';\nconst ICON_DOCUMENTS  = 'M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z';\nconst ICON_BILLING    = 'M19.5 3.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2 4.5 3.5 3 2v20l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5zM19 19.09H5V4.91h14v14.18zM6 15h12v2H6zm0-4h12v2H6zm0-4h12v2H6z';\nconst ICON_RCM        = 'M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z';\nconst ICON_PRM        = 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z';\nconst ICON_AFTER_CARE = 'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z';\n\n/** Default navigation items matching the Figma design. */\nexport const DEFAULT_LEFT_NAV_ITEMS: LeftNavItem[] = [\n  { key: 'menu',       label: 'Menu',       iconPath: ICON_MENU },\n  { key: 'favorites',  label: 'Favorites',  iconPath: ICON_STAR },\n  { key: 'admin',      label: 'Admin',      iconPath: ICON_ADMIN },\n  { key: 'practice',   label: 'Practice',   iconPath: ICON_PRACTICE },\n  { key: 'ccmr',       label: 'CCMR',       iconPath: ICON_CCMR },\n  { key: 'residential',label: 'Residential',iconPath: ICON_RESIDENTIAL },\n  { key: 'registry',   label: 'Registry',   iconPath: ICON_REGISTRY },\n  { key: 'referrals',  label: 'Referrals',  iconPath: ICON_REFERRALS },\n  { key: 'messages',   label: 'Messages',   iconPath: ICON_MESSAGES },\n  { key: 'documents',  label: 'Documents',  iconPath: ICON_DOCUMENTS },\n  { key: 'billing',    label: 'Billing',    iconPath: ICON_BILLING },\n  { key: 'rcm',        label: 'RCM',        iconPath: ICON_RCM },\n  { key: 'prm',        label: 'PRM',        iconPath: ICON_PRM },\n  { key: 'after-care', label: 'After Care', iconPath: ICON_AFTER_CARE },\n];\n\n/**\n * Left navigation sidebar — 60 px wide, dark navy vertical column.\n *\n * Each item is an icon + label stacked vertically. A top scroll button, a\n * scrollable link list, a bottom scroll button, and a Logout row complete\n * the component.\n *\n * The `activeItem` key highlights the corresponding item.\n */\n@Component({\n  selector: 'ds-left-nav',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './left-nav.component.html',\n  styleUrl: './left-nav.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class LeftNavComponent {\n  /** Navigation items shown in the scrollable list. */\n  @Input() items: LeftNavItem[] = DEFAULT_LEFT_NAV_ITEMS;\n\n  /** Key of the currently active / selected item. */\n  @Input() activeItem: string | null = null;\n\n  /** Emits the item `key` when a nav item is clicked. */\n  @Output() itemClick = new EventEmitter<string>();\n\n  /** Emits when the Logout button is clicked. */\n  @Output() logout = new EventEmitter<void>();\n\n  /** Emits when the main menu toggle is clicked. */\n  @Output() menuToggle = new EventEmitter<void>();\n}\n",
+            "styleUrl": "./left-nav.component.scss",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
-            "accessors": {
-                "modalClasses": {
-                    "name": "modalClasses",
-                    "getSignature": {
-                        "name": "modalClasses",
-                        "type": "unknown",
-                        "returnType": "Record<string, boolean>",
-                        "line": 105
-                    }
-                }
-            },
-            "templateData": "<div [ngClass]=\"modalClasses\">\n\n  <!-- ─── Header ──────────────────────────────────────────────────────────── -->\n  <div class=\"ds-modal__header\">\n\n    <div class=\"ds-modal__header-left\">\n      <span class=\"ds-modal__heading\">{{ heading }}</span>\n\n      @if (showDirtyFlag) {\n        <span class=\"ds-modal__dirty-flag\" title=\"You have unsaved changes\" aria-label=\"Unsaved changes\">\n          <svg class=\"ds-modal__dirty-icon\" viewBox=\"0 0 16 16\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n            <path d=\"M8 1L1 14h14L8 1zm0 2.18L13.54 13H2.46L8 3.18zM7 7v3h2V7H7zm0 4v2h2v-2H7z\"/>\n          </svg>\n        </span>\n      }\n    </div>\n\n    <!-- Right: projected header actions + close button -->\n    <div class=\"ds-modal__header-right\">\n      <ng-content select=\"[header-actions]\"></ng-content>\n      <button\n        class=\"ds-modal__close-btn\"\n        type=\"button\"\n        (click)=\"closed.emit()\"\n        aria-label=\"Close modal\"\n      >\n        <svg class=\"ds-modal__close-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n          <path d=\"M15.59 4.41L14.17 3 10 7.17 5.83 3 4.41 4.41 8.59 8.59 4.41 12.76 5.83 14.17 10 9.99l4.17 4.18 1.42-1.41L11.41 8.59z\"/>\n        </svg>\n      </button>\n    </div>\n\n  </div>\n\n  <!-- ─── Body (projected content) ───────────────────────────────────────── -->\n  <div class=\"ds-modal__body\">\n    <ng-content></ng-content>\n  </div>\n\n  <!-- ─── Footer ──────────────────────────────────────────────────────────── -->\n  <div class=\"ds-modal__footer\">\n\n    <!-- Left side actions -->\n    <div class=\"ds-modal__footer-left\">\n      @for (action of footerLeftActions; track action.label) {\n        <button\n          [ngClass]=\"['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]\"\n          type=\"button\"\n          (click)=\"onAction(action)\"\n        >{{ action.label }}</button>\n      }\n    </div>\n\n    <!-- Right side actions -->\n    <div class=\"ds-modal__footer-right\">\n      @for (action of footerRightActions; track action.label) {\n        <button\n          [ngClass]=\"['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]\"\n          type=\"button\"\n          (click)=\"onAction(action)\"\n        >{{ action.label }}</button>\n      }\n    </div>\n\n  </div>\n\n</div>\n"
+            "templateData": "<nav class=\"ds-left-nav\">\n\n  <!-- ── Menu toggle bar ───────────────────────────────────────────── -->\n  <div class=\"ds-left-nav__menu-toggle\" (click)=\"menuToggle.emit()\">\n    <svg class=\"ds-left-nav__menu-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n      <path [attr.d]=\"'M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z'\"/>\n    </svg>\n    <svg class=\"ds-left-nav__menu-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n      <path [attr.d]=\"'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'\"/>\n    </svg>\n    <svg class=\"ds-left-nav__menu-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n      <path [attr.d]=\"'M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z'\"/>\n    </svg>\n  </div>\n\n  <!-- ── Scroll up button ──────────────────────────────────────────── -->\n  <button class=\"ds-left-nav__scroll-btn\" type=\"button\" aria-label=\"Scroll up\">\n    <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n      <path d=\"M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z\"/>\n    </svg>\n  </button>\n\n  <!-- ── Scrollable nav items ──────────────────────────────────────── -->\n  <div class=\"ds-left-nav__list\">\n    @for (item of items; track item.key) {\n      <button\n        class=\"ds-left-nav__item\"\n        [class.ds-left-nav__item--active]=\"activeItem === item.key\"\n        type=\"button\"\n        [attr.aria-label]=\"item.label\"\n        [attr.aria-current]=\"activeItem === item.key ? 'page' : null\"\n        (click)=\"itemClick.emit(item.key)\"\n      >\n        <svg class=\"ds-left-nav__icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n          <path [attr.d]=\"item.iconPath\"/>\n        </svg>\n        <span class=\"ds-left-nav__label\">{{ item.label }}</span>\n      </button>\n    }\n  </div>\n\n  <!-- ── Scroll down button ────────────────────────────────────────── -->\n  <button class=\"ds-left-nav__scroll-btn\" type=\"button\" aria-label=\"Scroll down\">\n    <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n      <path d=\"M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z\"/>\n    </svg>\n  </button>\n\n  <!-- ── Logout row ────────────────────────────────────────────────── -->\n  <button class=\"ds-left-nav__logout\" type=\"button\" (click)=\"logout.emit()\">\n    <svg class=\"ds-left-nav__logout-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\">\n      <path d=\"M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z\"/>\n    </svg>\n    <span>Logout</span>\n  </button>\n\n</nav>\n"
         },
         {
             "name": "ToggleButtonGroupComponent",
@@ -1281,6 +1186,158 @@
                 "description": "<p>Built-in checkmark SVG shown in the selected state (label buttons).</p>\n"
             },
             {
+                "name": "DEFAULT_LEFT_NAV_ITEMS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "LeftNavItem[]",
+                "defaultValue": "[\n  { key: 'menu',       label: 'Menu',       iconPath: ICON_MENU },\n  { key: 'favorites',  label: 'Favorites',  iconPath: ICON_STAR },\n  { key: 'admin',      label: 'Admin',      iconPath: ICON_ADMIN },\n  { key: 'practice',   label: 'Practice',   iconPath: ICON_PRACTICE },\n  { key: 'ccmr',       label: 'CCMR',       iconPath: ICON_CCMR },\n  { key: 'residential',label: 'Residential',iconPath: ICON_RESIDENTIAL },\n  { key: 'registry',   label: 'Registry',   iconPath: ICON_REGISTRY },\n  { key: 'referrals',  label: 'Referrals',  iconPath: ICON_REFERRALS },\n  { key: 'messages',   label: 'Messages',   iconPath: ICON_MESSAGES },\n  { key: 'documents',  label: 'Documents',  iconPath: ICON_DOCUMENTS },\n  { key: 'billing',    label: 'Billing',    iconPath: ICON_BILLING },\n  { key: 'rcm',        label: 'RCM',        iconPath: ICON_RCM },\n  { key: 'prm',        label: 'PRM',        iconPath: ICON_PRM },\n  { key: 'after-care', label: 'After Care', iconPath: ICON_AFTER_CARE },\n]",
+                "rawdescription": "Default navigation items matching the Figma design.",
+                "description": "<p>Default navigation items matching the Figma design.</p>\n"
+            },
+            {
+                "name": "ICON_ADMIN",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z'"
+            },
+            {
+                "name": "ICON_AFTER_CARE",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'"
+            },
+            {
+                "name": "ICON_BILLING",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M19.5 3.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2 4.5 3.5 3 2v20l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5zM19 19.09H5V4.91h14v14.18zM6 15h12v2H6zm0-4h12v2H6zm0-4h12v2H6z'"
+            },
+            {
+                "name": "ICON_CCMR",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z'"
+            },
+            {
+                "name": "ICON_DOCUMENTS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'"
+            },
+            {
+                "name": "ICON_MENU",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'"
+            },
+            {
+                "name": "ICON_MESSAGES",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'"
+            },
+            {
+                "name": "ICON_PRACTICE",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z'"
+            },
+            {
+                "name": "ICON_PRM",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'"
+            },
+            {
+                "name": "ICON_RCM",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z'"
+            },
+            {
+                "name": "ICON_REFERRALS",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z'"
+            },
+            {
+                "name": "ICON_REGISTRY",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'"
+            },
+            {
+                "name": "ICON_RESIDENTIAL",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'"
+            },
+            {
+                "name": "ICON_STAR",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/left-nav/left-nav.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "string",
+                "defaultValue": "'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'"
+            },
+            {
                 "name": "routes",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1338,28 +1395,6 @@
                 "kind": 193
             },
             {
-                "name": "ModalSize",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "\"small\" | \"medium\" | \"large\" | \"xlarge\" | \"xxlarge\"",
-                "file": "src/ds/modal/modal.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "<p>Modal size — maps to recommended width × height from the design spec:</p>\n<ul>\n<li><code>small</code>   → 420 × 420 px</li>\n<li><code>medium</code>  → 720 × 620 px</li>\n<li><code>large</code>   → 1000 × 620 px</li>\n<li><code>xlarge</code>  → 1240 × 620 px</li>\n<li><code>xxlarge</code> → 1340 × 620 px</li>\n</ul>\n",
-                "kind": 193
-            },
-            {
-                "name": "ModalTheme",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "\"user\" | \"admin\" | \"green\" | \"sunoh\" | \"ai\"",
-                "file": "src/ds/modal/modal.component.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "description": "",
-                "kind": 193
-            },
-            {
                 "name": "ToggleColor",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -1408,6 +1443,160 @@
                     "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"13,3.5 6,12.5 3,8.5\"/></svg>`",
                     "rawdescription": "Built-in checkmark SVG shown in the selected state (label buttons).",
                     "description": "<p>Built-in checkmark SVG shown in the selected state (label buttons).</p>\n"
+                }
+            ],
+            "src/ds/left-nav/left-nav.component.ts": [
+                {
+                    "name": "DEFAULT_LEFT_NAV_ITEMS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "LeftNavItem[]",
+                    "defaultValue": "[\n  { key: 'menu',       label: 'Menu',       iconPath: ICON_MENU },\n  { key: 'favorites',  label: 'Favorites',  iconPath: ICON_STAR },\n  { key: 'admin',      label: 'Admin',      iconPath: ICON_ADMIN },\n  { key: 'practice',   label: 'Practice',   iconPath: ICON_PRACTICE },\n  { key: 'ccmr',       label: 'CCMR',       iconPath: ICON_CCMR },\n  { key: 'residential',label: 'Residential',iconPath: ICON_RESIDENTIAL },\n  { key: 'registry',   label: 'Registry',   iconPath: ICON_REGISTRY },\n  { key: 'referrals',  label: 'Referrals',  iconPath: ICON_REFERRALS },\n  { key: 'messages',   label: 'Messages',   iconPath: ICON_MESSAGES },\n  { key: 'documents',  label: 'Documents',  iconPath: ICON_DOCUMENTS },\n  { key: 'billing',    label: 'Billing',    iconPath: ICON_BILLING },\n  { key: 'rcm',        label: 'RCM',        iconPath: ICON_RCM },\n  { key: 'prm',        label: 'PRM',        iconPath: ICON_PRM },\n  { key: 'after-care', label: 'After Care', iconPath: ICON_AFTER_CARE },\n]",
+                    "rawdescription": "Default navigation items matching the Figma design.",
+                    "description": "<p>Default navigation items matching the Figma design.</p>\n"
+                },
+                {
+                    "name": "ICON_ADMIN",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z'"
+                },
+                {
+                    "name": "ICON_AFTER_CARE",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'"
+                },
+                {
+                    "name": "ICON_BILLING",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M19.5 3.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2 7.5 3.5 6 2 4.5 3.5 3 2v20l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5zM19 19.09H5V4.91h14v14.18zM6 15h12v2H6zm0-4h12v2H6zm0-4h12v2H6z'"
+                },
+                {
+                    "name": "ICON_CCMR",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z'"
+                },
+                {
+                    "name": "ICON_DOCUMENTS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z'"
+                },
+                {
+                    "name": "ICON_MENU",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'"
+                },
+                {
+                    "name": "ICON_MESSAGES",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'"
+                },
+                {
+                    "name": "ICON_PRACTICE",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z'"
+                },
+                {
+                    "name": "ICON_PRM",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z'"
+                },
+                {
+                    "name": "ICON_RCM",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z'"
+                },
+                {
+                    "name": "ICON_REFERRALS",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z'"
+                },
+                {
+                    "name": "ICON_REGISTRY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z'"
+                },
+                {
+                    "name": "ICON_RESIDENTIAL",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'"
+                },
+                {
+                    "name": "ICON_STAR",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/left-nav/left-nav.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "defaultValue": "'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'"
                 }
             ],
             "src/app/app.routes.ts": [
@@ -1472,30 +1661,6 @@
                     "kind": 193
                 }
             ],
-            "src/ds/modal/modal.component.ts": [
-                {
-                    "name": "ModalSize",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "\"small\" | \"medium\" | \"large\" | \"xlarge\" | \"xxlarge\"",
-                    "file": "src/ds/modal/modal.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "<p>Modal size — maps to recommended width × height from the design spec:</p>\n<ul>\n<li><code>small</code>   → 420 × 420 px</li>\n<li><code>medium</code>  → 720 × 620 px</li>\n<li><code>large</code>   → 1000 × 620 px</li>\n<li><code>xlarge</code>  → 1240 × 620 px</li>\n<li><code>xxlarge</code> → 1340 × 620 px</li>\n</ul>\n",
-                    "kind": 193
-                },
-                {
-                    "name": "ModalTheme",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "\"user\" | \"admin\" | \"green\" | \"sunoh\" | \"ai\"",
-                    "file": "src/ds/modal/modal.component.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "description": "",
-                    "kind": 193
-                }
-            ],
             "src/ds/toggle-button/toggle-button-group.component.ts": [
                 {
                     "name": "ToggleColor",
@@ -1528,8 +1693,8 @@
         "children": []
     },
     "coverage": {
-        "count": 27,
-        "status": "medium",
+        "count": 17,
+        "status": "low",
         "files": [
             {
                 "filePath": "src/app/app.config.ts",
@@ -1637,39 +1802,169 @@
                 "status": "low"
             },
             {
-                "filePath": "src/ds/modal/modal.component.ts",
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "ModalComponent",
-                "coveragePercent": 75,
-                "coverageCount": "9/12",
-                "status": "good"
-            },
-            {
-                "filePath": "src/ds/modal/modal.component.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "ModalAction",
+                "name": "LeftNavComponent",
                 "coveragePercent": 100,
-                "coverageCount": "4/4",
+                "coverageCount": "6/6",
                 "status": "very-good"
             },
             {
-                "filePath": "src/ds/modal/modal.component.ts",
-                "type": "type alias",
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "LeftNavItem",
+                "coveragePercent": 100,
+                "coverageCount": "5/5",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
                 "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "ModalSize",
+                "linksubtype": "variable",
+                "name": "DEFAULT_LEFT_NAV_ITEMS",
                 "coveragePercent": 100,
                 "coverageCount": "1/1",
                 "status": "very-good"
             },
             {
-                "filePath": "src/ds/modal/modal.component.ts",
-                "type": "type alias",
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
                 "linktype": "miscellaneous",
-                "linksubtype": "typealias",
-                "name": "ModalTheme",
+                "linksubtype": "variable",
+                "name": "ICON_ADMIN",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_AFTER_CARE",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_BILLING",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_CCMR",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_DOCUMENTS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_MENU",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_MESSAGES",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_PRACTICE",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_PRM",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_RCM",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_REFERRALS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_REGISTRY",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_RESIDENTIAL",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/left-nav/left-nav.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ICON_STAR",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
