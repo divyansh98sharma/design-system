@@ -35,7 +35,7 @@ jobs:
         id: claude-review
         uses: anthropics/claude-code-action@v1
         with:
-          claude_code_oauth_token: ${{ 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 }}
+          claude_code_oauth_token: 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
           plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
           plugins: 'code-review@claude-code-plugins'
           prompt: '/code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
