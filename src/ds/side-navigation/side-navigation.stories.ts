@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { SideNavigationComponent, SideNavItem } from './side-navigation.component';
 
 const DEMO_ITEMS: SideNavItem[] = [

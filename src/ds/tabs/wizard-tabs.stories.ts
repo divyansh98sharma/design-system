@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { WizardTabsComponent } from './wizard-tabs.component';
 import { WizardTabTheme } from './tabs.types';
 
