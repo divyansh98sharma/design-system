@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { expect, fn, userEvent, within } from '@storybook/test';
 import { ButtonComponent } from './button.component';
 
 const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -77,6 +78,7 @@ const meta: Meta<ButtonComponent> = {
     color: 'user',
     size: 'md',
     disabled: false,
+    buttonClick: fn(),
   },
 };
 
@@ -252,6 +254,29 @@ export const IconOnly: Story = {
       </div>
     `,
   }),
+};
+
+// ─── Interaction Tests ────────────────────────────────────────────────────────
+
+export const ClickEmitsEvent: Story = {
+  name: 'Interaction: Click emits event',
+  args: { label: 'Click me', variant: 'filled', color: 'user', size: 'md', disabled: false },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: /click me/i });
+    await userEvent.click(button);
+    await expect(args.buttonClick).toHaveBeenCalledOnce();
+  },
+};
+
+export const DisabledButtonNotClickable: Story = {
+  name: 'Interaction: Disabled button is not clickable',
+  args: { label: 'Disabled', variant: 'filled', color: 'user', size: 'md', disabled: true },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole('button', { name: /disabled/i });
+    await expect(button).toBeDisabled();
+  },
 };
 
 // ─── Disabled ────────────────────────────────────────────────────────────────
