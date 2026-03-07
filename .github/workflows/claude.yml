@@ -34,7 +34,7 @@ jobs:
         id: claude
         uses: anthropics/claude-code-action@v1
         with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          claude_code_oauth_token: ${{ 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 }}
 
           # This is an optional setting that allows Claude to read CI results on PRs
           additional_permissions: |
