@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/angular';
 import { SogiComponent } from './sogi.component';
 
 const meta: Meta<SogiComponent> = {
-  title    : 'Design System/Button/SOGI',
+  title    : 'Components/Button/SOGI',
   component: SogiComponent,
   tags     : ['autodocs'],
   argTypes : {

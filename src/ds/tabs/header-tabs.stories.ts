@@ -12,7 +12,7 @@ const SAMPLE_TABS = [
 const THEMES: TabTheme[] = ['user', 'admin', 'green', 'sunoh'];
 
 const meta: Meta<HeaderTabsComponent> = {
-  title    : 'Design System/Tabs/Header Tabs',
+  title    : 'Components/Tabs/Header Tabs',
   component: HeaderTabsComponent,
   tags     : ['autodocs'],
   argTypes : {

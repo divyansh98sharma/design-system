@@ -49,7 +49,7 @@ class ToolbarComponent {}
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<TableComponent> = {
-  title: 'Design System/Table',
+  title: 'Components/Table',
   component: TableComponent,
   tags: ['autodocs'],
   decorators: [

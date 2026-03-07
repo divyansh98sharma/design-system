@@ -6,7 +6,7 @@ import {
 } from './left-nav.component';
 
 const meta: Meta<LeftNavComponent> = {
-  title    : 'Design System/Left Nav',
+  title    : 'Components/Left Nav',
   component: LeftNavComponent,
   tags     : ['autodocs'],
   argTypes : {
