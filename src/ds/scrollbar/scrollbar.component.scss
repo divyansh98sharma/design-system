@@ -1,0 +1,112 @@
+// ─── Scrollbar ────────────────────────────────────────────────────────────────
+//
+// Applies design-system scrollbar styles to a scrollable wrapper div.
+// Uses ::-webkit-scrollbar pseudo-elements (Chromium / Safari / Edge).
+//
+// Design spec:
+//   Track:  #ebebeb (secondary/base-40), 1px padding inside track
+//   Thumb:  #969696 (secondary/base-70), radius 4px
+//   Width:  12px (vertical) / Height: 12px (horizontal)
+//   Arrows: 10×10px chevron buttons at track ends (2px gap from thumb)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-scrollbar {
+  // ─── Scrollbar track & thumb ──────────────────────────────────────────────
+
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ebebeb;       // secondary/base-40
+    border-radius: 0;
+    padding: 1px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #969696;       // secondary/base-70
+    border-radius: var(--radius-4, 4px);
+    border: 1px solid #ebebeb; // 1px inset from track
+    min-height: 20px;
+    min-width: 20px;
+
+    &:hover  { background: #7a7a7a; }
+    &:active { background: #5c5c5c; }
+  }
+
+  // ─── Arrow buttons ────────────────────────────────────────────────────────
+
+  // Chevron up
+  &::-webkit-scrollbar-button:single-button:vertical:decrement {
+    height: 10px;
+    width: 12px;
+    display: block;
+    background-color: #ebebeb;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 5L5 1L9 5' stroke='%23969696' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 6px;
+  }
+
+  // Chevron down
+  &::-webkit-scrollbar-button:single-button:vertical:increment {
+    height: 10px;
+    width: 12px;
+    display: block;
+    background-color: #ebebeb;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23969696' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 10px 6px;
+  }
+
+  // Chevron left
+  &::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    height: 12px;
+    width: 10px;
+    display: block;
+    background-color: #ebebeb;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10' fill='none'%3E%3Cpath d='M5 1L1 5L5 9' stroke='%23969696' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 6px 10px;
+  }
+
+  // Chevron right
+  &::-webkit-scrollbar-button:single-button:horizontal:increment {
+    height: 12px;
+    width: 10px;
+    display: block;
+    background-color: #ebebeb;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 6 10' fill='none'%3E%3Cpath d='M1 1L5 5L1 9' stroke='%23969696' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 6px 10px;
+  }
+
+  // ─── Corner (where both bars meet) ────────────────────────────────────────
+
+  &::-webkit-scrollbar-corner {
+    background: #ebebeb;
+  }
+
+  // ─── Orientation: vertical ────────────────────────────────────────────────
+
+  &--vertical {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  // ─── Orientation: horizontal ──────────────────────────────────────────────
+
+  &--horizontal {
+    overflow-x: auto;
+    overflow-y: hidden;
+    // Show horizontal scrollbar only
+    &::-webkit-scrollbar {
+      height: 12px;
+    }
+  }
+}

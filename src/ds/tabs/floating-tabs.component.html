@@ -1,0 +1,16 @@
+<div class="ds-floating-tabs"
+     [style.--theme-base]="colors.base"
+     role="tablist">
+  @for (tab of tabs; track tab.key) {
+    <button
+      class="ds-floating-tabs__tab"
+      [class.ds-floating-tabs__tab--active]="activeTab === tab.key"
+      role="tab"
+      [attr.aria-selected]="activeTab === tab.key"
+      type="button"
+      (click)="select(tab.key)"
+    >
+      <span class="ds-floating-tabs__label">{{ tab.label }}</span>
+    </button>
+  }
+</div>

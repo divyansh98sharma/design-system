@@ -1,0 +1,115 @@
+// ─── Tooltip Bubble ───────────────────────────────────────────────────────────
+// Implements all 12 caret positions from the Figma spec using a ::before
+// pseudo-element for the arrow. The bubble itself has a white background,
+// light drop shadow, and 4px border radius.
+
+$arrow-size: 6px;
+$arrow-overlap: 1px; // how far the arrow overlaps the bubble edge
+
+.ds-tooltip {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
+  background: var(--color-white, #fff);
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-light-100); // 0 8px 16px -4px rgba(0,0,0,0.16)
+  max-width: 512px;
+  min-width: 42px;
+
+  // ─── Caret (arrow) ─────────────────────────────────────────────────────────
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  // ─── Text content ──────────────────────────────────────────────────────────
+
+  &__text {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    color: var(--color-black, #000);
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  // =========================================================================
+  // CARET POSITIONS
+  // Naming: {edge that the caret touches}-{alignment along that edge}
+  //   top-*    → bubble is BELOW the trigger, caret on top edge
+  //   bottom-* → bubble is ABOVE the trigger, caret on bottom edge
+  //   left-*   → bubble is to the RIGHT of trigger, caret on left edge
+  //   right-*  → bubble is to the LEFT of trigger, caret on right edge
+  // =========================================================================
+
+  // ── Top edge (bubble below trigger) ───────────────────────────────────────
+
+  &--top-left::before,
+  &--top-center::before,
+  &--top-right::before {
+    top: -($arrow-size - $arrow-overlap);
+    border-left: $arrow-size solid transparent;
+    border-right: $arrow-size solid transparent;
+    border-bottom: $arrow-size solid var(--color-white, #fff);
+    filter: drop-shadow(0 -3px 2px rgba(0, 0, 0, 0.07));
+  }
+
+  &--top-left::before   { left: 12px; }
+  &--top-center::before { left: 50%; transform: translateX(-50%); }
+  &--top-right::before  { right: 12px; }
+
+  // ── Bottom edge (bubble above trigger) ────────────────────────────────────
+
+  &--bottom-left::before,
+  &--bottom-center::before,
+  &--bottom-right::before {
+    bottom: -($arrow-size - $arrow-overlap);
+    border-left: $arrow-size solid transparent;
+    border-right: $arrow-size solid transparent;
+    border-top: $arrow-size solid var(--color-white, #fff);
+    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.07));
+  }
+
+  &--bottom-left::before   { left: 12px; }
+  &--bottom-center::before { left: 50%; transform: translateX(-50%); }
+  &--bottom-right::before  { right: 12px; }
+
+  // ── Left edge (bubble to the right of trigger) ────────────────────────────
+
+  &--left-top::before,
+  &--left-center::before,
+  &--left-bottom::before {
+    left: -($arrow-size - $arrow-overlap);
+    border-top: $arrow-size solid transparent;
+    border-bottom: $arrow-size solid transparent;
+    border-right: $arrow-size solid var(--color-white, #fff);
+    filter: drop-shadow(-3px 0 2px rgba(0, 0, 0, 0.07));
+  }
+
+  &--left-top::before    { top: 10px; }
+  &--left-center::before { top: 50%; transform: translateY(-50%); }
+  &--left-bottom::before { bottom: 10px; }
+
+  // ── Right edge (bubble to the left of trigger) ────────────────────────────
+
+  &--right-top::before,
+  &--right-center::before,
+  &--right-bottom::before {
+    right: -($arrow-size - $arrow-overlap);
+    border-top: $arrow-size solid transparent;
+    border-bottom: $arrow-size solid transparent;
+    border-left: $arrow-size solid var(--color-white, #fff);
+    filter: drop-shadow(3px 0 2px rgba(0, 0, 0, 0.07));
+  }
+
+  &--right-top::before    { top: 10px; }
+  &--right-center::before { top: 50%; transform: translateY(-50%); }
+  &--right-bottom::before { bottom: 10px; }
+}
