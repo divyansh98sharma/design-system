@@ -1,0 +1,216 @@
+<div class="ds-patient-info">
+
+  <!-- ─── Main row ────────────────────────────────────────────────────────── -->
+  <div class="ds-patient-info__main">
+
+    <!-- Avatar -->
+    <div class="ds-patient-info__avatar" aria-label="Patient photo">
+      <svg class="ds-patient-info__avatar-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
+      </svg>
+    </div>
+
+    <!-- Patient details -->
+    <div class="ds-patient-info__details">
+
+      <!-- Name row -->
+      <div class="ds-patient-info__name-row">
+        <div class="ds-patient-info__name-age">
+          <span class="ds-patient-info__name">{{ patientName }}</span>
+          <span class="ds-patient-info__age">{{ ageGender }}</span>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="ds-patient-info__actions">
+          @if (showInfoButton) {
+            <button class="ds-patient-info__action-btn" type="button" (click)="infoClick.emit()">INFO</button>
+          }
+          @if (showHubButton) {
+            <button class="ds-patient-info__action-btn" type="button" (click)="hubClick.emit()">HUB</button>
+          }
+          @if (showAskEva) {
+            <button class="ds-patient-info__secondary-btn" type="button" (click)="askEvaClick.emit()">ASK EVA</button>
+            <button class="ds-patient-info__secondary-btn ds-patient-info__secondary-btn--icon" type="button">?</button>
+          }
+          @if (showHealowConnect) {
+            <button class="ds-patient-info__healow-btn" type="button">
+              <svg class="ds-patient-info__healow-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              Connect
+            </button>
+          }
+          @if (showSogi) {
+            <div class="ds-patient-info__sogi" aria-label="SOGI indicator">SOGI</div>
+          }
+        </div>
+      </div>
+
+      <!-- Contact row -->
+      <div class="ds-patient-info__contact-row">
+        <!-- Address -->
+        <div class="ds-patient-info__contact-item ds-patient-info__contact-item--address">
+          <svg class="ds-patient-info__contact-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <span>{{ address }}</span>
+        </div>
+
+        <!-- DOB + phone + mobile + email -->
+        <div class="ds-patient-info__contact-inline">
+          <div class="ds-patient-info__contact-item">
+            <svg class="ds-patient-info__contact-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 6c1.11 0 2-.89 2-2 0-.38-.1-.73-.29-1.03L12 0l-1.71 2.97C10.1 3.27 10 3.62 10 4c0 1.11.9 2 2 2zm4.6 10l-1.07-1.07-1.08 1.07c-1.3 1.3-3.58 1.31-4.89 0l-1.07-1.07-1.09 1.07C6.75 17.74 5.88 18 5 18v2c1.32 0 2.57-.5 3.54-1.47l.46-.45.45.45c.97.97 2.22 1.47 3.55 1.47s2.58-.5 3.54-1.47l.45-.45.46.45C18.44 19.5 19.68 20 21 20v-2c-.88 0-1.75-.26-2.4-.91zM18 12H6c-1.1 0-2 .9-2 2v2h2v-2h12v2h2v-2c0-1.1-.9-2-2-2z"/>
+            </svg>
+            <span>{{ dob }}</span>
+          </div>
+          <span class="ds-patient-info__sep">|</span>
+          <div class="ds-patient-info__contact-item">
+            <svg class="ds-patient-info__contact-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            <span>{{ phone }}</span>
+          </div>
+          <span class="ds-patient-info__sep">|</span>
+          <div class="ds-patient-info__contact-item">
+            <svg class="ds-patient-info__contact-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+            </svg>
+            <span>{{ mobile }}</span>
+          </div>
+          <span class="ds-patient-info__sep">|</span>
+          <div class="ds-patient-info__contact-item">
+            <svg class="ds-patient-info__contact-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            <span>{{ email }}</span>
+          </div>
+        </div>
+
+        <!-- Account / meta row -->
+        <div class="ds-patient-info__meta-row">
+          @if (showAccountNo) {
+            <span class="ds-patient-info__meta-item">
+              <span class="ds-patient-info__meta-label">Account No:</span>
+              <span class="ds-patient-info__meta-value">{{ accountNo }}</span>
+            </span>
+            <span class="ds-patient-info__sep">|</span>
+          }
+          @if (showMessengerEnabled) {
+            <span class="ds-patient-info__meta-item">
+              <span class="ds-patient-info__meta-label">Messenger Enabled:</span>
+              <span class="ds-patient-info__meta-value ds-patient-info__meta-value--yes">{{ messengerEnabled ? 'Yes' : 'No' }}</span>
+            </span>
+            <span class="ds-patient-info__sep">|</span>
+          }
+          @if (showWebEnabled) {
+            <span class="ds-patient-info__meta-item">
+              <span class="ds-patient-info__meta-label">Web Enabled:</span>
+              <span class="ds-patient-info__meta-value ds-patient-info__meta-value--yes">{{ webEnabled ? 'Yes' : 'No' }}</span>
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Alert labels -->
+      @if (showAllergyAlert) {
+        <div class="ds-patient-info__alerts">
+          @if (showAllergies) {
+            <div class="ds-patient-info__alert-item">
+              <svg class="ds-patient-info__alert-icon ds-patient-info__alert-icon--warning" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+              </svg>
+              <span class="ds-patient-info__alert-link">Allergies</span>
+            </div>
+          }
+          @if (showBillingAlert) {
+            <div class="ds-patient-info__alert-item">
+              <svg class="ds-patient-info__alert-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/>
+              </svg>
+              <span class="ds-patient-info__alert-link">Billing Alerts</span>
+            </div>
+          }
+          @if (showClinicalAlert) {
+            <div class="ds-patient-info__alert-item">
+              <svg class="ds-patient-info__alert-icon ds-patient-info__alert-icon--warning" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+              </svg>
+              <span class="ds-patient-info__alert-link">Clinical Alert</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- ─── Label / value cards ──────────────────────────────────────────── -->
+    <div class="ds-patient-info__cards">
+
+      @if (showPatientCard) {
+        <div class="ds-patient-info__card ds-patient-info__card--patient">
+          <div class="ds-patient-info__card-header">Patient Info</div>
+          <div class="ds-patient-info__card-body">
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Wt:</span><span class="ds-patient-info__kv-val">{{ patientCardData.wt }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Appt(L):</span><span class="ds-patient-info__kv-val">{{ patientCardData.apptLast }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">PCP:</span><span class="ds-patient-info__kv-val">{{ patientCardData.pcp }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Language:</span><span class="ds-patient-info__kv-val">{{ patientCardData.language }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Translator:</span><span class="ds-patient-info__kv-val">{{ patientCardData.translator }}</span></div>
+          </div>
+        </div>
+      }
+
+      @if (showBillingCard) {
+        <div class="ds-patient-info__card ds-patient-info__card--billing">
+          <div class="ds-patient-info__card-header">Billing Details</div>
+          <div class="ds-patient-info__card-body">
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Ins:</span><span class="ds-patient-info__kv-val">{{ billingCardData.ins }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Acc Bal:</span><span class="ds-patient-info__kv-val">{{ billingCardData.accBal }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Guar:</span><span class="ds-patient-info__kv-val">{{ billingCardData.guar }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">GR Bal:</span><span class="ds-patient-info__kv-val">{{ billingCardData.grBal }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Ref:</span><span class="ds-patient-info__kv-val">{{ billingCardData.ref }}</span></div>
+            <div class="ds-patient-info__kv"><span class="ds-patient-info__kv-key">Ren:</span><span class="ds-patient-info__kv-val">{{ billingCardData.ren }}</span></div>
+          </div>
+        </div>
+      }
+
+      @if (showNotesCard) {
+        <div class="ds-patient-info__card ds-patient-info__card--notes">
+          <div class="ds-patient-info__card-header">Notes</div>
+          <div class="ds-patient-info__card-body ds-patient-info__card-body--notes">{{ notesText }}</div>
+        </div>
+      }
+
+      @if (showSecureNotesCard) {
+        <div class="ds-patient-info__card ds-patient-info__card--secure">
+          <div class="ds-patient-info__card-header">Secure Notes</div>
+          <div class="ds-patient-info__card-body">{{ secureNotesText }}</div>
+        </div>
+      }
+
+    </div>
+  </div>
+
+  <!-- ─── Button bar ──────────────────────────────────────────────────────── -->
+  @if (showButtonBar) {
+    <div class="ds-patient-info__button-bar">
+      @for (tab of buttonBarTabs; track tab.label; let last = $last) {
+        <button
+          class="ds-patient-info__tab"
+          type="button"
+          (click)="tabClick.emit(tab)"
+        >
+          {{ tab.label }}
+          @if (tab.hasDropdown) {
+            <svg class="ds-patient-info__tab-caret" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M7 10l5 5 5-5z"/>
+            </svg>
+          }
+        </button>
+        @if (!last) {
+          <span class="ds-patient-info__tab-sep" aria-hidden="true"></span>
+        }
+      }
+    </div>
+  }
+
+</div>
