@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import {
   LeftNavComponent,
   DEFAULT_LEFT_NAV_ITEMS,

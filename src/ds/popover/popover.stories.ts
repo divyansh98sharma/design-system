@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { PopoverComponent, PopoverNotch, PopoverTheme } from './popover.component';
 
 const ALL_NOTCH_POSITIONS: PopoverNotch[] = [

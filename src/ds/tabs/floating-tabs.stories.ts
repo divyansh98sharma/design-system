@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { FloatingTabsComponent } from './floating-tabs.component';
 import { TabTheme } from './tabs.types';
 
