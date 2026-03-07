@@ -19,7 +19,7 @@ const FIVE_STEPS = [
 const THEMES: WizardTabTheme[] = ['user', 'admin'];
 
 const meta: Meta<WizardTabsComponent> = {
-  title    : 'Design System/Tabs/Wizard Tabs',
+  title    : 'Components/Tabs/Wizard Tabs',
   component: WizardTabsComponent,
   tags     : ['autodocs'],
   argTypes : {
