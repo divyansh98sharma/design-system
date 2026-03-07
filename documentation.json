@@ -2,13 +2,13 @@
     "pipes": [],
     "interfaces": [
         {
-            "name": "User",
-            "id": "interface-User-d4821beac0e4a852e513391b7470981c4353fdd95a18628bb68136c8695b489ee15b926e2e5031bc26cf30e1508e0a362c3ee13a06734702b4d15af140e485d5",
-            "file": "src/stories/user.ts",
+            "name": "ColorGroup",
+            "id": "interface-ColorGroup-ff54aef5cb762c9100e040ecbf7d74b9712638dd6291f7ecf634d8df79f70413c1301262d1747a44b98f22f8f93c6cb23c90cc6f0ed998d6f2ac1a2188f6ccff",
+            "file": "src/ds/color/color-palette.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface User {\n  name: string;\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { NgStyle, NgClass } from '@angular/common';\n\nexport interface ColorSwatch {\n  name: string;\n  hex: string;\n  cssVar: string;\n}\n\nexport interface ColorGroup {\n  name: string;\n  swatches: ColorSwatch[];\n}\n\n@Component({\n  selector: 'ds-color-palette',\n  standalone: true,\n  imports: [NgStyle, NgClass],\n  templateUrl: './color-palette.component.html',\n  styleUrl: './color-palette.component.scss',\n})\nexport class ColorPaletteComponent {\n  @Input() groups: ColorGroup[] = [];\n\n  /** Returns true if the color is light enough to need a border for contrast. */\n  isLight(hex: string): boolean {\n    const r = parseInt(hex.slice(0, 2), 16);\n    const g = parseInt(hex.slice(2, 4), 16);\n    const b = parseInt(hex.slice(4, 6), 16);\n    return (r * 299 + g * 587 + b * 114) / 1000 > 160;\n  }\n}\n",
             "properties": [
                 {
                     "name": "name",
@@ -18,7 +18,209 @@
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 2
+                    "line": 11
+                },
+                {
+                    "name": "swatches",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ColorSwatch[]",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "ColorSwatch",
+            "id": "interface-ColorSwatch-ff54aef5cb762c9100e040ecbf7d74b9712638dd6291f7ecf634d8df79f70413c1301262d1747a44b98f22f8f93c6cb23c90cc6f0ed998d6f2ac1a2188f6ccff",
+            "file": "src/ds/color/color-palette.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { NgStyle, NgClass } from '@angular/common';\n\nexport interface ColorSwatch {\n  name: string;\n  hex: string;\n  cssVar: string;\n}\n\nexport interface ColorGroup {\n  name: string;\n  swatches: ColorSwatch[];\n}\n\n@Component({\n  selector: 'ds-color-palette',\n  standalone: true,\n  imports: [NgStyle, NgClass],\n  templateUrl: './color-palette.component.html',\n  styleUrl: './color-palette.component.scss',\n})\nexport class ColorPaletteComponent {\n  @Input() groups: ColorGroup[] = [];\n\n  /** Returns true if the color is light enough to need a border for contrast. */\n  isLight(hex: string): boolean {\n    const r = parseInt(hex.slice(0, 2), 16);\n    const g = parseInt(hex.slice(2, 4), 16);\n    const b = parseInt(hex.slice(4, 6), 16);\n    return (r * 299 + g * 587 + b * 114) / 1000 > 160;\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "cssVar",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "hex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "ToggleButtonItem",
+            "id": "interface-ToggleButtonItem-3b23336f9a6a941377b7d2ef01eaf0ede3c9f373b9ebd9db0084af6e7ba5ca7572ba386e60296a25eec307f12605fa190040c5dcd9a7f6ccde49ff81bf12ab55",
+            "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  inject,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\n/** A single option within the toggle button group. */\nexport interface ToggleButtonItem {\n  /** Unique value used to track selection state. */\n  value: string;\n  /** Label text rendered inside the button. Omit for icon-only buttons. */\n  label?: string;\n  /** Optional numeric badge (e.g. 99 → shows \"Label (99)\"). */\n  count?: number;\n  /** Inline SVG string for an icon. Shown for icon-only or icon+label buttons. */\n  icon?: string;\n  /** Disables this individual button. */\n  disabled?: boolean;\n}\n\nexport type ToggleColor =\n  | 'user'\n  | 'admin'\n  | 'secondary'\n  | 'success'\n  | 'error'\n  | 'sunoh';\n\nexport type ToggleSize = 'sm' | 'md' | 'lg';\n\n/** Built-in checkmark SVG shown in the selected state (label buttons). */\nconst CHECK_SVG = `<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"13,3.5 6,12.5 3,8.5\"/></svg>`;\n\n@Component({\n  selector: 'ds-toggle-button-group',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './toggle-button-group.component.html',\n  styleUrl: './toggle-button-group.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ToggleButtonGroupComponent {\n  /** Array of button options to render. */\n  @Input() options: ToggleButtonItem[] = [];\n\n  /** Color theme applied to the selected button and group border. */\n  @Input() color: ToggleColor = 'user';\n\n  /** Height / padding scale: `sm` = 24 px, `md` = 32 px, `lg` = 40 px. */\n  @Input() size: ToggleSize = 'md';\n\n  /**\n   * When `true`, multiple buttons can be selected simultaneously.\n   * When `false` (default), behaves like a radio group — selecting one\n   * deselects the others.\n   */\n  @Input() multiple = false;\n\n  /** Disables all buttons in the group. */\n  @Input() disabled = false;\n\n  /**\n   * Currently selected value(s).\n   * Pass a `string` when `multiple = false`, or `string[]` when `multiple = true`.\n   */\n  @Input() value: string | string[] = '';\n\n  /** Emits the new selected value (or array of values) after each toggle. */\n  @Output() valueChange = new EventEmitter<string | string[]>();\n\n  private sanitizer = inject(DomSanitizer);\n\n  /** Pre-sanitised checkmark icon rendered in selected label-buttons. */\n  readonly checkIcon: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(CHECK_SVG);\n\n  /** Returns a sanitised SafeHtml for user-supplied icon SVGs. */\n  safeIcon(svg: string): SafeHtml {\n    return this.sanitizer.bypassSecurityTrustHtml(svg);\n  }\n\n  /** Returns true when the given option value is currently selected. */\n  isSelected(value: string): boolean {\n    if (this.multiple) {\n      return Array.isArray(this.value) && (this.value as string[]).includes(value);\n    }\n    return this.value === value;\n  }\n\n  /** Returns true when the option has no label (icon-only button). */\n  isIconOnly(item: ToggleButtonItem): boolean {\n    return !item.label && !!item.icon;\n  }\n\n  /** Called when a button is clicked. Updates the internal selection model. */\n  onToggle(item: ToggleButtonItem): void {\n    if (this.disabled || item.disabled) return;\n\n    if (this.multiple) {\n      const current = Array.isArray(this.value) ? [...(this.value as string[])] : [];\n      const idx = current.indexOf(item.value);\n      if (idx >= 0) current.splice(idx, 1);\n      else current.push(item.value);\n      this.value = current;\n      this.valueChange.emit([...current]);\n    } else {\n      this.value = item.value;\n      this.valueChange.emit(item.value);\n    }\n  }\n\n  get groupClasses(): Record<string, boolean> {\n    return {\n      [`ds-tgl--${this.color}`]: true,\n      [`ds-tgl--${this.size}`]: true,\n      'ds-tgl--disabled': this.disabled,\n    };\n  }\n\n  itemClasses(item: ToggleButtonItem): Record<string, boolean> {\n    return {\n      'ds-tgl__btn--selected': this.isSelected(item.value),\n      'ds-tgl__btn--disabled': !!(item.disabled || this.disabled),\n      'ds-tgl__btn--icon-only': this.isIconOnly(item),\n    };\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "count",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>Optional numeric badge (e.g. 99 → shows &quot;Label (99)&quot;).</p>\n",
+                    "line": 19,
+                    "rawdescription": "\nOptional numeric badge (e.g. 99 → shows \"Label (99)\")."
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>Disables this individual button.</p>\n",
+                    "line": 23,
+                    "rawdescription": "\nDisables this individual button."
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>Inline SVG string for an icon. Shown for icon-only or icon+label buttons.</p>\n",
+                    "line": 21,
+                    "rawdescription": "\nInline SVG string for an icon. Shown for icon-only or icon+label buttons."
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>Label text rendered inside the button. Omit for icon-only buttons.</p>\n",
+                    "line": 17,
+                    "rawdescription": "\nLabel text rendered inside the button. Omit for icon-only buttons."
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Unique value used to track selection state.</p>\n",
+                    "line": 15,
+                    "rawdescription": "\nUnique value used to track selection state."
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "description": "<p>A single option within the toggle button group.</p>\n",
+            "rawdescription": "\nA single option within the toggle button group.",
+            "methods": [],
+            "extends": []
+        },
+        {
+            "name": "TypeStyle",
+            "id": "interface-TypeStyle-b5ba9659bb45f54797ff19926282085c973ce7f3590de93ea6d5f5d55e7a7ff62ac30425c0bc6987e22712ff13d35ab6e87d1de05e334ab19511ff577cdd05cc",
+            "file": "src/ds/typography/typography-specimen.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component } from '@angular/core';\n\nexport interface TypeStyle {\n  label: string;\n  className: string;\n  fontSizePx: string;\n  lineHeightPx: string;\n  weight: string;\n  isItalic: boolean;\n}\n\n@Component({\n  selector: 'ds-typography-specimen',\n  standalone: true,\n  templateUrl: './typography-specimen.component.html',\n  styleUrl: './typography-specimen.component.scss',\n})\nexport class TypographySpecimenComponent {\n  readonly typeStyles: TypeStyle[] = [\n    {\n      label: 'Heading / Patient Title',\n      className: 'heading-patient-title',\n      fontSizePx: '16px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Heading / Modal Heading',\n      className: 'heading-modal-heading',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Regular',\n      className: 'text-default-regular',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '400 Regular',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / SemiBold',\n      className: 'text-default-semibold',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '600 SemiBold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Bold',\n      className: 'text-default-bold',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Italic',\n      className: 'text-default-italic',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '400 Regular',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Default / Bold Italic',\n      className: 'text-default-bolditalic',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '700 Bold',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Large / Regular',\n      className: 'text-large-regular',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '400 Regular',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / SemiBold',\n      className: 'text-large-semibold',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '600 SemiBold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / Bold',\n      className: 'text-large-bold',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / Italic',\n      className: 'text-large-italic',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '400 Regular',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Large / Bold Italic',\n      className: 'text-large-bolditalic',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: true,\n    },\n  ];\n}\n",
+            "properties": [
+                {
+                    "name": "className",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "fontSizePx",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "isItalic",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "lineHeightPx",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                },
+                {
+                    "name": "weight",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
                 }
             ],
             "indexSignatures": [],
@@ -93,102 +295,158 @@
         },
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-d7bf0323e6da130e2609e2af0117b4a8d7cd874132206af50bf43dfc37044485fe50f2867ea76525730dd195b9b95a43802a12dadc6ad5cd7bf2faa07f19f0da",
-            "file": "src/stories/button.component.ts",
+            "id": "component-ButtonComponent-47ce7ca27d190306471545fe7441a27c86e48326185e82027c238ddab0e59a17231844cbef28db23c190ad81adc5a137ae83942dd39d415a350f368749eecbbf",
+            "file": "src/ds/button/button.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "storybook-button",
-            "styleUrls": [
-                "./button.css"
-            ],
+            "selector": "ds-button",
+            "styleUrls": [],
             "styles": [],
-            "template": " <button  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>",
-            "templateUrl": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "backgroundColor",
+                    "name": "color",
+                    "defaultValue": "'user'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nWhat background color to use",
-                    "description": "<p>What background color to use</p>\n",
-                    "line": 25,
-                    "type": "string",
+                    "line": 34,
+                    "type": "ButtonColor",
                     "decorators": []
                 },
                 {
-                    "name": "label",
-                    "defaultValue": "'Button'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "pos": 760,
-                            "end": 773,
-                            "kind": 328,
-                            "id": 0,
-                            "flags": 16842752,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
-                            "tagName": {
-                                "pos": 761,
-                                "end": 769,
-                                "kind": 80,
-                                "id": 0,
-                                "flags": 16842752,
-                                "transformFlags": 0,
-                                "escapedText": "required"
-                            },
-                            "comment": ""
-                        }
-                    ],
-                    "rawdescription": "\n\nButton contents\n\n",
-                    "description": "<p>Button contents</p>\n",
-                    "line": 37,
-                    "type": "string",
-                    "decorators": []
-                },
-                {
-                    "name": "primary",
+                    "name": "disabled",
                     "defaultValue": "false",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nIs this the principal call to action on the page?",
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 21,
+                    "line": 44,
                     "type": "boolean",
                     "decorators": []
                 },
                 {
-                    "name": "size",
-                    "defaultValue": "'medium'",
+                    "name": "icon",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nHow large should the button be?",
-                    "description": "<p>How large should the button be?</p>\n",
-                    "line": 29,
-                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "rawdescription": "\nInline SVG markup for the icon",
+                    "description": "<p>Inline SVG markup for the icon</p>\n",
+                    "line": 37,
+                    "type": "string | undefined",
+                    "decorators": []
+                },
+                {
+                    "name": "iconPosition",
+                    "defaultValue": "'left'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 43,
+                    "type": "IconPosition",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Label'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'md'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 35,
+                    "type": "ButtonSize",
+                    "decorators": []
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "'filled'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 33,
+                    "type": "ButtonVariant",
                     "decorators": []
                 }
             ],
             "outputsClass": [
                 {
-                    "name": "onClick",
-                    "defaultValue": "new EventEmitter<Event>()",
+                    "name": "buttonClick",
+                    "defaultValue": "new EventEmitter<MouseEvent>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "rawdescription": "\nOptional click handler",
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 41,
+                    "line": 45,
                     "type": "EventEmitter"
                 }
             ],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "safeIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SafeHtml",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "",
+                    "line": 41
+                },
+                {
+                    "name": "sanitizer",
+                    "defaultValue": "inject(DomSanitizer)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 42,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "onClick",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "MouseEvent",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -203,85 +461,459 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: ` <button\n  type=\"button\"\n  (click)=\"onClick.emit($event)\"\n  [ngClass]=\"classes\"\n  [ngStyle]=\"{ 'background-color': backgroundColor }\"\n>\n  {{ label }}\n</button>`,\n  styleUrls: ['./button.css'],\n})\nexport class ButtonComponent {\n  /** Is this the principal call to action on the page? */\n  @Input()\n  primary = false;\n\n  /** What background color to use */\n  @Input()\n  backgroundColor?: string;\n\n  /** How large should the button be? */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /** Optional click handler */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  inject,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\nexport type ButtonVariant = 'filled' | 'outlined' | 'ghost';\nexport type ButtonColor =\n  | 'user'\n  | 'admin'\n  | 'secondary'\n  | 'success'\n  | 'error'\n  | 'sunoh';\nexport type ButtonSize = 'sm' | 'md' | 'lg';\nexport type IconPosition = 'left' | 'right' | 'only';\n\n@Component({\n  selector: 'ds-button',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './button.component.html',\n  styleUrl: './button.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ButtonComponent {\n  @Input() label = 'Label';\n  @Input() variant: ButtonVariant = 'filled';\n  @Input() color: ButtonColor = 'user';\n  @Input() size: ButtonSize = 'md';\n  /** Inline SVG markup for the icon */\n  @Input() set icon(svg: string | undefined) {\n    this.safeIcon = svg ? this.sanitizer.bypassSecurityTrustHtml(svg) : undefined;\n  }\n\n  safeIcon?: SafeHtml;\n  private sanitizer = inject(DomSanitizer);\n  @Input() iconPosition: IconPosition = 'left';\n  @Input() disabled = false;\n  @Output() buttonClick = new EventEmitter<MouseEvent>();\n\n  get isIconOnly(): boolean {\n    return this.iconPosition === 'only';\n  }\n\n  get classes(): Record<string, boolean> {\n    return {\n      'ds-btn': true,\n      [`ds-btn--${this.variant}`]: true,\n      [`ds-btn--${this.color}`]: true,\n      [`ds-btn--${this.size}`]: true,\n      'ds-btn--icon-only': this.isIconOnly,\n      'ds-btn--disabled': this.disabled,\n    };\n  }\n\n  onClick(event: MouseEvent): void {\n    if (!this.disabled) {\n      this.buttonClick.emit(event);\n    }\n  }\n}\n",
+            "styleUrl": "./button.component.scss",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-button {\n  display: inline-block;\n  cursor: pointer;\n  border: 0;\n  border-radius: 3em;\n  font-weight: 700;\n  line-height: 1;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n.storybook-button--primary {\n  background-color: #555ab9;\n  color: white;\n}\n.storybook-button--secondary {\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n  background-color: transparent;\n  color: #333;\n}\n.storybook-button--small {\n  padding: 10px 16px;\n  font-size: 12px;\n}\n.storybook-button--medium {\n  padding: 11px 20px;\n  font-size: 14px;\n}\n.storybook-button--large {\n  padding: 12px 24px;\n  font-size: 16px;\n}\n",
-                    "styleUrl": "./button.css"
-                }
-            ],
+            "styleUrlsData": "",
             "stylesData": "",
             "extends": [],
             "accessors": {
+                "icon": {
+                    "name": "icon",
+                    "setSignature": {
+                        "name": "icon",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "svg",
+                                "type": "string | undefined",
+                                "optional": false,
+                                "dotDotDotToken": false,
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 37,
+                        "rawdescription": "\nInline SVG markup for the icon",
+                        "description": "<p>Inline SVG markup for the icon</p>\n",
+                        "jsdoctags": [
+                            {
+                                "name": "svg",
+                                "type": "string | undefined",
+                                "optional": false,
+                                "dotDotDotToken": false,
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "isIconOnly": {
+                    "name": "isIconOnly",
+                    "getSignature": {
+                        "name": "isIconOnly",
+                        "type": "boolean",
+                        "returnType": "boolean",
+                        "line": 47
+                    }
+                },
                 "classes": {
                     "name": "classes",
                     "getSignature": {
                         "name": "classes",
-                        "type": "[]",
-                        "returnType": "string[]",
-                        "line": 43
+                        "type": "unknown",
+                        "returnType": "Record<string, boolean>",
+                        "line": 51
                     }
                 }
-            }
+            },
+            "templateData": "<button\n  [ngClass]=\"classes\"\n  [disabled]=\"disabled\"\n  [attr.aria-disabled]=\"disabled || null\"\n  (click)=\"onClick($event)\"\n>\n  @if (safeIcon && iconPosition === 'left') {\n    <span class=\"ds-btn__icon\" [innerHTML]=\"safeIcon\" aria-hidden=\"true\"></span>\n  }\n\n  @if (!isIconOnly) {\n    <span class=\"ds-btn__label\">{{ label }}</span>\n  }\n\n  @if (safeIcon && iconPosition === 'right') {\n    <span class=\"ds-btn__icon\" [innerHTML]=\"safeIcon\" aria-hidden=\"true\"></span>\n  }\n\n  @if (safeIcon && isIconOnly) {\n    <span class=\"ds-btn__icon\" [innerHTML]=\"safeIcon\" aria-hidden=\"true\"></span>\n  }\n</button>\n"
         },
         {
-            "name": "HeaderComponent",
-            "id": "component-HeaderComponent-48b9abe37706bc42f20cfa97ed9f943678344ea7d254c0c82183c657750c2191b43486fe730c778627b2ea6aa0e2f33a7abcf3ce08b68ad18b062ad99ea97acb",
-            "file": "src/stories/header.component.ts",
+            "name": "ColorPaletteComponent",
+            "id": "component-ColorPaletteComponent-ff54aef5cb762c9100e040ecbf7d74b9712638dd6291f7ecf634d8df79f70413c1301262d1747a44b98f22f8f93c6cb23c90cc6f0ed998d6f2ac1a2188f6ccff",
+            "file": "src/ds/color/color-palette.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "storybook-header",
-            "styleUrls": [
-                "./header.css"
-            ],
+            "selector": "ds-color-palette",
+            "styleUrls": [],
             "styles": [],
-            "template": "<header>  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>",
-            "templateUrl": [],
+            "templateUrl": [
+                "./color-palette.component.html"
+            ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [
                 {
-                    "name": "user",
-                    "defaultValue": "null",
+                    "name": "groups",
+                    "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 66,
-                    "type": "User | null",
+                    "line": 23,
+                    "type": "ColorGroup[]",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "isLight",
+                    "args": [
+                        {
+                            "name": "hex",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nReturns true if the color is light enough to need a border for contrast.",
+                    "description": "<p>Returns true if the color is light enough to need a border for contrast.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "hex",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgStyle"
+                },
+                {
+                    "name": "NgClass"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { NgStyle, NgClass } from '@angular/common';\n\nexport interface ColorSwatch {\n  name: string;\n  hex: string;\n  cssVar: string;\n}\n\nexport interface ColorGroup {\n  name: string;\n  swatches: ColorSwatch[];\n}\n\n@Component({\n  selector: 'ds-color-palette',\n  standalone: true,\n  imports: [NgStyle, NgClass],\n  templateUrl: './color-palette.component.html',\n  styleUrl: './color-palette.component.scss',\n})\nexport class ColorPaletteComponent {\n  @Input() groups: ColorGroup[] = [];\n\n  /** Returns true if the color is light enough to need a border for contrast. */\n  isLight(hex: string): boolean {\n    const r = parseInt(hex.slice(0, 2), 16);\n    const g = parseInt(hex.slice(2, 4), 16);\n    const b = parseInt(hex.slice(4, 6), 16);\n    return (r * 299 + g * 587 + b * 114) / 1000 > 160;\n  }\n}\n",
+            "styleUrl": "./color-palette.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<div class=\"ds-color-palette\">\n  @for (group of groups; track group.name) {\n    <section class=\"color-group\">\n      <h3 class=\"color-group__name\">{{ group.name }}</h3>\n      <div class=\"color-swatches\">\n        @for (swatch of group.swatches; track swatch.name) {\n          <div class=\"color-swatch\">\n            <div\n              class=\"color-swatch__preview\"\n              [class.color-swatch__preview--light]=\"isLight(swatch.hex)\"\n              [style.background-color]=\"'#' + swatch.hex\"\n            ></div>\n            <div class=\"color-swatch__info\">\n              <span class=\"color-swatch__name\">{{ swatch.name }}</span>\n              <span class=\"color-swatch__hex\">#{{ swatch.hex.toUpperCase() }}</span>\n              <span class=\"color-swatch__var\">{{ swatch.cssVar }}</span>\n            </div>\n          </div>\n        }\n      </div>\n    </section>\n  }\n</div>\n"
+        },
+        {
+            "name": "ToggleButtonGroupComponent",
+            "id": "component-ToggleButtonGroupComponent-3b23336f9a6a941377b7d2ef01eaf0ede3c9f373b9ebd9db0084af6e7ba5ca7572ba386e60296a25eec307f12605fa190040c5dcd9a7f6ccde49ff81bf12ab55",
+            "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ds-toggle-button-group",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./toggle-button-group.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "'user'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nColor theme applied to the selected button and group border.",
+                    "description": "<p>Color theme applied to the selected button and group border.</p>\n",
+                    "line": 52,
+                    "type": "ToggleColor",
+                    "decorators": []
+                },
+                {
+                    "name": "disabled",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nDisables all buttons in the group.",
+                    "description": "<p>Disables all buttons in the group.</p>\n",
+                    "line": 65,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "multiple",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhen `true`, multiple buttons can be selected simultaneously.\nWhen `false` (default), behaves like a radio group — selecting one\ndeselects the others.\n",
+                    "description": "<p>When <code>true</code>, multiple buttons can be selected simultaneously.\nWhen <code>false</code> (default), behaves like a radio group — selecting one\ndeselects the others.</p>\n",
+                    "line": 62,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "options",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nArray of button options to render.",
+                    "description": "<p>Array of button options to render.</p>\n",
+                    "line": 49,
+                    "type": "ToggleButtonItem[]",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'md'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nHeight / padding scale: `sm` = 24 px, `md` = 32 px, `lg` = 40 px.",
+                    "description": "<p>Height / padding scale: <code>sm</code> = 24 px, <code>md</code> = 32 px, <code>lg</code> = 40 px.</p>\n",
+                    "line": 55,
+                    "type": "ToggleSize",
+                    "decorators": []
+                },
+                {
+                    "name": "value",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nCurrently selected value(s).\nPass a `string` when `multiple = false`, or `string[]` when `multiple = true`.\n",
+                    "description": "<p>Currently selected value(s).\nPass a <code>string</code> when <code>multiple = false</code>, or <code>string[]</code> when <code>multiple = true</code>.</p>\n",
+                    "line": 71,
+                    "type": "string | string[]",
                     "decorators": []
                 }
             ],
             "outputsClass": [
                 {
-                    "name": "onCreateAccount",
-                    "defaultValue": "new EventEmitter<Event>()",
+                    "name": "valueChange",
+                    "defaultValue": "new EventEmitter<string | string[]>()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 75,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogin",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 69,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogout",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 72,
+                    "rawdescription": "\nEmits the new selected value (or array of values) after each toggle.",
+                    "description": "<p>Emits the new selected value (or array of values) after each toggle.</p>\n",
+                    "line": 74,
                     "type": "EventEmitter"
                 }
             ],
-            "propertiesClass": [],
-            "methodsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "checkIcon",
+                    "defaultValue": "this.sanitizer.bypassSecurityTrustHtml(CHECK_SVG)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "SafeHtml",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Pre-sanitised checkmark icon rendered in selected label-buttons.</p>\n",
+                    "line": 79,
+                    "rawdescription": "\nPre-sanitised checkmark icon rendered in selected label-buttons.",
+                    "modifierKind": [
+                        148
+                    ]
+                },
+                {
+                    "name": "sanitizer",
+                    "defaultValue": "inject(DomSanitizer)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 76,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "isIconOnly",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "ToggleButtonItem",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 95,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nReturns true when the option has no label (icon-only button).",
+                    "description": "<p>Returns true when the option has no label (icon-only button).</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "ToggleButtonItem",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "isSelected",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 87,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nReturns true when the given option value is currently selected.",
+                    "description": "<p>Returns true when the given option value is currently selected.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "itemClasses",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "ToggleButtonItem",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Record<string, boolean>",
+                    "typeParameters": [],
+                    "line": 124,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "ToggleButtonItem",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onToggle",
+                    "args": [
+                        {
+                            "name": "item",
+                            "type": "ToggleButtonItem",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 100,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nCalled when a button is clicked. Updates the internal selection model.",
+                    "description": "<p>Called when a button is clicked. Updates the internal selection model.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "item",
+                            "type": "ToggleButtonItem",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "safeIcon",
+                    "args": [
+                        {
+                            "name": "svg",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "SafeHtml",
+                    "typeParameters": [],
+                    "line": 82,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nReturns a sanitised SafeHtml for user-supplied icon SVGs.",
+                    "description": "<p>Returns a sanitised SafeHtml for user-supplied icon SVGs.</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "svg",
+                            "type": "string",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
@@ -291,119 +923,82 @@
                 {
                     "name": "CommonModule",
                     "type": "module"
-                },
-                {
-                    "name": "ButtonComponent",
-                    "type": "component"
                 }
             ],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { ButtonComponent } from './button.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-header',\n  standalone: true,\n  imports: [CommonModule, ButtonComponent],\n  template: `<header>\n  <div class=\"storybook-header\">\n    <div>\n      <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n            fill=\"#FFF\"\n          />\n          <path\n            d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n            fill=\"#555AB9\"\n          />\n          <path d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\" fill=\"#91BAF8\" />\n        </g>\n      </svg>\n      <h1>Acme</h1>\n    </div>\n    <div>\n      <div *ngIf=\"user\">\n        <span class=\"welcome\">\n          Welcome, <b>{{ user.name }}</b\n          >!\n        </span>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n      </div>\n      <div *ngIf=\"!user\">\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          class=\"margin-left\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          [primary]=\"true\"\n          class=\"margin-left\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </div>\n</header>`,\n  styleUrls: ['./header.css'],\n})\nexport class HeaderComponent {\n  @Input()\n  user: User | null = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  inject,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { DomSanitizer, SafeHtml } from '@angular/platform-browser';\n\n/** A single option within the toggle button group. */\nexport interface ToggleButtonItem {\n  /** Unique value used to track selection state. */\n  value: string;\n  /** Label text rendered inside the button. Omit for icon-only buttons. */\n  label?: string;\n  /** Optional numeric badge (e.g. 99 → shows \"Label (99)\"). */\n  count?: number;\n  /** Inline SVG string for an icon. Shown for icon-only or icon+label buttons. */\n  icon?: string;\n  /** Disables this individual button. */\n  disabled?: boolean;\n}\n\nexport type ToggleColor =\n  | 'user'\n  | 'admin'\n  | 'secondary'\n  | 'success'\n  | 'error'\n  | 'sunoh';\n\nexport type ToggleSize = 'sm' | 'md' | 'lg';\n\n/** Built-in checkmark SVG shown in the selected state (label buttons). */\nconst CHECK_SVG = `<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"13,3.5 6,12.5 3,8.5\"/></svg>`;\n\n@Component({\n  selector: 'ds-toggle-button-group',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './toggle-button-group.component.html',\n  styleUrl: './toggle-button-group.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ToggleButtonGroupComponent {\n  /** Array of button options to render. */\n  @Input() options: ToggleButtonItem[] = [];\n\n  /** Color theme applied to the selected button and group border. */\n  @Input() color: ToggleColor = 'user';\n\n  /** Height / padding scale: `sm` = 24 px, `md` = 32 px, `lg` = 40 px. */\n  @Input() size: ToggleSize = 'md';\n\n  /**\n   * When `true`, multiple buttons can be selected simultaneously.\n   * When `false` (default), behaves like a radio group — selecting one\n   * deselects the others.\n   */\n  @Input() multiple = false;\n\n  /** Disables all buttons in the group. */\n  @Input() disabled = false;\n\n  /**\n   * Currently selected value(s).\n   * Pass a `string` when `multiple = false`, or `string[]` when `multiple = true`.\n   */\n  @Input() value: string | string[] = '';\n\n  /** Emits the new selected value (or array of values) after each toggle. */\n  @Output() valueChange = new EventEmitter<string | string[]>();\n\n  private sanitizer = inject(DomSanitizer);\n\n  /** Pre-sanitised checkmark icon rendered in selected label-buttons. */\n  readonly checkIcon: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(CHECK_SVG);\n\n  /** Returns a sanitised SafeHtml for user-supplied icon SVGs. */\n  safeIcon(svg: string): SafeHtml {\n    return this.sanitizer.bypassSecurityTrustHtml(svg);\n  }\n\n  /** Returns true when the given option value is currently selected. */\n  isSelected(value: string): boolean {\n    if (this.multiple) {\n      return Array.isArray(this.value) && (this.value as string[]).includes(value);\n    }\n    return this.value === value;\n  }\n\n  /** Returns true when the option has no label (icon-only button). */\n  isIconOnly(item: ToggleButtonItem): boolean {\n    return !item.label && !!item.icon;\n  }\n\n  /** Called when a button is clicked. Updates the internal selection model. */\n  onToggle(item: ToggleButtonItem): void {\n    if (this.disabled || item.disabled) return;\n\n    if (this.multiple) {\n      const current = Array.isArray(this.value) ? [...(this.value as string[])] : [];\n      const idx = current.indexOf(item.value);\n      if (idx >= 0) current.splice(idx, 1);\n      else current.push(item.value);\n      this.value = current;\n      this.valueChange.emit([...current]);\n    } else {\n      this.value = item.value;\n      this.valueChange.emit(item.value);\n    }\n  }\n\n  get groupClasses(): Record<string, boolean> {\n    return {\n      [`ds-tgl--${this.color}`]: true,\n      [`ds-tgl--${this.size}`]: true,\n      'ds-tgl--disabled': this.disabled,\n    };\n  }\n\n  itemClasses(item: ToggleButtonItem): Record<string, boolean> {\n    return {\n      'ds-tgl__btn--selected': this.isSelected(item.value),\n      'ds-tgl__btn--disabled': !!(item.disabled || this.disabled),\n      'ds-tgl__btn--icon-only': this.isIconOnly(item),\n    };\n  }\n}\n",
+            "styleUrl": "./toggle-button-group.component.scss",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.storybook-header svg {\n  display: inline-block;\n  vertical-align: top;\n}\n\n.storybook-header h1 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 6px 0 6px 10px;\n  font-weight: 700;\n  font-size: 20px;\n  line-height: 1;\n}\n\n.storybook-header button + button {\n  margin-left: 10px;\n}\n\n.storybook-header .welcome {\n  margin-right: 10px;\n  color: #333;\n  font-size: 14px;\n}\n",
-                    "styleUrl": "./header.css"
-                }
-            ],
+            "styleUrlsData": "",
             "stylesData": "",
-            "extends": []
+            "extends": [],
+            "accessors": {
+                "groupClasses": {
+                    "name": "groupClasses",
+                    "getSignature": {
+                        "name": "groupClasses",
+                        "type": "unknown",
+                        "returnType": "Record<string, boolean>",
+                        "line": 116
+                    }
+                }
+            },
+            "templateData": "<div class=\"ds-tgl\" [ngClass]=\"groupClasses\" role=\"group\" aria-label=\"Toggle button group\">\n  @for (item of options; track item.value; let first = $first; let last = $last) {\n    <button\n      class=\"ds-tgl__btn\"\n      [ngClass]=\"itemClasses(item)\"\n      [class.ds-tgl__btn--first]=\"first\"\n      [class.ds-tgl__btn--last]=\"last\"\n      type=\"button\"\n      [attr.aria-pressed]=\"isSelected(item.value)\"\n      [attr.aria-label]=\"item.label || 'Toggle'\"\n      [disabled]=\"(item.disabled || disabled) ? true : null\"\n      (click)=\"onToggle(item)\"\n    >\n      <!-- Selected check icon (label-based buttons only) -->\n      @if (isSelected(item.value) && !isIconOnly(item) && !item.icon) {\n        <span class=\"ds-tgl__icon ds-tgl__icon--check\" [innerHTML]=\"checkIcon\"></span>\n      }\n\n      <!-- User-supplied icon (icon+label or icon-only buttons) -->\n      @if (item.icon) {\n        <span class=\"ds-tgl__icon\" [innerHTML]=\"safeIcon(item.icon)\"></span>\n      }\n\n      <!-- Label text -->\n      @if (item.label) {\n        <span class=\"ds-tgl__label\">{{ item.label }}</span>\n      }\n\n      <!-- Count badge -->\n      @if (item.count !== undefined) {\n        <span class=\"ds-tgl__badge\">{{ item.count }}</span>\n      }\n    </button>\n  }\n</div>\n"
         },
         {
-            "name": "PageComponent",
-            "id": "component-PageComponent-21dd6eb370b4983b5c21c84d40e6f54d266a9d9af9889e6e76b35c43058bd53b3e451bad089d5adf4bea46647ba10265a2fa8cb15630398e75636307d4817fc6",
-            "file": "src/stories/page.component.ts",
+            "name": "TypographySpecimenComponent",
+            "id": "component-TypographySpecimenComponent-b5ba9659bb45f54797ff19926282085c973ce7f3590de93ea6d5f5d55e7a7ff62ac30425c0bc6987e22712ff13d35ab6e87d1de05e334ab19511ff577cdd05cc",
+            "file": "src/ds/typography/typography-specimen.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "storybook-page",
-            "styleUrls": [
-                "./page.css"
-            ],
+            "selector": "ds-typography-specimen",
+            "styleUrls": [],
             "styles": [],
-            "template": "<article>  <storybook-header\n    [user]=\"user\"\n    (onLogout)=\"doLogout()\"\n    (onLogin)=\"doLogin()\"\n    (onCreateAccount)=\"doCreateAccount()\"\n  ></storybook-header>\n  <section class=\"storybook-page\">\n    <h2>Pages in Storybook</h2>\n    <p>\n      We recommend building UIs with a\n      <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n        <strong>component-driven</strong>\n      </a>\n      process starting with atomic components and ending with pages.\n    </p>\n    <p>\n      Render pages with mock data. This makes it easy to build and review page states without\n      needing to navigate to them in your app. Here are some handy patterns for managing page data\n      in Storybook:\n    </p>\n    <ul>\n      <li>\n        Use a higher-level connected component. Storybook helps you compose such data from the\n        \"args\" of child component stories\n      </li>\n      <li>\n        Assemble data in the page component from your services. You can mock these services out\n        using Storybook.\n      </li>\n    </ul>\n    <p>\n      Get a guided tutorial on component-driven development at\n      <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n        Storybook tutorials\n      </a>\n      . Read more in the\n      <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n      .\n    </p>\n    <div class=\"tip-wrapper\">\n      <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n      <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n            id=\"a\"\n            fill=\"#999\"\n          />\n        </g>\n      </svg>\n      Viewports addon in the toolbar\n    </div>\n  </section>\n</article>",
-            "templateUrl": [],
+            "templateUrl": [
+                "./typography-specimen.component.html"
+            ],
             "viewProviders": [],
             "hostDirectives": [],
             "inputsClass": [],
             "outputsClass": [],
             "propertiesClass": [
                 {
-                    "name": "user",
-                    "defaultValue": "null",
+                    "name": "typeStyles",
+                    "defaultValue": "[\n    {\n      label: 'Heading / Patient Title',\n      className: 'heading-patient-title',\n      fontSizePx: '16px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Heading / Modal Heading',\n      className: 'heading-modal-heading',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Regular',\n      className: 'text-default-regular',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '400 Regular',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / SemiBold',\n      className: 'text-default-semibold',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '600 SemiBold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Bold',\n      className: 'text-default-bold',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Italic',\n      className: 'text-default-italic',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '400 Regular',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Default / Bold Italic',\n      className: 'text-default-bolditalic',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '700 Bold',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Large / Regular',\n      className: 'text-large-regular',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '400 Regular',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / SemiBold',\n      className: 'text-large-semibold',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '600 SemiBold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / Bold',\n      className: 'text-large-bold',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / Italic',\n      className: 'text-large-italic',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '400 Regular',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Large / Bold Italic',\n      className: 'text-large-bolditalic',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: true,\n    },\n  ]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "User | null",
+                    "type": "TypeStyle[]",
                     "indexKey": "",
                     "optional": false,
                     "description": "",
-                    "line": 69
+                    "line": 19,
+                    "modifierKind": [
+                        148
+                    ]
                 }
             ],
-            "methodsClass": [
-                {
-                    "name": "doCreateAccount",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 79,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "doLogin",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 75,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "doLogout",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 71,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
+            "methodsClass": [],
             "deprecated": false,
             "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "standalone": true,
-            "imports": [
-                {
-                    "name": "CommonModule",
-                    "type": "module"
-                },
-                {
-                    "name": "HeaderComponent",
-                    "type": "component"
-                }
-            ],
+            "imports": [],
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nimport { HeaderComponent } from './header.component';\nimport type { User } from './user';\n\n@Component({\n  selector: 'storybook-page',\n  standalone: true,\n  imports: [CommonModule, HeaderComponent],\n  template: `<article>\n  <storybook-header\n    [user]=\"user\"\n    (onLogout)=\"doLogout()\"\n    (onLogin)=\"doLogin()\"\n    (onCreateAccount)=\"doCreateAccount()\"\n  ></storybook-header>\n  <section class=\"storybook-page\">\n    <h2>Pages in Storybook</h2>\n    <p>\n      We recommend building UIs with a\n      <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n        <strong>component-driven</strong>\n      </a>\n      process starting with atomic components and ending with pages.\n    </p>\n    <p>\n      Render pages with mock data. This makes it easy to build and review page states without\n      needing to navigate to them in your app. Here are some handy patterns for managing page data\n      in Storybook:\n    </p>\n    <ul>\n      <li>\n        Use a higher-level connected component. Storybook helps you compose such data from the\n        \"args\" of child component stories\n      </li>\n      <li>\n        Assemble data in the page component from your services. You can mock these services out\n        using Storybook.\n      </li>\n    </ul>\n    <p>\n      Get a guided tutorial on component-driven development at\n      <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n        Storybook tutorials\n      </a>\n      . Read more in the\n      <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n      .\n    </p>\n    <div class=\"tip-wrapper\">\n      <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n      <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n        <g fill=\"none\" fillRule=\"evenodd\">\n          <path\n            d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n            id=\"a\"\n            fill=\"#999\"\n          />\n        </g>\n      </svg>\n      Viewports addon in the toolbar\n    </div>\n  </section>\n</article>`,\n  styleUrls: ['./page.css'],\n})\nexport class PageComponent {\n  user: User | null = null;\n\n  doLogout() {\n    this.user = null;\n  }\n\n  doLogin() {\n    this.user = { name: 'Jane Doe' };\n  }\n\n  doCreateAccount() {\n    this.user = { name: 'Jane Doe' };\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\nexport interface TypeStyle {\n  label: string;\n  className: string;\n  fontSizePx: string;\n  lineHeightPx: string;\n  weight: string;\n  isItalic: boolean;\n}\n\n@Component({\n  selector: 'ds-typography-specimen',\n  standalone: true,\n  templateUrl: './typography-specimen.component.html',\n  styleUrl: './typography-specimen.component.scss',\n})\nexport class TypographySpecimenComponent {\n  readonly typeStyles: TypeStyle[] = [\n    {\n      label: 'Heading / Patient Title',\n      className: 'heading-patient-title',\n      fontSizePx: '16px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Heading / Modal Heading',\n      className: 'heading-modal-heading',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Regular',\n      className: 'text-default-regular',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '400 Regular',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / SemiBold',\n      className: 'text-default-semibold',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '600 SemiBold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Bold',\n      className: 'text-default-bold',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Default / Italic',\n      className: 'text-default-italic',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '400 Regular',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Default / Bold Italic',\n      className: 'text-default-bolditalic',\n      fontSizePx: '12px',\n      lineHeightPx: '16px',\n      weight: '700 Bold',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Large / Regular',\n      className: 'text-large-regular',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '400 Regular',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / SemiBold',\n      className: 'text-large-semibold',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '600 SemiBold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / Bold',\n      className: 'text-large-bold',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: false,\n    },\n    {\n      label: 'Text / Large / Italic',\n      className: 'text-large-italic',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '400 Regular',\n      isItalic: true,\n    },\n    {\n      label: 'Text / Large / Bold Italic',\n      className: 'text-large-bolditalic',\n      fontSizePx: '14px',\n      lineHeightPx: '20px',\n      weight: '700 Bold',\n      isItalic: true,\n    },\n  ];\n}\n",
+            "styleUrl": "./typography-specimen.component.scss",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-page {\n  margin: 0 auto;\n  padding: 48px 20px;\n  max-width: 600px;\n  color: #333;\n  font-size: 14px;\n  line-height: 24px;\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n}\n\n.storybook-page h2 {\n  display: inline-block;\n  vertical-align: top;\n  margin: 0 0 4px;\n  font-weight: 700;\n  font-size: 32px;\n  line-height: 1;\n}\n\n.storybook-page p {\n  margin: 1em 0;\n}\n\n.storybook-page a {\n  color: inherit;\n}\n\n.storybook-page ul {\n  margin: 1em 0;\n  padding-left: 30px;\n}\n\n.storybook-page li {\n  margin-bottom: 8px;\n}\n\n.storybook-page .tip {\n  display: inline-block;\n  vertical-align: top;\n  margin-right: 10px;\n  border-radius: 1em;\n  background: #e7fdd8;\n  padding: 4px 12px;\n  color: #357a14;\n  font-weight: 700;\n  font-size: 11px;\n  line-height: 12px;\n}\n\n.storybook-page .tip-wrapper {\n  margin-top: 40px;\n  margin-bottom: 40px;\n  font-size: 13px;\n  line-height: 20px;\n}\n\n.storybook-page .tip-wrapper svg {\n  display: inline-block;\n  vertical-align: top;\n  margin-top: 3px;\n  margin-right: 4px;\n  width: 12px;\n  height: 12px;\n}\n\n.storybook-page .tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
-                    "styleUrl": "./page.css"
-                }
-            ],
+            "styleUrlsData": "",
             "stylesData": "",
-            "extends": []
+            "extends": [],
+            "templateData": "<div class=\"ds-typography-specimen\">\n  <div class=\"type-table\">\n\n    <div class=\"type-table__header\">\n      <span>Example</span>\n      <span>Token class</span>\n      <span>Size</span>\n      <span>Line height</span>\n      <span>Weight</span>\n    </div>\n\n    @for (style of typeStyles; track style.className) {\n      <div class=\"type-table__row\">\n        <span [class]=\"style.className\" class=\"type-table__example\">\n          The quick brown fox jumps over the lazy dog\n        </span>\n        <code class=\"type-table__token\">.{{ style.className }}</code>\n        <span class=\"type-table__meta\">{{ style.fontSizePx }}</span>\n        <span class=\"type-table__meta\">{{ style.lineHeightPx }}</span>\n        <span class=\"type-table__meta\">{{ style.weight }}</span>\n      </div>\n    }\n\n  </div>\n</div>\n"
         }
     ],
     "modules": [],
@@ -420,6 +1015,18 @@
                 "defaultValue": "{\n  providers: [provideBrowserGlobalErrorListeners(), provideRouter(routes)],\n}"
             },
             {
+                "name": "CHECK_SVG",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "unknown",
+                "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"13,3.5 6,12.5 3,8.5\"/></svg>`",
+                "rawdescription": "Built-in checkmark SVG shown in the selected state (label buttons).",
+                "description": "<p>Built-in checkmark SVG shown in the selected state (label buttons).</p>\n"
+            },
+            {
                 "name": "routes",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -431,7 +1038,74 @@
             }
         ],
         "functions": [],
-        "typealiases": [],
+        "typealiases": [
+            {
+                "name": "ButtonColor",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"user\" | \"admin\" | \"secondary\" | \"success\" | \"error\" | \"sunoh\"",
+                "file": "src/ds/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "ButtonSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                "file": "src/ds/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "ButtonVariant",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"filled\" | \"outlined\" | \"ghost\"",
+                "file": "src/ds/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "IconPosition",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"left\" | \"right\" | \"only\"",
+                "file": "src/ds/button/button.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "ToggleColor",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"user\" | \"admin\" | \"secondary\" | \"success\" | \"error\" | \"sunoh\"",
+                "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
+                "name": "ToggleSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            }
+        ],
         "enumerations": [],
         "groupedVariables": {
             "src/app/app.config.ts": [
@@ -444,6 +1118,20 @@
                     "deprecationMessage": "",
                     "type": "ApplicationConfig",
                     "defaultValue": "{\n  providers: [provideBrowserGlobalErrorListeners(), provideRouter(routes)],\n}"
+                }
+            ],
+            "src/ds/toggle-button/toggle-button-group.component.ts": [
+                {
+                    "name": "CHECK_SVG",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "unknown",
+                    "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"13,3.5 6,12.5 3,8.5\"/></svg>`",
+                    "rawdescription": "Built-in checkmark SVG shown in the selected state (label buttons).",
+                    "description": "<p>Built-in checkmark SVG shown in the selected state (label buttons).</p>\n"
                 }
             ],
             "src/app/app.routes.ts": [
@@ -461,7 +1149,78 @@
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
-        "groupedTypeAliases": {}
+        "groupedTypeAliases": {
+            "src/ds/button/button.component.ts": [
+                {
+                    "name": "ButtonColor",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"user\" | \"admin\" | \"secondary\" | \"success\" | \"error\" | \"sunoh\"",
+                    "file": "src/ds/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "ButtonSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                    "file": "src/ds/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "ButtonVariant",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"filled\" | \"outlined\" | \"ghost\"",
+                    "file": "src/ds/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "IconPosition",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"left\" | \"right\" | \"only\"",
+                    "file": "src/ds/button/button.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                }
+            ],
+            "src/ds/toggle-button/toggle-button-group.component.ts": [
+                {
+                    "name": "ToggleColor",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"user\" | \"admin\" | \"secondary\" | \"success\" | \"error\" | \"sunoh\"",
+                    "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                },
+                {
+                    "name": "ToggleSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"sm\" | \"md\" | \"lg\"",
+                    "file": "src/ds/toggle-button/toggle-button-group.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                }
+            ]
+        }
     },
     "routes": {
         "name": "<root>",
@@ -469,7 +1228,7 @@
         "children": []
     },
     "coverage": {
-        "count": 11,
+        "count": 17,
         "status": "low",
         "files": [
             {
@@ -502,39 +1261,145 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/button.component.ts",
+                "filePath": "src/ds/button/button.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
-                "coveragePercent": 83,
-                "coverageCount": "5/6",
+                "coveragePercent": 8,
+                "coverageCount": "1/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/button/button.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "ButtonColor",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/button/button.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "ButtonSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/button/button.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "ButtonVariant",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/button/button.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "IconPosition",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/color/color-palette.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ColorPaletteComponent",
+                "coveragePercent": 33,
+                "coverageCount": "1/3",
+                "status": "medium"
+            },
+            {
+                "filePath": "src/ds/color/color-palette.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ColorGroup",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/color/color-palette.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ColorSwatch",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/toggle-button/toggle-button-group.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ToggleButtonGroupComponent",
+                "coveragePercent": 80,
+                "coverageCount": "12/15",
                 "status": "very-good"
             },
             {
-                "filePath": "src/stories/header.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "HeaderComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/page.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "PageComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/user.ts",
+                "filePath": "src/ds/toggle-button/toggle-button-group.component.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "User",
+                "name": "ToggleButtonItem",
+                "coveragePercent": 100,
+                "coverageCount": "6/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/ds/toggle-button/toggle-button-group.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "CHECK_SVG",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/ds/toggle-button/toggle-button-group.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "ToggleColor",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/toggle-button/toggle-button-group.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "ToggleSize",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/typography/typography-specimen.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TypographySpecimenComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/typography/typography-specimen.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "TypeStyle",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
                 "status": "low"
             }
         ]
