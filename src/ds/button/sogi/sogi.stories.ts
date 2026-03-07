@@ -20,8 +20,10 @@ export const Default: Story = {};
 /** Shown against a white background to appreciate the gradient. */
 export const OnWhiteBackground: Story = {
   name      : 'On White Background',
-  parameters: {
-    backgrounds: { default: 'white' },
+  globals: {
+    backgrounds: {
+      value: "white"
+    }
   },
 };
 
