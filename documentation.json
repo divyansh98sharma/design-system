@@ -82,6 +82,56 @@
             "extends": []
         },
         {
+            "name": "ModalAction",
+            "id": "interface-ModalAction-0bb46b2e542f8bf36eaeb60f09146c0e85921adedfdbadfe6aa8e7c3671b9b3bb509b3be2fbfccf8e47116aaeaa266b4ef951961a1ec03568358f35d7c518307",
+            "file": "src/ds/modal/modal.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  HostListener,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport type ModalTheme = 'user' | 'admin' | 'green' | 'sunoh' | 'ai';\n\n/**\n * Modal size — maps to recommended width × height from the design spec:\n * - `small`   → 420 × 420 px\n * - `medium`  → 720 × 620 px\n * - `large`   → 1000 × 620 px\n * - `xlarge`  → 1240 × 620 px\n * - `xxlarge` → 1340 × 620 px\n */\nexport type ModalSize = 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';\n\n/** Configuration for a footer action button. */\nexport interface ModalAction {\n  /** Button label. */\n  label: string;\n  /** Optional value emitted on click (falls back to `label`). */\n  value?: string;\n  /**\n   * Button style:\n   * - `'primary'` — themed filled button (matches modal theme colour).\n   * - `'secondary'` — neutral gray button.\n   */\n  variant?: 'primary' | 'secondary';\n}\n\n/**\n * Modal dialog component — themed header, scrollable body, fixed footer.\n *\n * **5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n *\n * **5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).\n *\n * Structure:\n * - **Header** — 36 px, themed background, semibold heading, close ×.\n * - **Body** — flex-1, white, scrollable; project content via `<ng-content>`.\n * - **Footer** — 40 px, white bg, top border; left & right button areas.\n *\n * Shadow: `0 0 6 px rgba(0, 0, 0, 0.3)`.\n */\n@Component({\n  selector: 'ds-modal',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './modal.component.html',\n  styleUrl: './modal.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ModalComponent {\n  /** Colour theme applied to the header bar and primary action buttons. */\n  @Input() theme: ModalTheme = 'user';\n\n  /** Size variant — controls width and height. */\n  @Input() size: ModalSize = 'medium';\n\n  /** Heading text displayed in the header bar. */\n  @Input() heading = 'Heading';\n\n  /**\n   * When `true`, shows a yellow \"dirty flag\" warning indicator in the header,\n   * signalling unsaved changes.\n   */\n  @Input() showDirtyFlag = false;\n\n  /**\n   * Footer buttons on the **left** side (typically secondary / cancel actions).\n   * Pass an empty array to hide the left section.\n   */\n  @Input() footerLeftActions: ModalAction[] = [{ label: 'Cancel', variant: 'secondary' }];\n\n  /**\n   * Footer buttons on the **right** side (typically save / primary actions).\n   * First item with `variant: 'primary'` gets the themed filled style.\n   */\n  @Input() footerRightActions: ModalAction[] = [\n    { label: 'Save', variant: 'primary' },\n    { label: 'Close', variant: 'secondary' },\n  ];\n\n  /** Emits when the header close (×) button is clicked. */\n  @Output() closed = new EventEmitter<void>();\n\n  /** Emits the action `value` (or `label`) when a footer button is clicked. */\n  @Output() actionClick = new EventEmitter<string>();\n\n  onAction(action: ModalAction): void {\n    this.actionClick.emit(action.value ?? action.label);\n  }\n\n  @HostListener('keydown.escape')\n  onEscape(): void {\n    this.closed.emit();\n  }\n\n  get modalClasses(): Record<string, boolean> {\n    return {\n      'ds-modal': true,\n      [`ds-modal--${this.theme}`]: true,\n      [`ds-modal--${this.size}`]: true,\n    };\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": false,
+                    "description": "<p>Button label.</p>\n",
+                    "line": 26,
+                    "rawdescription": "\nButton label."
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>Optional value emitted on click (falls back to <code>label</code>).</p>\n",
+                    "line": 28,
+                    "rawdescription": "\nOptional value emitted on click (falls back to `label`)."
+                },
+                {
+                    "name": "variant",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"primary\" | \"secondary\"",
+                    "indexKey": "",
+                    "optional": true,
+                    "description": "<p>Button style:</p>\n<ul>\n<li><code>&#39;primary&#39;</code> — themed filled button (matches modal theme colour).</li>\n<li><code>&#39;secondary&#39;</code> — neutral gray button.</li>\n</ul>\n",
+                    "line": 34,
+                    "rawdescription": "\n\nButton style:\n- `'primary'` — themed filled button (matches modal theme colour).\n- `'secondary'` — neutral gray button.\n"
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 172,
+            "description": "<p>Configuration for a footer action button.</p>\n",
+            "rawdescription": "\nConfiguration for a footer action button.",
+            "methods": [],
+            "extends": []
+        },
+        {
             "name": "ToggleButtonItem",
             "id": "interface-ToggleButtonItem-3b23336f9a6a941377b7d2ef01eaf0ede3c9f373b9ebd9db0084af6e7ba5ca7572ba386e60296a25eec307f12605fa190040c5dcd9a7f6ccde49ff81bf12ab55",
             "file": "src/ds/toggle-button/toggle-button-group.component.ts",
@@ -616,6 +666,210 @@
             "templateData": "<div class=\"ds-color-palette\">\n  @for (group of groups; track group.name) {\n    <section class=\"color-group\">\n      <h3 class=\"color-group__name\">{{ group.name }}</h3>\n      <div class=\"color-swatches\">\n        @for (swatch of group.swatches; track swatch.name) {\n          <div class=\"color-swatch\">\n            <div\n              class=\"color-swatch__preview\"\n              [class.color-swatch__preview--light]=\"isLight(swatch.hex)\"\n              [style.background-color]=\"'#' + swatch.hex\"\n            ></div>\n            <div class=\"color-swatch__info\">\n              <span class=\"color-swatch__name\">{{ swatch.name }}</span>\n              <span class=\"color-swatch__hex\">#{{ swatch.hex.toUpperCase() }}</span>\n              <span class=\"color-swatch__var\">{{ swatch.cssVar }}</span>\n            </div>\n          </div>\n        }\n      </div>\n    </section>\n  }\n</div>\n"
         },
         {
+            "name": "ModalComponent",
+            "id": "component-ModalComponent-0bb46b2e542f8bf36eaeb60f09146c0e85921adedfdbadfe6aa8e7c3671b9b3bb509b3be2fbfccf8e47116aaeaa266b4ef951961a1ec03568358f35d7c518307",
+            "file": "src/ds/modal/modal.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "ds-modal",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./modal.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "footerLeftActions",
+                    "defaultValue": "[{ label: 'Cancel', variant: 'secondary' }]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nFooter buttons on the **left** side (typically secondary / cancel actions).\nPass an empty array to hide the left section.\n",
+                    "description": "<p>Footer buttons on the <strong>left</strong> side (typically secondary / cancel actions).\nPass an empty array to hide the left section.</p>\n",
+                    "line": 79,
+                    "type": "ModalAction[]",
+                    "decorators": []
+                },
+                {
+                    "name": "footerRightActions",
+                    "defaultValue": "[\n    { label: 'Save', variant: 'primary' },\n    { label: 'Close', variant: 'secondary' },\n  ]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nFooter buttons on the **right** side (typically save / primary actions).\nFirst item with `variant: 'primary'` gets the themed filled style.\n",
+                    "description": "<p>Footer buttons on the <strong>right</strong> side (typically save / primary actions).\nFirst item with <code>variant: &#39;primary&#39;</code> gets the themed filled style.</p>\n",
+                    "line": 85,
+                    "type": "ModalAction[]",
+                    "decorators": []
+                },
+                {
+                    "name": "heading",
+                    "defaultValue": "'Heading'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nHeading text displayed in the header bar.",
+                    "description": "<p>Heading text displayed in the header bar.</p>\n",
+                    "line": 67,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "showDirtyFlag",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhen `true`, shows a yellow \"dirty flag\" warning indicator in the header,\nsignalling unsaved changes.\n",
+                    "description": "<p>When <code>true</code>, shows a yellow &quot;dirty flag&quot; warning indicator in the header,\nsignalling unsaved changes.</p>\n",
+                    "line": 73,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nSize variant — controls width and height.",
+                    "description": "<p>Size variant — controls width and height.</p>\n",
+                    "line": 64,
+                    "type": "ModalSize",
+                    "decorators": []
+                },
+                {
+                    "name": "theme",
+                    "defaultValue": "'user'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nColour theme applied to the header bar and primary action buttons.",
+                    "description": "<p>Colour theme applied to the header bar and primary action buttons.</p>\n",
+                    "line": 61,
+                    "type": "ModalTheme",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "actionClick",
+                    "defaultValue": "new EventEmitter<string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits the action `value` (or `label`) when a footer button is clicked.",
+                    "description": "<p>Emits the action <code>value</code> (or <code>label</code>) when a footer button is clicked.</p>\n",
+                    "line": 94,
+                    "type": "EventEmitter"
+                },
+                {
+                    "name": "closed",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\nEmits when the header close (×) button is clicked.",
+                    "description": "<p>Emits when the header close (×) button is clicked.</p>\n",
+                    "line": 91,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "onAction",
+                    "args": [
+                        {
+                            "name": "action",
+                            "type": "ModalAction",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 96,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "action",
+                            "type": "ModalAction",
+                            "optional": false,
+                            "dotDotDotToken": false,
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onEscape",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 101,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'keydown.escape'"
+                        }
+                    ],
+                    "modifierKind": [
+                        171
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "keydown.escape",
+                    "args": [],
+                    "argsDecorator": [],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 101
+                }
+            ],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "<p>Modal dialog component — themed header, scrollable body, fixed footer.</p>\n<p><strong>5 colour themes:</strong> <code>user</code> (blue) · <code>admin</code> (orange) · <code>green</code> · <code>sunoh</code> (pink) · <code>ai</code> (purple).</p>\n<p><strong>5 sizes:</strong> <code>small</code> (420×420) · <code>medium</code> (720×620) · <code>large</code> (1000×620) · <code>xlarge</code> (1240×620) · <code>xxlarge</code> (1340×620).</p>\n<p>Structure:</p>\n<ul>\n<li><strong>Header</strong> — 36 px, themed background, semibold heading, close ×.</li>\n<li><strong>Body</strong> — flex-1, white, scrollable; project content via <code>&lt;ng-content&gt;</code>.</li>\n<li><strong>Footer</strong> — 40 px, white bg, top border; left &amp; right button areas.</li>\n</ul>\n<p>Shadow: <code>0 0 6 px rgba(0, 0, 0, 0.3)</code>.</p>\n",
+            "rawdescription": "\n\nModal dialog component — themed header, scrollable body, fixed footer.\n\n**5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n\n**5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).\n\nStructure:\n- **Header** — 36 px, themed background, semibold heading, close ×.\n- **Body** — flex-1, white, scrollable; project content via `<ng-content>`.\n- **Footer** — 40 px, white bg, top border; left & right button areas.\n\nShadow: `0 0 6 px rgba(0, 0, 0, 0.3)`.\n",
+            "type": "component",
+            "sourceCode": "import {\n  Component,\n  Input,\n  Output,\n  EventEmitter,\n  ChangeDetectionStrategy,\n  HostListener,\n} from '@angular/core';\nimport { CommonModule } from '@angular/common';\n\nexport type ModalTheme = 'user' | 'admin' | 'green' | 'sunoh' | 'ai';\n\n/**\n * Modal size — maps to recommended width × height from the design spec:\n * - `small`   → 420 × 420 px\n * - `medium`  → 720 × 620 px\n * - `large`   → 1000 × 620 px\n * - `xlarge`  → 1240 × 620 px\n * - `xxlarge` → 1340 × 620 px\n */\nexport type ModalSize = 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';\n\n/** Configuration for a footer action button. */\nexport interface ModalAction {\n  /** Button label. */\n  label: string;\n  /** Optional value emitted on click (falls back to `label`). */\n  value?: string;\n  /**\n   * Button style:\n   * - `'primary'` — themed filled button (matches modal theme colour).\n   * - `'secondary'` — neutral gray button.\n   */\n  variant?: 'primary' | 'secondary';\n}\n\n/**\n * Modal dialog component — themed header, scrollable body, fixed footer.\n *\n * **5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n *\n * **5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).\n *\n * Structure:\n * - **Header** — 36 px, themed background, semibold heading, close ×.\n * - **Body** — flex-1, white, scrollable; project content via `<ng-content>`.\n * - **Footer** — 40 px, white bg, top border; left & right button areas.\n *\n * Shadow: `0 0 6 px rgba(0, 0, 0, 0.3)`.\n */\n@Component({\n  selector: 'ds-modal',\n  standalone: true,\n  imports: [CommonModule],\n  templateUrl: './modal.component.html',\n  styleUrl: './modal.component.scss',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ModalComponent {\n  /** Colour theme applied to the header bar and primary action buttons. */\n  @Input() theme: ModalTheme = 'user';\n\n  /** Size variant — controls width and height. */\n  @Input() size: ModalSize = 'medium';\n\n  /** Heading text displayed in the header bar. */\n  @Input() heading = 'Heading';\n\n  /**\n   * When `true`, shows a yellow \"dirty flag\" warning indicator in the header,\n   * signalling unsaved changes.\n   */\n  @Input() showDirtyFlag = false;\n\n  /**\n   * Footer buttons on the **left** side (typically secondary / cancel actions).\n   * Pass an empty array to hide the left section.\n   */\n  @Input() footerLeftActions: ModalAction[] = [{ label: 'Cancel', variant: 'secondary' }];\n\n  /**\n   * Footer buttons on the **right** side (typically save / primary actions).\n   * First item with `variant: 'primary'` gets the themed filled style.\n   */\n  @Input() footerRightActions: ModalAction[] = [\n    { label: 'Save', variant: 'primary' },\n    { label: 'Close', variant: 'secondary' },\n  ];\n\n  /** Emits when the header close (×) button is clicked. */\n  @Output() closed = new EventEmitter<void>();\n\n  /** Emits the action `value` (or `label`) when a footer button is clicked. */\n  @Output() actionClick = new EventEmitter<string>();\n\n  onAction(action: ModalAction): void {\n    this.actionClick.emit(action.value ?? action.label);\n  }\n\n  @HostListener('keydown.escape')\n  onEscape(): void {\n    this.closed.emit();\n  }\n\n  get modalClasses(): Record<string, boolean> {\n    return {\n      'ds-modal': true,\n      [`ds-modal--${this.theme}`]: true,\n      [`ds-modal--${this.size}`]: true,\n    };\n  }\n}\n",
+            "styleUrl": "./modal.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "modalClasses": {
+                    "name": "modalClasses",
+                    "getSignature": {
+                        "name": "modalClasses",
+                        "type": "unknown",
+                        "returnType": "Record<string, boolean>",
+                        "line": 105
+                    }
+                }
+            },
+            "templateData": "<div [ngClass]=\"modalClasses\">\n\n  <!-- ─── Header ──────────────────────────────────────────────────────────── -->\n  <div class=\"ds-modal__header\">\n\n    <div class=\"ds-modal__header-left\">\n      <span class=\"ds-modal__heading\">{{ heading }}</span>\n\n      @if (showDirtyFlag) {\n        <span class=\"ds-modal__dirty-flag\" title=\"You have unsaved changes\" aria-label=\"Unsaved changes\">\n          <svg class=\"ds-modal__dirty-icon\" viewBox=\"0 0 16 16\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n            <path d=\"M8 1L1 14h14L8 1zm0 2.18L13.54 13H2.46L8 3.18zM7 7v3h2V7H7zm0 4v2h2v-2H7z\"/>\n          </svg>\n        </span>\n      }\n    </div>\n\n    <!-- Right: projected header actions + close button -->\n    <div class=\"ds-modal__header-right\">\n      <ng-content select=\"[header-actions]\"></ng-content>\n      <button\n        class=\"ds-modal__close-btn\"\n        type=\"button\"\n        (click)=\"closed.emit()\"\n        aria-label=\"Close modal\"\n      >\n        <svg class=\"ds-modal__close-icon\" viewBox=\"0 0 20 20\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\">\n          <path d=\"M15.59 4.41L14.17 3 10 7.17 5.83 3 4.41 4.41 8.59 8.59 4.41 12.76 5.83 14.17 10 9.99l4.17 4.18 1.42-1.41L11.41 8.59z\"/>\n        </svg>\n      </button>\n    </div>\n\n  </div>\n\n  <!-- ─── Body (projected content) ───────────────────────────────────────── -->\n  <div class=\"ds-modal__body\">\n    <ng-content></ng-content>\n  </div>\n\n  <!-- ─── Footer ──────────────────────────────────────────────────────────── -->\n  <div class=\"ds-modal__footer\">\n\n    <!-- Left side actions -->\n    <div class=\"ds-modal__footer-left\">\n      @for (action of footerLeftActions; track action.label) {\n        <button\n          [ngClass]=\"['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]\"\n          type=\"button\"\n          (click)=\"onAction(action)\"\n        >{{ action.label }}</button>\n      }\n    </div>\n\n    <!-- Right side actions -->\n    <div class=\"ds-modal__footer-right\">\n      @for (action of footerRightActions; track action.label) {\n        <button\n          [ngClass]=\"['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]\"\n          type=\"button\"\n          (click)=\"onAction(action)\"\n        >{{ action.label }}</button>\n      }\n    </div>\n\n  </div>\n\n</div>\n"
+        },
+        {
             "name": "ToggleButtonGroupComponent",
             "id": "component-ToggleButtonGroupComponent-3b23336f9a6a941377b7d2ef01eaf0ede3c9f373b9ebd9db0084af6e7ba5ca7572ba386e60296a25eec307f12605fa190040c5dcd9a7f6ccde49ff81bf12ab55",
             "file": "src/ds/toggle-button/toggle-button-group.component.ts",
@@ -1084,6 +1338,28 @@
                 "kind": 193
             },
             {
+                "name": "ModalSize",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"small\" | \"medium\" | \"large\" | \"xlarge\" | \"xxlarge\"",
+                "file": "src/ds/modal/modal.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Modal size — maps to recommended width × height from the design spec:</p>\n<ul>\n<li><code>small</code>   → 420 × 420 px</li>\n<li><code>medium</code>  → 720 × 620 px</li>\n<li><code>large</code>   → 1000 × 620 px</li>\n<li><code>xlarge</code>  → 1240 × 620 px</li>\n<li><code>xxlarge</code> → 1340 × 620 px</li>\n</ul>\n",
+                "kind": 193
+            },
+            {
+                "name": "ModalTheme",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"user\" | \"admin\" | \"green\" | \"sunoh\" | \"ai\"",
+                "file": "src/ds/modal/modal.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 193
+            },
+            {
                 "name": "ToggleColor",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
@@ -1196,6 +1472,30 @@
                     "kind": 193
                 }
             ],
+            "src/ds/modal/modal.component.ts": [
+                {
+                    "name": "ModalSize",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"small\" | \"medium\" | \"large\" | \"xlarge\" | \"xxlarge\"",
+                    "file": "src/ds/modal/modal.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Modal size — maps to recommended width × height from the design spec:</p>\n<ul>\n<li><code>small</code>   → 420 × 420 px</li>\n<li><code>medium</code>  → 720 × 620 px</li>\n<li><code>large</code>   → 1000 × 620 px</li>\n<li><code>xlarge</code>  → 1240 × 620 px</li>\n<li><code>xxlarge</code> → 1340 × 620 px</li>\n</ul>\n",
+                    "kind": 193
+                },
+                {
+                    "name": "ModalTheme",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"user\" | \"admin\" | \"green\" | \"sunoh\" | \"ai\"",
+                    "file": "src/ds/modal/modal.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 193
+                }
+            ],
             "src/ds/toggle-button/toggle-button-group.component.ts": [
                 {
                     "name": "ToggleColor",
@@ -1228,8 +1528,8 @@
         "children": []
     },
     "coverage": {
-        "count": 17,
-        "status": "low",
+        "count": 27,
+        "status": "medium",
         "files": [
             {
                 "filePath": "src/app/app.config.ts",
@@ -1334,6 +1634,44 @@
                 "name": "ColorSwatch",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/ds/modal/modal.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ModalComponent",
+                "coveragePercent": 75,
+                "coverageCount": "9/12",
+                "status": "good"
+            },
+            {
+                "filePath": "src/ds/modal/modal.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "ModalAction",
+                "coveragePercent": 100,
+                "coverageCount": "4/4",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/ds/modal/modal.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "ModalSize",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/ds/modal/modal.component.ts",
+                "type": "type alias",
+                "linktype": "miscellaneous",
+                "linksubtype": "typealias",
+                "name": "ModalTheme",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
