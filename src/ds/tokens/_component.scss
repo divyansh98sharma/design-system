@@ -240,6 +240,23 @@
   --notification-badge-border: var(--color-surface);
 
   // ----------------------------------------------------------
+  // Toast
+  // ----------------------------------------------------------
+  --toast-height: 56px;
+  --toast-min-width: 520px;
+  --toast-max-width: 600px;
+  --toast-radius: var(--radius-standard);
+  --toast-close-radius: var(--radius-pill);
+  --toast-shadow: var(--shadow-md);
+  --toast-text-color: var(--color-text-inverse);
+  --toast-confirmation-bg: var(--color-status-success);
+  --toast-communication-bg: var(--color-secondary-100);
+  --toast-icon-size: 32px;
+  --toast-font-size: var(--font-size-12);
+  --toast-font-weight: var(--font-weight-regular);
+  --toast-title-font-weight: var(--font-weight-bold);
+
+  // ----------------------------------------------------------
   // Breadcrumb
   // ----------------------------------------------------------
   --breadcrumb-height: 24px;
