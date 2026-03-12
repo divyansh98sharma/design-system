@@ -1,12 +1,14 @@
 import {
   Component,
+  ContentChild,
   Input,
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
   inject,
+  TemplateRef,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ButtonModule } from 'primeng/button';
 
@@ -24,7 +26,7 @@ export type IconPosition = 'left' | 'right' | 'only';
 @Component({
   selector: 'ds-button',
   standalone: true,
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule, ButtonModule, NgTemplateOutlet],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,19 +47,35 @@ export class ButtonComponent {
   @Input() disabled = false;
   @Output() buttonClick = new EventEmitter<MouseEvent>();
 
+  /** Custom icon/image template — use <ng-template #dsIcon> inside <ds-button> */
+  @ContentChild('dsIcon') customIconTemplate?: TemplateRef<unknown>;
+
   get isIconOnly(): boolean {
     return this.iconPosition === 'only';
   }
 
+  get hasIcon(): boolean {
+    return !!(this.safeIcon || this.customIconTemplate);
+  }
+
   /** Structural classes forwarded to the inner <button> via styleClass. */
   get styleClass(): string {
+    const variantClass =
+      this.variant === 'outlined' ? 'p-button-outlined'
+      : this.variant === 'ghost' ? 'p-button-text'
+      : '';
+
+    const sizeClass =
+      this.size === 'sm' ? 'p-button-sm'
+      : this.size === 'lg' ? 'p-button-lg'
+      : '';
+
     return [
-      'ds-btn',
-      `ds-btn--${this.variant}`,
-      `ds-btn--${this.color}`,
-      `ds-btn--${this.size}`,
-      this.isIconOnly ? 'ds-btn--icon-only' : '',
-      this.disabled ? 'ds-btn--disabled' : '',
+      variantClass,
+      `${this.color}-btn`,
+      sizeClass,
+      this.isIconOnly ? 'p-button-icon-only' : '',
+      this.disabled ? 'p-disabled' : '',
     ]
       .filter(Boolean)
       .join(' ');
@@ -65,7 +83,7 @@ export class ButtonComponent {
 
   /** Color theme class applied to the <p-button> host via [ngClass]. */
   get themeClass(): Record<string, boolean> {
-    return { [`ds-btn--${this.color}`]: true };
+    return { [`${this.color}-btn`]: true };
   }
 
   onClick(event: MouseEvent): void {
