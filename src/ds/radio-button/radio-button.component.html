@@ -1,33 +1,11 @@
-<label
-  class="ds-radio"
-  [class.ds-radio--disabled]="disabled"
-  [class.ds-radio--checked]="checked"
-  (click)="select(); $event.preventDefault()"
-  (keydown.space)="select(); $event.preventDefault()"
-  [attr.tabindex]="disabled ? -1 : 0"
-  [attr.aria-checked]="checked"
-  [attr.aria-disabled]="disabled"
-  role="radio"
->
-  <!-- Hidden native input for form accessibility -->
-  <input
-    type="radio"
-    class="ds-radio__input"
-    [checked]="checked"
+<label class="ds-radio" [class.ds-radio--disabled]="disabled">
+  <p-radiobutton
+    [name]="name"
+    [value]="value"
+    [(ngModel)]="model"
     [disabled]="disabled"
-    tabindex="-1"
-    aria-hidden="true"
+    (onClick)="handleChange($event)"
   />
-
-  <!-- Visual circle -->
-  <span [ngClass]="buttonClasses">
-    <!-- Inner dot — shown when checked -->
-    @if (checked) {
-      <span class="ds-radio__dot"></span>
-    }
-  </span>
-
-  <!-- Label -->
   @if (hasLabel) {
     <span class="ds-radio__label">{{ label }}</span>
   }
