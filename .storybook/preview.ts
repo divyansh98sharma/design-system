@@ -12,12 +12,11 @@ const preview: Preview = {
       theme,
     },
     backgrounds: {
-      default: 'white',
-      values: [
-        { name: 'white', value: '#ffffff' },
-        { name: 'subtle', value: '#f7f7f7' },
-        { name: 'dark', value: '#2d2d2d' },
-      ],
+      options: {
+        white: { name: 'white', value: '#ffffff' },
+        subtle: { name: 'subtle', value: '#f7f7f7' },
+        dark: { name: 'dark', value: '#2d2d2d' }
+      }
     },
     controls: {
       matchers: {
@@ -26,7 +25,14 @@ const preview: Preview = {
       },
     },
   },
+
   tags: ['autodocs'],
+
+  initialGlobals: {
+    backgrounds: {
+      value: 'white'
+    }
+  }
 };
 
 export default preview;

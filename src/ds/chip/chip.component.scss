@@ -1,0 +1,88 @@
+// ─── Chip / Tag ───────────────────────────────────────────────────────────────
+
+.ds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--chip-gap);
+  padding: var(--chip-padding-y) var(--chip-padding-x);
+  border: 1px solid transparent;
+  border-radius: var(--chip-radius);
+  font-family: var(--font-family-base);
+  font-size: var(--chip-font-size);
+  line-height: var(--line-height-16);
+  color: var(--chip-color);
+  cursor: pointer;
+  transition: opacity var(--chip-transition);
+  user-select: none;
+
+  &:hover { opacity: 0.85; }
+
+  // ─── States ─────────────────────────────────────────────────────────────
+
+  &--default    { background: var(--chip-bg-default);    border-color: var(--chip-border-default); }
+  &--active     { background: var(--chip-bg-active);     border-color: var(--chip-border-active); }
+  &--error      { background: var(--chip-bg-error);      border-color: var(--chip-border-error); }
+  &--warning    { background: var(--chip-bg-warning);    border-color: var(--chip-border-warning); }
+  &--in-process { background: var(--chip-bg-in-process); border-color: var(--chip-border-in-process); }
+  &--ai         { background: var(--chip-bg-ai);         border-color: var(--chip-border-ai); }
+
+  // ─── Badge ──────────────────────────────────────────────────────────────
+
+  &__badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--chip-badge-size);
+    height: var(--chip-badge-size);
+    border-radius: var(--chip-badge-radius);
+    color: var(--chip-badge-color);
+    font-family: var(--font-family-base);
+    font-size: var(--chip-badge-font-size);
+    font-weight: var(--font-weight-regular);
+    line-height: 1;
+  }
+
+  // ─── Icon ───────────────────────────────────────────────────────────────
+
+  &__icon {
+    display: block;
+    flex-shrink: 0;
+    width: var(--chip-icon-size);
+    height: var(--chip-icon-size);
+    color: var(--chip-color);
+  }
+
+  // ─── Label ──────────────────────────────────────────────────────────────
+
+  &__label {
+    font-weight: var(--font-weight-regular);
+    white-space: nowrap;
+  }
+
+  // ─── Close button ───────────────────────────────────────────────────────
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--chip-close-size);
+    height: var(--chip-close-size);
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--chip-color);
+    transition: opacity var(--chip-transition);
+
+    &:hover        { opacity: 0.6; }
+    &:focus-visible { outline: 2px solid var(--chip-close-focus-color); outline-offset: 1px; }
+  }
+
+  &__close-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
