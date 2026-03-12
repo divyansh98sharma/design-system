@@ -180,6 +180,40 @@
   --tooltip-padding-y: var(--spacing-x-small);
 
   // ----------------------------------------------------------
+  // Modal
+  // ----------------------------------------------------------
+  --modal-bg: var(--color-surface);
+  --modal-radius: var(--radius-standard);
+  --modal-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+  --modal-header-height: 36px;
+  --modal-header-text-color: var(--color-text-inverse);
+  --modal-header-user-bg: var(--color-user-base);
+  --modal-header-admin-bg: var(--color-admin-base);
+  --modal-header-green-bg: var(--color-green-base);
+  --modal-header-sunoh-bg: var(--color-sunoh-base);
+  --modal-header-ai-bg: var(--color-ai-base);
+  --modal-footer-height: 40px;
+  --modal-footer-border: var(--color-border-default);
+  --modal-dirty-flag-color: var(--color-status-warning);
+  --modal-dirty-icon-size: 16px;
+  --modal-close-btn-size: 20px;
+  --modal-close-btn-color: var(--color-text-inverse);
+  --modal-close-focus-color: var(--color-text-inverse);
+  --modal-width-small: 420px;
+  --modal-width-medium: 720px;
+  --modal-width-large: 1000px;
+  --modal-width-xlarge: 1240px;
+  --modal-width-xxlarge: 1340px;
+  --modal-height-small: 420px;
+  --modal-height-default: 620px;
+  --modal-action-btn-height: 24px;
+  --modal-action-btn-radius: var(--radius-standard);
+  --modal-action-btn-secondary-bg: var(--color-secondary-base);
+  --modal-action-btn-secondary-border: var(--color-secondary-70);
+  --modal-action-btn-secondary-color: var(--color-text-primary);
+  --modal-action-btn-secondary-bg-hover: var(--color-secondary-60);
+
+  // ----------------------------------------------------------
   // Tooltip Bubble (white popup — 12-position caret)
   // ----------------------------------------------------------
   --tooltip-bubble-bg: var(--color-surface);
