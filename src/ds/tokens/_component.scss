@@ -180,6 +180,30 @@
   --tooltip-padding-y: var(--spacing-x-small);
 
   // ----------------------------------------------------------
+  // Tooltip Bubble (white popup — 12-position caret)
+  // ----------------------------------------------------------
+  --tooltip-bubble-bg: var(--color-surface);
+  --tooltip-bubble-color: var(--color-text-primary);
+  --tooltip-bubble-radius: var(--radius-standard);
+  --tooltip-bubble-shadow: var(--shadow-md);
+  --tooltip-bubble-padding-x: var(--spacing-small);
+  --tooltip-bubble-padding-y: var(--spacing-x-small);
+  --tooltip-bubble-font-size: var(--font-size-12);
+  --tooltip-bubble-max-width: 512px;
+  --tooltip-bubble-min-width: 42px;
+  --tooltip-arrow-size: 6px;
+  --tooltip-arrow-overlap: 1px;
+
+  // ----------------------------------------------------------
+  // Info Tooltip
+  // ----------------------------------------------------------
+  --info-tooltip-size: 16px;
+  --info-tooltip-icon-color: var(--color-text-secondary);
+  --info-tooltip-icon-color-hover: var(--color-brand-primary);
+  --info-tooltip-focus-color: var(--color-border-focus);
+  --info-tooltip-transition: 120ms ease;
+
+  // ----------------------------------------------------------
   // Breadcrumb
   // ----------------------------------------------------------
   --breadcrumb-height: 24px;
