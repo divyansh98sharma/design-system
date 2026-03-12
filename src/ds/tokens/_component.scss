@@ -70,4 +70,17 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // SOGI Badge
+  // ----------------------------------------------------------
+  --sogi-height: 24px;
+  --sogi-gradient: linear-gradient(
+    85.64deg,
+    rgb(95, 167, 177)  1.36%,
+    rgb(167, 87, 106)  33.51%,
+    rgb(206, 53, 66)   51%,
+    rgb(226, 106, 38)  76.06%,
+    rgb(246, 160, 8)   95.91%
+  );
 }
