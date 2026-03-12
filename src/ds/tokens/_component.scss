@@ -70,4 +70,26 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // Side Navigation
+  // ----------------------------------------------------------
+  --side-nav-width: 320px;
+  --side-nav-max-height: 824px;
+  --side-nav-bg: var(--color-secondary-5);
+  --side-nav-border: var(--color-secondary-50);
+  --side-nav-heading-height: 36px;
+  --side-nav-heading-bg: var(--color-secondary-40);
+  --side-nav-btn-hover-bg: rgba(0, 0, 0, 0.08);
+  --side-nav-search-height: 24px;
+  --side-nav-search-padding-x: 6px;
+  --side-nav-item-height: 32px;
+  --side-nav-item-border: var(--color-secondary-base);
+  --side-nav-item-hover-bg: var(--color-secondary-30);
+  --side-nav-item-active-bg: var(--color-user-5);
+  --side-nav-item-icon-size: 16px;
+  --side-nav-item-gap: 6px;
+  --side-nav-leaf-spacer-size: 12px;
+  --side-nav-scrollbar-track: var(--color-secondary-40);
+  --side-nav-scrollbar-thumb: var(--color-secondary-70);
 }
