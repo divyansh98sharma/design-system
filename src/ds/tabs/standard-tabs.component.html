@@ -1,0 +1,23 @@
+<div class="ds-standard-tabs"
+     [style.--theme-base]="colors.base"
+     [style.--theme-base5]="colors.base5"
+     [style.--theme-base30]="colors.base30"
+     role="tablist">
+  @for (tab of tabs; track tab.key) {
+    <button
+      class="ds-standard-tabs__tab"
+      [class.ds-standard-tabs__tab--active]="activeTab === tab.key"
+      role="tab"
+      [attr.aria-selected]="activeTab === tab.key"
+      type="button"
+      (click)="select(tab.key)"
+    >
+      <span class="ds-standard-tabs__label">{{ tab.label }}</span>
+      @if (tab.count !== undefined) {
+        <span class="ds-standard-tabs__count">({{ tab.count }})</span>
+      }
+    </button>
+  }
+  <!-- Full-width bottom rule in theme colour -->
+  <div class="ds-standard-tabs__rule"></div>
+</div>

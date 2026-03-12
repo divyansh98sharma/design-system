@@ -1,0 +1,141 @@
+// ─── CSS custom property defaults ────────────────────────────────────────────
+:host {
+  display: block;
+  --active-bg          : var(--color-user-base);
+  --active-badge-border: var(--color-user-80);
+  --active-badge-text  : var(--color-user-80);
+  --active-text        : var(--color-text-inverse);
+}
+
+// ─── Container ───────────────────────────────────────────────────────────────
+.ds-wizard-tabs {
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--tab-border-color);
+  border-bottom: 1px solid var(--tab-border-color);
+  padding-right: var(--wizard-tab-arrow-width);
+  box-shadow: var(--wizard-tab-shadow);
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// ─── Individual step ─────────────────────────────────────────────────────────
+.ds-wizard-tabs__step {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  padding: var(--wizard-tab-padding-y) var(--wizard-tab-padding-x-right) var(--wizard-tab-padding-y) var(--wizard-tab-padding-x);
+  min-height: var(--wizard-tab-height);
+  margin-right: calc(-1 * var(--wizard-tab-arrow-width));
+  background: var(--wizard-tab-inactive-bg);
+  border: none;
+  border-top: 1px solid var(--tab-border-color);
+  border-bottom: 1px solid var(--tab-border-color);
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--wizard-tab-arrow-width)) 0,
+    100% 50%,
+    calc(100% - var(--wizard-tab-arrow-width)) 100%,
+    0 100%
+  );
+
+  // ── Non-first tabs: left-indent + right arrow ─────────────────────────
+  &:not(.ds-wizard-tabs__step--first) {
+    padding-left: calc(var(--wizard-tab-padding-x) + var(--wizard-tab-arrow-width));
+    clip-path: polygon(
+      var(--wizard-tab-arrow-width) 0,
+      calc(100% - var(--wizard-tab-arrow-width)) 0,
+      100% 50%,
+      calc(100% - var(--wizard-tab-arrow-width)) 100%,
+      var(--wizard-tab-arrow-width) 100%,
+      0 50%
+    );
+  }
+
+  // ── Last tab: no right arrow ──────────────────────────────────────────
+  &.ds-wizard-tabs__step--last {
+    margin-right: 0;
+    padding-right: var(--wizard-tab-padding-x);
+    clip-path: polygon(
+      var(--wizard-tab-arrow-width) 0,
+      100% 0,
+      100% 100%,
+      var(--wizard-tab-arrow-width) 100%,
+      0 50%
+    );
+  }
+
+  // ── First AND last (only one tab) ─────────────────────────────────────
+  &.ds-wizard-tabs__step--first.ds-wizard-tabs__step--last {
+    clip-path: none;
+    padding-left: var(--wizard-tab-padding-x);
+    padding-right: var(--wizard-tab-padding-x);
+    margin-right: 0;
+  }
+
+  // ── Active step ────────────────────────────────────────────────────────
+  &--active {
+    background: var(--active-bg);
+    color: var(--active-text);
+  }
+
+  // ── Hover ──────────────────────────────────────────────────────────────
+  &:hover:not(.ds-wizard-tabs__step--active) {
+    background: var(--wizard-tab-inactive-hover-bg);
+  }
+
+  // ── Focus ──────────────────────────────────────────────────────────────
+  &:focus-visible {
+    outline: 2px solid var(--active-bg);
+    outline-offset: -4px;
+  }
+}
+
+// ─── Step number badge ────────────────────────────────────────────────────────
+.ds-wizard-tabs__badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--wizard-tab-badge-size);
+  height: var(--wizard-tab-badge-size);
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-text-primary);
+  border-radius: var(--wizard-tab-badge-radius);
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: 15px;
+  color: var(--color-text-primary);
+  text-align: center;
+
+  &--active {
+    border-color: var(--active-badge-border);
+    color: var(--active-badge-text);
+  }
+}
+
+// ─── Step label ──────────────────────────────────────────────────────────────
+.ds-wizard-tabs__label {
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+}
+
+// ─── Required asterisk ────────────────────────────────────────────────────────
+.ds-wizard-tabs__required {
+  color: var(--wizard-tab-required-color);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-13);
+  line-height: 18px;
+  margin-left: 1px;
+}

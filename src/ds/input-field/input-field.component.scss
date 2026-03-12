@@ -1,0 +1,156 @@
+// ─── Host block ───────────────────────────────────────────────────────────────
+.ds-input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--input-field-gap);
+  font-family: inherit;
+
+  // ── Horizontal layout ───────────────────────────────────────────────────
+  &--horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--input-field-horizontal-gap);
+
+    .ds-input-field__label {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ds-input-field__wrapper {
+      flex: 1 1 auto;
+    }
+  }
+
+  // ── Disabled state ──────────────────────────────────────────────────────
+  &--disabled {
+    pointer-events: none;
+
+    .ds-input-field__wrapper {
+      background-color: var(--input-field-disabled-bg);
+      border-color: var(--input-field-disabled-border);
+    }
+
+    .ds-input-field__input {
+      color: var(--input-field-disabled-text);
+      cursor: not-allowed;
+    }
+  }
+
+  // ── Error state ─────────────────────────────────────────────────────────
+  &--error {
+    .ds-input-field__wrapper {
+      border-color: var(--input-border-error);
+    }
+  }
+}
+
+// ─── Label ────────────────────────────────────────────────────────────────────
+.ds-input-field__label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--input-field-gap);
+  font-size: var(--input-font-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--input-field-label-color);
+  line-height: 1.4;
+  cursor: default;
+}
+
+.ds-input-field__required {
+  color: var(--input-border-error);
+  font-weight: var(--font-weight-bold);
+}
+
+.ds-input-field__info {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+
+  svg { display: block; }
+}
+
+// ─── Input wrapper ────────────────────────────────────────────────────────────
+.ds-input-field__wrapper {
+  display: flex;
+  align-items: center;
+  height: var(--input-field-height);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  padding: 0 var(--input-field-wrapper-padding-x);
+  gap: var(--input-field-gap);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
+
+  &:focus-within {
+    border-color: var(--input-border-focus);
+    box-shadow: var(--input-field-focus-shadow);
+    outline: none;
+  }
+}
+
+// ─── Icons ────────────────────────────────────────────────────────────────────
+.ds-input-field__search-icon,
+.ds-input-field__chevron {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--input-field-icon-color);
+
+  svg { display: block; }
+}
+
+.ds-input-field__chevron {
+  margin-left: auto;
+}
+
+// ─── Native <input> ───────────────────────────────────────────────────────────
+.ds-input-field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--input-font-size);
+  font-style: italic;
+  color: var(--input-field-label-color);
+  padding: 0;
+  line-height: var(--input-field-height);
+
+  &::placeholder {
+    color: var(--input-field-placeholder-color);
+    font-style: italic;
+  }
+
+  &:not(:placeholder-shown) {
+    font-style: normal;
+  }
+
+  &:disabled {
+    background: transparent;
+    color: var(--input-field-disabled-text);
+  }
+}
+
+// ─── Support text ─────────────────────────────────────────────────────────────
+.ds-input-field__support {
+  font-size: var(--input-font-size);
+  font-style: italic;
+  color: var(--input-field-support-color);
+  line-height: 1.4;
+}
+
+// ─── Error text ───────────────────────────────────────────────────────────────
+.ds-input-field__error {
+  display: flex;
+  align-items: center;
+  gap: var(--input-field-gap);
+  font-size: var(--input-font-size);
+  color: var(--input-field-error-color);
+  line-height: 1.4;
+}
+
+.ds-input-field__error-icon {
+  display: block;
+  flex-shrink: 0;
+}

@@ -1,0 +1,121 @@
+// ─── Base styles ─────────────────────────────────────────────────────────────
+:host {
+  display: inline-block;
+}
+
+.ds-healow-connect {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : var(--spacing-x-small);
+  padding        : var(--spacing-x-small) var(--spacing-medium) var(--spacing-x-small) var(--spacing-x-small);
+  border-radius  : var(--radius-pill);
+  border         : 1px solid;
+  cursor         : pointer;
+  font-family    : var(--font-family-base);
+  font-size      : var(--font-size-12);
+  font-weight    : var(--font-weight-regular);
+  line-height    : var(--line-height-16);
+  white-space    : nowrap;
+  text-decoration: none;
+  transition     : background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+  // ── Default state colours ───────────────────────────────────────────────
+  background  : var(--healow-connect-bg);
+  border-color: var(--healow-connect-border);
+  color       : var(--color-black);
+
+  .ds-healow-connect__icon {
+    stroke: var(--color-black);
+    fill  : var(--color-black);
+    circle:last-child { fill: var(--color-black); stroke: none; }
+    circle:first-child { fill: none; stroke: var(--color-black); }
+    path { stroke: var(--color-black); fill: none; }
+  }
+
+  // ── Hover (native CSS, no modifier needed) ─────────────────────────────
+  &:hover:not(:disabled):not([disabled]) {
+    background  : var(--healow-connect-hover-bg);
+    border-color: var(--healow-connect-hover-border);
+  }
+
+  // ── Disabled ───────────────────────────────────────────────────────────
+  &:disabled,
+  &[aria-disabled='true'],
+  &--disabled,
+  &--call-in-progress-disabled {
+    background  : var(--healow-connect-disabled-bg);
+    border-color: var(--healow-connect-disabled-border);
+    color       : var(--healow-connect-disabled-color);
+    cursor      : not-allowed;
+
+    .ds-healow-connect__icon {
+      stroke: var(--healow-connect-disabled-color);
+      fill  : var(--healow-connect-disabled-color);
+      circle:last-child { fill: var(--healow-connect-disabled-color); stroke: none; }
+      circle:first-child { fill: none; stroke: var(--healow-connect-disabled-color); }
+      path { stroke: var(--healow-connect-disabled-color); fill: none; }
+    }
+  }
+
+  // ── Call in Progress — Default ─────────────────────────────────────────
+  &--call-in-progress {
+    background  : var(--healow-connect-call-bg);
+    border-color: var(--healow-connect-call-bg);
+    color       : var(--color-black);
+
+    .ds-healow-connect__icon {
+      stroke: var(--color-white);
+      fill  : var(--color-white);
+      circle:last-child { fill: var(--color-white); stroke: none; }
+      circle:first-child { fill: none; stroke: var(--color-white); }
+      path { stroke: var(--color-white); fill: none; }
+    }
+
+    &:hover:not(:disabled) {
+      background  : var(--color-white);
+      border-color: var(--healow-connect-call-bg);
+
+      .ds-healow-connect__icon {
+        stroke: var(--healow-connect-call-bg);
+        fill  : var(--healow-connect-call-bg);
+        circle:last-child { fill: var(--healow-connect-call-bg); stroke: none; }
+        circle:first-child { fill: none; stroke: var(--healow-connect-call-bg); }
+        path { stroke: var(--healow-connect-call-bg); fill: none; }
+      }
+    }
+  }
+
+  // ── Call in Progress — Hover (explicit modifier) ───────────────────────
+  &--call-in-progress-hover {
+    background  : var(--color-white);
+    border-color: var(--healow-connect-call-bg);
+    color       : var(--color-black);
+
+    .ds-healow-connect__icon {
+      stroke: var(--healow-connect-call-bg);
+      fill  : var(--healow-connect-call-bg);
+      circle:last-child { fill: var(--healow-connect-call-bg); stroke: none; }
+      circle:first-child { fill: none; stroke: var(--healow-connect-call-bg); }
+      path { stroke: var(--healow-connect-call-bg); fill: none; }
+    }
+  }
+
+  // ── Focus ──────────────────────────────────────────────────────────────
+  &:focus-visible {
+    outline       : 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+}
+
+// ─── Icon ────────────────────────────────────────────────────────────────────
+.ds-healow-connect__icon {
+  width      : var(--healow-connect-icon-size);
+  height     : var(--healow-connect-icon-size);
+  flex-shrink: 0;
+}
+
+// ─── Label ───────────────────────────────────────────────────────────────────
+.ds-healow-connect__label {
+  font-size  : var(--font-size-12);
+  line-height: var(--line-height-16);
+}

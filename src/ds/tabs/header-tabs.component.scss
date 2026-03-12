@@ -1,0 +1,92 @@
+// ─── CSS custom property defaults ────────────────────────────────────────────
+:host {
+  display: block;
+  --theme-base  : var(--color-user-base);
+  --theme-base80: var(--color-user-80);
+  --theme-text  : var(--color-text-inverse);
+}
+
+// ─── Container ───────────────────────────────────────────────────────────────
+.ds-header-tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  height: var(--tab-height);
+  min-height: var(--tab-height);
+  max-height: var(--tab-height);
+  padding: 0 var(--spacing-small);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// ─── Optional icon ────────────────────────────────────────────────────────────
+.ds-header-tabs__icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--theme-text);
+  opacity: 0.85;
+}
+
+// ─── Heading ─────────────────────────────────────────────────────────────────
+.ds-header-tabs__heading {
+  flex: 1 0 0;
+  font-family: var(--font-family-base);
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-16);
+  color: var(--theme-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ─── Tabs wrapper ────────────────────────────────────────────────────────────
+.ds-header-tabs__tabs {
+  display: flex;
+  align-items: stretch;
+  height: var(--tab-height);
+}
+
+// ─── Individual tab ──────────────────────────────────────────────────────────
+.ds-header-tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tab-gap);
+  padding: var(--tab-padding-y);
+  min-height: var(--tab-height);
+  max-height: var(--tab-height);
+  border: none;
+  background: var(--theme-base);
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+  color: var(--theme-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background var(--tab-transition);
+
+  // ── Active tab — darker bg ─────────────────────────────────────────────
+  &--active {
+    background: var(--theme-base80);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  // ── Hover ──────────────────────────────────────────────────────────────
+  &:hover:not(.ds-header-tabs__tab--active) {
+    filter: brightness(0.92);
+  }
+
+  // ── Focus ──────────────────────────────────────────────────────────────
+  &:focus-visible {
+    outline: 2px solid var(--theme-text);
+    outline-offset: -2px;
+  }
+}
+
+// ─── Count badge (active tab only) ────────────────────────────────────────────
+.ds-header-tabs__count {
+  font-weight: var(--font-weight-semibold);
+}

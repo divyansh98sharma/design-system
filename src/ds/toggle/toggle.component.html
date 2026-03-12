@@ -1,0 +1,7 @@
+<div [ngClass]="hostClasses">
+  <p-toggleswitch
+    [(ngModel)]="on"
+    [disabled]="disabled"
+    (onChange)="handleChange($event)"
+  />
+</div>
