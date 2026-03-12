@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollerModule } from 'primeng/scroller';
 
 export type ScrollbarOrientation = 'vertical' | 'horizontal';
 
@@ -27,7 +28,7 @@ export type ScrollbarOrientation = 'vertical' | 'horizontal';
 @Component({
   selector: 'ds-scrollbar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollerModule],
   templateUrl: './scrollbar.component.html',
   styleUrl: './scrollbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,192 +1,169 @@
-// ─── Design tokens ────────────────────────────────────────────────────────────
-$popover-width:      378px;
-$popover-bg:         #ffffff;
-$popover-radius:     4px;
-$popover-shadow:     0 8px 16px -4px rgba(2, 13, 33, 0.16);
-$popover-border:     1px solid #e6e6e6;
-
-$header-padding:     12px 14px 10px;
-$body-padding:       0 14px 12px;
-$footer-padding:     10px 14px;
-
-$title-font-size:    14px;
-$body-font-size:     12px;
-$label-font-size:    12px;
-$input-height:       24px;
-$input-border:       #bcbcbc;
-
-$notch-size:         10px;   // half-base of the notch triangle
-
-// Notch offset from the corner edge (for left/right/top-*/bottom-* variants)
-$notch-corner-offset: 16px;
-$notch-center-offset: 50%;
-
 // ─── Card ─────────────────────────────────────────────────────────────────────
 .ds-popover {
-  position:      relative;
-  width:         $popover-width;
-  background:    $popover-bg;
-  border:        $popover-border;
-  border-radius: $popover-radius;
-  box-shadow:    $popover-shadow;
-  font-family:   inherit;
-  box-sizing:    border-box;
+  position: relative;
+  width: var(--popover-width);
+  background: var(--popover-bg);
+  border: 1px solid var(--popover-border-color);
+  border-radius: var(--popover-radius);
+  box-shadow: var(--popover-shadow);
+  font-family: inherit;
+  box-sizing: border-box;
 }
 
 // ─── Header ───────────────────────────────────────────────────────────────────
 .ds-popover__header {
-  padding:       $header-padding;
-  border-bottom: 1px solid #e6e6e6;
+  padding: var(--spacing-medium) var(--popover-padding-x) var(--spacing-small);
+  border-bottom: 1px solid var(--popover-border-color);
 }
 
 .ds-popover__title {
-  font-size:   $title-font-size;
-  font-weight: 600;
-  color:       var(--popover-theme-color, #0378a7);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--popover-theme-color, var(--color-user-base));
   line-height: 1.4;
 }
 
 // ─── Body ─────────────────────────────────────────────────────────────────────
 .ds-popover__body {
-  padding: $body-padding;
+  padding: 0 var(--popover-padding-x) var(--spacing-medium);
 }
 
 .ds-popover__body-text {
-  font-size:   $body-font-size;
-  color:       #1a1a1a;
+  font-size: var(--font-size-12);
+  color: var(--popover-text-color);
   line-height: 1.5;
-  margin:      10px 0 8px;
+  margin: var(--spacing-small) 0;
 }
 
 // Fields
 .ds-popover__fields {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  gap:            8px;
-  margin-top:     10px;
+  gap: var(--spacing-small);
+  margin-top: var(--spacing-small);
 }
 
 .ds-popover__field-row {
-  display:     flex;
+  display: flex;
   align-items: center;
-  gap:         8px;
+  gap: var(--spacing-small);
 }
 
 .ds-popover__field-label {
-  font-size:  $label-font-size;
-  font-weight: 600;
-  color:      #1a1a1a;
-  flex:       0 0 100px;
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  color: var(--popover-text-color);
+  flex: 0 0 var(--popover-field-label-width);
   text-align: right;
 }
 
 .ds-popover__field-input-wrapper {
-  flex:      1 1 auto;
-  height:    $input-height;
-  border:    1px solid $input-border;
-  border-radius: 4px;
-  display:   flex;
+  flex: 1 1 auto;
+  height: var(--popover-input-height);
+  border: 1px solid var(--popover-input-border);
+  border-radius: var(--popover-radius);
+  display: flex;
   align-items: center;
-  padding:   0 6px;
+  padding: 0 var(--input-field-wrapper-padding-x);
   box-sizing: border-box;
 
   &:focus-within {
-    border-color: var(--popover-theme-color, #0378a7);
-    box-shadow:   0 0 0 2px var(--popover-theme-color, #0378a7);
+    border-color: var(--popover-theme-color, var(--color-user-base));
+    box-shadow: 0 0 0 2px var(--popover-theme-color, var(--color-user-base));
   }
 }
 
 .ds-popover__field-input {
-  border:     none;
-  outline:    none;
+  border: none;
+  outline: none;
   background: transparent;
-  font-size:  12px;
-  width:      100%;
-  color:      #1a1a1a;
+  font-size: var(--font-size-12);
+  width: 100%;
+  color: var(--popover-text-color);
 
-  &::placeholder { color: #969696; font-style: italic; }
+  &::placeholder { color: var(--color-secondary-70); font-style: italic; }
 }
 
 // Checkboxes
 .ds-popover__checkboxes {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  gap:            6px;
-  margin-top:     10px;
+  gap: var(--spacing-x-small);
+  margin-top: var(--spacing-small);
 }
 
 .ds-popover__checkbox-row {
-  display:     flex;
+  display: flex;
   align-items: center;
-  gap:         8px;
-  cursor:      pointer;
-  font-size:   $body-font-size;
-  color:       #1a1a1a;
+  gap: var(--spacing-small);
+  cursor: pointer;
+  font-size: var(--font-size-12);
+  color: var(--popover-text-color);
 }
 
 .ds-popover__checkbox-input {
-  accent-color: var(--popover-theme-color, #0378a7);
-  cursor:       pointer;
-  width:        14px;
-  height:       14px;
+  accent-color: var(--popover-theme-color, var(--color-user-base));
+  cursor: pointer;
+  width: var(--popover-control-size);
+  height: var(--popover-control-size);
 }
 
 .ds-popover__checkbox-label { line-height: 1.4; }
 
 // Radios
 .ds-popover__radios {
-  display:        flex;
+  display: flex;
   flex-direction: column;
-  gap:            6px;
-  margin-top:     10px;
+  gap: var(--spacing-x-small);
+  margin-top: var(--spacing-small);
 }
 
 .ds-popover__radio-row {
-  display:     flex;
+  display: flex;
   align-items: center;
-  gap:         8px;
-  cursor:      pointer;
-  font-size:   $body-font-size;
-  color:       #1a1a1a;
+  gap: var(--spacing-small);
+  cursor: pointer;
+  font-size: var(--font-size-12);
+  color: var(--popover-text-color);
 }
 
 .ds-popover__radio-input {
-  accent-color: var(--popover-theme-color, #0378a7);
-  cursor:       pointer;
-  width:        14px;
-  height:       14px;
+  accent-color: var(--popover-theme-color, var(--color-user-base));
+  cursor: pointer;
+  width: var(--popover-control-size);
+  height: var(--popover-control-size);
 }
 
 .ds-popover__radio-label { line-height: 1.4; }
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 .ds-popover__footer {
-  display:      flex;
+  display: flex;
   justify-content: flex-end;
-  align-items:  center;
-  gap:          8px;
-  padding:      $footer-padding;
-  border-top:   2px solid var(--popover-footer-border, #81bbd3);
+  align-items: center;
+  gap: var(--spacing-small);
+  padding: var(--spacing-small) var(--popover-padding-x);
+  border-top: 2px solid var(--popover-footer-border, var(--color-user-30));
 }
 
 .ds-popover__btn {
-  height:        28px;
-  padding:       0 14px;
-  font-size:     12px;
-  font-weight:   600;
-  border-radius: 4px;
-  cursor:        pointer;
-  transition:    opacity 0.15s, background 0.15s;
-  border:        1px solid var(--popover-theme-color, #0378a7);
+  height: var(--popover-btn-height);
+  padding: 0 var(--popover-padding-x);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--popover-radius);
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s;
+  border: 1px solid var(--popover-theme-color, var(--color-user-base));
 
   &:disabled {
-    opacity: 0.45;
-    cursor:  not-allowed;
+    opacity: var(--popover-btn-disabled-opacity);
+    cursor: not-allowed;
   }
 
   &--primary {
-    background: var(--popover-theme-color, #0378a7);
-    color:      #ffffff;
+    background: var(--popover-theme-color, var(--color-user-base));
+    color: var(--color-text-inverse);
 
     &:hover:not(:disabled) {
       opacity: 0.88;
@@ -194,118 +171,115 @@ $notch-center-offset: 50%;
   }
 
   &--secondary {
-    background: #ffffff;
-    color:      var(--popover-theme-color, #0378a7);
+    background: var(--popover-bg);
+    color: var(--popover-theme-color, var(--color-user-base));
 
     &:hover:not(:disabled) {
-      background: rgba(3, 120, 167, 0.06);
+      background: var(--color-user-5);
     }
   }
 }
 
 // ─── Notch / caret ────────────────────────────────────────────────────────────
-// Implemented with ::before (border trick for the white fill) and ::after
-// (for the card border shadow). Both pseudo-elements are rotated/positioned
+// Implemented with ::before (border trick for the fill) and ::after
+// (for the card border shadow). Both pseudo-elements are positioned
 // based on the data-notch attribute.
 
 .ds-popover[data-notch]:not([data-notch="none"]) {
   &::before,
   &::after {
-    content:  '';
+    content: '';
     position: absolute;
-    display:  block;
-    width:    0;
-    height:   0;
+    display: block;
+    width: 0;
+    height: 0;
   }
 }
-
-// ── Helper mixin ─────────────────────────────────────────────────────────────
-// We use a set of attribute selectors for each of the 12 positions.
 
 // ── Bottom positions (notch points down) ─────────────────────────────────────
 @mixin notch-bottom($left-value) {
   &::before {
-    bottom:       -#{$notch-size + 1px};
-    left:         $left-value;
-    border-left:  #{$notch-size} solid transparent;
-    border-right: #{$notch-size} solid transparent;
-    border-top:   #{$notch-size + 1px} solid #e6e6e6;
+    bottom: calc(-1 * var(--popover-notch-size) - 1px);
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-top: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
   }
   &::after {
-    bottom:       -$notch-size;
-    left:         $left-value;
-    border-left:  #{$notch-size} solid transparent;
-    border-right: #{$notch-size} solid transparent;
-    border-top:   $notch-size solid #ffffff;
+    bottom: calc(-1 * var(--popover-notch-size));
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-top: var(--popover-notch-size) solid var(--popover-bg);
   }
 }
 
-.ds-popover[data-notch="bottom-left"]   { @include notch-bottom($notch-corner-offset); }
-.ds-popover[data-notch="bottom-right"]  { @include notch-bottom(calc(100% - #{$notch-corner-offset + $notch-size * 2})); }
-.ds-popover[data-notch="bottom-center"] { @include notch-bottom(calc(50% - #{$notch-size})); }
+.ds-popover[data-notch="bottom-left"]   { @include notch-bottom(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="bottom-right"]  { @include notch-bottom(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }
+.ds-popover[data-notch="bottom-center"] { @include notch-bottom(calc(50% - var(--popover-notch-size))); }
 
 // ── Top positions (notch points up) ──────────────────────────────────────────
 @mixin notch-top($left-value) {
   &::before {
-    top:          -#{$notch-size + 1px};
-    left:         $left-value;
-    border-left:  #{$notch-size} solid transparent;
-    border-right: #{$notch-size} solid transparent;
-    border-bottom: #{$notch-size + 1px} solid #e6e6e6;
+    top: calc(-1 * var(--popover-notch-size) - 1px);
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-bottom: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
   }
   &::after {
-    top:          -$notch-size;
-    left:         $left-value;
-    border-left:  #{$notch-size} solid transparent;
-    border-right: #{$notch-size} solid transparent;
-    border-bottom: $notch-size solid #ffffff;
+    top: calc(-1 * var(--popover-notch-size));
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid var(--popover-bg);
   }
 }
 
-.ds-popover[data-notch="top-left"]   { @include notch-top($notch-corner-offset); }
-.ds-popover[data-notch="top-right"]  { @include notch-top(calc(100% - #{$notch-corner-offset + $notch-size * 2})); }
-.ds-popover[data-notch="top-center"] { @include notch-top(calc(50% - #{$notch-size})); }
+.ds-popover[data-notch="top-left"]   { @include notch-top(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="top-right"]  { @include notch-top(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }
+.ds-popover[data-notch="top-center"] { @include notch-top(calc(50% - var(--popover-notch-size))); }
 
 // ── Right positions (notch points right) ─────────────────────────────────────
 @mixin notch-right($top-value) {
   &::before {
-    right:        -#{$notch-size + 1px};
-    top:          $top-value;
-    border-top:   #{$notch-size} solid transparent;
-    border-bottom:#{$notch-size} solid transparent;
-    border-left:  #{$notch-size + 1px} solid #e6e6e6;
+    right: calc(-1 * var(--popover-notch-size) - 1px);
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-left: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
   }
   &::after {
-    right:        -$notch-size;
-    top:          $top-value;
-    border-top:   #{$notch-size} solid transparent;
-    border-bottom:#{$notch-size} solid transparent;
-    border-left:  $notch-size solid #ffffff;
+    right: calc(-1 * var(--popover-notch-size));
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-left: var(--popover-notch-size) solid var(--popover-bg);
   }
 }
 
-.ds-popover[data-notch="right-top"]    { @include notch-right($notch-corner-offset); }
-.ds-popover[data-notch="right-center"] { @include notch-right(calc(50% - #{$notch-size})); }
-.ds-popover[data-notch="right-bottom"] { @include notch-right(calc(100% - #{$notch-corner-offset + $notch-size * 2})); }
+.ds-popover[data-notch="right-top"]    { @include notch-right(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="right-center"] { @include notch-right(calc(50% - var(--popover-notch-size))); }
+.ds-popover[data-notch="right-bottom"] { @include notch-right(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }
 
 // ── Left positions (notch points left) ───────────────────────────────────────
 @mixin notch-left($top-value) {
   &::before {
-    left:         -#{$notch-size + 1px};
-    top:          $top-value;
-    border-top:   #{$notch-size} solid transparent;
-    border-bottom:#{$notch-size} solid transparent;
-    border-right: #{$notch-size + 1px} solid #e6e6e6;
+    left: calc(-1 * var(--popover-notch-size) - 1px);
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-right: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
   }
   &::after {
-    left:         -$notch-size;
-    top:          $top-value;
-    border-top:   #{$notch-size} solid transparent;
-    border-bottom:#{$notch-size} solid transparent;
-    border-right: $notch-size solid #ffffff;
+    left: calc(-1 * var(--popover-notch-size));
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid var(--popover-bg);
   }
 }
 
-.ds-popover[data-notch="left-top"]    { @include notch-left($notch-corner-offset); }
-.ds-popover[data-notch="left-center"] { @include notch-left(calc(50% - #{$notch-size})); }
-.ds-popover[data-notch="left-bottom"] { @include notch-left(calc(100% - #{$notch-corner-offset + $notch-size * 2})); }
+.ds-popover[data-notch="left-top"]    { @include notch-left(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="left-center"] { @include notch-left(calc(50% - var(--popover-notch-size))); }
+.ds-popover[data-notch="left-bottom"] { @include notch-left(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }

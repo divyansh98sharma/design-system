@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TabsModule } from 'primeng/tabs';
 import { WizardStep, WizardTabTheme } from './tabs.types';
 
 /**
@@ -23,7 +24,7 @@ import { WizardStep, WizardTabTheme } from './tabs.types';
 @Component({
   selector: 'ds-wizard-tabs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TabsModule],
   templateUrl: './wizard-tabs.component.html',
   styleUrl: './wizard-tabs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

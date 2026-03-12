@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Message } from 'primeng/message';
 
 export type DisclaimerVariant = 'disclaimer' | 'ai-disclaimer';
 export type DisclaimerLabelPosition = 'left' | 'top';
@@ -27,7 +28,7 @@ export type DisclaimerLabelPosition = 'left' | 'top';
 @Component({
   selector: 'ds-disclaimer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Message],
   templateUrl: './disclaimer.component.html',
   styleUrl: './disclaimer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

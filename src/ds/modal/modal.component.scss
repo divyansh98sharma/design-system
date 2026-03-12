@@ -3,20 +3,20 @@
 .ds-modal {
   display: flex;
   flex-direction: column;
-  background: var(--color-white, #fff);
-  border-radius: var(--radius-4); // 4px
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+  background: var(--modal-bg);
+  border-radius: var(--modal-radius);
+  box-shadow: var(--modal-shadow);
   overflow: hidden;
 
   // ─── Size variants ────────────────────────────────────────────────────────
   // Design spec ideal sizes: 420×420, 720×620, 1000×620, 1240×620, 1340×620.
   // Height ≤ 620px (per spec "height does not exceed 620px").
 
-  &--small   { width: 420px;  height: 420px; }
-  &--medium  { width: 720px;  height: 620px; }
-  &--large   { width: 1000px; height: 620px; }
-  &--xlarge  { width: 1240px; height: 620px; }
-  &--xxlarge { width: 1340px; height: 620px; }
+  &--small   { width: var(--modal-width-small);   height: var(--modal-height-small); }
+  &--medium  { width: var(--modal-width-medium);  height: var(--modal-height-default); }
+  &--large   { width: var(--modal-width-large);   height: var(--modal-height-default); }
+  &--xlarge  { width: var(--modal-width-xlarge);  height: var(--modal-height-default); }
+  &--xxlarge { width: var(--modal-width-xxlarge); height: var(--modal-height-default); }
 
   // ─── Header ───────────────────────────────────────────────────────────────
 
@@ -24,12 +24,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-small); // 8px
-    min-height: 36px;
-    max-height: 36px;
-    padding: var(--spacing-small) var(--spacing-large); // 8px 16px
+    gap: var(--spacing-small);
+    min-height: var(--modal-header-height);
+    max-height: var(--modal-header-height);
+    padding: var(--spacing-small) var(--spacing-large);
     flex-shrink: 0;
-    border-radius: var(--radius-4) var(--radius-4) 0 0;
+    border-radius: var(--modal-radius) var(--modal-radius) 0 0;
   }
 
   &__header-left {
@@ -53,7 +53,7 @@
     font-size: var(--font-size-14);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-16);
-    color: var(--color-white, #fff);
+    color: var(--modal-header-text-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -70,9 +70,9 @@
 
   &__dirty-icon {
     display: block;
-    width: 16px;
-    height: 16px;
-    color: #fbce2a; // warning yellow
+    width: var(--modal-dirty-icon-size);
+    height: var(--modal-dirty-icon-size);
+    color: var(--modal-dirty-flag-color);
   }
 
   // ─── Close button ─────────────────────────────────────────────────────────
@@ -81,19 +81,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
+    width: var(--modal-close-btn-size);
+    height: var(--modal-close-btn-size);
     padding: 0;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-white, #fff);
+    color: var(--modal-close-btn-color);
     flex-shrink: 0;
     transition: opacity 120ms ease;
 
     &:hover        { opacity: 0.75; }
     &:focus-visible {
-      outline: 2px solid var(--color-white, #fff);
+      outline: 2px solid var(--modal-close-focus-color);
       outline-offset: 2px;
     }
   }
@@ -106,11 +106,11 @@
 
   // ─── Theme colours for header ─────────────────────────────────────────────
 
-  &--user    &__header { background: var(--color-user-base,  #0378a7); }
-  &--admin   &__header { background: var(--color-admin-base, #e88842); }
-  &--green   &__header { background: var(--color-green-base, #018145); }
-  &--sunoh   &__header { background: var(--color-sunoh-base, #fb2b66); }
-  &--ai      &__header { background: #5c3a6e; } // AI purple — update when token is defined
+  &--user    &__header { background: var(--modal-header-user-bg); }
+  &--admin   &__header { background: var(--modal-header-admin-bg); }
+  &--green   &__header { background: var(--modal-header-green-bg); }
+  &--sunoh   &__header { background: var(--modal-header-sunoh-bg); }
+  &--ai      &__header { background: var(--modal-header-ai-bg); }
 
   // ─── Body ─────────────────────────────────────────────────────────────────
 
@@ -119,7 +119,7 @@
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    background: var(--color-white, #fff);
+    background: var(--modal-bg);
   }
 
   // ─── Footer ───────────────────────────────────────────────────────────────
@@ -127,12 +127,12 @@
   &__footer {
     display: flex;
     align-items: center;
-    gap: var(--spacing-large); // 16px
-    min-height: 40px;
-    max-height: 40px;
-    padding: var(--spacing-small) var(--spacing-large); // 8px 16px
-    background: var(--color-white, #fff);
-    border-top: 1px solid var(--color-secondary-base, #e1e1e1);
+    gap: var(--spacing-large);
+    min-height: var(--modal-footer-height);
+    max-height: var(--modal-footer-height);
+    padding: var(--spacing-small) var(--spacing-large);
+    background: var(--modal-bg);
+    border-top: 1px solid var(--modal-footer-border);
     flex-shrink: 0;
   }
 
@@ -154,10 +154,10 @@
   // ─── Footer action buttons ────────────────────────────────────────────────
 
   &__action-btn {
-    height: 24px;
-    padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
+    height: var(--modal-action-btn-height);
+    padding: var(--spacing-x-small) var(--spacing-small);
     border: 1px solid transparent;
-    border-radius: var(--radius-4);
+    border-radius: var(--modal-action-btn-radius);
     font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
@@ -168,53 +168,53 @@
 
     // Secondary (default)
     &--secondary {
-      background: var(--color-secondary-base, #e1e1e1);
-      border-color: var(--color-secondary-70, #969696);
-      color: var(--color-black, #000);
+      background: var(--modal-action-btn-secondary-bg);
+      border-color: var(--modal-action-btn-secondary-border);
+      color: var(--modal-action-btn-secondary-color);
 
-      &:hover { background: var(--color-secondary-60, #bcbcbc); }
-      &:focus-visible { outline: 2px solid var(--color-secondary-70, #969696); outline-offset: 2px; }
+      &:hover { background: var(--modal-action-btn-secondary-bg-hover); }
+      &:focus-visible { outline: 2px solid var(--modal-action-btn-secondary-border); outline-offset: 2px; }
     }
 
     // Primary — themed per modal theme
     &--primary {
-      color: var(--color-white, #fff);
+      color: var(--color-text-inverse);
     }
   }
 
   // Themed primary buttons
   &--user &__action-btn--primary {
-    background: var(--color-user-base, #0378a7);
-    border-color: var(--color-user-70, #02506f);
-    &:hover { background: var(--color-user-70, #02506f); }
-    &:focus-visible { outline: 2px solid var(--color-user-base, #0378a7); outline-offset: 2px; }
+    background: var(--color-user-base);
+    border-color: var(--color-user-70);
+    &:hover { background: var(--color-user-70); }
+    &:focus-visible { outline: 2px solid var(--color-user-base); outline-offset: 2px; }
   }
 
   &--admin &__action-btn--primary {
-    background: var(--color-admin-base, #e88842);
-    border-color: var(--color-admin-60, #d4600f);
-    &:hover { background: var(--color-admin-60, #d4600f); }
-    &:focus-visible { outline: 2px solid var(--color-admin-base, #e88842); outline-offset: 2px; }
+    background: var(--color-admin-base);
+    border-color: var(--color-admin-60);
+    &:hover { background: var(--color-admin-60); }
+    &:focus-visible { outline: 2px solid var(--color-admin-base); outline-offset: 2px; }
   }
 
   &--green &__action-btn--primary {
-    background: var(--color-green-base, #018145);
-    border-color: var(--color-green-60, #015e31);
-    &:hover { background: var(--color-green-60, #015e31); }
-    &:focus-visible { outline: 2px solid var(--color-green-base, #018145); outline-offset: 2px; }
+    background: var(--color-green-base);
+    border-color: var(--color-green-60);
+    &:hover { background: var(--color-green-60); }
+    &:focus-visible { outline: 2px solid var(--color-green-base); outline-offset: 2px; }
   }
 
   &--sunoh &__action-btn--primary {
-    background: var(--color-sunoh-base, #fb2b66);
-    border-color: #c91e4f;
-    &:hover { background: #c91e4f; }
-    &:focus-visible { outline: 2px solid var(--color-sunoh-base, #fb2b66); outline-offset: 2px; }
+    background: var(--color-sunoh-base);
+    border-color: var(--color-sunoh-60);
+    &:hover { background: var(--color-sunoh-60); }
+    &:focus-visible { outline: 2px solid var(--color-sunoh-base); outline-offset: 2px; }
   }
 
   &--ai &__action-btn--primary {
-    background: #5c3a6e;
-    border-color: #3e2049;
-    &:hover { background: #3e2049; }
-    &:focus-visible { outline: 2px solid #5c3a6e; outline-offset: 2px; }
+    background: var(--color-ai-base);
+    border-color: var(--color-ai-70);
+    &:hover { background: var(--color-ai-70); }
+    &:focus-visible { outline: 2px solid var(--color-ai-base); outline-offset: 2px; }
   }
 }

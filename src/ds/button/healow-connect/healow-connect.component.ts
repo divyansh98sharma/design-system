@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 /**
  * Visual state of the Healow Connect button.
@@ -29,7 +30,7 @@ export type HealowConnectState =
 @Component({
   selector: 'ds-healow-connect',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './healow-connect.component.html',
   styleUrl: './healow-connect.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

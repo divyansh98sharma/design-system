@@ -3,10 +3,10 @@
 .ds-notification {
   display: flex;
   align-items: stretch;
-  width: 540px;
-  box-shadow: var(--shadow-light-100); // 0 8px 16px -4px rgba(0,0,0,0.16)
+  width: var(--notification-width);
+  box-shadow: var(--notification-shadow); // 0 8px 16px -4px rgba(0,0,0,0.16)
   position: relative;
-  border-radius: var(--radius-4);
+  border-radius: var(--notification-radius);
   overflow: hidden;
 
   // ─── Left sidebar ──────────────────────────────────────────────────────────
@@ -17,15 +17,15 @@
     justify-content: center;
     padding: var(--spacing-large); // 16px
     flex-shrink: 0;
-    min-width: 62px;
+    min-width: var(--notification-sidebar-min-width);
   }
 
   &__icon-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
+    width: var(--notification-icon-wrap-size);
+    height: var(--notification-icon-wrap-size);
     flex-shrink: 0;
   }
 
@@ -33,14 +33,14 @@
     display: block;
     width: 100%;
     height: 100%;
-    color: var(--color-white, #fff);
+    color: var(--notification-bg);
   }
 
   // ─── Theme colours for sidebar ────────────────────────────────────────────
 
-  &--user    &__sidebar { background: var(--color-user-base);  }
-  &--admin   &__sidebar { background: var(--color-admin-base); }
-  &--green   &__sidebar { background: var(--color-green-base); }
+  &--user    &__sidebar { background: var(--notification-sidebar-user-bg);  }
+  &--admin   &__sidebar { background: var(--notification-sidebar-admin-bg); }
+  &--green   &__sidebar { background: var(--notification-sidebar-green-bg); }
 
   // ─── Content area ─────────────────────────────────────────────────────────
 
@@ -49,7 +49,7 @@
     flex-direction: column;
     gap: var(--spacing-x-large); // 20px
     padding: var(--spacing-large); // 16px
-    background: var(--color-white, #fff);
+    background: var(--notification-bg);
     flex: 1 0 0;
     min-width: 0;
   }
@@ -70,7 +70,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-16);
-    color: var(--color-black, #000);
+    color: var(--notification-text-color);
     white-space: nowrap;
     overflow: hidden;
   }
@@ -94,7 +94,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black, #000);
+    color: var(--notification-text-color);
     max-height: calc(var(--line-height-16) * 7); // ~7 lines before scroll
     overflow-y: auto;
   }
@@ -106,8 +106,8 @@
     align-items: center;
     justify-content: flex-end;
     gap: var(--spacing-small); // 8px
-    min-height: 24px;
-    max-height: 24px;
+    min-height: var(--notification-action-height);
+    max-height: var(--notification-action-height);
   }
 
   // ─── Suppress checkbox ────────────────────────────────────────────────────
@@ -122,9 +122,9 @@
 
   &__checkbox {
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    accent-color: var(--color-user-base);
+    width: var(--notification-checkbox-size);
+    height: var(--notification-checkbox-size);
+    accent-color: var(--color-brand-primary);
     cursor: pointer;
   }
 
@@ -133,7 +133,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black, #000);
+    color: var(--notification-text-color);
     white-space: nowrap;
   }
 
@@ -147,15 +147,15 @@
   }
 
   &__action-btn {
-    height: 24px;
+    height: var(--notification-action-height);
     padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
     border: 1px solid transparent;
-    border-radius: var(--radius-4);
+    border-radius: var(--notification-radius);
     font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-white, #fff);
+    color: var(--notification-bg);
     cursor: pointer;
     white-space: nowrap;
     transition: background 120ms ease, border-color 120ms ease;
@@ -191,11 +191,11 @@
 
   &__badge {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: var(--notification-badge-size);
+    height: var(--notification-badge-size);
     border-radius: var(--radius-pill);
     background: var(--color-error-base); // #d82727 — typically a red count dot
-    border: 2px solid var(--color-white, #fff);
+    border: 2px solid var(--notification-bg);
     z-index: 1;
   }
 

@@ -3,107 +3,77 @@
 .ds-checkbox {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-x-small); // 4px
-  min-height: 16px;
-  max-height: 16px;
+  gap: var(--checkbox-gap);
   cursor: pointer;
   user-select: none;
 
-  // Hide the native input visually but keep it accessible
-  &__input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-    width: 0;
-    height: 0;
-  }
-
-  // ─── Visual box ────────────────────────────────────────────────────────────
-
-  &__box {
+  .p-checkbox-box {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    border: 1.5px solid var(--color-secondary-60); // #bcbcbc — default border
-    border-radius: 3px;
-    background: var(--color-white, #fff);
-    transition: background 120ms ease, border-color 120ms ease;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    border: var(--checkbox-border-width) solid var(--checkbox-border);
+    border-radius: var(--checkbox-radius);
+    background: var(--checkbox-bg);
+    transition: background var(--checkbox-transition), border-color var(--checkbox-transition);
     position: relative;
-
-    // ── Checked state ────────────────────────────────────────────────────────
-
-    &--checked {
-      background: var(--color-user-base);   // #0378a7
-      border-color: var(--color-user-base);
-    }
-
-    // ── Indeterminate state ───────────────────────────────────────────────────
-
-    &--indeterminate {
-      background: var(--color-user-base);
-      border-color: var(--color-user-base);
-    }
-
-    // ── Disabled state ────────────────────────────────────────────────────────
-
-    &--disabled {
-      background: var(--color-secondary-60); // #bcbcbc — filled gray
-      border-color: var(--color-secondary-60);
-    }
   }
 
-  // ─── Icon (check / dash) ───────────────────────────────────────────────────
-
-  &__icon {
-    display: block;
-    width: 10px;
-    height: auto;
+  .p-checkbox-checked .p-checkbox-box,
+  .p-highlight .p-checkbox-box {
+    background: var(--checkbox-bg-checked);
+    border-color: var(--checkbox-border-checked);
   }
 
-  // ─── Label text ────────────────────────────────────────────────────────────
+  .p-indeterminate .p-checkbox-box {
+    background: var(--checkbox-bg-checked);
+    border-color: var(--checkbox-border-checked);
+  }
+
+  .p-disabled .p-checkbox-box {
+    background: var(--checkbox-bg-disabled);
+    border-color: var(--checkbox-border-disabled);
+    cursor: not-allowed;
+  }
+
+  .p-checkbox-icon {
+    color: var(--checkbox-icon-color);
+    font-size: var(--checkbox-icon-size);
+    width: var(--checkbox-icon-size);
+    height: var(--checkbox-icon-size);
+  }
 
   &__label {
     font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
+    font-size: var(--checkbox-label-font-size);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black, #000);
+    color: var(--checkbox-label-color);
     white-space: nowrap;
   }
 
-  // ─── Hover state ───────────────────────────────────────────────────────────
-
-  &:not(.ds-checkbox--disabled):hover &__box:not(.ds-checkbox__box--checked):not(.ds-checkbox__box--indeterminate) {
-    border-color: var(--color-user-70); // #02506f — darker border on hover
+  &:not(.ds-checkbox--disabled):hover .p-checkbox-box {
+    border-color: var(--checkbox-border-hover);
   }
 
-  &:not(.ds-checkbox--disabled):hover &__box--checked,
-  &:not(.ds-checkbox--disabled):hover &__box--indeterminate {
-    background: var(--color-user-70);
-    border-color: var(--color-user-70);
+  &:not(.ds-checkbox--disabled):hover .p-highlight .p-checkbox-box,
+  &:not(.ds-checkbox--disabled):hover .p-indeterminate .p-checkbox-box {
+    background: var(--checkbox-bg-hover);
+    border-color: var(--checkbox-bg-hover);
   }
 
-  // ─── Focus ring ────────────────────────────────────────────────────────────
-
-  &:focus-visible {
-    outline: none;
-
-    .ds-checkbox__box {
-      outline: 2px solid var(--color-user-base);
-      outline-offset: 2px;
-    }
+  .p-checkbox:focus-within .p-checkbox-box {
+    outline: var(--checkbox-focus-width) solid var(--color-border-focus);
+    outline-offset: var(--checkbox-focus-offset);
   }
-
-  // ─── Disabled modifier ─────────────────────────────────────────────────────
 
   &--disabled {
     cursor: not-allowed;
 
     .ds-checkbox__label {
-      color: var(--color-secondary-70); // #969696 — muted
+      color: var(--checkbox-label-color-disabled);
     }
   }
 }

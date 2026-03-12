@@ -1,105 +1,77 @@
-// ─── Design tokens ────────────────────────────────────────────────────────────
-$nav-width:           320px;
-$nav-max-height:      824px;
-$nav-bg:              #fbfbfb;
-$nav-outer-border:    #e6e6e6;
-
-// Heading
-$heading-bg:          #ebebeb;
-$heading-text:        #1a1a1a;
-$heading-font-size:   14px;
-$heading-height:      36px;
-
-// Search row
-$search-row-bg:       #fbfbfb;
-$search-input-border: #bcbcbc;
-$search-placeholder:  #969696;
-
-// List items
-$item-bg:             #fbfbfb;
-$item-border:         #e1e1e1;
-$item-height:         32px;
-$item-font-size:      12px;
-$item-text:           #1a1a1a;
-$item-active-bg:      #e8f4fb;
-$item-active-text:    #0378a7;
-$item-hover-bg:       #f0f0f0;
-$icon-color:          #4b4b4b;
-
 // ─── Panel ────────────────────────────────────────────────────────────────────
 .ds-side-nav {
-  display:     flex;
+  display: flex;
   flex-direction: column;
-  width:       $nav-width;
-  max-height:  $nav-max-height;
-  background:  $nav-bg;
-  border-right: 1px solid $nav-outer-border;
+  width: var(--side-nav-width);
+  max-height: var(--side-nav-max-height);
+  background: var(--side-nav-bg);
+  border-right: 1px solid var(--side-nav-border);
   font-family: inherit;
-  overflow:    hidden;
+  overflow: hidden;
 }
 
 // ─── Heading bar ──────────────────────────────────────────────────────────────
 .ds-side-nav__heading {
-  display:     flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  height:      $heading-height;
-  background:  $heading-bg;
-  padding:     0 10px 0 12px;
+  height: var(--side-nav-heading-height);
+  background: var(--side-nav-heading-bg);
+  padding: 0 var(--spacing-x-small) 0 var(--spacing-medium);
   flex-shrink: 0;
 }
 
 .ds-side-nav__heading-text {
-  font-size:   $heading-font-size;
-  font-weight: 600;
-  color:       $heading-text;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
 }
 
 .ds-side-nav__settings-btn {
-  display:        inline-flex;
-  align-items:    center;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  background:     transparent;
-  border:         none;
-  padding:        4px;
-  cursor:         pointer;
-  color:          $icon-color;
-  border-radius:  4px;
-  transition:     background 0.15s;
+  background: transparent;
+  border: none;
+  padding: var(--spacing-x-small);
+  cursor: pointer;
+  color: var(--color-secondary-90);
+  border-radius: var(--radius-standard);
+  transition: background 0.15s;
 
-  &:hover { background: rgba(0,0,0,0.08); }
+  &:hover { background: var(--side-nav-btn-hover-bg); }
   &:focus-visible {
-    outline:    2px solid #0378a7;
+    outline: 2px solid var(--color-border-focus);
     outline-offset: 2px;
   }
 }
 
 // ─── Search row ───────────────────────────────────────────────────────────────
 .ds-side-nav__search-row {
-  padding:     8px;
-  background:  $search-row-bg;
+  padding: var(--spacing-small);
+  background: var(--side-nav-bg);
   flex-shrink: 0;
-  border-bottom: 1px solid $item-border;
+  border-bottom: 1px solid var(--side-nav-item-border);
 }
 
 .ds-side-nav__search-wrapper {
-  display:     flex;
+  display: flex;
   align-items: center;
-  height:      24px;
-  background:  #ffffff;
-  border:      1px solid $search-input-border;
-  border-radius: 4px;
-  padding:     0 6px;
-  gap:         4px;
+  height: var(--side-nav-search-height);
+  background: var(--color-surface);
+  border: 1px solid var(--color-secondary-60);
+  border-radius: var(--radius-standard);
+  padding: 0 var(--side-nav-search-padding-x);
+  gap: var(--spacing-x-small);
 
   &:focus-within {
-    border-color: #0378a7;
-    box-shadow:   0 0 0 2px #0378a7;
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 2px var(--color-border-focus);
   }
 }
 
 .ds-side-nav__search-icon {
-  display:     inline-flex;
+  display: inline-flex;
   align-items: center;
   flex-shrink: 0;
 
@@ -107,82 +79,82 @@ $icon-color:          #4b4b4b;
 }
 
 .ds-side-nav__search-input {
-  flex:       1 1 auto;
-  border:     none;
-  outline:    none;
+  flex: 1 1 auto;
+  border: none;
+  outline: none;
   background: transparent;
-  font-size:  12px;
-  color:      $item-text;
+  font-size: var(--font-size-12);
+  color: var(--color-text-primary);
 
   &::placeholder {
-    color:      $search-placeholder;
+    color: var(--color-secondary-70);
     font-style: italic;
   }
 }
 
 // ─── Scrollable list ──────────────────────────────────────────────────────────
 .ds-side-nav__list {
-  flex:       1 1 auto;
+  flex: 1 1 auto;
   overflow-y: auto;
 
   // Custom scrollbar
   scrollbar-width: thin;
-  scrollbar-color: #969696 #ebebeb;
+  scrollbar-color: var(--side-nav-scrollbar-thumb) var(--side-nav-scrollbar-track);
 
   &::-webkit-scrollbar       { width: 8px; }
-  &::-webkit-scrollbar-track { background: #ebebeb; }
+  &::-webkit-scrollbar-track { background: var(--side-nav-scrollbar-track); }
   &::-webkit-scrollbar-thumb {
-    background:    #969696;
-    border-radius: 4px;
-    border:        2px solid #ebebeb;
+    background: var(--side-nav-scrollbar-thumb);
+    border-radius: var(--radius-standard);
+    border: 2px solid var(--side-nav-scrollbar-track);
   }
 }
 
 // ─── Tree item ────────────────────────────────────────────────────────────────
 .ds-side-nav__item {
-  display:     flex;
+  display: flex;
   align-items: center;
-  height:      $item-height;
-  background:  $item-bg;
-  border-top:  1px solid $item-border;
-  cursor:      pointer;
-  gap:         6px;
-  padding-right: 8px;
-  transition:  background 0.1s;
-  box-sizing:  border-box;
+  height: var(--side-nav-item-height);
+  background: var(--side-nav-bg);
+  border-top: 1px solid var(--side-nav-item-border);
+  cursor: pointer;
+  gap: var(--side-nav-item-gap);
+  padding-right: var(--spacing-small);
+  transition: background 0.1s;
+  box-sizing: border-box;
 
   &:hover {
-    background: $item-hover-bg;
+    background: var(--side-nav-item-hover-bg);
   }
 
   &--active {
-    background: $item-active-bg;
-    color:      $item-active-text;
+    background: var(--side-nav-item-active-bg);
+    color: var(--color-brand-primary);
 
-    .ds-side-nav__item-label { color: $item-active-text; font-weight: 600; }
-    .ds-side-nav__item-icon  { color: $item-active-text; }
+    .ds-side-nav__item-label { color: var(--color-brand-primary); font-weight: var(--font-weight-semibold); }
+    .ds-side-nav__item-icon  { color: var(--color-brand-primary); }
   }
 }
 
 .ds-side-nav__item-icon {
-  display:     inline-flex;
+  display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  width:       16px;
-  color:       $icon-color;
+  width: var(--side-nav-item-icon-size);
+  color: var(--color-secondary-90);
 
   svg { display: block; }
 }
 
 .ds-side-nav__leaf-spacer {
   display: inline-block;
-  width:   12px;
+  width: var(--side-nav-leaf-spacer-size);
 }
 
 .ds-side-nav__item-label {
-  font-size:  $item-font-size;
-  color:      $item-text;
+  font-size: var(--font-size-12);
+  color: var(--color-text-primary);
   white-space: nowrap;
-  overflow:   hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
