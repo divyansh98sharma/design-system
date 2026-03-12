@@ -1,0 +1,112 @@
+<nav
+  class="ds-breadcrumb"
+  [class.ds-breadcrumb--navigation]="type === 'navigation'"
+  [attr.aria-label]="type === 'breadcrumb' ? 'Breadcrumb' : 'Navigation'"
+>
+  <ol class="ds-breadcrumb__list">
+
+    <!-- ── Normal (≤ 3 ancestors) ─────────────────────────────────────────── -->
+    @if (!isOverflow) {
+      @for (item of ancestors; track item.label; let i = $index) {
+        <li class="ds-breadcrumb__item">
+          <!-- Breadcrumb: ancestor is a clickable link with underline -->
+          @if (type === 'breadcrumb') {
+            <a
+              class="ds-breadcrumb__link"
+              [href]="item.href || '#'"
+              (click)="onItemClick(item, i); $event.preventDefault()"
+            >{{ item.label }}</a>
+          }
+          <!-- Navigation: ancestor is plain text, no interaction -->
+          @if (type === 'navigation') {
+            <span class="ds-breadcrumb__text">{{ item.label }}</span>
+          }
+        </li>
+
+        <!-- Chevron separator -->
+        <li class="ds-breadcrumb__separator" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path [attr.d]="CHEVRON" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </li>
+      }
+    }
+
+    <!-- ── Overflow (> 3 ancestors: first → ⋯ popover → last ancestor) ────── -->
+    @if (isOverflow) {
+      <!-- First ancestor -->
+      <li class="ds-breadcrumb__item">
+        @if (type === 'breadcrumb') {
+          <a
+            class="ds-breadcrumb__link"
+            [href]="firstAncestor?.href || '#'"
+            (click)="onItemClick(firstAncestor!, 0); $event.preventDefault()"
+          >{{ firstAncestor?.label }}</a>
+        }
+        @if (type === 'navigation') {
+          <span class="ds-breadcrumb__text">{{ firstAncestor?.label }}</span>
+        }
+      </li>
+
+      <!-- Separator -->
+      <li class="ds-breadcrumb__separator" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path [attr.d]="CHEVRON" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
+
+      <!-- Overflow / ellipsis button -->
+      <li class="ds-breadcrumb__item ds-breadcrumb__item--overflow">
+        <button
+          class="ds-breadcrumb__overflow-btn"
+          [class.ds-breadcrumb__overflow-btn--open]="overflowOpen"
+          (click)="toggleOverflow()"
+          aria-label="Show more breadcrumb items"
+          type="button"
+        >
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path [attr.d]="ELLIPSIS" fill="currentColor"/>
+          </svg>
+        </button>
+
+        <!-- Popover with hidden nodes -->
+        @if (overflowOpen) {
+          <div class="ds-breadcrumb__popover">
+            @for (item of hiddenAncestors; track item.label; let i = $index) {
+              @if (type === 'breadcrumb') {
+                <a
+                  class="ds-breadcrumb__link"
+                  [href]="item.href || '#'"
+                  (click)="onItemClick(item, i + 1); $event.preventDefault()"
+                >{{ item.label }}</a>
+              }
+              @if (type === 'navigation') {
+                <span class="ds-breadcrumb__text">{{ item.label }}</span>
+              }
+
+              @if (i < hiddenAncestors.length - 1) {
+                <svg class="ds-breadcrumb__popover-chevron" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path [attr.d]="CHEVRON" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              }
+            }
+          </div>
+        }
+      </li>
+
+      <!-- Separator after overflow -->
+      <li class="ds-breadcrumb__separator" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path [attr.d]="CHEVRON" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </li>
+    }
+
+    <!-- ── Current page (always last, always bold, never clickable) ─────────── -->
+    @if (current) {
+      <li class="ds-breadcrumb__item ds-breadcrumb__item--current" aria-current="page">
+        <span class="ds-breadcrumb__current">{{ current.label }}</span>
+      </li>
+    }
+  </ol>
+</nav>
