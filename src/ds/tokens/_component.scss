@@ -271,6 +271,17 @@
   --disclaimer-ack-bg-hover: var(--color-secondary-60);
 
   // ----------------------------------------------------------
+  // Scrollbar
+  // ----------------------------------------------------------
+  --scrollbar-width: 12px;
+  --scrollbar-arrow-size: 10px;
+  --scrollbar-track-bg: var(--color-secondary-40);
+  --scrollbar-thumb-bg: var(--color-secondary-70);
+  --scrollbar-thumb-bg-hover: var(--color-secondary-80);
+  --scrollbar-thumb-bg-active: var(--color-secondary-90);
+  --scrollbar-thumb-radius: var(--radius-standard);
+
+  // ----------------------------------------------------------
   // Breadcrumb
   // ----------------------------------------------------------
   --breadcrumb-height: 24px;
