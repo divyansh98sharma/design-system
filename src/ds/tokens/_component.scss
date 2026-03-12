@@ -193,6 +193,35 @@
   --tooltip-padding-y: var(--spacing-x-small);
 
   // ----------------------------------------------------------
+  // Table
+  // ----------------------------------------------------------
+  --table-bg: var(--color-surface);
+  --table-border: var(--color-secondary-50);
+  --table-radius: var(--radius-standard);
+  --table-inner-radius: 3px;
+  --table-font-size: var(--font-size-12);
+  --table-small-font-size: 11px;
+  --table-header-height: 28px;
+  --table-header-bg: var(--color-secondary-20);
+  --table-header-hover-bg: var(--color-secondary-30);
+  --table-header-text: var(--color-text-primary);
+  --table-sorted-bg: var(--color-user-5);
+  --table-row-height: 24px;
+  --table-row-even-bg: var(--color-surface);
+  --table-row-odd-bg: var(--color-secondary-5);
+  --table-row-hover-bg: var(--color-user-5);
+  --table-row-selected-bg: var(--color-user-10);
+  --table-row-detail-bg: var(--color-secondary-5);
+  --table-cell-padding-x: var(--spacing-small);
+  --table-cell-text: var(--color-text-primary);
+  --table-toolbar-height: 40px;
+  --table-pagination-height: 36px;
+  --table-btn-text: var(--color-secondary-90);
+  --table-btn-hover-bg: var(--color-secondary-20);
+  --table-chip-bg: var(--color-user-10);
+  --table-control-size: 14px;
+
+  // ----------------------------------------------------------
   // Popover
   // ----------------------------------------------------------
   --popover-width: 378px;

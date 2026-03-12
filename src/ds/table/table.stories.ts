@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { Component } from '@angular/core';
 import { TableComponent, TableColumn } from './table.component';
 
@@ -50,7 +49,7 @@ class ToolbarComponent {}
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<TableComponent> = {
-  title: 'Components/Table',
+  title: 'Design System/Table',
   component: TableComponent,
   tags: ['autodocs'],
   decorators: [
