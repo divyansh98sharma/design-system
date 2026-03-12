@@ -1,0 +1,194 @@
+// ─── Top Navigation Bar ───────────────────────────────────────────────────────
+
+.ds-top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 40px;
+  background: #02506f;  // Prussian Blue - app-level nav colour
+  font-family: var(--font-family-base);
+
+  // ─── Left section ─────────────────────────────────────────────────────────
+
+  &__left {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    min-height: 100%;
+  }
+
+  // ─── Main menu toggle ─────────────────────────────────────────────────────
+
+  &__menu-toggle {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    padding: var(--spacing-small, 8px) var(--spacing-xx-small, 2px);
+    background: #2d8eb6;   // user/base-50
+    cursor: pointer;
+    transition: background 120ms ease;
+
+    &:hover { background: #3a9fc4; }
+    &:focus-visible { outline: 2px solid var(--color-white, #fff); outline-offset: -2px; }
+  }
+
+  &__menu-chevron {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: var(--color-white, #fff);
+  }
+
+  &__menu-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    color: var(--color-white, #fff);
+  }
+
+  // ─── Logo ─────────────────────────────────────────────────────────────────
+
+  &__logo {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    padding: var(--spacing-medium, 12px) var(--spacing-x-large, 20px) var(--spacing-medium, 12px) var(--spacing-medium, 12px);
+    flex-shrink: 0;
+  }
+
+  &__logo-text {
+    font-family: var(--font-family-base);
+    font-size: 14px;
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--color-white, #fff);
+    letter-spacing: -0.3px;
+    line-height: 1;
+
+    em { font-style: normal; font-weight: var(--font-weight-regular, 400); }
+  }
+
+  &__logo-sup {
+    font-size: 9px;
+    font-weight: var(--font-weight-regular, 400);
+    color: var(--color-white, #fff);
+    align-self: flex-start;
+    margin-top: -2px;
+  }
+
+  // ─── Patient lookup ───────────────────────────────────────────────────────
+
+  &__lookup {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xx-small, 2px);
+    padding: var(--spacing-x-small, 4px) var(--spacing-xx-small, 2px) var(--spacing-x-small, 4px) var(--spacing-x-small, 4px);
+    background: #e9f8ff;  // Alice Blue
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 120ms ease;
+    flex-shrink: 0;
+
+    &:hover { background: #d0effa; }
+    &:focus-visible { outline: 2px solid #0378a7; outline-offset: 1px; }
+  }
+
+  &__lookup-icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    color: #02506f;
+  }
+
+  &__lookup-divider {
+    width: 1px;
+    height: 24px;
+    background: #90c2d6;
+    flex-shrink: 0;
+  }
+
+  &__lookup-caret {
+    display: block;
+    width: 16px;
+    height: 16px;
+    color: #02506f;
+  }
+
+  // ─── Radio indicators ─────────────────────────────────────────────────────
+
+  &__radios {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-x-small, 4px);
+    padding-left: var(--spacing-x-large, 20px);
+  }
+
+  &__radio {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+
+    &--green { background: var(--color-green-base, #018145); }
+  }
+
+  // ─── Right links section ──────────────────────────────────────────────────
+
+  &__links {
+    display: flex;
+    align-items: stretch;
+    align-self: stretch;
+    flex-shrink: 0;
+  }
+
+  &__link-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-x-small, 4px);
+    padding: var(--spacing-small, 8px) 0;
+    width: 72px;
+    border-left: 1px solid #2d8eb6;  // user/base-50
+    cursor: pointer;
+    transition: background 120ms ease;
+
+    &:hover { background: rgba(255, 255, 255, 0.08); }
+
+    &--refresh { border-left-color: #2486ae; }
+  }
+
+  &__link-letter {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-12, 12px);
+    font-weight: var(--font-weight-regular, 400);
+    line-height: var(--line-height-16, 16px);
+    color: var(--color-white, #fff);
+    flex-shrink: 0;
+  }
+
+  // ─── Jellybean badges ─────────────────────────────────────────────────────
+
+  &__jellybean {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 37px;
+    padding: var(--spacing-x-small, 4px) var(--spacing-medium, 12px);
+    border: 2px solid var(--color-user-base, #0378a7);
+    border-radius: var(--radius-pill, 999px);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-12, 12px);
+    font-weight: var(--font-weight-regular, 400);
+    line-height: var(--line-height-16, 16px);
+    color: var(--color-black, #000);
+    white-space: nowrap;
+
+    // Gradient fills
+    &--red    { background: linear-gradient(to bottom, #ff9387, #ff7260); }
+    &--yellow { background: linear-gradient(to bottom, #ffea61, #d6b522); }
+    &--gray   { background: linear-gradient(to bottom, #f2f2f2, #cccccc); }
+
+    // Selected state: white border instead of blue
+    &--selected { border-color: var(--color-white, #fff); }
+  }
+}

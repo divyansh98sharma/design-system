@@ -1,0 +1,166 @@
+// ─── Breadcrumb / Navigation ─────────────────────────────────────────────────
+
+.ds-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  max-height: 24px;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-x-small); // 4px
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // ─── Shared item wrapper ──────────────────────────────────────────────────
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    max-height: 16px;
+    min-height: 16px;
+  }
+
+  // ─── Ancestor text (shared base) ─────────────────────────────────────────
+
+  &__text,
+  &__link,
+  &__current {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-16);
+    color: var(--color-black, #000);
+    max-width: 220px;
+    min-width: 42px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  // ─── Breadcrumb ancestor link (clickable + underlined) ───────────────────
+
+  &__link {
+    font-weight: var(--font-weight-regular);
+    text-decoration: none;
+    cursor: pointer;
+    // Figma underline: a solid 1px black line beneath the text
+    border-bottom: 1px solid var(--color-black, #000);
+    padding-bottom: 1px;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-user-base);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  // ─── Navigation mode: plain ancestor text, no underline ──────────────────
+
+  &--navigation &__link {
+    border-bottom: none;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  // ─── Plain text (navigation mode explicitly) ──────────────────────────────
+
+  &__text {
+    font-weight: var(--font-weight-regular);
+  }
+
+  // ─── Current / active page ────────────────────────────────────────────────
+
+  &__current {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  // ─── Chevron separator ────────────────────────────────────────────────────
+
+  &__separator {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    color: var(--color-black, #000);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // ─── Overflow / ellipsis button ───────────────────────────────────────────
+
+  &__overflow-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: var(--color-white, #fff);
+    border: 1px solid var(--color-secondary-base);
+    border-radius: var(--radius-4);
+    cursor: pointer;
+    color: var(--color-black, #000);
+    transition: border-color 120ms ease, background 120ms ease;
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    &--open,
+    &:hover {
+      border-color: var(--color-user-base);
+      background: var(--color-user-5);
+      color: var(--color-user-base);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-user-base);
+      outline-offset: 2px;
+    }
+  }
+
+  // ─── Overflow popover ─────────────────────────────────────────────────────
+
+  &__popover {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: -8px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    padding: var(--spacing-small);
+    background: var(--color-white, #fff);
+    border: 1px solid var(--color-secondary-base);
+    border-radius: var(--radius-4);
+    box-shadow: var(--shadow-light-100);
+    white-space: nowrap;
+    z-index: 100;
+
+    .ds-breadcrumb__link,
+    .ds-breadcrumb__text {
+      min-width: auto;
+    }
+
+    .ds-breadcrumb__popover-chevron {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      color: var(--color-black, #000);
+    }
+  }
+}
