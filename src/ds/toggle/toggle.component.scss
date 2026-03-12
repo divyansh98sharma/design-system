@@ -1,0 +1,68 @@
+// ─── Toggle Switch ────────────────────────────────────────────────────────────
+
+.ds-toggle {
+  display: inline-flex;
+  align-items: center;
+
+  // ─── PrimeNG ToggleSwitch base ────────────────────────────────────────────
+
+  .p-toggleswitch {
+    display: inline-flex;
+    align-items: center;
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    padding: var(--toggle-padding);
+    border: 1px solid var(--toggle-border-off);
+    border-radius: var(--toggle-radius);
+    background: var(--toggle-bg-off);
+    cursor: pointer;
+    transition: background var(--toggle-transition), border-color var(--toggle-transition);
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--toggle-focus-color);
+      outline-offset: 2px;
+    }
+
+    &.p-disabled {
+      opacity: var(--toggle-disabled-opacity);
+      cursor: not-allowed;
+    }
+  }
+
+  // ── ON state ──────────────────────────────────────────────────────────────
+
+  &--user .p-toggleswitch-checked     { background: var(--toggle-bg-user); border-color: transparent; }
+  &--admin .p-toggleswitch-checked    { background: var(--toggle-bg-admin); border-color: transparent; }
+  &--green .p-toggleswitch-checked    { background: var(--toggle-bg-green); border-color: transparent; }
+  &--sunoh .p-toggleswitch-checked    { background: var(--toggle-bg-sunoh); border-color: transparent; }
+
+  // ── Hover ON ──────────────────────────────────────────────────────────────
+
+  &--user:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover     { background: var(--toggle-bg-user-hover); }
+  &--admin:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover    { background: var(--toggle-bg-admin-hover); }
+  &--green:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover    { background: var(--toggle-bg-green-hover); }
+  &--sunoh:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover    { background: var(--toggle-bg-sunoh-hover); }
+
+  // ─── Slider (thumb) ───────────────────────────────────────────────────────
+
+  .p-toggleswitch-slider {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--toggle-thumb-size);
+    height: var(--toggle-thumb-size);
+    border-radius: var(--radius-pill);
+    background: var(--toggle-thumb-bg-off);
+    transition: transform var(--toggle-transition), background var(--toggle-transition);
+    left: var(--toggle-padding);
+
+    .p-toggleswitch-checked & {
+      background: var(--toggle-thumb-bg-on);
+      transform: translateX(calc(var(--toggle-width) - var(--toggle-thumb-size) - calc(var(--toggle-padding) * 2)));
+    }
+  }
+}

@@ -1,0 +1,31 @@
+// ─── Info Tooltip ─────────────────────────────────────────────────────────────
+
+.ds-info-tooltip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: var(--info-tooltip-size);
+  height: var(--info-tooltip-size);
+  cursor: default;
+  vertical-align: middle;
+
+  &__icon {
+    display: block;
+    width: var(--info-tooltip-size);
+    height: var(--info-tooltip-size);
+    color: var(--info-tooltip-icon-color);
+    transition: color var(--info-tooltip-transition);
+  }
+
+  &:hover &__icon,
+  &:focus-visible &__icon {
+    color: var(--info-tooltip-icon-color-hover);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--info-tooltip-focus-color);
+    outline-offset: 2px;
+    border-radius: var(--radius-pill);
+  }
+}
