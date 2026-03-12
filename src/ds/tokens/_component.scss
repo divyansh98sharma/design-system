@@ -180,6 +180,37 @@
   --tooltip-padding-y: var(--spacing-x-small);
 
   // ----------------------------------------------------------
+  // Patient Info
+  // ----------------------------------------------------------
+  --patient-info-avatar-size: 100px;
+  --patient-info-avatar-icon-size: 48px;
+  --patient-info-details-width: 540px;
+  --patient-info-name-gap: 6px;
+  --patient-info-btn-height: 24px;
+  --patient-info-healow-btn-bg: var(--color-secondary-50);
+  --patient-info-healow-btn-hover-bg: var(--color-secondary-60);
+  --patient-info-sogi-gradient: linear-gradient(
+    85.64deg,
+    rgb(95, 167, 177)  1.36%,
+    rgb(167, 87, 106)  33.51%,
+    rgb(206, 53, 66)   51%,
+    rgb(226, 106, 38)  76.06%,
+    rgb(246, 160, 8)   95.91%
+  );
+  --patient-info-card-height: 104px;
+  --patient-info-card-width: 120px;
+  --patient-info-card-patient-bg: #fff8ec;
+  --patient-info-card-patient-border: #fbd297;
+  --patient-info-card-billing-bg: #f9ffeb;
+  --patient-info-card-billing-border: #d9edbf;
+  --patient-info-card-notes-bg: #fdf9e2;
+  --patient-info-card-notes-border: #f8e991;
+  --patient-info-card-secure-bg: #fff0f0;
+  --patient-info-card-secure-border: #fec9c8;
+  --patient-info-btn-bar-bg: var(--color-user-10);
+  --patient-info-btn-bar-border: var(--color-user-30);
+
+  // ----------------------------------------------------------
   // Chip / Tag
   // ----------------------------------------------------------
   --chip-radius: var(--radius-pill);
