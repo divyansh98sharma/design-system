@@ -1,0 +1,184 @@
+// ─── Design tokens ───────────────────────────────────────────────────────────
+// Colours derived from the Figma "Left Nav" frame
+$nav-outer-bg   : #242835; // dark blue shade 1 — outer rail, scroll buttons
+$nav-links-bg   : #2d3242; // dark blue shade 2 — individual link items
+$nav-menu-bg    : #2d8eb6; // user/base-50      — top menu toggle bar
+$nav-active-bg  : #0378a7; // user/base         — active item highlight
+$nav-text       : #ffffff;
+$nav-icon-size  : 24px;
+$nav-width      : 60px;
+
+// ─── Host ────────────────────────────────────────────────────────────────────
+:host {
+  display: block;
+  width: $nav-width;
+  flex-shrink: 0;
+}
+
+// ─── Root nav container ──────────────────────────────────────────────────────
+.ds-left-nav {
+  display      : flex;
+  flex-direction: column;
+  width        : $nav-width;
+  height       : 100%;
+  min-height   : 100vh;
+  background   : $nav-outer-bg;
+  overflow     : hidden;
+
+  // ── Menu toggle bar ──────────────────────────────────────────────────────
+  &__menu-toggle {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    padding        : 8px 6px;
+    background     : $nav-menu-bg;
+    cursor         : pointer;
+    flex-shrink    : 0;
+
+    &:hover {
+      background: darken($nav-menu-bg, 6%);
+    }
+  }
+
+  &__menu-icon {
+    width : 16px;
+    height: 16px;
+    fill  : $nav-text;
+    flex-shrink: 0;
+  }
+
+  // ── Scroll buttons ───────────────────────────────────────────────────────
+  &__scroll-btn {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 100%;
+    padding        : 6px 0;
+    background     : $nav-outer-bg;
+    border         : none;
+    cursor         : pointer;
+    flex-shrink    : 0;
+
+    svg {
+      width : 18px;
+      height: 18px;
+      fill  : $nav-text;
+    }
+
+    &:hover {
+      background: lighten($nav-outer-bg, 5%);
+    }
+
+    &:focus-visible {
+      outline       : 2px solid $nav-text;
+      outline-offset: -2px;
+    }
+  }
+
+  // ── Scrollable list ──────────────────────────────────────────────────────
+  &__list {
+    display       : flex;
+    flex-direction: column;
+    gap           : 1px;
+    overflow-y    : auto;
+    flex          : 1 1 auto;
+    background    : $nav-outer-bg; // gap colour between items
+
+    // Hide scrollbar but keep scrollability
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  // ── Individual nav item ──────────────────────────────────────────────────
+  &__item {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    gap            : 4px;
+    width          : 100%;
+    padding        : 12px 4px;
+    background     : $nav-links-bg;
+    border         : none;
+    cursor         : pointer;
+    color          : $nav-text;
+    text-align     : center;
+    transition     : background 0.15s ease;
+
+    &:hover {
+      background: lighten($nav-links-bg, 6%);
+    }
+
+    &:focus-visible {
+      outline       : 2px solid $nav-text;
+      outline-offset: -2px;
+    }
+
+    // Active / selected state
+    &--active {
+      background: $nav-active-bg;
+
+      &:hover {
+        background: darken($nav-active-bg, 6%);
+      }
+    }
+  }
+
+  // ── Icon ─────────────────────────────────────────────────────────────────
+  &__icon {
+    width      : $nav-icon-size;
+    height     : $nav-icon-size;
+    fill       : $nav-text;
+    flex-shrink: 0;
+  }
+
+  // ── Label ────────────────────────────────────────────────────────────────
+  &__label {
+    font-size  : 10px;
+    font-weight: 400;
+    line-height: 1.2;
+    color      : $nav-text;
+    white-space: nowrap;
+    overflow   : hidden;
+    text-overflow: ellipsis;
+    max-width  : 52px;
+  }
+
+  // ── Logout row ───────────────────────────────────────────────────────────
+  &__logout {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
+    gap            : 4px;
+    width          : 100%;
+    padding        : 12px 4px;
+    background     : $nav-links-bg;
+    border         : none;
+    border-top     : 1px solid $nav-outer-bg;
+    cursor         : pointer;
+    color          : $nav-text;
+    font-size      : 12px;
+    font-weight    : 400;
+    flex-shrink    : 0;
+
+    span {
+      font-size: 10px;
+    }
+
+    &:hover {
+      background: lighten($nav-links-bg, 6%);
+    }
+
+    &:focus-visible {
+      outline       : 2px solid $nav-text;
+      outline-offset: -2px;
+    }
+  }
+
+  &__logout-icon {
+    width : $nav-icon-size;
+    height: $nav-icon-size;
+    fill  : $nav-text;
+  }
+}
