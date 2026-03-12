@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ButtonModule } from 'primeng/button';
 
 export type ButtonVariant = 'filled' | 'outlined' | 'ghost';
 export type ButtonColor =
@@ -23,7 +24,7 @@ export type IconPosition = 'left' | 'right' | 'only';
 @Component({
   selector: 'ds-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,15 +49,23 @@ export class ButtonComponent {
     return this.iconPosition === 'only';
   }
 
-  get classes(): Record<string, boolean> {
-    return {
-      'ds-btn': true,
-      [`ds-btn--${this.variant}`]: true,
-      [`ds-btn--${this.color}`]: true,
-      [`ds-btn--${this.size}`]: true,
-      'ds-btn--icon-only': this.isIconOnly,
-      'ds-btn--disabled': this.disabled,
-    };
+  /** All structural + theme classes forwarded to the inner <button> via styleClass. */
+  get styleClass(): string {
+    return [
+      'ds-btn',
+      `ds-btn--${this.variant}`,
+      `ds-btn--${this.color}`,
+      `ds-btn--${this.size}`,
+      this.isIconOnly ? 'ds-btn--icon-only' : '',
+      this.disabled ? 'ds-btn--disabled' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+  }
+
+  /** Color theme class applied to the <p-button> host via [ngClass]. */
+  get themeClass(): Record<string, boolean> {
+    return { [`ds-btn--${this.color}`]: true };
   }
 
   onClick(event: MouseEvent): void {
