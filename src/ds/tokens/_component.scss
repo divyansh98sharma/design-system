@@ -204,6 +204,23 @@
   --info-tooltip-transition: 120ms ease;
 
   // ----------------------------------------------------------
+  // Loader
+  // ----------------------------------------------------------
+  --loader-dot-size: 8px;
+  --loader-dot-gap: 1px;
+  --loader-min-width: 26px;
+  --loader-label-gap: var(--spacing-large);
+  --loader-label-font-size: var(--font-size-14);
+  --loader-label-color: var(--color-text-primary);
+  --loader-animation-duration: 1.2s;
+  --loader-dot-delay-2: 0.2s;
+  --loader-dot-delay-3: 0.4s;
+  --loader-color-user: var(--color-user-base);
+  --loader-color-admin: var(--color-admin-base);
+  --loader-color-green: var(--color-green-base);
+  --loader-color-sunoh: var(--color-sunoh-base);
+
+  // ----------------------------------------------------------
   // Breadcrumb
   // ----------------------------------------------------------
   --breadcrumb-height: 24px;
