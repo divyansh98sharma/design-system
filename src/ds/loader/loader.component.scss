@@ -1,4 +1,4 @@
-// ─── Loader ───────────────────────────────────────────────────────────────────
+// ─── Loader (three-dot bounce animation) ─────────────────────────────────────
 
 @keyframes ds-loader-bounce {
   0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
@@ -9,46 +9,38 @@
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-large); // 16px — matches Figma gap between dots + label
-  min-width: 26px;
-
-  // ─── Dot row ─────────────────────────────────────────────────────────────
+  gap: var(--loader-label-gap);
+  min-width: var(--loader-min-width);
 
   &__dots {
     display: inline-flex;
     align-items: center;
-    gap: 1px; // 1px gap between dots — matches Figma
-    height: 8px;
+    gap: var(--loader-dot-gap);
+    height: var(--loader-dot-size);
   }
-
-  // ─── Individual dot ──────────────────────────────────────────────────────
 
   &__dot {
     display: block;
-    width: 8px;
-    height: 8px;
+    width: var(--loader-dot-size);
+    height: var(--loader-dot-size);
     border-radius: var(--radius-pill);
-    animation: ds-loader-bounce 1.2s infinite ease-in-out;
+    animation: ds-loader-bounce var(--loader-animation-duration) infinite ease-in-out;
 
-    &--2 { animation-delay: 0.2s; }
-    &--3 { animation-delay: 0.4s; }
+    &--2 { animation-delay: var(--loader-dot-delay-2); }
+    &--3 { animation-delay: var(--loader-dot-delay-3); }
   }
 
-  // ─── Theme colours ────────────────────────────────────────────────────────
-
-  &__dots--user   .ds-loader__dot { background: var(--color-user-base);  } // #0378a7
-  &__dots--admin  .ds-loader__dot { background: var(--color-admin-base); } // #e88842
-  &__dots--green  .ds-loader__dot { background: var(--color-green-base); } // #018145
-  &__dots--sunoh  .ds-loader__dot { background: var(--color-sunoh-base); } // #fb2b66
-
-  // ─── Label ───────────────────────────────────────────────────────────────
+  &__dots--user   .ds-loader__dot { background: var(--loader-color-user); }
+  &__dots--admin  .ds-loader__dot { background: var(--loader-color-admin); }
+  &__dots--green  .ds-loader__dot { background: var(--loader-color-green); }
+  &__dots--sunoh  .ds-loader__dot { background: var(--loader-color-sunoh); }
 
   &__label {
     font-family: var(--font-family-base);
-    font-size: var(--font-size-14);
+    font-size: var(--loader-label-font-size);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-20);
-    color: var(--color-black, #000);
+    color: var(--loader-label-color);
     white-space: nowrap;
   }
 }
