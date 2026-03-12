@@ -70,4 +70,34 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // Chip / Tag
+  // ----------------------------------------------------------
+  --chip-radius: var(--radius-pill);
+  --chip-padding-x: var(--spacing-small);
+  --chip-padding-y: var(--spacing-x-small);
+  --chip-gap: var(--spacing-x-small);
+  --chip-font-size: var(--font-size-12);
+  --chip-color: var(--color-text-primary);
+  --chip-transition: 120ms ease;
+  --chip-bg-default: var(--color-secondary-5);
+  --chip-border-default: var(--color-secondary-60);
+  --chip-bg-active: var(--color-green-5);
+  --chip-border-active: var(--color-status-success);
+  --chip-bg-error: var(--color-status-error-subtle);
+  --chip-border-error: var(--color-status-error);
+  --chip-bg-warning: var(--color-status-warning-subtle);
+  --chip-border-warning: var(--color-status-warning);
+  --chip-bg-in-process: var(--color-user-5);
+  --chip-border-in-process: var(--color-brand-primary);
+  --chip-bg-ai: var(--color-ai-subtle);
+  --chip-border-ai: var(--color-ai);
+  --chip-badge-size: 16px;
+  --chip-badge-radius: var(--radius-pill);
+  --chip-badge-font-size: var(--font-size-10);
+  --chip-badge-color: var(--color-text-inverse);
+  --chip-icon-size: 16px;
+  --chip-close-size: 16px;
+  --chip-close-focus-color: var(--color-secondary-70);
 }
