@@ -1,0 +1,161 @@
+// ─── State palette ───────────────────────────────────────────────────────────
+$states: (
+  default: (
+    bg    : #e6e6e6,
+    border: #bcbcbc,
+    text  : #000000,
+    icon  : #000000,
+  ),
+  hover: (
+    bg    : #d1d1d1,
+    border: #797979,
+    text  : #000000,
+    icon  : #000000,
+  ),
+  disabled: (
+    bg    : #e7e7e7,
+    border: #a3a3a3,
+    text  : #bbbbbb,
+    icon  : #bbbbbb,
+  ),
+  call-in-progress: (
+    bg    : #55be73,
+    border: #55be73,
+    text  : #000000,
+    icon  : #ffffff,
+  ),
+  call-in-progress-hover: (
+    bg    : #ffffff,
+    border: #55be73,
+    text  : #000000,
+    icon  : #55be73,
+  ),
+  call-in-progress-disabled: (
+    bg    : #e7e7e7,
+    border: #a3a3a3,
+    text  : #bbbbbb,
+    icon  : #bbbbbb,
+  ),
+);
+
+// ─── Base styles ─────────────────────────────────────────────────────────────
+:host {
+  display: inline-block;
+}
+
+.ds-healow-connect {
+  display        : inline-flex;
+  align-items    : center;
+  gap            : 4px;
+  padding        : 4px 12px 4px 4px;
+  border-radius  : 999px;
+  border         : 1px solid;
+  cursor         : pointer;
+  font-family    : 'Open Sans', sans-serif;
+  font-size      : 12px;
+  font-weight    : 400;
+  line-height    : 16px;
+  white-space    : nowrap;
+  text-decoration: none;
+  transition     : background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+  // ── Default state colours ───────────────────────────────────────────────
+  background  : #e6e6e6;
+  border-color: #bcbcbc;
+  color       : #000000;
+
+  .ds-healow-connect__icon {
+    stroke: #000000;
+    fill  : #000000;
+    circle:last-child { fill: #000000; stroke: none; }
+    circle:first-child { fill: none; stroke: #000000; }
+    path { stroke: #000000; fill: none; }
+  }
+
+  // ── Hover (native CSS, no modifier needed) ─────────────────────────────
+  &:hover:not(:disabled):not([disabled]) {
+    background  : #d1d1d1;
+    border-color: #797979;
+  }
+
+  // ── Disabled ───────────────────────────────────────────────────────────
+  &:disabled,
+  &[aria-disabled='true'],
+  &--disabled,
+  &--call-in-progress-disabled {
+    background  : #e7e7e7;
+    border-color: #a3a3a3;
+    color       : #bbbbbb;
+    cursor      : not-allowed;
+
+    .ds-healow-connect__icon {
+      stroke: #bbbbbb;
+      fill  : #bbbbbb;
+      circle:last-child { fill: #bbbbbb; stroke: none; }
+      circle:first-child { fill: none; stroke: #bbbbbb; }
+      path { stroke: #bbbbbb; fill: none; }
+    }
+  }
+
+  // ── Call in Progress — Default ─────────────────────────────────────────
+  &--call-in-progress {
+    background  : #55be73;
+    border-color: #55be73;
+    color       : #000000;
+
+    .ds-healow-connect__icon {
+      stroke: #ffffff;
+      fill  : #ffffff;
+      circle:last-child { fill: #ffffff; stroke: none; }
+      circle:first-child { fill: none; stroke: #ffffff; }
+      path { stroke: #ffffff; fill: none; }
+    }
+
+    &:hover:not(:disabled) {
+      background  : #ffffff;
+      border-color: #55be73;
+
+      .ds-healow-connect__icon {
+        stroke: #55be73;
+        fill  : #55be73;
+        circle:last-child { fill: #55be73; stroke: none; }
+        circle:first-child { fill: none; stroke: #55be73; }
+        path { stroke: #55be73; fill: none; }
+      }
+    }
+  }
+
+  // ── Call in Progress — Hover (explicit modifier) ───────────────────────
+  &--call-in-progress-hover {
+    background  : #ffffff;
+    border-color: #55be73;
+    color       : #000000;
+
+    .ds-healow-connect__icon {
+      stroke: #55be73;
+      fill  : #55be73;
+      circle:last-child { fill: #55be73; stroke: none; }
+      circle:first-child { fill: none; stroke: #55be73; }
+      path { stroke: #55be73; fill: none; }
+    }
+  }
+
+  // ── Focus ──────────────────────────────────────────────────────────────
+  &:focus-visible {
+    outline       : 2px solid #0378a7;
+    outline-offset: 2px;
+  }
+}
+
+// ─── Icon ────────────────────────────────────────────────────────────────────
+.ds-healow-connect__icon {
+  width      : 16px;
+  height     : 16px;
+  flex-shrink: 0;
+}
+
+// ─── Label ───────────────────────────────────────────────────────────────────
+.ds-healow-connect__label {
+  font-size  : 12px;
+  line-height: 16px;
+}

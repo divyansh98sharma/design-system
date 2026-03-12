@@ -6,6 +6,77 @@
 
 :root {
   // ----------------------------------------------------------
+  // Checkbox
+  // ----------------------------------------------------------
+  --checkbox-size: 16px;
+  --checkbox-radius: 3px;
+  --checkbox-border-width: 1.5px;
+  --checkbox-border: var(--color-border-strong);
+  --checkbox-border-checked: var(--color-brand-primary);
+  --checkbox-border-hover: var(--color-brand-primary-hover);
+  --checkbox-bg: var(--color-surface);
+  --checkbox-bg-checked: var(--color-brand-primary);
+  --checkbox-bg-hover: var(--color-brand-primary-hover);
+  --checkbox-bg-disabled: var(--color-surface-disabled);
+  --checkbox-border-disabled: var(--color-border-strong);
+  --checkbox-icon-color: var(--color-text-inverse);
+  --checkbox-icon-size: 10px;
+  --checkbox-label-font-size: var(--font-size-12);
+  --checkbox-label-color: var(--color-text-primary);
+  --checkbox-label-color-disabled: var(--color-text-disabled);
+  --checkbox-gap: var(--spacing-x-small);
+  --checkbox-transition: 120ms ease;
+  --checkbox-focus-width: 2px;
+  --checkbox-focus-offset: 2px;
+
+  // ----------------------------------------------------------
+  // Radio Button
+  // ----------------------------------------------------------
+  --radio-size: 16px;
+  --radio-border: var(--color-border-strong);
+  --radio-border-checked: var(--color-brand-primary);
+  --radio-border-hover: var(--color-brand-primary-hover);
+  --radio-bg: var(--color-surface);
+  --radio-dot-size: 8px;
+  --radio-dot-color: var(--color-brand-primary);
+  --radio-dot-color-hover: var(--color-brand-primary-hover);
+  --radio-bg-disabled: var(--color-surface);
+  --radio-border-disabled: var(--color-border-strong);
+  --radio-label-font-size: var(--font-size-12);
+  --radio-label-color: var(--color-text-primary);
+  --radio-label-color-disabled: var(--color-text-disabled);
+  --radio-gap: var(--spacing-x-small);
+  --radio-transition: 120ms ease;
+  --radio-focus-width: 2px;
+  --radio-focus-offset: 2px;
+
+  // ----------------------------------------------------------
+  // Toggle Switch
+  // ----------------------------------------------------------
+  --toggle-width: 50px;
+  --toggle-height: 24px;
+  --toggle-padding: var(--spacing-x-small);
+  --toggle-radius: var(--radius-pill);
+  --toggle-bg-off: var(--color-surface);
+  --toggle-border-off: var(--color-secondary-70);
+  --toggle-bg-user: var(--color-user-base);
+  --toggle-bg-user-hover: var(--color-user-70);
+  --toggle-bg-admin: var(--color-admin-base);
+  --toggle-bg-admin-hover: var(--color-admin-60);
+  --toggle-bg-green: var(--color-green-base);
+  --toggle-bg-green-hover: var(--color-green-60);
+  --toggle-bg-sunoh: var(--color-sunoh-base);
+  --toggle-bg-sunoh-hover: var(--color-sunoh-60);
+  --toggle-thumb-size: 16px;
+  --toggle-thumb-bg-off: var(--color-secondary-50);
+  --toggle-thumb-bg-on: var(--color-text-inverse);
+  --toggle-icon-size: 10px;
+  --toggle-icon-color-off: var(--color-secondary-70);
+  --toggle-transition: 200ms ease;
+  --toggle-disabled-opacity: 0.45;
+  --toggle-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Button
   // ----------------------------------------------------------
   --button-radius: var(--radius-standard);
@@ -29,6 +100,26 @@
   --button-danger-bg: var(--color-status-error);
   --button-danger-color: var(--color-text-inverse);
   --button-danger-bg-hover: var(--color-error-60);
+
+  --button-focus-color: var(--color-border-focus);
+  --button-disabled-border: var(--color-secondary-30);
+  --button-disabled-color: var(--color-secondary-60);
+
+  --button-sm-height: 24px;
+  --button-sm-padding-x: var(--spacing-small);
+  --button-sm-font-size: 11px;
+  --button-sm-gap: var(--spacing-x-small);
+  --button-sm-icon-size: 14px;
+
+  --button-md-height: 32px;
+  --button-md-padding-x: var(--spacing-medium);
+  --button-md-gap: 6px;
+  --button-md-icon-size: 16px;
+
+  --button-lg-height: 40px;
+  --button-lg-padding-x: var(--spacing-large);
+  --button-lg-font-size: var(--font-size-13);
+  --button-lg-gap: var(--spacing-small);
 
   // ----------------------------------------------------------
   // Input / Form
@@ -62,6 +153,23 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // Avatar
+  // ----------------------------------------------------------
+  --avatar-size-sm: 32px;
+  --avatar-size-lg: 72px;
+  --avatar-font-size-sm: var(--font-size-12);
+  --avatar-font-size-lg: var(--font-size-26);
+  --avatar-line-height-lg: var(--line-height-36);
+  --avatar-font-weight: var(--font-weight-semibold);
+  --avatar-font-family: var(--font-family-base);
+  --avatar-bg: var(--color-surface-subtle);
+  --avatar-color: var(--color-brand-primary);
+  --avatar-dummy-icon-size-sm: 18px;
+  --avatar-dummy-icon-size-lg: 40px;
+  --avatar-dummy-icon-color: var(--color-text-disabled);
+  --avatar-radius: var(--radius-pill);
+
+  // ----------------------------------------------------------
   // Tooltip
   // ----------------------------------------------------------
   --tooltip-bg: var(--color-secondary-90);
@@ -90,6 +198,255 @@
   --left-nav-scroll-btn-icon-size: 18px;
   --left-nav-item-padding: 12px 4px;
   --left-nav-label-max-width: 52px;
+
+  // ----------------------------------------------------------
+  // Top Nav
+  // ----------------------------------------------------------
+  --top-nav-height: 40px;
+  --top-nav-bg: #02506f;
+  --top-nav-icon-color: #02506f;
+  --top-nav-icon-size: 16px;
+  --top-nav-large-icon-size: 24px;
+  --top-nav-logo-font-size: 14px;
+  --top-nav-logo-sup-font-size: 9px;
+  --top-nav-menu-toggle-bg: var(--color-user-50);
+  --top-nav-menu-toggle-hover-bg: var(--color-user-40);
+  --top-nav-lookup-bg: var(--color-user-5);
+  --top-nav-lookup-hover-bg: var(--color-user-10);
+  --top-nav-lookup-radius: 2px;
+  --top-nav-lookup-divider-color: #90c2d6;
+  --top-nav-radio-size: 24px;
+  --top-nav-radio-border: 2px solid rgba(255, 255, 255, 0.3);
+  --top-nav-link-cell-width: 72px;
+  --top-nav-link-border-color: var(--color-user-50);
+  --top-nav-link-hover-bg: rgba(255, 255, 255, 0.08);
+  --top-nav-refresh-border-color: var(--color-user-40);
+  --top-nav-jellybean-min-width: 37px;
+  --top-nav-jellybean-red-bg: linear-gradient(to bottom, #ff9387, #ff7260);
+  --top-nav-jellybean-yellow-bg: linear-gradient(to bottom, #ffea61, #d6b522);
+  --top-nav-jellybean-gray-bg: linear-gradient(to bottom, #f2f2f2, #cccccc);
+
+  // ----------------------------------------------------------
+  // Patient Info
+  // ----------------------------------------------------------
+  --patient-info-avatar-size: 100px;
+  --patient-info-avatar-icon-size: 48px;
+  --patient-info-details-width: 540px;
+  --patient-info-name-gap: 6px;
+  --patient-info-btn-height: 24px;
+  --patient-info-healow-btn-bg: var(--color-secondary-50);
+  --patient-info-healow-btn-hover-bg: var(--color-secondary-60);
+  --patient-info-sogi-gradient: linear-gradient(
+    85.64deg,
+    rgb(95, 167, 177)  1.36%,
+    rgb(167, 87, 106)  33.51%,
+    rgb(206, 53, 66)   51%,
+    rgb(226, 106, 38)  76.06%,
+    rgb(246, 160, 8)   95.91%
+  );
+  --patient-info-card-height: 104px;
+  --patient-info-card-width: 120px;
+  --patient-info-card-patient-bg: #fff8ec;
+  --patient-info-card-patient-border: #fbd297;
+  --patient-info-card-billing-bg: #f9ffeb;
+  --patient-info-card-billing-border: #d9edbf;
+  --patient-info-card-notes-bg: #fdf9e2;
+  --patient-info-card-notes-border: #f8e991;
+  --patient-info-card-secure-bg: #fff0f0;
+  --patient-info-card-secure-border: #fec9c8;
+  --patient-info-btn-bar-bg: var(--color-user-10);
+  --patient-info-btn-bar-border: var(--color-user-30);
+
+  // ----------------------------------------------------------
+  // Chip / Tag
+  // ----------------------------------------------------------
+  --chip-radius: var(--radius-pill);
+  --chip-padding-x: var(--spacing-small);
+  --chip-padding-y: var(--spacing-x-small);
+  --chip-gap: var(--spacing-x-small);
+  --chip-font-size: var(--font-size-12);
+  --chip-color: var(--color-text-primary);
+  --chip-transition: 120ms ease;
+  --chip-bg-default: var(--color-secondary-5);
+  --chip-border-default: var(--color-secondary-60);
+  --chip-bg-active: var(--color-green-5);
+  --chip-border-active: var(--color-status-success);
+  --chip-bg-error: var(--color-status-error-subtle);
+  --chip-border-error: var(--color-status-error);
+  --chip-bg-warning: var(--color-status-warning-subtle);
+  --chip-border-warning: var(--color-status-warning);
+  --chip-bg-in-process: var(--color-user-5);
+  --chip-border-in-process: var(--color-brand-primary);
+  --chip-bg-ai: var(--color-ai-subtle);
+  --chip-border-ai: var(--color-ai);
+  --chip-badge-size: 16px;
+  --chip-badge-radius: var(--radius-pill);
+  --chip-badge-font-size: var(--font-size-10);
+  --chip-badge-color: var(--color-text-inverse);
+  --chip-icon-size: 16px;
+  --chip-close-size: 16px;
+  --chip-close-focus-color: var(--color-secondary-70);
+
+  // ----------------------------------------------------------
+  // Modal
+  // ----------------------------------------------------------
+  --modal-bg: var(--color-surface);
+  --modal-radius: var(--radius-standard);
+  --modal-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+  --modal-header-height: 36px;
+  --modal-header-text-color: var(--color-text-inverse);
+  --modal-header-user-bg: var(--color-user-base);
+  --modal-header-admin-bg: var(--color-admin-base);
+  --modal-header-green-bg: var(--color-green-base);
+  --modal-header-sunoh-bg: var(--color-sunoh-base);
+  --modal-header-ai-bg: var(--color-ai-base);
+  --modal-footer-height: 40px;
+  --modal-footer-border: var(--color-border-default);
+  --modal-dirty-flag-color: var(--color-status-warning);
+  --modal-dirty-icon-size: 16px;
+  --modal-close-btn-size: 20px;
+  --modal-close-btn-color: var(--color-text-inverse);
+  --modal-close-focus-color: var(--color-text-inverse);
+  --modal-width-small: 420px;
+  --modal-width-medium: 720px;
+  --modal-width-large: 1000px;
+  --modal-width-xlarge: 1240px;
+  --modal-width-xxlarge: 1340px;
+  --modal-height-small: 420px;
+  --modal-height-default: 620px;
+  --modal-action-btn-height: 24px;
+  --modal-action-btn-radius: var(--radius-standard);
+  --modal-action-btn-secondary-bg: var(--color-secondary-base);
+  --modal-action-btn-secondary-border: var(--color-secondary-70);
+  --modal-action-btn-secondary-color: var(--color-text-primary);
+  --modal-action-btn-secondary-bg-hover: var(--color-secondary-60);
+
+  // ----------------------------------------------------------
+  // Tooltip Bubble (white popup — 12-position caret)
+  // ----------------------------------------------------------
+  --tooltip-bubble-bg: var(--color-surface);
+  --tooltip-bubble-color: var(--color-text-primary);
+  --tooltip-bubble-radius: var(--radius-standard);
+  --tooltip-bubble-shadow: var(--shadow-md);
+  --tooltip-bubble-padding-x: var(--spacing-small);
+  --tooltip-bubble-padding-y: var(--spacing-x-small);
+  --tooltip-bubble-font-size: var(--font-size-12);
+  --tooltip-bubble-max-width: 512px;
+  --tooltip-bubble-min-width: 42px;
+  --tooltip-arrow-size: 6px;
+  --tooltip-arrow-overlap: 1px;
+
+  // ----------------------------------------------------------
+  // Info Tooltip
+  // ----------------------------------------------------------
+  --info-tooltip-size: 16px;
+  --info-tooltip-icon-color: var(--color-text-secondary);
+  --info-tooltip-icon-color-hover: var(--color-brand-primary);
+  --info-tooltip-focus-color: var(--color-border-focus);
+  --info-tooltip-transition: 120ms ease;
+
+  // ----------------------------------------------------------
+  // Loader
+  // ----------------------------------------------------------
+  --loader-dot-size: 8px;
+  --loader-dot-gap: 1px;
+  --loader-min-width: 26px;
+  --loader-label-gap: var(--spacing-large);
+  --loader-label-font-size: var(--font-size-14);
+  --loader-label-color: var(--color-text-primary);
+  --loader-animation-duration: 1.2s;
+  --loader-dot-delay-2: 0.2s;
+  --loader-dot-delay-3: 0.4s;
+  --loader-color-user: var(--color-user-base);
+  --loader-color-admin: var(--color-admin-base);
+  --loader-color-green: var(--color-green-base);
+  --loader-color-sunoh: var(--color-sunoh-base);
+
+  // ----------------------------------------------------------
+  // Notification
+  // ----------------------------------------------------------
+  --notification-width: 540px;
+  --notification-radius: var(--radius-standard);
+  --notification-shadow: var(--shadow-md);
+  --notification-bg: var(--color-surface);
+  --notification-text-color: var(--color-text-primary);
+  --notification-sidebar-min-width: 62px;
+  --notification-icon-wrap-size: 30px;
+  --notification-sidebar-user-bg: var(--color-brand-primary);
+  --notification-sidebar-admin-bg: var(--color-brand-admin);
+  --notification-sidebar-green-bg: var(--color-status-success);
+  --notification-checkbox-size: 16px;
+  --notification-action-height: 24px;
+  --notification-badge-size: 10px;
+  --notification-badge-bg: var(--color-status-error);
+  --notification-badge-border: var(--color-surface);
+
+  // ----------------------------------------------------------
+  // Toast
+  // ----------------------------------------------------------
+  --toast-height: 56px;
+  --toast-min-width: 520px;
+  --toast-max-width: 600px;
+  --toast-radius: var(--radius-standard);
+  --toast-close-radius: var(--radius-pill);
+  --toast-shadow: var(--shadow-md);
+  --toast-text-color: var(--color-text-inverse);
+  --toast-confirmation-bg: var(--color-status-success);
+  --toast-communication-bg: var(--color-secondary-100);
+  --toast-icon-size: 32px;
+  --toast-font-size: var(--font-size-12);
+  --toast-font-weight: var(--font-weight-regular);
+  --toast-title-font-weight: var(--font-weight-bold);
+
+  // ----------------------------------------------------------
+  // Disclaimer
+  // ----------------------------------------------------------
+  --disclaimer-width: 450px;
+  --disclaimer-bg: var(--color-status-warning-subtle);
+  --disclaimer-border: var(--color-status-warning);
+  --disclaimer-radius: var(--radius-standard);
+  --disclaimer-text-color: var(--color-text-primary);
+  --disclaimer-close-size: 16px;
+  --disclaimer-ack-height: 24px;
+  --disclaimer-ack-bg: var(--color-secondary-base);
+  --disclaimer-ack-border: var(--color-secondary-70);
+  --disclaimer-ack-bg-hover: var(--color-secondary-60);
+
+  // ----------------------------------------------------------
+  // Scrollbar
+  // ----------------------------------------------------------
+  --scrollbar-width: 12px;
+  --scrollbar-arrow-size: 10px;
+  --scrollbar-track-bg: var(--color-secondary-40);
+  --scrollbar-thumb-bg: var(--color-secondary-70);
+  --scrollbar-thumb-bg-hover: var(--color-secondary-80);
+  --scrollbar-thumb-bg-active: var(--color-secondary-90);
+  --scrollbar-thumb-radius: var(--radius-standard);
+
+  // ----------------------------------------------------------
+  // Breadcrumb
+  // ----------------------------------------------------------
+  --breadcrumb-height: 24px;
+  --breadcrumb-item-height: 16px;
+  --breadcrumb-item-max-width: 220px;
+  --breadcrumb-item-min-width: 42px;
+  --breadcrumb-font-size: var(--font-size-12);
+  --breadcrumb-text-color: var(--color-text-primary);
+  --breadcrumb-separator-size: 16px;
+  --breadcrumb-radius: var(--radius-standard);
+  --breadcrumb-link-underline: var(--color-text-primary);
+  --breadcrumb-link-focus-color: var(--color-border-focus);
+  --breadcrumb-overflow-btn-size: 24px;
+  --breadcrumb-overflow-btn-bg: var(--color-surface);
+  --breadcrumb-overflow-btn-border: var(--color-secondary-base);
+  --breadcrumb-overflow-btn-color: var(--color-text-primary);
+  --breadcrumb-overflow-btn-active-bg: var(--color-user-5);
+  --breadcrumb-overflow-btn-active-border: var(--color-brand-primary);
+  --breadcrumb-overflow-btn-active-color: var(--color-brand-primary);
+  --breadcrumb-popover-bg: var(--color-surface);
+  --breadcrumb-popover-border: var(--color-secondary-base);
+  --breadcrumb-popover-shadow: var(--shadow-md);
+  --breadcrumb-popover-z-index: 100;
 
   // ----------------------------------------------------------
   // Toggle Button Group
