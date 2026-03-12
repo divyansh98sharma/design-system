@@ -32,6 +32,7 @@ export class AvatarComponent {
   get isText(): boolean { return this.variant === 'text'; }
   get isImage(): boolean { return this.variant === 'image'; }
   get isDummy(): boolean { return this.variant === 'dummy'; }
+  get isLarge(): boolean { return this.size === 'lg'; }
 
   get hostClasses(): Record<string, boolean> {
     return {

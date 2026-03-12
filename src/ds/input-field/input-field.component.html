@@ -1,0 +1,69 @@
+<div
+  class="ds-input-field"
+  [class.ds-input-field--horizontal]="alignment === 'horizontal'"
+  [class.ds-input-field--error]="!!errorText"
+  [class.ds-input-field--disabled]="disabled"
+>
+  <!-- Label row -->
+  @if (showLabel) {
+    <label class="ds-input-field__label">
+      {{ label }}
+      @if (required) {
+        <span class="ds-input-field__required" aria-hidden="true">*</span>
+      }
+      @if (showInfo) {
+        <span class="ds-input-field__info" title="More information" aria-label="More information">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7" cy="7" r="6.5" stroke="#0378a7"/>
+            <text x="7" y="11" text-anchor="middle" font-size="9" fill="#0378a7" font-family="sans-serif" font-style="italic" font-weight="bold">i</text>
+          </svg>
+        </span>
+      }
+    </label>
+  }
+
+  <!-- Input wrapper -->
+  <div class="ds-input-field__wrapper">
+    @if (showSearchIcon) {
+      <span class="ds-input-field__search-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="7" stroke="#969696" stroke-width="2"/>
+          <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#969696" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+    }
+
+    <input
+      class="ds-input-field__input"
+      type="text"
+      [placeholder]="placeholder"
+      [disabled]="disabled"
+      [value]="value"
+      (input)="handleInput($any($event.target).value)"
+      (blur)="handleBlur()"
+      [attr.aria-invalid]="!!errorText || null"
+    />
+
+    @if (showChevron) {
+      <span class="ds-input-field__chevron" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 9l6 6 6-6" stroke="#4b4b4b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    }
+  </div>
+
+  <!-- Support / error text -->
+  @if (errorText) {
+    <div class="ds-input-field__error" role="alert">
+      <svg class="ds-input-field__error-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" fill="#d93025"/>
+        <line x1="12" y1="7" x2="12" y2="13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="12" cy="17" r="1" fill="#fff"/>
+      </svg>
+      <span>{{ errorText }}</span>
+    </div>
+  } @else if (supportText) {
+    <div class="ds-input-field__support">{{ supportText }}</div>
+  }
+</div>
