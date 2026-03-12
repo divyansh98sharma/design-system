@@ -1,9 +1,8 @@
-<button
-  pButton
-  [ngClass]="classes"
+<p-button
+  [styleClass]="classString"
   [disabled]="disabled"
   [attr.aria-disabled]="disabled || null"
-  (click)="onClick($event)"
+  (onClick)="onClick($event)"
 >
   @if (safeIcon && iconPosition === 'left') {
     <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
@@ -20,4 +19,4 @@
   @if (safeIcon && isIconOnly) {
     <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
   }
-</button>
+</p-button>

@@ -60,6 +60,13 @@ export class ButtonComponent {
     };
   }
 
+  get classString(): string {
+    return Object.entries(this.classes)
+      .filter(([, v]) => v)
+      .map(([k]) => k)
+      .join(' ');
+  }
+
   onClick(event: MouseEvent): void {
     if (!this.disabled) {
       this.buttonClick.emit(event);
