@@ -7,6 +7,7 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SelectButton } from 'primeng/selectbutton';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 /** A single option within the toggle button group. */
@@ -39,7 +40,7 @@ const CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" f
 @Component({
   selector: 'ds-toggle-button-group',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SelectButton],
   templateUrl: './toggle-button-group.component.html',
   styleUrl: './toggle-button-group.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
