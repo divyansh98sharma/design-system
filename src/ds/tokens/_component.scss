@@ -1,0 +1,73 @@
+// ============================================================
+// COMPONENT TOKENS
+// Component-scoped aliases. Override these per-component to
+// customise without touching semantic tokens.
+// ============================================================
+
+:root {
+  // ----------------------------------------------------------
+  // Button
+  // ----------------------------------------------------------
+  --button-radius: var(--radius-standard);
+  --button-padding-x: var(--spacing-medium);
+  --button-padding-y: var(--spacing-x-small);
+  --button-font-size: var(--font-size-12);
+  --button-font-weight: var(--font-weight-semibold);
+  --button-line-height: var(--line-height-16);
+
+  --button-primary-bg: var(--color-brand-primary);
+  --button-primary-color: var(--color-text-inverse);
+  --button-primary-bg-hover: var(--color-brand-primary-hover);
+
+  --button-secondary-bg: var(--color-surface);
+  --button-secondary-color: var(--color-brand-primary);
+  --button-secondary-border: var(--color-brand-primary);
+
+  --button-ghost-bg: transparent;
+  --button-ghost-color: var(--color-brand-primary);
+
+  --button-danger-bg: var(--color-status-error);
+  --button-danger-color: var(--color-text-inverse);
+  --button-danger-bg-hover: var(--color-error-60);
+
+  // ----------------------------------------------------------
+  // Input / Form
+  // ----------------------------------------------------------
+  --input-radius: var(--radius-standard);
+  --input-border: var(--color-border-default);
+  --input-border-focus: var(--color-border-focus);
+  --input-border-error: var(--color-border-error);
+  --input-bg: var(--color-surface);
+  --input-padding-x: var(--spacing-small);
+  --input-padding-y: var(--spacing-x-small);
+  --input-font-size: var(--font-size-12);
+  --input-line-height: var(--line-height-16);
+
+  // ----------------------------------------------------------
+  // Card / Panel
+  // ----------------------------------------------------------
+  --card-radius: var(--radius-standard);
+  --card-shadow: var(--shadow-sm);
+  --card-padding: var(--spacing-large);
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border-default);
+
+  // ----------------------------------------------------------
+  // Badge / Tag
+  // ----------------------------------------------------------
+  --badge-radius: var(--radius-pill);
+  --badge-padding-x: var(--spacing-small);
+  --badge-padding-y: 2px;
+  --badge-font-size: var(--font-size-10);
+  --badge-font-weight: var(--font-weight-semibold);
+
+  // ----------------------------------------------------------
+  // Tooltip
+  // ----------------------------------------------------------
+  --tooltip-bg: var(--color-secondary-90);
+  --tooltip-color: var(--color-text-inverse);
+  --tooltip-radius: var(--radius-4);
+  --tooltip-font-size: var(--font-size-10);
+  --tooltip-padding-x: var(--spacing-small);
+  --tooltip-padding-y: var(--spacing-x-small);
+}

@@ -1,0 +1,122 @@
+// ============================================================
+// TYPOGRAPHY UTILITY CLASSES
+// CSS class names match Figma token names exactly.
+// Font: Open Sans — loaded via Google Fonts in styles.scss
+// ============================================================
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ------------------------------------------------------------
+// Headings
+// ------------------------------------------------------------
+
+.heading-patient-title {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-16);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-bold);
+  font-style: normal;
+}
+
+.heading-modal-heading {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-bold);
+  font-style: normal;
+}
+
+// ------------------------------------------------------------
+// Text Default — 12px / 16px line-height
+// ------------------------------------------------------------
+
+.text-default-regular {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  font-weight: var(--font-weight-regular);
+  font-style: normal;
+}
+
+.text-default-semibold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  font-weight: var(--font-weight-semibold);
+  font-style: normal;
+}
+
+.text-default-bold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  font-weight: var(--font-weight-bold);
+  font-style: normal;
+}
+
+.text-default-italic {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  font-weight: var(--font-weight-regular);
+  font-style: italic;
+}
+
+.text-default-bolditalic {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  font-weight: var(--font-weight-bold);
+  font-style: italic;
+}
+
+// ------------------------------------------------------------
+// Text Large — 14px / 20px line-height
+// ------------------------------------------------------------
+
+.text-large-regular {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-regular);
+  font-style: normal;
+}
+
+.text-large-semibold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-semibold);
+  font-style: normal;
+}
+
+.text-large-bold {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-bold);
+  font-style: normal;
+}
+
+.text-large-italic {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-regular);
+  font-style: italic;
+}
+
+.text-large-bolditalic {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-20);
+  font-weight: var(--font-weight-bold);
+  font-style: italic;
+}

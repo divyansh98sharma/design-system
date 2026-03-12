@@ -1,0 +1,25 @@
+<div class="ds-typography-specimen">
+  <div class="type-table">
+
+    <div class="type-table__header">
+      <span>Example</span>
+      <span>Token class</span>
+      <span>Size</span>
+      <span>Line height</span>
+      <span>Weight</span>
+    </div>
+
+    @for (style of typeStyles; track style.className) {
+      <div class="type-table__row">
+        <span [class]="style.className" class="type-table__example">
+          The quick brown fox jumps over the lazy dog
+        </span>
+        <code class="type-table__token">.{{ style.className }}</code>
+        <span class="type-table__meta">{{ style.fontSizePx }}</span>
+        <span class="type-table__meta">{{ style.lineHeightPx }}</span>
+        <span class="type-table__meta">{{ style.weight }}</span>
+      </div>
+    }
+
+  </div>
+</div>
