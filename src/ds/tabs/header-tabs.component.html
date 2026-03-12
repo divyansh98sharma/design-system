@@ -1,0 +1,42 @@
+<div class="ds-header-tabs"
+     [style.background]="colors.base"
+     [style.--theme-base]="colors.base"
+     [style.--theme-base80]="colors.base80"
+     [style.--theme-text]="colors.text"
+     role="tablist">
+
+  <!-- ── Optional icon ───────────────────────────────────────────── -->
+  @if (showIcon) {
+    <span class="ds-header-tabs__icon" aria-hidden="true">
+      <svg viewBox="0 0 14 14" width="14" height="14">
+        <rect x="1" y="1" width="12" height="12" rx="2"
+              fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="4" y1="5" x2="10" y2="5" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="4" y1="7.5" x2="10" y2="7.5" stroke="currentColor" stroke-width="1.2"/>
+        <line x1="4" y1="10" x2="8" y2="10" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </span>
+  }
+
+  <!-- ── Heading ─────────────────────────────────────────────────── -->
+  <span class="ds-header-tabs__heading">{{ heading }}</span>
+
+  <!-- ── Tab buttons ─────────────────────────────────────────────── -->
+  <div class="ds-header-tabs__tabs">
+    @for (tab of tabs; track tab.key) {
+      <button
+        class="ds-header-tabs__tab"
+        [class.ds-header-tabs__tab--active]="activeTab === tab.key"
+        role="tab"
+        [attr.aria-selected]="activeTab === tab.key"
+        type="button"
+        (click)="select(tab.key)"
+      >
+        <span>{{ tab.label }}</span>
+        @if (activeTab === tab.key && tab.count !== undefined) {
+          <span class="ds-header-tabs__count">({{ tab.count }})</span>
+        }
+      </button>
+    }
+  </div>
+</div>

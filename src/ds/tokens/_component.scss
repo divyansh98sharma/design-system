@@ -101,6 +101,26 @@
   --button-danger-color: var(--color-text-inverse);
   --button-danger-bg-hover: var(--color-error-60);
 
+  --button-focus-color: var(--color-border-focus);
+  --button-disabled-border: var(--color-secondary-30);
+  --button-disabled-color: var(--color-secondary-60);
+
+  --button-sm-height: 24px;
+  --button-sm-padding-x: var(--spacing-small);
+  --button-sm-font-size: 11px;
+  --button-sm-gap: var(--spacing-x-small);
+  --button-sm-icon-size: 14px;
+
+  --button-md-height: 32px;
+  --button-md-padding-x: var(--spacing-medium);
+  --button-md-gap: 6px;
+  --button-md-icon-size: 16px;
+
+  --button-lg-height: 40px;
+  --button-lg-padding-x: var(--spacing-large);
+  --button-lg-font-size: var(--font-size-13);
+  --button-lg-gap: var(--spacing-small);
+
   // ----------------------------------------------------------
   // Input / Form
   // ----------------------------------------------------------
@@ -131,6 +151,23 @@
   --badge-padding-y: 2px;
   --badge-font-size: var(--font-size-10);
   --badge-font-weight: var(--font-weight-semibold);
+
+  // ----------------------------------------------------------
+  // Avatar
+  // ----------------------------------------------------------
+  --avatar-size-sm: 32px;
+  --avatar-size-lg: 72px;
+  --avatar-font-size-sm: var(--font-size-12);
+  --avatar-font-size-lg: var(--font-size-26);
+  --avatar-line-height-lg: var(--line-height-36);
+  --avatar-font-weight: var(--font-weight-semibold);
+  --avatar-font-family: var(--font-family-base);
+  --avatar-bg: var(--color-surface-subtle);
+  --avatar-color: var(--color-brand-primary);
+  --avatar-dummy-icon-size-sm: 18px;
+  --avatar-dummy-icon-size-lg: 40px;
+  --avatar-dummy-icon-color: var(--color-text-disabled);
+  --avatar-radius: var(--radius-pill);
 
   // ----------------------------------------------------------
   // Tooltip
@@ -182,4 +219,48 @@
   --loader-color-admin: var(--color-admin-base);
   --loader-color-green: var(--color-green-base);
   --loader-color-sunoh: var(--color-sunoh-base);
+
+  // ----------------------------------------------------------
+  // Breadcrumb
+  // ----------------------------------------------------------
+  --breadcrumb-height: 24px;
+  --breadcrumb-item-height: 16px;
+  --breadcrumb-item-max-width: 220px;
+  --breadcrumb-item-min-width: 42px;
+  --breadcrumb-font-size: var(--font-size-12);
+  --breadcrumb-text-color: var(--color-text-primary);
+  --breadcrumb-separator-size: 16px;
+  --breadcrumb-radius: var(--radius-standard);
+  --breadcrumb-link-underline: var(--color-text-primary);
+  --breadcrumb-link-focus-color: var(--color-border-focus);
+  --breadcrumb-overflow-btn-size: 24px;
+  --breadcrumb-overflow-btn-bg: var(--color-surface);
+  --breadcrumb-overflow-btn-border: var(--color-secondary-base);
+  --breadcrumb-overflow-btn-color: var(--color-text-primary);
+  --breadcrumb-overflow-btn-active-bg: var(--color-user-5);
+  --breadcrumb-overflow-btn-active-border: var(--color-brand-primary);
+  --breadcrumb-overflow-btn-active-color: var(--color-brand-primary);
+  --breadcrumb-popover-bg: var(--color-surface);
+  --breadcrumb-popover-border: var(--color-secondary-base);
+  --breadcrumb-popover-shadow: var(--shadow-md);
+  --breadcrumb-popover-z-index: 100;
+
+  // ----------------------------------------------------------
+  // Toggle Button Group
+  // ----------------------------------------------------------
+  --toggle-btn-focus-color: var(--color-border-focus);
+  --toggle-btn-disabled-opacity: 0.5;
+  --toggle-btn-sm-height: 24px;
+  --toggle-btn-sm-padding-x: var(--spacing-small);
+  --toggle-btn-sm-font-size: var(--font-size-11);
+  --toggle-btn-sm-gap: var(--spacing-x-small);
+  --toggle-btn-sm-icon-size: 13px;
+  --toggle-btn-md-height: 32px;
+  --toggle-btn-md-padding-x: var(--spacing-medium);
+  --toggle-btn-md-gap: 5px;
+  --toggle-btn-md-icon-size: 15px;
+  --toggle-btn-lg-height: 40px;
+  --toggle-btn-lg-padding-x: var(--spacing-large);
+  --toggle-btn-lg-gap: 6px;
+  --toggle-btn-lg-icon-size: var(--font-size-16);
 }

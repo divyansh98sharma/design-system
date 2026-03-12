@@ -1,0 +1,23 @@
+<div [ngClass]="hostClasses">
+  <!-- Text variant: initials via p-avatar label -->
+  @if (isText) {
+    <p-avatar [label]="initials" shape="circle" styleClass="ds-avatar__inner" />
+  }
+
+  <!-- Image variant: photo via p-avatar image -->
+  @if (isImage) {
+    <p-avatar [image]="imageUrl" [ariaLabel]="imageAlt" shape="circle" styleClass="ds-avatar__inner" />
+  }
+
+  <!-- Dummy variant: placeholder person icon -->
+  @if (isDummy) {
+    <p-avatar shape="circle" styleClass="ds-avatar__inner">
+      <ng-template pTemplate="icon">
+        <svg class="ds-avatar__dummy-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="12" cy="8" r="4" fill="currentColor"/>
+          <path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8" fill="currentColor"/>
+        </svg>
+      </ng-template>
+    </p-avatar>
+  }
+</div>
