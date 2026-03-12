@@ -1,81 +1,41 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ChangeDetectionStrategy,
-  forwardRef,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { RadioButton } from 'primeng/radiobutton';
 
-/**
- * Individual radio button control.
- *
- * For grouped radio buttons where only one can be selected at a time,
- * use `ds-radio-group` (or manage value state in the parent and pass
- * `[checked]="value === item.value"` to each `ds-radio-button`).
- */
 @Component({
   selector: 'ds-radio-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, RadioButton],
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => RadioButtonComponent),
-      multi: true,
-    },
-  ],
 })
-export class RadioButtonComponent implements ControlValueAccessor {
-  /** Whether this radio button is selected. */
-  @Input() checked = false;
+export class RadioButtonComponent {
+  /** The value this radio represents. */
+  @Input() value: unknown = '';
 
-  /** Prevents user interaction and applies muted styles. */
-  @Input() disabled = false;
+  /** The currently selected value in the group (bind to the same variable across all radios). */
+  @Input() model: unknown = null;
 
-  /** Label text displayed next to the radio button. Pass empty string to hide. */
+  /** Label text displayed next to the radio. */
   @Input() label = 'Label';
 
-  /** The value this radio button represents (used in radio groups). */
-  @Input() value: unknown = null;
+  /** Group name — all radios with the same name form one group. */
+  @Input() name = 'radio-group';
 
-  /** Emits when the radio button is selected. */
-  @Output() checkedChange = new EventEmitter<boolean>();
+  /** Prevents user interaction. */
+  @Input() disabled = false;
 
-  // ── ControlValueAccessor ──────────────────────────────────────────────────
+  /** Emits the selected value when this radio is selected. */
+  @Output() modelChange = new EventEmitter<unknown>();
 
-  private onChange: (v: unknown) => void = () => {};
-  private onTouched: () => void = () => {};
-
-  writeValue(v: unknown): void { this.checked = v === this.value || v === true; }
-  registerOnChange(fn: (v: unknown) => void): void { this.onChange = fn; }
-  registerOnTouched(fn: () => void): void { this.onTouched = fn; }
-  setDisabledState(d: boolean): void { this.disabled = d; }
-
-  // ── Interaction ───────────────────────────────────────────────────────────
-
-  select(): void {
-    if (this.disabled || this.checked) return;
-    this.checked = true;
-    this.onChange(this.value ?? true);
-    this.onTouched();
-    this.checkedChange.emit(true);
+  handleChange(event: { value: unknown }): void {
+    this.model = event.value;
+    this.modelChange.emit(event.value);
   }
 
   get hasLabel(): boolean {
     return this.label !== '';
-  }
-
-  get buttonClasses(): Record<string, boolean> {
-    return {
-      'ds-radio__button': true,
-      'ds-radio__button--checked': this.checked,
-      'ds-radio__button--disabled': this.disabled,
-    };
   }
 }
