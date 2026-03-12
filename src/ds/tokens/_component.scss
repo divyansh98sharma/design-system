@@ -6,6 +6,77 @@
 
 :root {
   // ----------------------------------------------------------
+  // Checkbox
+  // ----------------------------------------------------------
+  --checkbox-size: 16px;
+  --checkbox-radius: 3px;
+  --checkbox-border-width: 1.5px;
+  --checkbox-border: var(--color-border-strong);
+  --checkbox-border-checked: var(--color-brand-primary);
+  --checkbox-border-hover: var(--color-brand-primary-hover);
+  --checkbox-bg: var(--color-surface);
+  --checkbox-bg-checked: var(--color-brand-primary);
+  --checkbox-bg-hover: var(--color-brand-primary-hover);
+  --checkbox-bg-disabled: var(--color-surface-disabled);
+  --checkbox-border-disabled: var(--color-border-strong);
+  --checkbox-icon-color: var(--color-text-inverse);
+  --checkbox-icon-size: 10px;
+  --checkbox-label-font-size: var(--font-size-12);
+  --checkbox-label-color: var(--color-text-primary);
+  --checkbox-label-color-disabled: var(--color-text-disabled);
+  --checkbox-gap: var(--spacing-x-small);
+  --checkbox-transition: 120ms ease;
+  --checkbox-focus-width: 2px;
+  --checkbox-focus-offset: 2px;
+
+  // ----------------------------------------------------------
+  // Radio Button
+  // ----------------------------------------------------------
+  --radio-size: 16px;
+  --radio-border: var(--color-border-strong);
+  --radio-border-checked: var(--color-brand-primary);
+  --radio-border-hover: var(--color-brand-primary-hover);
+  --radio-bg: var(--color-surface);
+  --radio-dot-size: 8px;
+  --radio-dot-color: var(--color-brand-primary);
+  --radio-dot-color-hover: var(--color-brand-primary-hover);
+  --radio-bg-disabled: var(--color-surface);
+  --radio-border-disabled: var(--color-border-strong);
+  --radio-label-font-size: var(--font-size-12);
+  --radio-label-color: var(--color-text-primary);
+  --radio-label-color-disabled: var(--color-text-disabled);
+  --radio-gap: var(--spacing-x-small);
+  --radio-transition: 120ms ease;
+  --radio-focus-width: 2px;
+  --radio-focus-offset: 2px;
+
+  // ----------------------------------------------------------
+  // Toggle Switch
+  // ----------------------------------------------------------
+  --toggle-width: 50px;
+  --toggle-height: 24px;
+  --toggle-padding: var(--spacing-x-small);
+  --toggle-radius: var(--radius-pill);
+  --toggle-bg-off: var(--color-surface);
+  --toggle-border-off: var(--color-secondary-70);
+  --toggle-bg-user: var(--color-user-base);
+  --toggle-bg-user-hover: var(--color-user-70);
+  --toggle-bg-admin: var(--color-admin-base);
+  --toggle-bg-admin-hover: var(--color-admin-60);
+  --toggle-bg-green: var(--color-green-base);
+  --toggle-bg-green-hover: var(--color-green-60);
+  --toggle-bg-sunoh: var(--color-sunoh-base);
+  --toggle-bg-sunoh-hover: var(--color-sunoh-60);
+  --toggle-thumb-size: 16px;
+  --toggle-thumb-bg-off: var(--color-secondary-50);
+  --toggle-thumb-bg-on: var(--color-text-inverse);
+  --toggle-icon-size: 10px;
+  --toggle-icon-color-off: var(--color-secondary-70);
+  --toggle-transition: 200ms ease;
+  --toggle-disabled-opacity: 0.45;
+  --toggle-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Button
   // ----------------------------------------------------------
   --button-radius: var(--radius-standard);
@@ -29,6 +100,26 @@
   --button-danger-bg: var(--color-status-error);
   --button-danger-color: var(--color-text-inverse);
   --button-danger-bg-hover: var(--color-error-60);
+
+  --button-focus-color: var(--color-border-focus);
+  --button-disabled-border: var(--color-secondary-30);
+  --button-disabled-color: var(--color-secondary-60);
+
+  --button-sm-height: 24px;
+  --button-sm-padding-x: var(--spacing-small);
+  --button-sm-font-size: 11px;
+  --button-sm-gap: var(--spacing-x-small);
+  --button-sm-icon-size: 14px;
+
+  --button-md-height: 32px;
+  --button-md-padding-x: var(--spacing-medium);
+  --button-md-gap: 6px;
+  --button-md-icon-size: 16px;
+
+  --button-lg-height: 40px;
+  --button-lg-padding-x: var(--spacing-large);
+  --button-lg-font-size: var(--font-size-13);
+  --button-lg-gap: var(--spacing-small);
 
   // ----------------------------------------------------------
   // Input / Form
@@ -60,6 +151,23 @@
   --badge-padding-y: 2px;
   --badge-font-size: var(--font-size-10);
   --badge-font-weight: var(--font-weight-semibold);
+
+  // ----------------------------------------------------------
+  // Avatar
+  // ----------------------------------------------------------
+  --avatar-size-sm: 32px;
+  --avatar-size-lg: 72px;
+  --avatar-font-size-sm: var(--font-size-12);
+  --avatar-font-size-lg: var(--font-size-26);
+  --avatar-line-height-lg: var(--line-height-36);
+  --avatar-font-weight: var(--font-weight-semibold);
+  --avatar-font-family: var(--font-family-base);
+  --avatar-bg: var(--color-surface-subtle);
+  --avatar-color: var(--color-brand-primary);
+  --avatar-dummy-icon-size-sm: 18px;
+  --avatar-dummy-icon-size-lg: 40px;
+  --avatar-dummy-icon-color: var(--color-text-disabled);
+  --avatar-radius: var(--radius-pill);
 
   // ----------------------------------------------------------
   // Tooltip
@@ -100,4 +208,184 @@
   --chip-icon-size: 16px;
   --chip-close-size: 16px;
   --chip-close-focus-color: var(--color-secondary-70);
+
+  // ----------------------------------------------------------
+  // Modal
+  // ----------------------------------------------------------
+  --modal-bg: var(--color-surface);
+  --modal-radius: var(--radius-standard);
+  --modal-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+  --modal-header-height: 36px;
+  --modal-header-text-color: var(--color-text-inverse);
+  --modal-header-user-bg: var(--color-user-base);
+  --modal-header-admin-bg: var(--color-admin-base);
+  --modal-header-green-bg: var(--color-green-base);
+  --modal-header-sunoh-bg: var(--color-sunoh-base);
+  --modal-header-ai-bg: var(--color-ai-base);
+  --modal-footer-height: 40px;
+  --modal-footer-border: var(--color-border-default);
+  --modal-dirty-flag-color: var(--color-status-warning);
+  --modal-dirty-icon-size: 16px;
+  --modal-close-btn-size: 20px;
+  --modal-close-btn-color: var(--color-text-inverse);
+  --modal-close-focus-color: var(--color-text-inverse);
+  --modal-width-small: 420px;
+  --modal-width-medium: 720px;
+  --modal-width-large: 1000px;
+  --modal-width-xlarge: 1240px;
+  --modal-width-xxlarge: 1340px;
+  --modal-height-small: 420px;
+  --modal-height-default: 620px;
+  --modal-action-btn-height: 24px;
+  --modal-action-btn-radius: var(--radius-standard);
+  --modal-action-btn-secondary-bg: var(--color-secondary-base);
+  --modal-action-btn-secondary-border: var(--color-secondary-70);
+  --modal-action-btn-secondary-color: var(--color-text-primary);
+  --modal-action-btn-secondary-bg-hover: var(--color-secondary-60);
+
+  // ----------------------------------------------------------
+  // Tooltip Bubble (white popup — 12-position caret)
+  // ----------------------------------------------------------
+  --tooltip-bubble-bg: var(--color-surface);
+  --tooltip-bubble-color: var(--color-text-primary);
+  --tooltip-bubble-radius: var(--radius-standard);
+  --tooltip-bubble-shadow: var(--shadow-md);
+  --tooltip-bubble-padding-x: var(--spacing-small);
+  --tooltip-bubble-padding-y: var(--spacing-x-small);
+  --tooltip-bubble-font-size: var(--font-size-12);
+  --tooltip-bubble-max-width: 512px;
+  --tooltip-bubble-min-width: 42px;
+  --tooltip-arrow-size: 6px;
+  --tooltip-arrow-overlap: 1px;
+
+  // ----------------------------------------------------------
+  // Info Tooltip
+  // ----------------------------------------------------------
+  --info-tooltip-size: 16px;
+  --info-tooltip-icon-color: var(--color-text-secondary);
+  --info-tooltip-icon-color-hover: var(--color-brand-primary);
+  --info-tooltip-focus-color: var(--color-border-focus);
+  --info-tooltip-transition: 120ms ease;
+
+  // ----------------------------------------------------------
+  // Loader
+  // ----------------------------------------------------------
+  --loader-dot-size: 8px;
+  --loader-dot-gap: 1px;
+  --loader-min-width: 26px;
+  --loader-label-gap: var(--spacing-large);
+  --loader-label-font-size: var(--font-size-14);
+  --loader-label-color: var(--color-text-primary);
+  --loader-animation-duration: 1.2s;
+  --loader-dot-delay-2: 0.2s;
+  --loader-dot-delay-3: 0.4s;
+  --loader-color-user: var(--color-user-base);
+  --loader-color-admin: var(--color-admin-base);
+  --loader-color-green: var(--color-green-base);
+  --loader-color-sunoh: var(--color-sunoh-base);
+
+  // ----------------------------------------------------------
+  // Notification
+  // ----------------------------------------------------------
+  --notification-width: 540px;
+  --notification-radius: var(--radius-standard);
+  --notification-shadow: var(--shadow-md);
+  --notification-bg: var(--color-surface);
+  --notification-text-color: var(--color-text-primary);
+  --notification-sidebar-min-width: 62px;
+  --notification-icon-wrap-size: 30px;
+  --notification-sidebar-user-bg: var(--color-brand-primary);
+  --notification-sidebar-admin-bg: var(--color-brand-admin);
+  --notification-sidebar-green-bg: var(--color-status-success);
+  --notification-checkbox-size: 16px;
+  --notification-action-height: 24px;
+  --notification-badge-size: 10px;
+  --notification-badge-bg: var(--color-status-error);
+  --notification-badge-border: var(--color-surface);
+
+  // ----------------------------------------------------------
+  // Toast
+  // ----------------------------------------------------------
+  --toast-height: 56px;
+  --toast-min-width: 520px;
+  --toast-max-width: 600px;
+  --toast-radius: var(--radius-standard);
+  --toast-close-radius: var(--radius-pill);
+  --toast-shadow: var(--shadow-md);
+  --toast-text-color: var(--color-text-inverse);
+  --toast-confirmation-bg: var(--color-status-success);
+  --toast-communication-bg: var(--color-secondary-100);
+  --toast-icon-size: 32px;
+  --toast-font-size: var(--font-size-12);
+  --toast-font-weight: var(--font-weight-regular);
+  --toast-title-font-weight: var(--font-weight-bold);
+
+  // ----------------------------------------------------------
+  // Disclaimer
+  // ----------------------------------------------------------
+  --disclaimer-width: 450px;
+  --disclaimer-bg: var(--color-status-warning-subtle);
+  --disclaimer-border: var(--color-status-warning);
+  --disclaimer-radius: var(--radius-standard);
+  --disclaimer-text-color: var(--color-text-primary);
+  --disclaimer-close-size: 16px;
+  --disclaimer-ack-height: 24px;
+  --disclaimer-ack-bg: var(--color-secondary-base);
+  --disclaimer-ack-border: var(--color-secondary-70);
+  --disclaimer-ack-bg-hover: var(--color-secondary-60);
+
+  // ----------------------------------------------------------
+  // Scrollbar
+  // ----------------------------------------------------------
+  --scrollbar-width: 12px;
+  --scrollbar-arrow-size: 10px;
+  --scrollbar-track-bg: var(--color-secondary-40);
+  --scrollbar-thumb-bg: var(--color-secondary-70);
+  --scrollbar-thumb-bg-hover: var(--color-secondary-80);
+  --scrollbar-thumb-bg-active: var(--color-secondary-90);
+  --scrollbar-thumb-radius: var(--radius-standard);
+
+  // ----------------------------------------------------------
+  // Breadcrumb
+  // ----------------------------------------------------------
+  --breadcrumb-height: 24px;
+  --breadcrumb-item-height: 16px;
+  --breadcrumb-item-max-width: 220px;
+  --breadcrumb-item-min-width: 42px;
+  --breadcrumb-font-size: var(--font-size-12);
+  --breadcrumb-text-color: var(--color-text-primary);
+  --breadcrumb-separator-size: 16px;
+  --breadcrumb-radius: var(--radius-standard);
+  --breadcrumb-link-underline: var(--color-text-primary);
+  --breadcrumb-link-focus-color: var(--color-border-focus);
+  --breadcrumb-overflow-btn-size: 24px;
+  --breadcrumb-overflow-btn-bg: var(--color-surface);
+  --breadcrumb-overflow-btn-border: var(--color-secondary-base);
+  --breadcrumb-overflow-btn-color: var(--color-text-primary);
+  --breadcrumb-overflow-btn-active-bg: var(--color-user-5);
+  --breadcrumb-overflow-btn-active-border: var(--color-brand-primary);
+  --breadcrumb-overflow-btn-active-color: var(--color-brand-primary);
+  --breadcrumb-popover-bg: var(--color-surface);
+  --breadcrumb-popover-border: var(--color-secondary-base);
+  --breadcrumb-popover-shadow: var(--shadow-md);
+  --breadcrumb-popover-z-index: 100;
+
+  // ----------------------------------------------------------
+  // Toggle Button Group
+  // ----------------------------------------------------------
+  --toggle-btn-focus-color: var(--color-border-focus);
+  --toggle-btn-disabled-opacity: 0.5;
+  --toggle-btn-sm-height: 24px;
+  --toggle-btn-sm-padding-x: var(--spacing-small);
+  --toggle-btn-sm-font-size: var(--font-size-11);
+  --toggle-btn-sm-gap: var(--spacing-x-small);
+  --toggle-btn-sm-icon-size: 13px;
+  --toggle-btn-md-height: 32px;
+  --toggle-btn-md-padding-x: var(--spacing-medium);
+  --toggle-btn-md-gap: 5px;
+  --toggle-btn-md-icon-size: 15px;
+  --toggle-btn-lg-height: 40px;
+  --toggle-btn-lg-padding-x: var(--spacing-large);
+  --toggle-btn-lg-gap: 6px;
+  --toggle-btn-lg-icon-size: var(--font-size-16);
 }

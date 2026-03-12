@@ -1,0 +1,57 @@
+<nav class="ds-left-nav">
+
+  <!-- ── Menu toggle bar ───────────────────────────────────────────── -->
+  <div class="ds-left-nav__menu-toggle" (click)="menuToggle.emit()">
+    <svg class="ds-left-nav__menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path [attr.d]="'M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z'"/>
+    </svg>
+    <svg class="ds-left-nav__menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path [attr.d]="'M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z'"/>
+    </svg>
+    <svg class="ds-left-nav__menu-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path [attr.d]="'M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z'"/>
+    </svg>
+  </div>
+
+  <!-- ── Scroll up button ──────────────────────────────────────────── -->
+  <button class="ds-left-nav__scroll-btn" type="button" aria-label="Scroll up">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+    </svg>
+  </button>
+
+  <!-- ── Scrollable nav items ──────────────────────────────────────── -->
+  <div class="ds-left-nav__list">
+    @for (item of items; track item.key) {
+      <button
+        class="ds-left-nav__item"
+        [class.ds-left-nav__item--active]="activeItem === item.key"
+        type="button"
+        [attr.aria-label]="item.label"
+        [attr.aria-current]="activeItem === item.key ? 'page' : null"
+        (click)="itemClick.emit(item.key)"
+      >
+        <svg class="ds-left-nav__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path [attr.d]="item.iconPath"/>
+        </svg>
+        <span class="ds-left-nav__label">{{ item.label }}</span>
+      </button>
+    }
+  </div>
+
+  <!-- ── Scroll down button ────────────────────────────────────────── -->
+  <button class="ds-left-nav__scroll-btn" type="button" aria-label="Scroll down">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>
+    </svg>
+  </button>
+
+  <!-- ── Logout row ────────────────────────────────────────────────── -->
+  <button class="ds-left-nav__logout" type="button" (click)="logout.emit()">
+    <svg class="ds-left-nav__logout-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
+    </svg>
+    <span>Logout</span>
+  </button>
+
+</nav>
