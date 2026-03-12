@@ -70,4 +70,33 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // Tabs (shared)
+  // ----------------------------------------------------------
+  --tab-height: 24px;
+  --tab-font-size: var(--font-size-12);
+  --tab-gap: var(--spacing-x-small);
+  --tab-padding-y: var(--spacing-x-small);
+  --tab-padding-x: var(--spacing-small);
+  --tab-radius: var(--radius-standard);
+  --tab-text-color: var(--color-text-primary);
+  --tab-active-bg: var(--color-surface);
+  --tab-border-color: var(--color-secondary-base);
+  --tab-transition: 120ms ease;
+
+  // ----------------------------------------------------------
+  // Wizard Tabs
+  // ----------------------------------------------------------
+  --wizard-tab-height: 32px;
+  --wizard-tab-arrow-width: 17px;
+  --wizard-tab-padding-y: 7px;
+  --wizard-tab-padding-x: var(--spacing-large);
+  --wizard-tab-padding-x-right: var(--spacing-xx-large);
+  --wizard-tab-inactive-bg: var(--color-secondary-10);
+  --wizard-tab-inactive-hover-bg: var(--color-secondary-20);
+  --wizard-tab-badge-size: 16px;
+  --wizard-tab-badge-radius: var(--radius-8);
+  --wizard-tab-required-color: var(--color-status-error);
+  --wizard-tab-shadow: 0 3px 5px 0 rgba(225, 228, 229, 0.4);
 }
