@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { InputFieldComponent } from './input-field.component';
 
 const meta: Meta<InputFieldComponent> = {
-  title: 'Components/Input Field',
+  title: 'Design System/Input Field',
   component: InputFieldComponent,
   tags: ['autodocs'],
   argTypes: {
