@@ -180,6 +180,19 @@
   --tooltip-padding-y: var(--spacing-x-small);
 
   // ----------------------------------------------------------
+  // Healow Connect Button
+  // ----------------------------------------------------------
+  --healow-connect-bg: var(--color-secondary-50);
+  --healow-connect-border: var(--color-secondary-60);
+  --healow-connect-hover-bg: #d1d1d1;
+  --healow-connect-hover-border: var(--color-secondary-80);
+  --healow-connect-disabled-bg: var(--color-secondary-50);
+  --healow-connect-disabled-border: #a3a3a3;
+  --healow-connect-disabled-color: #bbbbbb;
+  --healow-connect-call-bg: #55be73;
+  --healow-connect-icon-size: var(--font-size-16);
+
+  // ----------------------------------------------------------
   // Left Nav
   // ----------------------------------------------------------
   --left-nav-width: 60px;

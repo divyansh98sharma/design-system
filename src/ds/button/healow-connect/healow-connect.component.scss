@@ -1,43 +1,3 @@
-// ─── State palette ───────────────────────────────────────────────────────────
-$states: (
-  default: (
-    bg    : #e6e6e6,
-    border: #bcbcbc,
-    text  : #000000,
-    icon  : #000000,
-  ),
-  hover: (
-    bg    : #d1d1d1,
-    border: #797979,
-    text  : #000000,
-    icon  : #000000,
-  ),
-  disabled: (
-    bg    : #e7e7e7,
-    border: #a3a3a3,
-    text  : #bbbbbb,
-    icon  : #bbbbbb,
-  ),
-  call-in-progress: (
-    bg    : #55be73,
-    border: #55be73,
-    text  : #000000,
-    icon  : #ffffff,
-  ),
-  call-in-progress-hover: (
-    bg    : #ffffff,
-    border: #55be73,
-    text  : #000000,
-    icon  : #55be73,
-  ),
-  call-in-progress-disabled: (
-    bg    : #e7e7e7,
-    border: #a3a3a3,
-    text  : #bbbbbb,
-    icon  : #bbbbbb,
-  ),
-);
-
 // ─── Base styles ─────────────────────────────────────────────────────────────
 :host {
   display: inline-block;
@@ -46,36 +6,36 @@ $states: (
 .ds-healow-connect {
   display        : inline-flex;
   align-items    : center;
-  gap            : 4px;
-  padding        : 4px 12px 4px 4px;
-  border-radius  : 999px;
+  gap            : var(--spacing-x-small);
+  padding        : var(--spacing-x-small) var(--spacing-medium) var(--spacing-x-small) var(--spacing-x-small);
+  border-radius  : var(--radius-pill);
   border         : 1px solid;
   cursor         : pointer;
-  font-family    : 'Open Sans', sans-serif;
-  font-size      : 12px;
-  font-weight    : 400;
-  line-height    : 16px;
+  font-family    : var(--font-family-base);
+  font-size      : var(--font-size-12);
+  font-weight    : var(--font-weight-regular);
+  line-height    : var(--line-height-16);
   white-space    : nowrap;
   text-decoration: none;
   transition     : background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 
   // ── Default state colours ───────────────────────────────────────────────
-  background  : #e6e6e6;
-  border-color: #bcbcbc;
-  color       : #000000;
+  background  : var(--healow-connect-bg);
+  border-color: var(--healow-connect-border);
+  color       : var(--color-black);
 
   .ds-healow-connect__icon {
-    stroke: #000000;
-    fill  : #000000;
-    circle:last-child { fill: #000000; stroke: none; }
-    circle:first-child { fill: none; stroke: #000000; }
-    path { stroke: #000000; fill: none; }
+    stroke: var(--color-black);
+    fill  : var(--color-black);
+    circle:last-child { fill: var(--color-black); stroke: none; }
+    circle:first-child { fill: none; stroke: var(--color-black); }
+    path { stroke: var(--color-black); fill: none; }
   }
 
   // ── Hover (native CSS, no modifier needed) ─────────────────────────────
   &:hover:not(:disabled):not([disabled]) {
-    background  : #d1d1d1;
-    border-color: #797979;
+    background  : var(--healow-connect-hover-bg);
+    border-color: var(--healow-connect-hover-border);
   }
 
   // ── Disabled ───────────────────────────────────────────────────────────
@@ -83,79 +43,79 @@ $states: (
   &[aria-disabled='true'],
   &--disabled,
   &--call-in-progress-disabled {
-    background  : #e7e7e7;
-    border-color: #a3a3a3;
-    color       : #bbbbbb;
+    background  : var(--healow-connect-disabled-bg);
+    border-color: var(--healow-connect-disabled-border);
+    color       : var(--healow-connect-disabled-color);
     cursor      : not-allowed;
 
     .ds-healow-connect__icon {
-      stroke: #bbbbbb;
-      fill  : #bbbbbb;
-      circle:last-child { fill: #bbbbbb; stroke: none; }
-      circle:first-child { fill: none; stroke: #bbbbbb; }
-      path { stroke: #bbbbbb; fill: none; }
+      stroke: var(--healow-connect-disabled-color);
+      fill  : var(--healow-connect-disabled-color);
+      circle:last-child { fill: var(--healow-connect-disabled-color); stroke: none; }
+      circle:first-child { fill: none; stroke: var(--healow-connect-disabled-color); }
+      path { stroke: var(--healow-connect-disabled-color); fill: none; }
     }
   }
 
   // ── Call in Progress — Default ─────────────────────────────────────────
   &--call-in-progress {
-    background  : #55be73;
-    border-color: #55be73;
-    color       : #000000;
+    background  : var(--healow-connect-call-bg);
+    border-color: var(--healow-connect-call-bg);
+    color       : var(--color-black);
 
     .ds-healow-connect__icon {
-      stroke: #ffffff;
-      fill  : #ffffff;
-      circle:last-child { fill: #ffffff; stroke: none; }
-      circle:first-child { fill: none; stroke: #ffffff; }
-      path { stroke: #ffffff; fill: none; }
+      stroke: var(--color-white);
+      fill  : var(--color-white);
+      circle:last-child { fill: var(--color-white); stroke: none; }
+      circle:first-child { fill: none; stroke: var(--color-white); }
+      path { stroke: var(--color-white); fill: none; }
     }
 
     &:hover:not(:disabled) {
-      background  : #ffffff;
-      border-color: #55be73;
+      background  : var(--color-white);
+      border-color: var(--healow-connect-call-bg);
 
       .ds-healow-connect__icon {
-        stroke: #55be73;
-        fill  : #55be73;
-        circle:last-child { fill: #55be73; stroke: none; }
-        circle:first-child { fill: none; stroke: #55be73; }
-        path { stroke: #55be73; fill: none; }
+        stroke: var(--healow-connect-call-bg);
+        fill  : var(--healow-connect-call-bg);
+        circle:last-child { fill: var(--healow-connect-call-bg); stroke: none; }
+        circle:first-child { fill: none; stroke: var(--healow-connect-call-bg); }
+        path { stroke: var(--healow-connect-call-bg); fill: none; }
       }
     }
   }
 
   // ── Call in Progress — Hover (explicit modifier) ───────────────────────
   &--call-in-progress-hover {
-    background  : #ffffff;
-    border-color: #55be73;
-    color       : #000000;
+    background  : var(--color-white);
+    border-color: var(--healow-connect-call-bg);
+    color       : var(--color-black);
 
     .ds-healow-connect__icon {
-      stroke: #55be73;
-      fill  : #55be73;
-      circle:last-child { fill: #55be73; stroke: none; }
-      circle:first-child { fill: none; stroke: #55be73; }
-      path { stroke: #55be73; fill: none; }
+      stroke: var(--healow-connect-call-bg);
+      fill  : var(--healow-connect-call-bg);
+      circle:last-child { fill: var(--healow-connect-call-bg); stroke: none; }
+      circle:first-child { fill: none; stroke: var(--healow-connect-call-bg); }
+      path { stroke: var(--healow-connect-call-bg); fill: none; }
     }
   }
 
   // ── Focus ──────────────────────────────────────────────────────────────
   &:focus-visible {
-    outline       : 2px solid #0378a7;
+    outline       : 2px solid var(--color-border-focus);
     outline-offset: 2px;
   }
 }
 
 // ─── Icon ────────────────────────────────────────────────────────────────────
 .ds-healow-connect__icon {
-  width      : 16px;
-  height     : 16px;
+  width      : var(--healow-connect-icon-size);
+  height     : var(--healow-connect-icon-size);
   flex-shrink: 0;
 }
 
 // ─── Label ───────────────────────────────────────────────────────────────────
 .ds-healow-connect__label {
-  font-size  : 12px;
-  line-height: 16px;
+  font-size  : var(--font-size-12);
+  line-height: var(--line-height-16);
 }

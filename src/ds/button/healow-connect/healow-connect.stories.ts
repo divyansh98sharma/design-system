@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import {
   HealowConnectComponent,
   HealowConnectState,
 } from './healow-connect.component';
 
 const meta: Meta<HealowConnectComponent> = {
-  title    : 'Components/Button/Healow Connect',
+  title    : 'Design System/Button/Healow Connect',
   component: HealowConnectComponent,
   tags     : ['autodocs'],
   argTypes : {
