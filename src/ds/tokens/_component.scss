@@ -70,4 +70,23 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // Popover
+  // ----------------------------------------------------------
+  --popover-width: 378px;
+  --popover-bg: var(--color-surface);
+  --popover-radius: var(--radius-standard);
+  --popover-shadow: 0 8px 16px -4px rgba(2, 13, 33, 0.16);
+  --popover-border-color: var(--color-secondary-50);
+  --popover-padding-x: 14px;
+  --popover-text-color: var(--color-text-primary);
+  --popover-input-height: 24px;
+  --popover-input-border: var(--color-border-strong);
+  --popover-btn-height: 28px;
+  --popover-btn-disabled-opacity: 0.45;
+  --popover-control-size: 14px;
+  --popover-field-label-width: 100px;
+  --popover-notch-size: 10px;
+  --popover-notch-corner-offset: 16px;
 }
