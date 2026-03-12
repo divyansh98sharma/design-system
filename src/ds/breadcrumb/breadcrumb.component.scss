@@ -1,0 +1,165 @@
+// ─── Breadcrumb / Navigation ─────────────────────────────────────────────────
+
+.ds-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--breadcrumb-height);
+  max-height: var(--breadcrumb-height);
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  // ─── Shared item wrapper ──────────────────────────────────────────────────
+
+  &__item {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    max-height: var(--breadcrumb-item-height);
+    min-height: var(--breadcrumb-item-height);
+  }
+
+  // ─── Ancestor text (shared base) ─────────────────────────────────────────
+
+  &__text,
+  &__link,
+  &__current {
+    font-family: var(--font-family-base);
+    font-size: var(--breadcrumb-font-size);
+    line-height: var(--line-height-16);
+    color: var(--breadcrumb-text-color);
+    max-width: var(--breadcrumb-item-max-width);
+    min-width: var(--breadcrumb-item-min-width);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+
+  // ─── Breadcrumb ancestor link (clickable + underlined) ───────────────────
+
+  &__link {
+    font-weight: var(--font-weight-regular);
+    text-decoration: none;
+    cursor: pointer;
+    border-bottom: 1px solid var(--breadcrumb-link-underline);
+    padding-bottom: 1px;
+
+    &:hover {
+      opacity: 0.75;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--breadcrumb-link-focus-color);
+      outline-offset: 2px;
+      border-radius: var(--radius-standard);
+    }
+  }
+
+  // ─── Navigation mode: plain ancestor text, no underline ──────────────────
+
+  &--navigation &__link {
+    border-bottom: none;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  // ─── Plain text (navigation mode explicitly) ──────────────────────────────
+
+  &__text {
+    font-weight: var(--font-weight-regular);
+  }
+
+  // ─── Current / active page ────────────────────────────────────────────────
+
+  &__current {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  // ─── Chevron separator ────────────────────────────────────────────────────
+
+  &__separator {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: var(--breadcrumb-separator-size);
+    height: var(--breadcrumb-separator-size);
+    overflow: hidden;
+    color: var(--breadcrumb-text-color);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // ─── Overflow / ellipsis button ───────────────────────────────────────────
+
+  &__overflow-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--breadcrumb-overflow-btn-size);
+    height: var(--breadcrumb-overflow-btn-size);
+    padding: 0;
+    background: var(--breadcrumb-overflow-btn-bg);
+    border: 1px solid var(--breadcrumb-overflow-btn-border);
+    border-radius: var(--breadcrumb-radius);
+    cursor: pointer;
+    color: var(--breadcrumb-overflow-btn-color);
+    transition: border-color 120ms ease, background 120ms ease;
+
+    svg {
+      width: var(--breadcrumb-separator-size);
+      height: var(--breadcrumb-separator-size);
+    }
+
+    &--open,
+    &:hover {
+      border-color: var(--breadcrumb-overflow-btn-active-border);
+      background: var(--breadcrumb-overflow-btn-active-bg);
+      color: var(--breadcrumb-overflow-btn-active-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--breadcrumb-link-focus-color);
+      outline-offset: 2px;
+    }
+  }
+
+  // ─── Overflow popover ─────────────────────────────────────────────────────
+
+  &__popover {
+    position: absolute;
+    top: calc(100% + var(--spacing-small));
+    left: calc(-1 * var(--spacing-small));
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    padding: var(--spacing-small);
+    background: var(--breadcrumb-popover-bg);
+    border: 1px solid var(--breadcrumb-popover-border);
+    border-radius: var(--breadcrumb-radius);
+    box-shadow: var(--breadcrumb-popover-shadow);
+    white-space: nowrap;
+    z-index: var(--breadcrumb-popover-z-index);
+
+    .ds-breadcrumb__link,
+    .ds-breadcrumb__text {
+      min-width: auto;
+    }
+
+    .ds-breadcrumb__popover-chevron {
+      width: var(--breadcrumb-separator-size);
+      height: var(--breadcrumb-separator-size);
+      flex-shrink: 0;
+      color: var(--breadcrumb-text-color);
+    }
+  }
+}

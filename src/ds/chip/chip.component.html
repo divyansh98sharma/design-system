@@ -1,0 +1,48 @@
+<div [ngClass]="hostClasses" (click)="chipClick.emit()">
+
+  <!-- Badge circle -->
+  @if (showBadge) {
+    <div
+      class="ds-chip__badge"
+      [style.background]="badgeColor"
+      aria-hidden="true"
+    >{{ badgeLetter }}</div>
+  }
+
+  <!-- Icon -->
+  @if (showIcon) {
+    <svg
+      class="ds-chip__icon"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path [attr.d]="resolvedIconPath"/>
+    </svg>
+  }
+
+  <!-- Label -->
+  <span class="ds-chip__label">{{ label }}</span>
+
+  <!-- Close button -->
+  @if (showClose) {
+    <button
+      class="ds-chip__close"
+      type="button"
+      (click)="$event.stopPropagation(); closed.emit()"
+      [attr.aria-label]="'Remove ' + label"
+    >
+      <svg
+        class="ds-chip__close-icon"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+  }
+
+</div>

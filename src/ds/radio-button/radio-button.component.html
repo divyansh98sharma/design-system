@@ -1,0 +1,12 @@
+<label class="ds-radio" [class.ds-radio--disabled]="disabled">
+  <p-radiobutton
+    [name]="name"
+    [value]="value"
+    [(ngModel)]="model"
+    [disabled]="disabled"
+    (onClick)="handleChange($event)"
+  />
+  @if (hasLabel) {
+    <span class="ds-radio__label">{{ label }}</span>
+  }
+</label>
