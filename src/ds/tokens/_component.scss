@@ -62,6 +62,23 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // Avatar
+  // ----------------------------------------------------------
+  --avatar-size-sm: 32px;
+  --avatar-size-lg: 72px;
+  --avatar-font-size-sm: var(--font-size-12);
+  --avatar-font-size-lg: var(--font-size-26);
+  --avatar-line-height-lg: var(--line-height-36);
+  --avatar-font-weight: var(--font-weight-semibold);
+  --avatar-font-family: var(--font-family-base);
+  --avatar-bg: var(--color-surface-subtle);
+  --avatar-color: var(--color-brand-primary);
+  --avatar-dummy-icon-size-sm: 18px;
+  --avatar-dummy-icon-size-lg: 40px;
+  --avatar-dummy-icon-color: var(--color-text-disabled);
+  --avatar-radius: var(--radius-pill);
+
+  // ----------------------------------------------------------
   // Tooltip
   // ----------------------------------------------------------
   --tooltip-bg: var(--color-secondary-90);
