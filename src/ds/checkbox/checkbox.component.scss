@@ -1,0 +1,79 @@
+// ─── Checkbox ─────────────────────────────────────────────────────────────────
+
+.ds-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--checkbox-gap);
+  cursor: pointer;
+  user-select: none;
+
+  .p-checkbox-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    border: var(--checkbox-border-width) solid var(--checkbox-border);
+    border-radius: var(--checkbox-radius);
+    background: var(--checkbox-bg);
+    transition: background var(--checkbox-transition), border-color var(--checkbox-transition);
+    position: relative;
+  }
+
+  .p-checkbox-checked .p-checkbox-box,
+  .p-highlight .p-checkbox-box {
+    background: var(--checkbox-bg-checked);
+    border-color: var(--checkbox-border-checked);
+  }
+
+  .p-indeterminate .p-checkbox-box {
+    background: var(--checkbox-bg-checked);
+    border-color: var(--checkbox-border-checked);
+  }
+
+  .p-disabled .p-checkbox-box {
+    background: var(--checkbox-bg-disabled);
+    border-color: var(--checkbox-border-disabled);
+    cursor: not-allowed;
+  }
+
+  .p-checkbox-icon {
+    color: var(--checkbox-icon-color);
+    font-size: var(--checkbox-icon-size);
+    width: var(--checkbox-icon-size);
+    height: var(--checkbox-icon-size);
+  }
+
+  &__label {
+    font-family: var(--font-family-base);
+    font-size: var(--checkbox-label-font-size);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    color: var(--checkbox-label-color);
+    white-space: nowrap;
+  }
+
+  &:not(.ds-checkbox--disabled):hover .p-checkbox-box {
+    border-color: var(--checkbox-border-hover);
+  }
+
+  &:not(.ds-checkbox--disabled):hover .p-highlight .p-checkbox-box,
+  &:not(.ds-checkbox--disabled):hover .p-indeterminate .p-checkbox-box {
+    background: var(--checkbox-bg-hover);
+    border-color: var(--checkbox-bg-hover);
+  }
+
+  .p-checkbox:focus-within .p-checkbox-box {
+    outline: var(--checkbox-focus-width) solid var(--color-border-focus);
+    outline-offset: var(--checkbox-focus-offset);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .ds-checkbox__label {
+      color: var(--checkbox-label-color-disabled);
+    }
+  }
+}

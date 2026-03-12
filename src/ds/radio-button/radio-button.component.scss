@@ -1,0 +1,90 @@
+// ─── Radio Button ─────────────────────────────────────────────────────────────
+
+.ds-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--radio-gap);
+  cursor: pointer;
+  user-select: none;
+
+  // ─── PrimeNG Radio box ────────────────────────────────────────────────────
+
+  .p-radiobutton-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    border: 1.5px solid var(--radio-border);
+    border-radius: var(--radius-pill);
+    background: var(--radio-bg);
+    transition: border-color var(--radio-transition), background var(--radio-transition);
+    position: relative;
+  }
+
+  .p-radiobutton-checked .p-radiobutton-box {
+    border-color: var(--radio-border-checked);
+    background: var(--radio-bg);
+  }
+
+  .p-disabled .p-radiobutton-box {
+    border-color: var(--radio-border-disabled);
+    background: var(--radio-bg-disabled);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  // ─── Inner dot ────────────────────────────────────────────────────────────
+
+  .p-radiobutton-icon {
+    display: block;
+    width: var(--radio-dot-size);
+    height: var(--radio-dot-size);
+    border-radius: var(--radius-pill);
+    background: var(--radio-dot-color);
+    transition: transform var(--radio-transition);
+  }
+
+  // ─── Label ────────────────────────────────────────────────────────────────
+
+  &__label {
+    font-family: var(--font-family-base);
+    font-size: var(--radio-label-font-size);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    color: var(--radio-label-color);
+    white-space: nowrap;
+  }
+
+  // ─── Hover ────────────────────────────────────────────────────────────────
+
+  &:not(.ds-radio--disabled):hover .p-radiobutton-box {
+    border-color: var(--radio-border-hover);
+  }
+
+  &:not(.ds-radio--disabled):hover .p-radiobutton-checked .p-radiobutton-box {
+    border-color: var(--radio-border-hover);
+  }
+
+  &:not(.ds-radio--disabled):hover .p-radiobutton-icon {
+    background: var(--radio-dot-color-hover);
+  }
+
+  // ─── Focus ring ───────────────────────────────────────────────────────────
+
+  .p-radiobutton:focus-within .p-radiobutton-box {
+    outline: var(--radio-focus-width) solid var(--color-border-focus);
+    outline-offset: var(--radio-focus-offset);
+  }
+
+  // ─── Disabled modifier ────────────────────────────────────────────────────
+
+  &--disabled {
+    cursor: not-allowed;
+
+    .ds-radio__label {
+      color: var(--radio-label-color-disabled);
+    }
+  }
+}
