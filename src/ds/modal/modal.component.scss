@@ -1,0 +1,220 @@
+// ─── Modal Dialog ─────────────────────────────────────────────────────────────
+
+.ds-modal {
+  display: flex;
+  flex-direction: column;
+  background: var(--modal-bg);
+  border-radius: var(--modal-radius);
+  box-shadow: var(--modal-shadow);
+  overflow: hidden;
+
+  // ─── Size variants ────────────────────────────────────────────────────────
+  // Design spec ideal sizes: 420×420, 720×620, 1000×620, 1240×620, 1340×620.
+  // Height ≤ 620px (per spec "height does not exceed 620px").
+
+  &--small   { width: var(--modal-width-small);   height: var(--modal-height-small); }
+  &--medium  { width: var(--modal-width-medium);  height: var(--modal-height-default); }
+  &--large   { width: var(--modal-width-large);   height: var(--modal-height-default); }
+  &--xlarge  { width: var(--modal-width-xlarge);  height: var(--modal-height-default); }
+  &--xxlarge { width: var(--modal-width-xxlarge); height: var(--modal-height-default); }
+
+  // ─── Header ───────────────────────────────────────────────────────────────
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-small);
+    min-height: var(--modal-header-height);
+    max-height: var(--modal-header-height);
+    padding: var(--spacing-small) var(--spacing-large);
+    flex-shrink: 0;
+    border-radius: var(--modal-radius) var(--modal-radius) 0 0;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    overflow: hidden;
+    flex: 1 0 0;
+    min-width: 0;
+  }
+
+  &__header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    flex-shrink: 0;
+  }
+
+  &__heading {
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-14);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-16);
+    color: var(--modal-header-text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  // ─── Dirty flag ───────────────────────────────────────────────────────────
+
+  &__dirty-flag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__dirty-icon {
+    display: block;
+    width: var(--modal-dirty-icon-size);
+    height: var(--modal-dirty-icon-size);
+    color: var(--modal-dirty-flag-color);
+  }
+
+  // ─── Close button ─────────────────────────────────────────────────────────
+
+  &__close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--modal-close-btn-size);
+    height: var(--modal-close-btn-size);
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--modal-close-btn-color);
+    flex-shrink: 0;
+    transition: opacity 120ms ease;
+
+    &:hover        { opacity: 0.75; }
+    &:focus-visible {
+      outline: 2px solid var(--modal-close-focus-color);
+      outline-offset: 2px;
+    }
+  }
+
+  &__close-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  // ─── Theme colours for header ─────────────────────────────────────────────
+
+  &--user    &__header { background: var(--modal-header-user-bg); }
+  &--admin   &__header { background: var(--modal-header-admin-bg); }
+  &--green   &__header { background: var(--modal-header-green-bg); }
+  &--sunoh   &__header { background: var(--modal-header-sunoh-bg); }
+  &--ai      &__header { background: var(--modal-header-ai-bg); }
+
+  // ─── Body ─────────────────────────────────────────────────────────────────
+
+  &__body {
+    flex: 1 0 0;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--modal-bg);
+  }
+
+  // ─── Footer ───────────────────────────────────────────────────────────────
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-large);
+    min-height: var(--modal-footer-height);
+    max-height: var(--modal-footer-height);
+    padding: var(--spacing-small) var(--spacing-large);
+    background: var(--modal-bg);
+    border-top: 1px solid var(--modal-footer-border);
+    flex-shrink: 0;
+  }
+
+  &__footer-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    flex: 1 0 0;
+    min-width: 0;
+  }
+
+  &__footer-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-small);
+    flex-shrink: 0;
+  }
+
+  // ─── Footer action buttons ────────────────────────────────────────────────
+
+  &__action-btn {
+    height: var(--modal-action-btn-height);
+    padding: var(--spacing-x-small) var(--spacing-small);
+    border: 1px solid transparent;
+    border-radius: var(--modal-action-btn-radius);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 120ms ease, border-color 120ms ease;
+
+    // Secondary (default)
+    &--secondary {
+      background: var(--modal-action-btn-secondary-bg);
+      border-color: var(--modal-action-btn-secondary-border);
+      color: var(--modal-action-btn-secondary-color);
+
+      &:hover { background: var(--modal-action-btn-secondary-bg-hover); }
+      &:focus-visible { outline: 2px solid var(--modal-action-btn-secondary-border); outline-offset: 2px; }
+    }
+
+    // Primary — themed per modal theme
+    &--primary {
+      color: var(--color-text-inverse);
+    }
+  }
+
+  // Themed primary buttons
+  &--user &__action-btn--primary {
+    background: var(--color-user-base);
+    border-color: var(--color-user-70);
+    &:hover { background: var(--color-user-70); }
+    &:focus-visible { outline: 2px solid var(--color-user-base); outline-offset: 2px; }
+  }
+
+  &--admin &__action-btn--primary {
+    background: var(--color-admin-base);
+    border-color: var(--color-admin-60);
+    &:hover { background: var(--color-admin-60); }
+    &:focus-visible { outline: 2px solid var(--color-admin-base); outline-offset: 2px; }
+  }
+
+  &--green &__action-btn--primary {
+    background: var(--color-green-base);
+    border-color: var(--color-green-60);
+    &:hover { background: var(--color-green-60); }
+    &:focus-visible { outline: 2px solid var(--color-green-base); outline-offset: 2px; }
+  }
+
+  &--sunoh &__action-btn--primary {
+    background: var(--color-sunoh-base);
+    border-color: var(--color-sunoh-60);
+    &:hover { background: var(--color-sunoh-60); }
+    &:focus-visible { outline: 2px solid var(--color-sunoh-base); outline-offset: 2px; }
+  }
+
+  &--ai &__action-btn--primary {
+    background: var(--color-ai-base);
+    border-color: var(--color-ai-70);
+    &:hover { background: var(--color-ai-70); }
+    &:focus-visible { outline: 2px solid var(--color-ai-base); outline-offset: 2px; }
+  }
+}
