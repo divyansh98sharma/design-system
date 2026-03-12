@@ -1,0 +1,160 @@
+// ─── Panel ────────────────────────────────────────────────────────────────────
+.ds-side-nav {
+  display: flex;
+  flex-direction: column;
+  width: var(--side-nav-width);
+  max-height: var(--side-nav-max-height);
+  background: var(--side-nav-bg);
+  border-right: 1px solid var(--side-nav-border);
+  font-family: inherit;
+  overflow: hidden;
+}
+
+// ─── Heading bar ──────────────────────────────────────────────────────────────
+.ds-side-nav__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--side-nav-heading-height);
+  background: var(--side-nav-heading-bg);
+  padding: 0 var(--spacing-x-small) 0 var(--spacing-medium);
+  flex-shrink: 0;
+}
+
+.ds-side-nav__heading-text {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.ds-side-nav__settings-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: var(--spacing-x-small);
+  cursor: pointer;
+  color: var(--color-secondary-90);
+  border-radius: var(--radius-standard);
+  transition: background 0.15s;
+
+  &:hover { background: var(--side-nav-btn-hover-bg); }
+  &:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+  }
+}
+
+// ─── Search row ───────────────────────────────────────────────────────────────
+.ds-side-nav__search-row {
+  padding: var(--spacing-small);
+  background: var(--side-nav-bg);
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--side-nav-item-border);
+}
+
+.ds-side-nav__search-wrapper {
+  display: flex;
+  align-items: center;
+  height: var(--side-nav-search-height);
+  background: var(--color-surface);
+  border: 1px solid var(--color-secondary-60);
+  border-radius: var(--radius-standard);
+  padding: 0 var(--side-nav-search-padding-x);
+  gap: var(--spacing-x-small);
+
+  &:focus-within {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 2px var(--color-border-focus);
+  }
+}
+
+.ds-side-nav__search-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  svg { display: block; }
+}
+
+.ds-side-nav__search-input {
+  flex: 1 1 auto;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--font-size-12);
+  color: var(--color-text-primary);
+
+  &::placeholder {
+    color: var(--color-secondary-70);
+    font-style: italic;
+  }
+}
+
+// ─── Scrollable list ──────────────────────────────────────────────────────────
+.ds-side-nav__list {
+  flex: 1 1 auto;
+  overflow-y: auto;
+
+  // Custom scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: var(--side-nav-scrollbar-thumb) var(--side-nav-scrollbar-track);
+
+  &::-webkit-scrollbar       { width: 8px; }
+  &::-webkit-scrollbar-track { background: var(--side-nav-scrollbar-track); }
+  &::-webkit-scrollbar-thumb {
+    background: var(--side-nav-scrollbar-thumb);
+    border-radius: var(--radius-standard);
+    border: 2px solid var(--side-nav-scrollbar-track);
+  }
+}
+
+// ─── Tree item ────────────────────────────────────────────────────────────────
+.ds-side-nav__item {
+  display: flex;
+  align-items: center;
+  height: var(--side-nav-item-height);
+  background: var(--side-nav-bg);
+  border-top: 1px solid var(--side-nav-item-border);
+  cursor: pointer;
+  gap: var(--side-nav-item-gap);
+  padding-right: var(--spacing-small);
+  transition: background 0.1s;
+  box-sizing: border-box;
+
+  &:hover {
+    background: var(--side-nav-item-hover-bg);
+  }
+
+  &--active {
+    background: var(--side-nav-item-active-bg);
+    color: var(--color-brand-primary);
+
+    .ds-side-nav__item-label { color: var(--color-brand-primary); font-weight: var(--font-weight-semibold); }
+    .ds-side-nav__item-icon  { color: var(--color-brand-primary); }
+  }
+}
+
+.ds-side-nav__item-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--side-nav-item-icon-size);
+  color: var(--color-secondary-90);
+
+  svg { display: block; }
+}
+
+.ds-side-nav__leaf-spacer {
+  display: inline-block;
+  width: var(--side-nav-leaf-spacer-size);
+}
+
+.ds-side-nav__item-label {
+  font-size: var(--font-size-12);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

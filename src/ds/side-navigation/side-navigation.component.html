@@ -1,0 +1,92 @@
+<aside class="ds-side-nav">
+
+  <!-- ── Heading bar ─────────────────────────────────────────────────────── -->
+  <div class="ds-side-nav__heading">
+    <span class="ds-side-nav__heading-text">{{ heading }}</span>
+    @if (showSettings) {
+      <button
+        class="ds-side-nav__settings-btn"
+        type="button"
+        aria-label="Settings"
+        (click)="settingsClick.emit()"
+      >
+        <!-- Gear / settings icon -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.02 7.02 0 0 0-1.62-.94l-.36-2.54A.48.48 0 0 0 14 2h-4a.48.48 0 0 0-.48.41l-.36 2.54a7.02 7.02 0 0 0-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.64 8.47a.47.47 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94 0 .31.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.06.28.31.48.59.48h4c.28 0 .53-.2.59-.47l.36-2.54a7.02 7.02 0 0 0 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    }
+  </div>
+
+  <!-- ── Search row ──────────────────────────────────────────────────────── -->
+  <div class="ds-side-nav__search-row">
+    <div class="ds-side-nav__search-wrapper">
+      <span class="ds-side-nav__search-icon" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="7" stroke="#969696" stroke-width="2"/>
+          <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#969696" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <input
+        class="ds-side-nav__search-input"
+        type="text"
+        [placeholder]="searchPlaceholder"
+        [(ngModel)]="searchQuery"
+        aria-label="Search navigation"
+      />
+    </div>
+  </div>
+
+  <!-- ── Scrollable list ────────────────────────────────────────────────── -->
+  <div class="ds-side-nav__list" role="tree">
+    <ng-container
+      *ngTemplateOutlet="treeLevel; context: { $implicit: filteredItems, depth: 0 }"
+    ></ng-container>
+  </div>
+
+</aside>
+
+<!-- ── Recursive tree template ──────────────────────────────────────────── -->
+<ng-template #treeLevel let-nodes let-depth="depth">
+  @for (item of nodes; track item.key) {
+    <div
+      class="ds-side-nav__item"
+      [class.ds-side-nav__item--active]="activeKey === item.key"
+      [style.padding-left.px]="8 + depth * 16"
+      role="treeitem"
+      [attr.aria-expanded]="item.children?.length ? item.expanded : null"
+      (click)="item.children?.length ? toggle(item) : select(item)"
+    >
+      <!-- Expand/collapse chevron for parents -->
+      <span class="ds-side-nav__item-icon" aria-hidden="true">
+        @if (item.children?.length) {
+          @if (item.expanded) {
+            <!-- Chevron down -->
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          } @else {
+            <!-- Chevron right -->
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          }
+        } @else {
+          <!-- Leaf dash spacer -->
+          <span class="ds-side-nav__leaf-spacer"></span>
+        }
+      </span>
+      <span class="ds-side-nav__item-label">{{ item.label }}</span>
+    </div>
+
+    <!-- Render children when expanded -->
+    @if (item.expanded && item.children?.length) {
+      <ng-container
+        *ngTemplateOutlet="treeLevel; context: { $implicit: item.children, depth: depth + 1 }"
+      ></ng-container>
+    }
+  }
+</ng-template>

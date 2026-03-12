@@ -1,0 +1,285 @@
+// ─── Card ─────────────────────────────────────────────────────────────────────
+.ds-popover {
+  position: relative;
+  width: var(--popover-width);
+  background: var(--popover-bg);
+  border: 1px solid var(--popover-border-color);
+  border-radius: var(--popover-radius);
+  box-shadow: var(--popover-shadow);
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.ds-popover__header {
+  padding: var(--spacing-medium) var(--popover-padding-x) var(--spacing-small);
+  border-bottom: 1px solid var(--popover-border-color);
+}
+
+.ds-popover__title {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-semibold);
+  color: var(--popover-theme-color, var(--color-user-base));
+  line-height: 1.4;
+}
+
+// ─── Body ─────────────────────────────────────────────────────────────────────
+.ds-popover__body {
+  padding: 0 var(--popover-padding-x) var(--spacing-medium);
+}
+
+.ds-popover__body-text {
+  font-size: var(--font-size-12);
+  color: var(--popover-text-color);
+  line-height: 1.5;
+  margin: var(--spacing-small) 0;
+}
+
+// Fields
+.ds-popover__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  margin-top: var(--spacing-small);
+}
+
+.ds-popover__field-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+}
+
+.ds-popover__field-label {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  color: var(--popover-text-color);
+  flex: 0 0 var(--popover-field-label-width);
+  text-align: right;
+}
+
+.ds-popover__field-input-wrapper {
+  flex: 1 1 auto;
+  height: var(--popover-input-height);
+  border: 1px solid var(--popover-input-border);
+  border-radius: var(--popover-radius);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--input-field-wrapper-padding-x);
+  box-sizing: border-box;
+
+  &:focus-within {
+    border-color: var(--popover-theme-color, var(--color-user-base));
+    box-shadow: 0 0 0 2px var(--popover-theme-color, var(--color-user-base));
+  }
+}
+
+.ds-popover__field-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--font-size-12);
+  width: 100%;
+  color: var(--popover-text-color);
+
+  &::placeholder { color: var(--color-secondary-70); font-style: italic; }
+}
+
+// Checkboxes
+.ds-popover__checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x-small);
+  margin-top: var(--spacing-small);
+}
+
+.ds-popover__checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  cursor: pointer;
+  font-size: var(--font-size-12);
+  color: var(--popover-text-color);
+}
+
+.ds-popover__checkbox-input {
+  accent-color: var(--popover-theme-color, var(--color-user-base));
+  cursor: pointer;
+  width: var(--popover-control-size);
+  height: var(--popover-control-size);
+}
+
+.ds-popover__checkbox-label { line-height: 1.4; }
+
+// Radios
+.ds-popover__radios {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-x-small);
+  margin-top: var(--spacing-small);
+}
+
+.ds-popover__radio-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  cursor: pointer;
+  font-size: var(--font-size-12);
+  color: var(--popover-text-color);
+}
+
+.ds-popover__radio-input {
+  accent-color: var(--popover-theme-color, var(--color-user-base));
+  cursor: pointer;
+  width: var(--popover-control-size);
+  height: var(--popover-control-size);
+}
+
+.ds-popover__radio-label { line-height: 1.4; }
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+.ds-popover__footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-small);
+  padding: var(--spacing-small) var(--popover-padding-x);
+  border-top: 2px solid var(--popover-footer-border, var(--color-user-30));
+}
+
+.ds-popover__btn {
+  height: var(--popover-btn-height);
+  padding: 0 var(--popover-padding-x);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--popover-radius);
+  cursor: pointer;
+  transition: opacity 0.15s, background 0.15s;
+  border: 1px solid var(--popover-theme-color, var(--color-user-base));
+
+  &:disabled {
+    opacity: var(--popover-btn-disabled-opacity);
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: var(--popover-theme-color, var(--color-user-base));
+    color: var(--color-text-inverse);
+
+    &:hover:not(:disabled) {
+      opacity: 0.88;
+    }
+  }
+
+  &--secondary {
+    background: var(--popover-bg);
+    color: var(--popover-theme-color, var(--color-user-base));
+
+    &:hover:not(:disabled) {
+      background: var(--color-user-5);
+    }
+  }
+}
+
+// ─── Notch / caret ────────────────────────────────────────────────────────────
+// Implemented with ::before (border trick for the fill) and ::after
+// (for the card border shadow). Both pseudo-elements are positioned
+// based on the data-notch attribute.
+
+.ds-popover[data-notch]:not([data-notch="none"]) {
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+  }
+}
+
+// ── Bottom positions (notch points down) ─────────────────────────────────────
+@mixin notch-bottom($left-value) {
+  &::before {
+    bottom: calc(-1 * var(--popover-notch-size) - 1px);
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-top: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
+  }
+  &::after {
+    bottom: calc(-1 * var(--popover-notch-size));
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-top: var(--popover-notch-size) solid var(--popover-bg);
+  }
+}
+
+.ds-popover[data-notch="bottom-left"]   { @include notch-bottom(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="bottom-right"]  { @include notch-bottom(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }
+.ds-popover[data-notch="bottom-center"] { @include notch-bottom(calc(50% - var(--popover-notch-size))); }
+
+// ── Top positions (notch points up) ──────────────────────────────────────────
+@mixin notch-top($left-value) {
+  &::before {
+    top: calc(-1 * var(--popover-notch-size) - 1px);
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-bottom: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
+  }
+  &::after {
+    top: calc(-1 * var(--popover-notch-size));
+    left: $left-value;
+    border-left: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid var(--popover-bg);
+  }
+}
+
+.ds-popover[data-notch="top-left"]   { @include notch-top(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="top-right"]  { @include notch-top(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }
+.ds-popover[data-notch="top-center"] { @include notch-top(calc(50% - var(--popover-notch-size))); }
+
+// ── Right positions (notch points right) ─────────────────────────────────────
+@mixin notch-right($top-value) {
+  &::before {
+    right: calc(-1 * var(--popover-notch-size) - 1px);
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-left: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
+  }
+  &::after {
+    right: calc(-1 * var(--popover-notch-size));
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-left: var(--popover-notch-size) solid var(--popover-bg);
+  }
+}
+
+.ds-popover[data-notch="right-top"]    { @include notch-right(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="right-center"] { @include notch-right(calc(50% - var(--popover-notch-size))); }
+.ds-popover[data-notch="right-bottom"] { @include notch-right(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }
+
+// ── Left positions (notch points left) ───────────────────────────────────────
+@mixin notch-left($top-value) {
+  &::before {
+    left: calc(-1 * var(--popover-notch-size) - 1px);
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-right: calc(var(--popover-notch-size) + 1px) solid var(--popover-border-color);
+  }
+  &::after {
+    left: calc(-1 * var(--popover-notch-size));
+    top: $top-value;
+    border-top: var(--popover-notch-size) solid transparent;
+    border-bottom: var(--popover-notch-size) solid transparent;
+    border-right: var(--popover-notch-size) solid var(--popover-bg);
+  }
+}
+
+.ds-popover[data-notch="left-top"]    { @include notch-left(var(--popover-notch-corner-offset)); }
+.ds-popover[data-notch="left-center"] { @include notch-left(calc(50% - var(--popover-notch-size))); }
+.ds-popover[data-notch="left-bottom"] { @include notch-left(calc(100% - var(--popover-notch-corner-offset) - var(--popover-notch-size) * 2)); }
