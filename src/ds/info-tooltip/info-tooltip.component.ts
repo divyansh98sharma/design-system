@@ -1,38 +1,20 @@
-import {
-  Component,
-  Input,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipPosition } from '../tooltip/tooltip.component';
-import { TooltipComponent } from '../tooltip/tooltip.component';
+import { TooltipModule } from 'primeng/tooltip';
+import { TooltipPosition, TooltipComponent } from '../tooltip/tooltip.component';
 
-/**
- * Info icon (ⓘ) that reveals a tooltip bubble on hover.
- *
- * The `position` input controls where the tooltip bubble appears relative
- * to the icon — matching all 12 Figma caret positions.
- */
 @Component({
   selector: 'ds-info-tooltip',
   standalone: true,
-  imports: [CommonModule, TooltipComponent],
+  imports: [CommonModule, TooltipModule, TooltipComponent],
   templateUrl: './info-tooltip.component.html',
   styleUrl: './info-tooltip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoTooltipComponent {
-  /** Tooltip text shown on hover. */
   @Input() tooltipText = 'A simple text popup tip.';
-
-  /**
-   * Where the tooltip bubble appears relative to the info icon.
-   * Matches the 12-position Figma spec (same as `ds-tooltip`).
-   * Default: `top-left` (bubble above-right of icon, caret at top-left).
-   */
   @Input() position: TooltipPosition = 'top-left';
 
-  /** Internal hover state. */
   hovered = false;
 
   onMouseEnter(): void { this.hovered = true; }
@@ -40,50 +22,21 @@ export class InfoTooltipComponent {
   onFocus(): void { this.hovered = true; }
   onBlur(): void { this.hovered = false; }
 
-  /**
-   * Maps the tooltip position to the inline style that positions the bubble
-   * correctly relative to the icon. The icon is 16 × 16 px.
-   */
   get bubbleStyle(): Record<string, string> {
-    const gap = '8px';
-    const styles: Record<string, string> = {
-      position: 'absolute',
-      zIndex: '100',
-      pointerEvents: 'none',
+    const map: Record<TooltipPosition, Record<string, string>> = {
+      'top-left':     { bottom: '100%', left: '0', marginBottom: '6px' },
+      'top-center':   { bottom: '100%', left: '50%', transform: 'translateX(-50%)', marginBottom: '6px' },
+      'top-right':    { bottom: '100%', right: '0', marginBottom: '6px' },
+      'bottom-left':  { top: '100%', left: '0', marginTop: '6px' },
+      'bottom-center':{ top: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '6px' },
+      'bottom-right': { top: '100%', right: '0', marginTop: '6px' },
+      'left-top':     { right: '100%', top: '0', marginRight: '6px' },
+      'left-center':  { right: '100%', top: '50%', transform: 'translateY(-50%)', marginRight: '6px' },
+      'left-bottom':  { right: '100%', bottom: '0', marginRight: '6px' },
+      'right-top':    { left: '100%', top: '0', marginLeft: '6px' },
+      'right-center': { left: '100%', top: '50%', transform: 'translateY(-50%)', marginLeft: '6px' },
+      'right-bottom': { left: '100%', bottom: '0', marginLeft: '6px' },
     };
-
-    switch (this.position) {
-      // Bubble BELOW icon (caret on top edge) ─────────────────────────────────
-      case 'top-left':
-        return { ...styles, top: `calc(100% + ${gap})`, left: '0' };
-      case 'top-center':
-        return { ...styles, top: `calc(100% + ${gap})`, left: '50%', transform: 'translateX(-50%)' };
-      case 'top-right':
-        return { ...styles, top: `calc(100% + ${gap})`, right: '0' };
-
-      // Bubble ABOVE icon (caret on bottom edge) ───────────────────────────────
-      case 'bottom-left':
-        return { ...styles, bottom: `calc(100% + ${gap})`, left: '0' };
-      case 'bottom-center':
-        return { ...styles, bottom: `calc(100% + ${gap})`, left: '50%', transform: 'translateX(-50%)' };
-      case 'bottom-right':
-        return { ...styles, bottom: `calc(100% + ${gap})`, right: '0' };
-
-      // Bubble to the RIGHT of icon (caret on left edge) ───────────────────────
-      case 'left-top':
-        return { ...styles, left: `calc(100% + ${gap})`, top: '0' };
-      case 'left-center':
-        return { ...styles, left: `calc(100% + ${gap})`, top: '50%', transform: 'translateY(-50%)' };
-      case 'left-bottom':
-        return { ...styles, left: `calc(100% + ${gap})`, bottom: '0' };
-
-      // Bubble to the LEFT of icon (caret on right edge) ───────────────────────
-      case 'right-top':
-        return { ...styles, right: `calc(100% + ${gap})`, top: '0' };
-      case 'right-center':
-        return { ...styles, right: `calc(100% + ${gap})`, top: '50%', transform: 'translateY(-50%)' };
-      case 'right-bottom':
-        return { ...styles, right: `calc(100% + ${gap})`, bottom: '0' };
-    }
+    return { position: 'absolute', zIndex: '1000', ...map[this.position] };
   }
 }
