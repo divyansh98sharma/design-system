@@ -221,6 +221,25 @@
   --loader-color-sunoh: var(--color-sunoh-base);
 
   // ----------------------------------------------------------
+  // Notification
+  // ----------------------------------------------------------
+  --notification-width: 540px;
+  --notification-radius: var(--radius-standard);
+  --notification-shadow: var(--shadow-md);
+  --notification-bg: var(--color-surface);
+  --notification-text-color: var(--color-text-primary);
+  --notification-sidebar-min-width: 62px;
+  --notification-icon-wrap-size: 30px;
+  --notification-sidebar-user-bg: var(--color-brand-primary);
+  --notification-sidebar-admin-bg: var(--color-brand-admin);
+  --notification-sidebar-green-bg: var(--color-status-success);
+  --notification-checkbox-size: 16px;
+  --notification-action-height: 24px;
+  --notification-badge-size: 10px;
+  --notification-badge-bg: var(--color-status-error);
+  --notification-badge-border: var(--color-surface);
+
+  // ----------------------------------------------------------
   // Breadcrumb
   // ----------------------------------------------------------
   --breadcrumb-height: 24px;
