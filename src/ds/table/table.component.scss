@@ -1,0 +1,407 @@
+// ─── Design tokens ────────────────────────────────────────────────────────────
+$table-bg:            #ffffff;
+$table-border:        #e6e6e6;
+$header-bg:           #f5f5f5;
+$header-text:         #1a1a1a;
+$header-font-size:    12px;
+$header-height:       28px;
+
+$row-height:          24px;
+$row-even-bg:         #ffffff;
+$row-odd-bg:          #fafafa;
+$row-hover-bg:        #f0f8ff;
+$row-selected-bg:     #e8f4fb;
+$row-detail-bg:       #f9f9f9;
+
+$cell-font-size:      12px;
+$cell-text:           #1a1a1a;
+$cell-padding:        0 8px;
+
+$toolbar-bg:          #ffffff;
+$toolbar-border:      #e6e6e6;
+$toolbar-height:      40px;
+
+$pagination-height:   36px;
+$pagination-bg:       #ffffff;
+$pagination-border:   #e6e6e6;
+
+$sort-active:         #0378a7;
+$btn-text:            #4b4b4b;
+$btn-hover-bg:        rgba(0, 0, 0, 0.06);
+
+// ─── Outer wrapper ────────────────────────────────────────────────────────────
+.ds-table-container {
+  display:       flex;
+  flex-direction: column;
+  width:         100%;
+  border:        1px solid $table-border;
+  border-radius: 4px;
+  background:    $table-bg;
+  font-family:   inherit;
+  overflow:      hidden;
+}
+
+// ─── Toolbar ─────────────────────────────────────────────────────────────────
+.ds-table__toolbar {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  height:          $toolbar-height;
+  padding:         0 12px;
+  border-bottom:   1px solid $toolbar-border;
+  background:      $toolbar-bg;
+  flex-shrink:     0;
+  gap:             8px;
+}
+
+.ds-table__toolbar-left,
+.ds-table__toolbar-right {
+  display:     flex;
+  align-items: center;
+  gap:         8px;
+}
+
+// ─── Scroll wrapper ───────────────────────────────────────────────────────────
+.ds-table__scroll-wrapper {
+  overflow-x: auto;
+  flex:       1 1 auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #969696 #ebebeb;
+
+  &::-webkit-scrollbar       { height: 6px; }
+  &::-webkit-scrollbar-track { background: #ebebeb; }
+  &::-webkit-scrollbar-thumb { background: #969696; border-radius: 3px; }
+}
+
+// ─── Table element ────────────────────────────────────────────────────────────
+.ds-table {
+  width:           100%;
+  border-collapse: collapse;
+  min-width:       800px;
+  table-layout:    fixed;
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+.ds-table__thead {
+  position: sticky;
+  top:      0;
+  z-index:  1;
+}
+
+.ds-table__th {
+  height:          $header-height;
+  background:      $header-bg;
+  border-bottom:   2px solid $table-border;
+  border-right:    1px solid $table-border;
+  padding:         $cell-padding;
+  text-align:      left;
+  font-size:       $header-font-size;
+  font-weight:     700;
+  color:           $header-text;
+  white-space:     nowrap;
+  user-select:     none;
+  box-sizing:      border-box;
+
+  &:last-child { border-right: none; }
+
+  &--checkbox,
+  &--icon {
+    width:      36px;
+    text-align: center;
+    padding:    0 6px;
+  }
+
+  &--actions {
+    width:      100px;
+    text-align: center;
+  }
+
+  &--sortable {
+    cursor: pointer;
+
+    &:hover { background: darken(#f5f5f5, 4%); }
+  }
+
+  &--sorted {
+    background: #eaf4fb;
+    color:      $sort-active;
+  }
+}
+
+.ds-table__th-inner {
+  display:     flex;
+  align-items: center;
+  gap:         4px;
+  min-height:  $header-height;
+}
+
+.ds-table__th-label { flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; }
+
+.ds-table__sort-icon {
+  display:     inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  svg { display: block; }
+}
+
+.ds-table__col-menu-btn {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  background:     transparent;
+  border:         none;
+  padding:        2px;
+  cursor:         pointer;
+  border-radius:  3px;
+  color:          $btn-text;
+  opacity:        0;
+  transition:     opacity 0.15s;
+
+  .ds-table__th:hover & { opacity: 1; }
+}
+
+// ─── Body ─────────────────────────────────────────────────────────────────────
+.ds-table__tbody {}
+
+.ds-table__tr {
+  height:          $row-height;
+  border-bottom:   1px solid $table-border;
+  background:      $row-even-bg;
+  transition:      background 0.1s;
+
+  &:nth-child(odd) { background: $row-odd-bg; }
+  &:hover          { background: $row-hover-bg; }
+
+  &--selected {
+    background: $row-selected-bg !important;
+  }
+
+  &--detail {
+    background: $row-detail-bg;
+    height:     auto;
+  }
+}
+
+.ds-table__td {
+  height:      $row-height;
+  padding:     $cell-padding;
+  font-size:   $cell-font-size;
+  color:       $cell-text;
+  border-right: 1px solid $table-border;
+  white-space: nowrap;
+  overflow:    hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  box-sizing:  border-box;
+
+  &:last-child { border-right: none; }
+
+  &--checkbox,
+  &--icon {
+    text-align: center;
+    padding:    0 6px;
+  }
+
+  &--actions {
+    text-align: center;
+    padding:    0 6px;
+  }
+
+  &--detail {
+    padding:    10px 12px;
+    white-space: normal;
+    color:      #4b4b4b;
+  }
+
+  &--empty {
+    padding:    24px 16px;
+    text-align: center;
+    color:      #969696;
+    font-style: italic;
+  }
+}
+
+// ─── Checkbox ─────────────────────────────────────────────────────────────────
+.ds-table__checkbox {
+  accent-color: #0378a7;
+  cursor:       pointer;
+  width:        14px;
+  height:       14px;
+}
+
+// ─── Expand button ────────────────────────────────────────────────────────────
+.ds-table__expand-btn {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  width:          18px;
+  height:         18px;
+  background:     transparent;
+  border:         1px solid #bcbcbc;
+  border-radius:  2px;
+  cursor:         pointer;
+  padding:        0;
+  transition:     border-color 0.15s;
+
+  &:hover { border-color: #0378a7; }
+  svg { display: block; }
+}
+
+// ─── Lock icon ────────────────────────────────────────────────────────────────
+.ds-table__lock-icon { display: block; margin: auto; }
+
+// ─── Chip cell ────────────────────────────────────────────────────────────────
+.ds-table__chip {
+  display:       inline-block;
+  padding:       2px 8px;
+  background:    #e8f4fb;
+  color:         #0378a7;
+  border-radius: 999px;
+  font-size:     11px;
+  font-weight:   600;
+  white-space:   nowrap;
+}
+
+// ─── Button cell ──────────────────────────────────────────────────────────────
+.ds-table__cell-btn {
+  height:        20px;
+  padding:       0 10px;
+  font-size:     11px;
+  font-weight:   600;
+  border:        1px solid #0378a7;
+  color:         #0378a7;
+  background:    #ffffff;
+  border-radius: 3px;
+  cursor:        pointer;
+  transition:    background 0.15s;
+
+  &:hover { background: #f1fbff; }
+}
+
+// ─── Row actions ──────────────────────────────────────────────────────────────
+.ds-table__row-actions {
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  gap:             4px;
+}
+
+.ds-table__action-btn {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  width:          22px;
+  height:         22px;
+  background:     transparent;
+  border:         none;
+  border-radius:  3px;
+  cursor:         pointer;
+  color:          $btn-text;
+  transition:     background 0.15s;
+
+  &:hover { background: $btn-hover-bg; }
+
+  &--danger:hover { background: rgba(217, 48, 37, 0.08); }
+
+  svg { display: block; }
+}
+
+// ─── Detail row placeholder ───────────────────────────────────────────────────
+.ds-table__detail-placeholder {
+  font-size:  12px;
+  color:      #969696;
+  font-style: italic;
+}
+
+// ─── Pagination footer ────────────────────────────────────────────────────────
+.ds-table__pagination {
+  display:       flex;
+  align-items:   center;
+  gap:           16px;
+  height:        $pagination-height;
+  padding:       0 12px;
+  border-top:    1px solid $pagination-border;
+  background:    $pagination-bg;
+  flex-shrink:   0;
+}
+
+.ds-table__page-size {
+  display:     flex;
+  align-items: center;
+  gap:         6px;
+}
+
+.ds-table__page-size-label {
+  font-size: 12px;
+  color:     #4b4b4b;
+  white-space: nowrap;
+}
+
+.ds-table__page-size-select {
+  height:        22px;
+  font-size:     12px;
+  border:        1px solid #bcbcbc;
+  border-radius: 3px;
+  padding:       0 4px;
+  background:    #ffffff;
+  cursor:        pointer;
+  outline:       none;
+
+  &:focus { border-color: #0378a7; }
+}
+
+.ds-table__page-info {
+  font-size:   12px;
+  color:       #4b4b4b;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.ds-table__page-nav {
+  display:     flex;
+  align-items: center;
+  gap:         2px;
+}
+
+.ds-table__page-btn {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  min-width:      26px;
+  height:         26px;
+  padding:        0 4px;
+  background:     transparent;
+  border:         1px solid transparent;
+  border-radius:  3px;
+  cursor:         pointer;
+  font-size:      12px;
+  color:          $btn-text;
+  transition:     background 0.15s, border-color 0.15s;
+
+  &:hover:not(:disabled) {
+    background:    $btn-hover-bg;
+    border-color:  #bcbcbc;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor:  not-allowed;
+  }
+
+  &--number { min-width: 28px; }
+
+  &--active {
+    background:   #0378a7;
+    color:        #ffffff;
+    border-color: #0378a7;
+    font-weight:  700;
+
+    &:hover:not(:disabled) {
+      background: #025e82;
+    }
+  }
+
+  svg { display: block; }
+}

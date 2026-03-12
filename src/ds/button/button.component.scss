@@ -4,9 +4,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: var(--button-md-gap);
   border: 1px solid transparent;
-  border-radius: var(--radius-4);
+  border-radius: var(--button-radius);
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-semibold);
   line-height: 1;
@@ -17,7 +17,7 @@
   outline-offset: 2px;
 
   &:focus-visible {
-    outline: 2px solid var(--color-user-base);
+    outline: 2px solid var(--button-focus-color);
     outline-offset: 2px;
   }
 
@@ -44,43 +44,43 @@
 // ─── Sizes ───────────────────────────────────────────────────────────────────
 
 .ds-btn--sm {
-  height: 24px;
-  padding: 0 8px;
-  font-size: 11px;
-  gap: 4px;
+  height: var(--button-sm-height);
+  padding: 0 var(--button-sm-padding-x);
+  font-size: var(--button-sm-font-size);
+  gap: var(--button-sm-gap);
 
-  .ds-btn__icon { font-size: 14px; }
+  .ds-btn__icon { font-size: var(--button-sm-icon-size); }
 
   &.ds-btn--icon-only {
-    width: 24px;
+    width: var(--button-sm-height);
     padding: 0;
   }
 }
 
 .ds-btn--md {
-  height: 32px;
-  padding: 0 12px;
-  font-size: var(--font-size-12);
-  gap: 6px;
+  height: var(--button-md-height);
+  padding: 0 var(--button-md-padding-x);
+  font-size: var(--button-font-size);
+  gap: var(--button-md-gap);
 
-  .ds-btn__icon { font-size: 16px; }
+  .ds-btn__icon { font-size: var(--button-md-icon-size); }
 
   &.ds-btn--icon-only {
-    width: 32px;
+    width: var(--button-md-height);
     padding: 0;
   }
 }
 
 .ds-btn--lg {
-  height: 40px;
-  padding: 0 16px;
-  font-size: var(--font-size-13);
-  gap: 8px;
+  height: var(--button-lg-height);
+  padding: 0 var(--button-lg-padding-x);
+  font-size: var(--button-lg-font-size);
+  gap: var(--button-lg-gap);
 
-  .ds-btn__icon { font-size: 16px; }
+  .ds-btn__icon { font-size: var(--button-md-icon-size); }
 
   &.ds-btn--icon-only {
-    width: 40px;
+    width: var(--button-lg-height);
     padding: 0;
   }
 }
@@ -92,8 +92,8 @@
   cursor: not-allowed;
   pointer-events: none;
   background: transparent;
-  border-color: var(--color-secondary-30);
-  color: var(--color-secondary-60);
+  border-color: var(--button-disabled-border);
+  color: var(--button-disabled-color);
 
   .ds-btn__icon { opacity: 0.4; }
 }
@@ -103,7 +103,7 @@
 @mixin filled-color($base, $hover, $active) {
   background: var(#{$base});
   border-color: transparent;
-  color: #fff;
+  color: var(--color-text-inverse);
 
   &:hover:not(:disabled):not(.ds-btn--disabled) {
     background: var(#{$hover});
@@ -129,12 +129,12 @@
 
     &:hover:not(:disabled):not(.ds-btn--disabled) {
       background: var(--color-secondary-60);
-      color: #fff;
+      color: var(--color-text-inverse);
     }
 
     &:active:not(:disabled):not(.ds-btn--disabled) {
       background: var(--color-secondary-70);
-      color: #fff;
+      color: var(--color-text-inverse);
     }
   }
 }
@@ -142,7 +142,7 @@
 // ─── Outlined variants ───────────────────────────────────────────────────────
 
 @mixin outlined-color($border, $text, $hover-bg, $active-bg) {
-  background: #fff;
+  background: var(--color-surface);
   border-color: var(#{$border});
   color: var(#{$text});
 

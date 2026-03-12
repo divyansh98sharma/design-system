@@ -1,0 +1,94 @@
+<div
+  class="ds-popover"
+  [attr.data-notch]="notch"
+  [style.--popover-theme-color]="themeColor"
+  [style.--popover-footer-border]="footerBorderColor"
+>
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <div class="ds-popover__header">
+    <span class="ds-popover__title">{{ title }}</span>
+  </div>
+
+  <!-- ── Body ───────────────────────────────────────────────────────────── -->
+  <div class="ds-popover__body">
+
+    @if (body) {
+      <p class="ds-popover__body-text">{{ body }}</p>
+    }
+
+    <!-- Optional labeled fields -->
+    @if (fields.length > 0) {
+      <div class="ds-popover__fields">
+        @for (field of fields; track $index) {
+          <div class="ds-popover__field-row">
+            <label class="ds-popover__field-label">{{ field.label }}</label>
+            <div class="ds-popover__field-input-wrapper">
+              <input
+                class="ds-popover__field-input"
+                type="text"
+                [placeholder]="field.placeholder ?? ''"
+                [value]="field.value"
+                (input)="onFieldChange($index, $any($event.target).value)"
+              />
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Optional checkboxes -->
+    @if (checkboxes.length > 0) {
+      <div class="ds-popover__checkboxes">
+        @for (cb of checkboxes; track cb.key) {
+          <label class="ds-popover__checkbox-row">
+            <input
+              class="ds-popover__checkbox-input"
+              type="checkbox"
+              [checked]="cb.checked"
+              (change)="onCheckboxChange($index, $any($event.target).checked)"
+            />
+            <span class="ds-popover__checkbox-label">{{ cb.label }}</span>
+          </label>
+        }
+      </div>
+    }
+
+    <!-- Optional radio buttons -->
+    @if (radios.length > 0) {
+      <div class="ds-popover__radios" role="radiogroup">
+        @for (radio of radios; track radio.key) {
+          <label class="ds-popover__radio-row">
+            <input
+              class="ds-popover__radio-input"
+              type="radio"
+              [value]="radio.key"
+              [checked]="selectedRadio === radio.key"
+              (change)="onRadioChange(radio.key)"
+            />
+            <span class="ds-popover__radio-label">{{ radio.label }}</span>
+          </label>
+        }
+      </div>
+    }
+
+  </div>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────────── -->
+  <div class="ds-popover__footer">
+    <button
+      class="ds-popover__btn ds-popover__btn--secondary"
+      type="button"
+      [disabled]="footerDisabled"
+      (click)="secondaryClick.emit()"
+    >{{ secondaryLabel }}</button>
+
+    <button
+      class="ds-popover__btn ds-popover__btn--primary"
+      type="button"
+      [disabled]="footerDisabled"
+      (click)="primaryClick.emit()"
+    >{{ primaryLabel }}</button>
+  </div>
+
+</div>

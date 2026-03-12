@@ -1,0 +1,71 @@
+<!-- ─── AI Disclaimer ────────────────────────────────────────────────────── -->
+@if (variant === 'ai-disclaimer') {
+  <div class="ds-disclaimer ds-disclaimer--ai">
+    <div class="ds-disclaimer__ai-body">
+      <span class="ds-disclaimer__ai-text">{{ aiText }}</span>
+      @if (aiNote) {
+        <span class="ds-disclaimer__ai-note"> {{ aiNote }}</span>
+      }
+    </div>
+    <div class="ds-disclaimer__ai-actions">
+      <button
+        class="ds-disclaimer__ack-btn"
+        type="button"
+        (click)="acknowledge.emit()"
+      >{{ acknowledgeLabel }}</button>
+    </div>
+  </div>
+}
+
+<!-- ─── Standard Disclaimer — label TOP ─────────────────────────────────── -->
+@if (variant === 'disclaimer' && labelPosition === 'top') {
+  <div class="ds-disclaimer ds-disclaimer--top">
+    <!-- Header row: label + close -->
+    <div class="ds-disclaimer__header">
+      <span class="ds-disclaimer__label">Disclaimer:</span>
+      <button
+        class="ds-disclaimer__close-btn"
+        type="button"
+        (click)="closed.emit()"
+        aria-label="Close disclaimer"
+      >
+        <svg class="ds-disclaimer__close-icon" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12.59 3.41L11.17 2 8 5.17 4.83 2 3.41 3.41 6.59 6.59 3.41 9.76 4.83 11.17 8 7.99l3.17 3.18 1.42-1.41L9.41 6.59z"/>
+        </svg>
+      </button>
+    </div>
+    <!-- Body text (italic) -->
+    <div class="ds-disclaimer__text-block">
+      <span class="ds-disclaimer__text">{{ text }}</span>
+      @if (line2) {
+        <span class="ds-disclaimer__text"> {{ line2 }}</span>
+      }
+    </div>
+  </div>
+}
+
+<!-- ─── Standard Disclaimer — label LEFT ────────────────────────────────── -->
+@if (variant === 'disclaimer' && labelPosition === 'left') {
+  <div class="ds-disclaimer ds-disclaimer--left">
+    <!-- Label + text on one row, close at the right -->
+    <div class="ds-disclaimer__row">
+      <div class="ds-disclaimer__inline-content">
+        <span class="ds-disclaimer__label">Disclaimer:</span>
+        <span class="ds-disclaimer__text"> {{ text }}</span>
+        @if (line2) {
+          <span class="ds-disclaimer__text"> {{ line2 }}</span>
+        }
+      </div>
+      <button
+        class="ds-disclaimer__close-btn"
+        type="button"
+        (click)="closed.emit()"
+        aria-label="Close disclaimer"
+      >
+        <svg class="ds-disclaimer__close-icon" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12.59 3.41L11.17 2 8 5.17 4.83 2 3.41 3.41 6.59 6.59 3.41 9.76 4.83 11.17 8 7.99l3.17 3.18 1.42-1.41L9.41 6.59z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+}

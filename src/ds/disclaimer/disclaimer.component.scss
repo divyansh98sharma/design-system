@@ -1,0 +1,145 @@
+// ─── Disclaimer Banner ────────────────────────────────────────────────────────
+
+.ds-disclaimer {
+  background: #fff9eb;                // var(--warning/base-5)
+  border: 1px solid #fbce2a;          // var(--color-warning-base)
+  border-radius: var(--radius-4);     // 4px
+  padding: var(--spacing-small);      // 8px
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  color: var(--color-black, #000);
+
+  // ─── Label ──────────────────────────────────────────────────────────────
+
+  &__label {
+    font-weight: var(--font-weight-bold);
+    font-style: italic;
+    flex-shrink: 0;
+  }
+
+  // ─── Body text ──────────────────────────────────────────────────────────
+
+  &__text {
+    font-weight: var(--font-weight-regular);
+    font-style: italic;
+  }
+
+  // ─── Close button ───────────────────────────────────────────────────────
+
+  &__close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    color: var(--color-black, #000);
+    transition: opacity 120ms ease;
+
+    &:hover        { opacity: 0.65; }
+    &:focus-visible {
+      outline: 2px solid #fbce2a;
+      outline-offset: 2px;
+    }
+  }
+
+  &__close-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  // ─── Variant: LEFT ──────────────────────────────────────────────────────
+
+  &--left {
+    width: 450px;
+
+    .ds-disclaimer__row {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-small); // 8px
+    }
+
+    .ds-disclaimer__inline-content {
+      flex: 1 0 0;
+      min-width: 0;
+    }
+  }
+
+  // ─── Variant: TOP ───────────────────────────────────────────────────────
+
+  &--top {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-x-small); // 4px
+
+    .ds-disclaimer__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ds-disclaimer__text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+  }
+
+  // ─── Variant: AI ────────────────────────────────────────────────────────
+
+  &--ai {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-medium); // 12px
+
+    .ds-disclaimer__ai-body {
+      flex: 1 0 0;
+      min-width: 0;
+    }
+
+    .ds-disclaimer__ai-text {
+      font-weight: var(--font-weight-regular);
+    }
+
+    .ds-disclaimer__ai-note {
+      font-weight: var(--font-weight-bold);
+    }
+
+    .ds-disclaimer__ai-actions {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // ─── Acknowledge button ─────────────────────────────────────────────────
+
+  &__ack-btn {
+    height: 24px;
+    padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
+    background: var(--color-secondary-base, #e1e1e1);
+    border: 1px solid var(--color-secondary-70, #969696);
+    border-radius: var(--radius-4);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    color: var(--color-black, #000);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 120ms ease, border-color 120ms ease;
+
+    &:hover        { background: var(--color-secondary-60, #bcbcbc); }
+    &:focus-visible {
+      outline: 2px solid #fbce2a;
+      outline-offset: 2px;
+    }
+  }
+}
