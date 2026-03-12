@@ -9,7 +9,8 @@
     "test": "ng test",
     "storybook": "ng run ds-workspace:storybook",
     "build-storybook": "ng run ds-workspace:build-storybook",
-    "test-storybook": "test-storybook"
+    "test-storybook": "test-storybook",
+    "chromatic": "chromatic --exit-zero-on-changes"
   },
   "private": true,
   "packageManager": "npm@11.11.0",
@@ -41,6 +42,7 @@
     "@storybook/addon-onboarding": "^10.2.16",
     "@storybook/angular": "^10.2.16",
     "@storybook/test-runner": "^0.24.2",
+    "chromatic": "^15.2.0",
     "http-server": "^14.1.1",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
