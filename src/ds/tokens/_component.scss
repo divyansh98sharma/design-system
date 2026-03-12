@@ -70,4 +70,29 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // Breadcrumb
+  // ----------------------------------------------------------
+  --breadcrumb-height: 24px;
+  --breadcrumb-item-height: 16px;
+  --breadcrumb-item-max-width: 220px;
+  --breadcrumb-item-min-width: 42px;
+  --breadcrumb-font-size: var(--font-size-12);
+  --breadcrumb-text-color: var(--color-text-primary);
+  --breadcrumb-separator-size: 16px;
+  --breadcrumb-radius: var(--radius-standard);
+  --breadcrumb-link-underline: var(--color-text-primary);
+  --breadcrumb-link-focus-color: var(--color-border-focus);
+  --breadcrumb-overflow-btn-size: 24px;
+  --breadcrumb-overflow-btn-bg: var(--color-surface);
+  --breadcrumb-overflow-btn-border: var(--color-secondary-base);
+  --breadcrumb-overflow-btn-color: var(--color-text-primary);
+  --breadcrumb-overflow-btn-active-bg: var(--color-user-5);
+  --breadcrumb-overflow-btn-active-border: var(--color-brand-primary);
+  --breadcrumb-overflow-btn-active-color: var(--color-brand-primary);
+  --breadcrumb-popover-bg: var(--color-surface);
+  --breadcrumb-popover-border: var(--color-secondary-base);
+  --breadcrumb-popover-shadow: var(--shadow-md);
+  --breadcrumb-popover-z-index: 100;
 }
