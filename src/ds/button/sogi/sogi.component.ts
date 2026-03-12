@@ -4,6 +4,8 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 /**
  * SOGI badge — a pill-shaped label with a rainbow pride gradient.
@@ -15,6 +17,7 @@ import {
 @Component({
   selector: 'ds-sogi',
   standalone: true,
+  imports: [CommonModule, ButtonModule],
   template: `
     <button
       class="ds-sogi"
@@ -32,29 +35,22 @@ import {
       display        : inline-flex;
       align-items    : center;
       justify-content: center;
-      min-height     : 24px;
-      max-height     : 24px;
-      padding        : 4px 8px;
-      border-radius  : 999px;
+      min-height     : var(--sogi-height);
+      max-height     : var(--sogi-height);
+      padding        : var(--spacing-x-small) var(--spacing-small);
+      border-radius  : var(--radius-pill);
       border         : none;
-      background-image: linear-gradient(
-        85.64deg,
-        rgb(95, 167, 177)  1.36%,
-        rgb(167,  87, 106) 33.51%,
-        rgb(206,  53,  66) 51.00%,
-        rgb(226, 106,  38) 76.06%,
-        rgb(246, 160,   8) 95.91%
-      );
-      color      : #ffffff;
-      font-family: 'Open Sans', sans-serif;
-      font-size  : 12px;
-      font-weight: 400;
-      line-height: 16px;
+      background-image: var(--sogi-gradient);
+      color      : var(--color-white);
+      font-family: var(--font-family-base);
+      font-size  : var(--font-size-12);
+      font-weight: var(--font-weight-regular);
+      line-height: var(--line-height-16);
       white-space: nowrap;
       cursor     : pointer;
 
       &:focus-visible {
-        outline       : 2px solid #ffffff;
+        outline       : 2px solid var(--color-white);
         outline-offset: 2px;
       }
     }

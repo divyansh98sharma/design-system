@@ -2,76 +2,75 @@
 :host {
   display: block;
 
-  --theme-base  : #0378a7;
-  --theme-base5 : #f1fbff;
-  --theme-base30: #81bbd3;
+  --theme-base  : var(--color-user-base);
+  --theme-base5 : var(--color-user-5);
+  --theme-base30: var(--color-user-30);
 }
 
 // ─── Container ───────────────────────────────────────────────────────────────
 .ds-standard-tabs {
-  display    : flex;
+  display: flex;
   align-items: flex-end;
-  position   : relative;
-  width      : 100%;
+  position: relative;
+  width: 100%;
 }
 
 // ─── Individual tab ──────────────────────────────────────────────────────────
 .ds-standard-tabs__tab {
-  position      : relative;
-  display       : inline-flex;
-  align-items   : center;
-  gap           : 4px;
-  padding       : 4px 8px;
-  min-height    : 24px;
-  max-height    : 24px;
-  border-radius : 4px 4px 0 0;
-  border        : 1px solid var(--theme-base30);
-  border-bottom : none;
-  background    : var(--theme-base5);
-  cursor        : pointer;
-  font-family   : 'Open Sans', sans-serif;
-  font-size     : 12px;
-  font-weight   : 400;
-  line-height   : 16px;
-  color         : #000000;
-  white-space   : nowrap;
-  flex-shrink   : 0;
-  // Underline at bottom of unselected tab
-  margin-bottom : -1px;
-  z-index       : 1;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tab-gap);
+  padding: var(--tab-padding-y) var(--tab-padding-x);
+  min-height: var(--tab-height);
+  max-height: var(--tab-height);
+  border-radius: var(--tab-radius) var(--tab-radius) 0 0;
+  border: 1px solid var(--theme-base30);
+  border-bottom: none;
+  background: var(--theme-base5);
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+  color: var(--tab-text-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: -1px;
+  z-index: 1;
 
   &::after {
-    content   : '';
-    position  : absolute;
-    bottom    : 0;
-    left      : 0;
-    right     : 0;
-    height    : 1px;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
     background: var(--theme-base);
   }
 
   // ── Active / selected ──────────────────────────────────────────────────
   &--active {
-    background  : #ffffff;
+    background: var(--tab-active-bg);
     border-color: var(--theme-base);
-    font-weight : 600; // SemiBold
-    z-index     : 3;
+    font-weight: var(--font-weight-semibold);
+    z-index: 3;
 
     &::after {
-      display: none; // no underline on active tab
+      display: none;
     }
   }
 
   // ── Hover ──────────────────────────────────────────────────────────────
   &:hover:not(.ds-standard-tabs__tab--active) {
-    background: darken(#f1fbff, 2%);
+    opacity: 0.85;
   }
 
   // ── Focus ──────────────────────────────────────────────────────────────
   &:focus-visible {
-    outline       : 2px solid var(--theme-base);
+    outline: 2px solid var(--theme-base);
     outline-offset: 2px;
-    z-index       : 4;
+    z-index: 4;
   }
 }
 
@@ -86,10 +85,10 @@
 
 // ─── Full-width bottom rule ───────────────────────────────────────────────────
 .ds-standard-tabs__rule {
-  flex      : 1 1 auto;
-  height    : 1px;
+  flex: 1 1 auto;
+  height: 1px;
   background: var(--theme-base);
   align-self: flex-end;
   margin-bottom: 0;
-  z-index   : 2;
+  z-index: 2;
 }

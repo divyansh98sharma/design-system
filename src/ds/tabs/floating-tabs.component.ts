@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TabsModule } from 'primeng/tabs';
 import { TabItem, TabTheme, TAB_THEME_COLORS } from './tabs.types';
 
 /**
@@ -22,7 +23,7 @@ import { TabItem, TabTheme, TAB_THEME_COLORS } from './tabs.types';
 @Component({
   selector: 'ds-floating-tabs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TabsModule],
   templateUrl: './floating-tabs.component.html',
   styleUrl: './floating-tabs.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

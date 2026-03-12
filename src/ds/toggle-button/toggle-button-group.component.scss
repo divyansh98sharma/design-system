@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background: #fff;
+  background: var(--color-surface);
   border: none;
   border-left: 1px solid;     // separator; color set per theme
   cursor: pointer;
@@ -27,7 +27,7 @@
   outline: none;
 
   &:focus-visible {
-    outline: 2px solid var(--color-user-base);
+    outline: 2px solid var(--toggle-btn-focus-color);
     outline-offset: -2px;
     z-index: 1;
   }
@@ -79,50 +79,49 @@
 // ─── Sizes ───────────────────────────────────────────────────────────────────
 
 .ds-tgl--sm .ds-tgl__btn {
-  height: 24px;
-  padding: 0 8px;
-  font-size: 11px;
-  gap: 4px;
+  height: var(--toggle-btn-sm-height);
+  padding: 0 var(--toggle-btn-sm-padding-x);
+  font-size: var(--toggle-btn-sm-font-size);
+  gap: var(--toggle-btn-sm-gap);
 
-  .ds-tgl__icon { font-size: 13px; }
+  .ds-tgl__icon { font-size: var(--toggle-btn-sm-icon-size); }
 
-  &.ds-tgl__btn--icon-only { width: 24px; padding: 0; }
+  &.ds-tgl__btn--icon-only { width: var(--toggle-btn-sm-height); padding: 0; }
 }
 
 .ds-tgl--md .ds-tgl__btn {
-  height: 32px;
-  padding: 0 12px;
+  height: var(--toggle-btn-md-height);
+  padding: 0 var(--toggle-btn-md-padding-x);
   font-size: var(--font-size-12);
-  gap: 5px;
+  gap: var(--toggle-btn-md-gap);
 
-  .ds-tgl__icon { font-size: 15px; }
+  .ds-tgl__icon { font-size: var(--toggle-btn-md-icon-size); }
 
-  &.ds-tgl__btn--icon-only { width: 32px; padding: 0; }
+  &.ds-tgl__btn--icon-only { width: var(--toggle-btn-md-height); padding: 0; }
 }
 
 .ds-tgl--lg .ds-tgl__btn {
-  height: 40px;
-  padding: 0 16px;
+  height: var(--toggle-btn-lg-height);
+  padding: 0 var(--toggle-btn-lg-padding-x);
   font-size: var(--font-size-13);
-  gap: 6px;
+  gap: var(--toggle-btn-lg-gap);
 
-  .ds-tgl__icon { font-size: 16px; }
+  .ds-tgl__icon { font-size: var(--toggle-btn-lg-icon-size); }
 
-  &.ds-tgl__btn--icon-only { width: 40px; padding: 0; }
+  &.ds-tgl__btn--icon-only { width: var(--toggle-btn-lg-height); padding: 0; }
 }
 
 // ─── Disabled group ───────────────────────────────────────────────────────────
 
 .ds-tgl--disabled {
-  opacity: 0.5;
+  opacity: var(--toggle-btn-disabled-opacity);
   pointer-events: none;
 }
 
 // ─── Color Themes ─────────────────────────────────────────────────────────────
 
-// $selected-text accepts a literal colour (e.g. #fff) OR a CSS-variable name
-// (e.g. --color-secondary-90). Use #{} interpolation to emit the raw value;
-// wrap in var() only when the value starts with "--".
+// $selected-text accepts a CSS-variable name (e.g. --color-text-inverse).
+// Use #{} interpolation; wrap in var() when the value starts with "--".
 @mixin _tgl-color($value) {
   @if str-slice(#{$value}, 1, 2) == '--' {
     color: var(#{$value});
@@ -154,7 +153,7 @@
     --color-user-base,
     --color-user-base,
     --color-user-base,
-    #fff,
+    --color-text-inverse,
     --color-user-5
   );
 }
@@ -164,7 +163,7 @@
     --color-admin-base,
     --color-admin-base,
     --color-admin-base,
-    #fff,
+    --color-text-inverse,
     --color-admin-5
   );
 }
@@ -174,7 +173,7 @@
     --color-secondary-base,
     --color-secondary-80,
     --color-secondary-70,
-    #fff,
+    --color-text-inverse,
     --color-secondary-20
   );
 }
@@ -184,7 +183,7 @@
     --color-green-base,
     --color-green-base,
     --color-green-base,
-    #fff,
+    --color-text-inverse,
     --color-green-5
   );
 }
@@ -194,7 +193,7 @@
     --color-error-base,
     --color-error-base,
     --color-error-base,
-    #fff,
+    --color-text-inverse,
     --color-error-5
   );
 }
@@ -204,7 +203,7 @@
     --color-sunoh-base,
     --color-sunoh-base,
     --color-sunoh-base,
-    #fff,
+    --color-text-inverse,
     --color-sunoh-5
   );
 }

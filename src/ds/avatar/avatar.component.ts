@@ -1,5 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Avatar } from 'primeng/avatar';
 
 export type AvatarVariant = 'text' | 'image' | 'dummy';
 export type AvatarSize = 'sm' | 'lg';
@@ -7,7 +8,7 @@ export type AvatarSize = 'sm' | 'lg';
 @Component({
   selector: 'ds-avatar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Avatar],
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
