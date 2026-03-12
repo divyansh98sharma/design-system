@@ -257,6 +257,20 @@
   --toast-title-font-weight: var(--font-weight-bold);
 
   // ----------------------------------------------------------
+  // Disclaimer
+  // ----------------------------------------------------------
+  --disclaimer-width: 450px;
+  --disclaimer-bg: var(--color-status-warning-subtle);
+  --disclaimer-border: var(--color-status-warning);
+  --disclaimer-radius: var(--radius-standard);
+  --disclaimer-text-color: var(--color-text-primary);
+  --disclaimer-close-size: 16px;
+  --disclaimer-ack-height: 24px;
+  --disclaimer-ack-bg: var(--color-secondary-base);
+  --disclaimer-ack-border: var(--color-secondary-70);
+  --disclaimer-ack-bg-hover: var(--color-secondary-60);
+
+  // ----------------------------------------------------------
   // Breadcrumb
   // ----------------------------------------------------------
   --breadcrumb-height: 24px;
