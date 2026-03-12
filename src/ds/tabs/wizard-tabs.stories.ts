@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { WizardTabsComponent } from './wizard-tabs.component';
 import { WizardTabTheme } from './tabs.types';
 
@@ -19,7 +19,7 @@ const FIVE_STEPS = [
 const THEMES: WizardTabTheme[] = ['user', 'admin'];
 
 const meta: Meta<WizardTabsComponent> = {
-  title    : 'Components/Tabs/Wizard Tabs',
+  title    : 'Design System/Tabs/Wizard Tabs',
   component: WizardTabsComponent,
   tags     : ['autodocs'],
   argTypes : {

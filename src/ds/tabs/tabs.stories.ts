@@ -1,5 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
 import { StandardTabsComponent } from './standard-tabs.component';
@@ -39,7 +38,7 @@ const WIZARD_THEMES: WizardTabTheme[] = ['user', 'admin'];
 //  1. Standard Tabs
 // ─────────────────────────────────────────────────────────────────────────────
 const standardMeta: Meta<StandardTabsComponent> = {
-  title    : 'Components/Tabs/Standard Tabs',
+  title    : 'Design System/Tabs/Standard Tabs',
   component: StandardTabsComponent,
   tags     : ['autodocs'],
   argTypes : {

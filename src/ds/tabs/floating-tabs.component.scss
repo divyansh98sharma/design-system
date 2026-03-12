@@ -1,60 +1,60 @@
 // ─── CSS custom property defaults ────────────────────────────────────────────
 :host {
   display: block;
-  --theme-base: #0378a7;
+  --theme-base: var(--color-user-base);
 }
 
 // ─── Container ───────────────────────────────────────────────────────────────
 .ds-floating-tabs {
-  display      : flex;
-  align-items  : center;
-  min-height   : 24px;
-  max-height   : 24px;
-  border-bottom: 1px solid #e1e1e1;
-  width        : 100%;
+  display: flex;
+  align-items: center;
+  min-height: var(--tab-height);
+  max-height: var(--tab-height);
+  border-bottom: 1px solid var(--tab-border-color);
+  width: 100%;
 }
 
 // ─── Individual tab ──────────────────────────────────────────────────────────
 .ds-floating-tabs__tab {
-  position      : relative;
-  display       : inline-flex;
+  position: relative;
+  display: inline-flex;
   flex-direction: column;
-  align-items   : center;
-  gap           : 4px;
-  padding       : 4px 8px;
-  min-height    : 24px;
-  max-height    : 24px;
-  border        : none;
-  border-bottom : 1px solid #e1e1e1;
-  background    : transparent;
-  cursor        : pointer;
-  font-family   : 'Open Sans', sans-serif;
-  font-size     : 12px;
-  font-weight   : 400;
-  line-height   : 16px;
-  color         : #000000;
-  white-space   : nowrap;
-  flex-shrink   : 0;
-  margin-bottom : -1px; // flush with container border
-  text-align    : center;
+  align-items: center;
+  gap: var(--tab-gap);
+  padding: var(--tab-padding-y) var(--tab-padding-x);
+  min-height: var(--tab-height);
+  max-height: var(--tab-height);
+  border: none;
+  border-bottom: 1px solid var(--tab-border-color);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-size: var(--tab-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+  color: var(--tab-text-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-bottom: -1px;
+  text-align: center;
 
   // Active underline (hidden by default)
   &::after {
-    content      : '';
-    position     : absolute;
-    bottom       : -1px;
-    left         : 8px;
-    right        : 8px;
-    height       : 1px;
-    border-radius: 12px;
-    background   : transparent;
-    transition   : background 0.15s ease;
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: var(--tab-padding-x);
+    right: var(--tab-padding-x);
+    height: 1px;
+    border-radius: var(--radius-pill);
+    background: transparent;
+    transition: background var(--tab-transition);
   }
 
   // ── Active ─────────────────────────────────────────────────────────────
   &--active {
     border-bottom-color: var(--theme-base);
-    font-weight        : 600; // SemiBold
+    font-weight: var(--font-weight-semibold);
 
     &::after {
       background: var(--theme-base);
@@ -63,12 +63,12 @@
 
   // ── Hover ──────────────────────────────────────────────────────────────
   &:hover:not(.ds-floating-tabs__tab--active) {
-    color: rgba(0, 0, 0, 0.75);
+    opacity: 0.75;
   }
 
   // ── Focus ──────────────────────────────────────────────────────────────
   &:focus-visible {
-    outline       : 2px solid var(--theme-base);
+    outline: 2px solid var(--theme-base);
     outline-offset: 2px;
   }
 }

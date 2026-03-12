@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { FloatingTabsComponent } from './floating-tabs.component';
 import { TabTheme } from './tabs.types';
 
@@ -12,7 +12,7 @@ const SAMPLE_TABS = [
 const THEMES: TabTheme[] = ['user', 'admin', 'green', 'sunoh'];
 
 const meta: Meta<FloatingTabsComponent> = {
-  title    : 'Components/Tabs/Floating Tabs',
+  title    : 'Design System/Tabs/Floating Tabs',
   component: FloatingTabsComponent,
   tags     : ['autodocs'],
   argTypes : {
