@@ -225,6 +225,44 @@ export const WithIcons: Story = {
   }),
 };
 
+// ─── Custom Image Template ────────────────────────────────────────────────────
+
+export const CustomImageTemplate: Story = {
+  name: 'Custom Image Template',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Use `<ng-template #dsIcon>` inside `<ds-button>` to pass a custom image or any element as the icon. ' +
+          'Works with all variants, colors, and `iconPosition` values.',
+      },
+    },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <ds-button label="Custom Image Left" variant="filled" color="user" size="md" iconPosition="left">
+          <ng-template #dsIcon>
+            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="" style="width:1em;height:1em;object-fit:contain" />
+          </ng-template>
+        </ds-button>
+
+        <ds-button label="Custom Image Right" variant="outlined" color="admin" size="md" iconPosition="right">
+          <ng-template #dsIcon>
+            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="" style="width:1em;height:1em;object-fit:contain" />
+          </ng-template>
+        </ds-button>
+
+        <ds-button variant="filled" color="success" size="lg" iconPosition="only" label="Icon only">
+          <ng-template #dsIcon>
+            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="" style="width:1em;height:1em;object-fit:contain" />
+          </ng-template>
+        </ds-button>
+      </div>
+    `,
+  }),
+};
+
 // ─── Icon Only ────────────────────────────────────────────────────────────────
 
 export const IconOnly: Story = {

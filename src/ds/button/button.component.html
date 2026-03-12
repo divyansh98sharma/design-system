@@ -5,19 +5,37 @@
   [attr.aria-disabled]="disabled || null"
   (onClick)="onClick($event)"
 >
-  @if (safeIcon && iconPosition === 'left') {
-    <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+  @if (hasIcon && iconPosition === 'left') {
+    @if (customIconTemplate) {
+      <span class="p-button-icon p-button-icon-left" aria-hidden="true">
+        <ng-container *ngTemplateOutlet="customIconTemplate"></ng-container>
+      </span>
+    } @else {
+      <span class="p-button-icon p-button-icon-left" [innerHTML]="safeIcon" aria-hidden="true"></span>
+    }
   }
 
   @if (!isIconOnly) {
-    <span class="ds-btn__label">{{ label }}</span>
+    <span class="p-button-label">{{ label }}</span>
   }
 
-  @if (safeIcon && iconPosition === 'right') {
-    <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+  @if (hasIcon && iconPosition === 'right') {
+    @if (customIconTemplate) {
+      <span class="p-button-icon p-button-icon-right" aria-hidden="true">
+        <ng-container *ngTemplateOutlet="customIconTemplate"></ng-container>
+      </span>
+    } @else {
+      <span class="p-button-icon p-button-icon-right" [innerHTML]="safeIcon" aria-hidden="true"></span>
+    }
   }
 
-  @if (safeIcon && isIconOnly) {
-    <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+  @if (hasIcon && isIconOnly) {
+    @if (customIconTemplate) {
+      <span class="p-button-icon" aria-hidden="true">
+        <ng-container *ngTemplateOutlet="customIconTemplate"></ng-container>
+      </span>
+    } @else {
+      <span class="p-button-icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+    }
   }
 </p-button>
