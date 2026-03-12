@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { SogiComponent } from './sogi.component';
 
 const meta: Meta<SogiComponent> = {
-  title    : 'Components/Button/SOGI',
+  title    : 'Design System/Button/SOGI',
   component: SogiComponent,
   tags     : ['autodocs'],
   argTypes : {
@@ -20,10 +20,8 @@ export const Default: Story = {};
 /** Shown against a white background to appreciate the gradient. */
 export const OnWhiteBackground: Story = {
   name      : 'On White Background',
-  globals: {
-    backgrounds: {
-      value: "white"
-    }
+  parameters: {
+    backgrounds: { default: 'white' },
   },
 };
 
