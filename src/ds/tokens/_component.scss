@@ -180,6 +180,33 @@
   --tooltip-padding-y: var(--spacing-x-small);
 
   // ----------------------------------------------------------
+  // Top Nav
+  // ----------------------------------------------------------
+  --top-nav-height: 40px;
+  --top-nav-bg: #02506f;
+  --top-nav-icon-color: #02506f;
+  --top-nav-icon-size: 16px;
+  --top-nav-large-icon-size: 24px;
+  --top-nav-logo-font-size: 14px;
+  --top-nav-logo-sup-font-size: 9px;
+  --top-nav-menu-toggle-bg: var(--color-user-50);
+  --top-nav-menu-toggle-hover-bg: var(--color-user-40);
+  --top-nav-lookup-bg: var(--color-user-5);
+  --top-nav-lookup-hover-bg: var(--color-user-10);
+  --top-nav-lookup-radius: 2px;
+  --top-nav-lookup-divider-color: #90c2d6;
+  --top-nav-radio-size: 24px;
+  --top-nav-radio-border: 2px solid rgba(255, 255, 255, 0.3);
+  --top-nav-link-cell-width: 72px;
+  --top-nav-link-border-color: var(--color-user-50);
+  --top-nav-link-hover-bg: rgba(255, 255, 255, 0.08);
+  --top-nav-refresh-border-color: var(--color-user-40);
+  --top-nav-jellybean-min-width: 37px;
+  --top-nav-jellybean-red-bg: linear-gradient(to bottom, #ff9387, #ff7260);
+  --top-nav-jellybean-yellow-bg: linear-gradient(to bottom, #ffea61, #d6b522);
+  --top-nav-jellybean-gray-bg: linear-gradient(to bottom, #f2f2f2, #cccccc);
+
+  // ----------------------------------------------------------
   // Patient Info
   // ----------------------------------------------------------
   --patient-info-avatar-size: 100px;
