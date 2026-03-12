@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { SideNavigationComponent, SideNavItem } from './side-navigation.component';
 
 const DEMO_ITEMS: SideNavItem[] = [
@@ -48,7 +48,7 @@ const DEMO_ITEMS: SideNavItem[] = [
 ];
 
 const meta: Meta<SideNavigationComponent> = {
-  title: 'Components/Side Navigation',
+  title: 'Design System/Side Navigation',
   component: SideNavigationComponent,
   tags: ['autodocs'],
   argTypes: {
