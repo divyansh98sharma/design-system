@@ -6,6 +6,77 @@
 
 :root {
   // ----------------------------------------------------------
+  // Checkbox
+  // ----------------------------------------------------------
+  --checkbox-size: 16px;
+  --checkbox-radius: 3px;
+  --checkbox-border-width: 1.5px;
+  --checkbox-border: var(--color-border-strong);
+  --checkbox-border-checked: var(--color-brand-primary);
+  --checkbox-border-hover: var(--color-brand-primary-hover);
+  --checkbox-bg: var(--color-surface);
+  --checkbox-bg-checked: var(--color-brand-primary);
+  --checkbox-bg-hover: var(--color-brand-primary-hover);
+  --checkbox-bg-disabled: var(--color-surface-disabled);
+  --checkbox-border-disabled: var(--color-border-strong);
+  --checkbox-icon-color: var(--color-text-inverse);
+  --checkbox-icon-size: 10px;
+  --checkbox-label-font-size: var(--font-size-12);
+  --checkbox-label-color: var(--color-text-primary);
+  --checkbox-label-color-disabled: var(--color-text-disabled);
+  --checkbox-gap: var(--spacing-x-small);
+  --checkbox-transition: 120ms ease;
+  --checkbox-focus-width: 2px;
+  --checkbox-focus-offset: 2px;
+
+  // ----------------------------------------------------------
+  // Radio Button
+  // ----------------------------------------------------------
+  --radio-size: 16px;
+  --radio-border: var(--color-border-strong);
+  --radio-border-checked: var(--color-brand-primary);
+  --radio-border-hover: var(--color-brand-primary-hover);
+  --radio-bg: var(--color-surface);
+  --radio-dot-size: 8px;
+  --radio-dot-color: var(--color-brand-primary);
+  --radio-dot-color-hover: var(--color-brand-primary-hover);
+  --radio-bg-disabled: var(--color-surface);
+  --radio-border-disabled: var(--color-border-strong);
+  --radio-label-font-size: var(--font-size-12);
+  --radio-label-color: var(--color-text-primary);
+  --radio-label-color-disabled: var(--color-text-disabled);
+  --radio-gap: var(--spacing-x-small);
+  --radio-transition: 120ms ease;
+  --radio-focus-width: 2px;
+  --radio-focus-offset: 2px;
+
+  // ----------------------------------------------------------
+  // Toggle Switch
+  // ----------------------------------------------------------
+  --toggle-width: 50px;
+  --toggle-height: 24px;
+  --toggle-padding: var(--spacing-x-small);
+  --toggle-radius: var(--radius-pill);
+  --toggle-bg-off: var(--color-surface);
+  --toggle-border-off: var(--color-secondary-70);
+  --toggle-bg-user: var(--color-user-base);
+  --toggle-bg-user-hover: var(--color-user-70);
+  --toggle-bg-admin: var(--color-admin-base);
+  --toggle-bg-admin-hover: var(--color-admin-60);
+  --toggle-bg-green: var(--color-green-base);
+  --toggle-bg-green-hover: var(--color-green-60);
+  --toggle-bg-sunoh: var(--color-sunoh-base);
+  --toggle-bg-sunoh-hover: var(--color-sunoh-60);
+  --toggle-thumb-size: 16px;
+  --toggle-thumb-bg-off: var(--color-secondary-50);
+  --toggle-thumb-bg-on: var(--color-text-inverse);
+  --toggle-icon-size: 10px;
+  --toggle-icon-color-off: var(--color-secondary-70);
+  --toggle-transition: 200ms ease;
+  --toggle-disabled-opacity: 0.45;
+  --toggle-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Button
   // ----------------------------------------------------------
   --button-radius: var(--radius-standard);
@@ -70,4 +141,64 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // Tooltip Bubble (white popup — 12-position caret)
+  // ----------------------------------------------------------
+  --tooltip-bubble-bg: var(--color-surface);
+  --tooltip-bubble-color: var(--color-text-primary);
+  --tooltip-bubble-radius: var(--radius-standard);
+  --tooltip-bubble-shadow: var(--shadow-md);
+  --tooltip-bubble-padding-x: var(--spacing-small);
+  --tooltip-bubble-padding-y: var(--spacing-x-small);
+  --tooltip-bubble-font-size: var(--font-size-12);
+  --tooltip-bubble-max-width: 512px;
+  --tooltip-bubble-min-width: 42px;
+  --tooltip-arrow-size: 6px;
+  --tooltip-arrow-overlap: 1px;
+
+  // ----------------------------------------------------------
+  // Info Tooltip
+  // ----------------------------------------------------------
+  --info-tooltip-size: 16px;
+  --info-tooltip-icon-color: var(--color-text-secondary);
+  --info-tooltip-icon-color-hover: var(--color-brand-primary);
+  --info-tooltip-focus-color: var(--color-border-focus);
+  --info-tooltip-transition: 120ms ease;
+
+  // ----------------------------------------------------------
+  // Loader
+  // ----------------------------------------------------------
+  --loader-dot-size: 8px;
+  --loader-dot-gap: 1px;
+  --loader-min-width: 26px;
+  --loader-label-gap: var(--spacing-large);
+  --loader-label-font-size: var(--font-size-14);
+  --loader-label-color: var(--color-text-primary);
+  --loader-animation-duration: 1.2s;
+  --loader-dot-delay-2: 0.2s;
+  --loader-dot-delay-3: 0.4s;
+  --loader-color-user: var(--color-user-base);
+  --loader-color-admin: var(--color-admin-base);
+  --loader-color-green: var(--color-green-base);
+  --loader-color-sunoh: var(--color-sunoh-base);
+
+  // ----------------------------------------------------------
+  // Notification
+  // ----------------------------------------------------------
+  --notification-width: 540px;
+  --notification-radius: var(--radius-standard);
+  --notification-shadow: var(--shadow-md);
+  --notification-bg: var(--color-surface);
+  --notification-text-color: var(--color-text-primary);
+  --notification-sidebar-min-width: 62px;
+  --notification-icon-wrap-size: 30px;
+  --notification-sidebar-user-bg: var(--color-brand-primary);
+  --notification-sidebar-admin-bg: var(--color-brand-admin);
+  --notification-sidebar-green-bg: var(--color-status-success);
+  --notification-checkbox-size: 16px;
+  --notification-action-height: 24px;
+  --notification-badge-size: 10px;
+  --notification-badge-bg: var(--color-status-error);
+  --notification-badge-border: var(--color-surface);
 }
