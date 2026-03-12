@@ -1,0 +1,95 @@
+// ─── CSS custom property defaults (overridden inline via [style]) ────────────
+:host {
+  display: block;
+
+  --theme-base  : #0378a7;
+  --theme-base5 : #f1fbff;
+  --theme-base30: #81bbd3;
+}
+
+// ─── Container ───────────────────────────────────────────────────────────────
+.ds-standard-tabs {
+  display    : flex;
+  align-items: flex-end;
+  position   : relative;
+  width      : 100%;
+}
+
+// ─── Individual tab ──────────────────────────────────────────────────────────
+.ds-standard-tabs__tab {
+  position      : relative;
+  display       : inline-flex;
+  align-items   : center;
+  gap           : 4px;
+  padding       : 4px 8px;
+  min-height    : 24px;
+  max-height    : 24px;
+  border-radius : 4px 4px 0 0;
+  border        : 1px solid var(--theme-base30);
+  border-bottom : none;
+  background    : var(--theme-base5);
+  cursor        : pointer;
+  font-family   : 'Open Sans', sans-serif;
+  font-size     : 12px;
+  font-weight   : 400;
+  line-height   : 16px;
+  color         : #000000;
+  white-space   : nowrap;
+  flex-shrink   : 0;
+  // Underline at bottom of unselected tab
+  margin-bottom : -1px;
+  z-index       : 1;
+
+  &::after {
+    content   : '';
+    position  : absolute;
+    bottom    : 0;
+    left      : 0;
+    right     : 0;
+    height    : 1px;
+    background: var(--theme-base);
+  }
+
+  // ── Active / selected ──────────────────────────────────────────────────
+  &--active {
+    background  : #ffffff;
+    border-color: var(--theme-base);
+    font-weight : 600; // SemiBold
+    z-index     : 3;
+
+    &::after {
+      display: none; // no underline on active tab
+    }
+  }
+
+  // ── Hover ──────────────────────────────────────────────────────────────
+  &:hover:not(.ds-standard-tabs__tab--active) {
+    background: darken(#f1fbff, 2%);
+  }
+
+  // ── Focus ──────────────────────────────────────────────────────────────
+  &:focus-visible {
+    outline       : 2px solid var(--theme-base);
+    outline-offset: 2px;
+    z-index       : 4;
+  }
+}
+
+// ─── Labels ──────────────────────────────────────────────────────────────────
+.ds-standard-tabs__label {
+  font-weight: inherit;
+}
+
+.ds-standard-tabs__count {
+  font-weight: inherit;
+}
+
+// ─── Full-width bottom rule ───────────────────────────────────────────────────
+.ds-standard-tabs__rule {
+  flex      : 1 1 auto;
+  height    : 1px;
+  background: var(--theme-base);
+  align-self: flex-end;
+  margin-bottom: 0;
+  z-index   : 2;
+}
