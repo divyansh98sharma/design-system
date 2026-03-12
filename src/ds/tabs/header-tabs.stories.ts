@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { HeaderTabsComponent } from './header-tabs.component';
 import { TabTheme } from './tabs.types';
 

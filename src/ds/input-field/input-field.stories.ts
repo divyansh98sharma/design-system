@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
 import { InputFieldComponent } from './input-field.component';
 
 const meta: Meta<InputFieldComponent> = {
