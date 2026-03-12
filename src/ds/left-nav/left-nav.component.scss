@@ -1,17 +1,7 @@
-// ─── Design tokens ───────────────────────────────────────────────────────────
-// Colours derived from the Figma "Left Nav" frame
-$nav-outer-bg   : #242835; // dark blue shade 1 — outer rail, scroll buttons
-$nav-links-bg   : #2d3242; // dark blue shade 2 — individual link items
-$nav-menu-bg    : #2d8eb6; // user/base-50      — top menu toggle bar
-$nav-active-bg  : #0378a7; // user/base         — active item highlight
-$nav-text       : #ffffff;
-$nav-icon-size  : 24px;
-$nav-width      : 60px;
-
 // ─── Host ────────────────────────────────────────────────────────────────────
 :host {
   display: block;
-  width: $nav-width;
+  width: var(--left-nav-width);
   flex-shrink: 0;
 }
 
@@ -19,10 +9,10 @@ $nav-width      : 60px;
 .ds-left-nav {
   display      : flex;
   flex-direction: column;
-  width        : $nav-width;
+  width        : var(--left-nav-width);
   height       : 100%;
   min-height   : 100vh;
-  background   : $nav-outer-bg;
+  background   : var(--left-nav-outer-bg);
   overflow     : hidden;
 
   // ── Menu toggle bar ──────────────────────────────────────────────────────
@@ -30,20 +20,20 @@ $nav-width      : 60px;
     display        : flex;
     align-items    : center;
     justify-content: space-between;
-    padding        : 8px 6px;
-    background     : $nav-menu-bg;
+    padding        : var(--spacing-small) var(--left-nav-menu-toggle-padding-x);
+    background     : var(--left-nav-menu-bg);
     cursor         : pointer;
     flex-shrink    : 0;
 
     &:hover {
-      background: darken($nav-menu-bg, 6%);
+      background: var(--left-nav-menu-hover-bg);
     }
   }
 
   &__menu-icon {
-    width : 16px;
-    height: 16px;
-    fill  : $nav-text;
+    width : var(--left-nav-menu-icon-size);
+    height: var(--left-nav-menu-icon-size);
+    fill  : var(--color-text-inverse);
     flex-shrink: 0;
   }
 
@@ -53,24 +43,24 @@ $nav-width      : 60px;
     align-items    : center;
     justify-content: center;
     width          : 100%;
-    padding        : 6px 0;
-    background     : $nav-outer-bg;
+    padding        : var(--left-nav-scroll-btn-padding) 0;
+    background     : var(--left-nav-outer-bg);
     border         : none;
     cursor         : pointer;
     flex-shrink    : 0;
 
     svg {
-      width : 18px;
-      height: 18px;
-      fill  : $nav-text;
+      width : var(--left-nav-scroll-btn-icon-size);
+      height: var(--left-nav-scroll-btn-icon-size);
+      fill  : var(--color-text-inverse);
     }
 
     &:hover {
-      background: lighten($nav-outer-bg, 5%);
+      background: var(--left-nav-outer-hover-bg);
     }
 
     &:focus-visible {
-      outline       : 2px solid $nav-text;
+      outline       : 2px solid var(--color-text-inverse);
       outline-offset: -2px;
     }
   }
@@ -82,7 +72,7 @@ $nav-width      : 60px;
     gap           : 1px;
     overflow-y    : auto;
     flex          : 1 1 auto;
-    background    : $nav-outer-bg; // gap colour between items
+    background    : var(--left-nav-outer-bg); // gap colour between items
 
     // Hide scrollbar but keep scrollability
     scrollbar-width: none;
@@ -95,53 +85,53 @@ $nav-width      : 60px;
     flex-direction : column;
     align-items    : center;
     justify-content: center;
-    gap            : 4px;
+    gap            : var(--spacing-x-small);
     width          : 100%;
-    padding        : 12px 4px;
-    background     : $nav-links-bg;
+    padding        : var(--left-nav-item-padding);
+    background     : var(--left-nav-links-bg);
     border         : none;
     cursor         : pointer;
-    color          : $nav-text;
+    color          : var(--color-text-inverse);
     text-align     : center;
     transition     : background 0.15s ease;
 
     &:hover {
-      background: lighten($nav-links-bg, 6%);
+      background: var(--left-nav-links-hover-bg);
     }
 
     &:focus-visible {
-      outline       : 2px solid $nav-text;
+      outline       : 2px solid var(--color-text-inverse);
       outline-offset: -2px;
     }
 
     // Active / selected state
     &--active {
-      background: $nav-active-bg;
+      background: var(--left-nav-active-bg);
 
       &:hover {
-        background: darken($nav-active-bg, 6%);
+        background: var(--left-nav-active-hover-bg);
       }
     }
   }
 
   // ── Icon ─────────────────────────────────────────────────────────────────
   &__icon {
-    width      : $nav-icon-size;
-    height     : $nav-icon-size;
-    fill       : $nav-text;
+    width      : var(--left-nav-icon-size);
+    height     : var(--left-nav-icon-size);
+    fill       : var(--color-text-inverse);
     flex-shrink: 0;
   }
 
   // ── Label ────────────────────────────────────────────────────────────────
   &__label {
-    font-size  : 10px;
-    font-weight: 400;
+    font-size  : var(--font-size-10);
+    font-weight: var(--font-weight-regular);
     line-height: 1.2;
-    color      : $nav-text;
+    color      : var(--color-text-inverse);
     white-space: nowrap;
     overflow   : hidden;
     text-overflow: ellipsis;
-    max-width  : 52px;
+    max-width  : var(--left-nav-label-max-width);
   }
 
   // ── Logout row ───────────────────────────────────────────────────────────
@@ -150,35 +140,35 @@ $nav-width      : 60px;
     flex-direction : column;
     align-items    : center;
     justify-content: center;
-    gap            : 4px;
+    gap            : var(--spacing-x-small);
     width          : 100%;
-    padding        : 12px 4px;
-    background     : $nav-links-bg;
+    padding        : var(--left-nav-item-padding);
+    background     : var(--left-nav-links-bg);
     border         : none;
-    border-top     : 1px solid $nav-outer-bg;
+    border-top     : 1px solid var(--left-nav-outer-bg);
     cursor         : pointer;
-    color          : $nav-text;
-    font-size      : 12px;
-    font-weight    : 400;
+    color          : var(--color-text-inverse);
+    font-size      : var(--font-size-12);
+    font-weight    : var(--font-weight-regular);
     flex-shrink    : 0;
 
     span {
-      font-size: 10px;
+      font-size: var(--font-size-10);
     }
 
     &:hover {
-      background: lighten($nav-links-bg, 6%);
+      background: var(--left-nav-links-hover-bg);
     }
 
     &:focus-visible {
-      outline       : 2px solid $nav-text;
+      outline       : 2px solid var(--color-text-inverse);
       outline-offset: -2px;
     }
   }
 
   &__logout-icon {
-    width : $nav-icon-size;
-    height: $nav-icon-size;
-    fill  : $nav-text;
+    width : var(--left-nav-icon-size);
+    height: var(--left-nav-icon-size);
+    fill  : var(--color-text-inverse);
   }
 }

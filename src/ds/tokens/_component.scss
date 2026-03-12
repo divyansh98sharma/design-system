@@ -193,6 +193,26 @@
   --healow-connect-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Left Nav
+  // ----------------------------------------------------------
+  --left-nav-width: 60px;
+  --left-nav-outer-bg: #242835;
+  --left-nav-outer-hover-bg: #303650;
+  --left-nav-links-bg: #2d3242;
+  --left-nav-links-hover-bg: #3b4158;
+  --left-nav-menu-bg: var(--color-user-50);
+  --left-nav-menu-hover-bg: var(--color-user-60);
+  --left-nav-active-bg: var(--color-user-base);
+  --left-nav-active-hover-bg: var(--color-user-60);
+  --left-nav-icon-size: 24px;
+  --left-nav-menu-icon-size: 16px;
+  --left-nav-menu-toggle-padding-x: 6px;
+  --left-nav-scroll-btn-padding: 6px;
+  --left-nav-scroll-btn-icon-size: 18px;
+  --left-nav-item-padding: 12px 4px;
+  --left-nav-label-max-width: 52px;
+
+  // ----------------------------------------------------------
   // Top Nav
   // ----------------------------------------------------------
   --top-nav-height: 40px;
