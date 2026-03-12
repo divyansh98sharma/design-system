@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Breadcrumb } from 'primeng/breadcrumb';
 
 export type BreadcrumbType = 'breadcrumb' | 'navigation';
 export type BreadcrumbLevel = 1 | 2 | 3 | 4;
@@ -32,7 +33,7 @@ export interface BreadcrumbItem {
 @Component({
   selector: 'ds-breadcrumb',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Breadcrumb],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -3,13 +3,13 @@
 .ds-breadcrumb {
   display: inline-flex;
   align-items: center;
-  min-height: 24px;
-  max-height: 24px;
+  min-height: var(--breadcrumb-height);
+  max-height: var(--breadcrumb-height);
 
   &__list {
     display: flex;
     align-items: center;
-    gap: var(--spacing-x-small); // 4px
+    gap: var(--spacing-x-small);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -21,8 +21,8 @@
     display: inline-flex;
     align-items: center;
     position: relative;
-    max-height: 16px;
-    min-height: 16px;
+    max-height: var(--breadcrumb-item-height);
+    min-height: var(--breadcrumb-item-height);
   }
 
   // ─── Ancestor text (shared base) ─────────────────────────────────────────
@@ -31,11 +31,11 @@
   &__link,
   &__current {
     font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
+    font-size: var(--breadcrumb-font-size);
     line-height: var(--line-height-16);
-    color: var(--color-black, #000);
-    max-width: 220px;
-    min-width: 42px;
+    color: var(--breadcrumb-text-color);
+    max-width: var(--breadcrumb-item-max-width);
+    min-width: var(--breadcrumb-item-min-width);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -48,8 +48,7 @@
     font-weight: var(--font-weight-regular);
     text-decoration: none;
     cursor: pointer;
-    // Figma underline: a solid 1px black line beneath the text
-    border-bottom: 1px solid var(--color-black, #000);
+    border-bottom: 1px solid var(--breadcrumb-link-underline);
     padding-bottom: 1px;
 
     &:hover {
@@ -57,9 +56,9 @@
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-user-base);
+      outline: 2px solid var(--breadcrumb-link-focus-color);
       outline-offset: 2px;
-      border-radius: 2px;
+      border-radius: var(--radius-standard);
     }
   }
 
@@ -89,10 +88,10 @@
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
+    width: var(--breadcrumb-separator-size);
+    height: var(--breadcrumb-separator-size);
     overflow: hidden;
-    color: var(--color-black, #000);
+    color: var(--breadcrumb-text-color);
 
     svg {
       width: 100%;
@@ -106,30 +105,30 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: var(--breadcrumb-overflow-btn-size);
+    height: var(--breadcrumb-overflow-btn-size);
     padding: 0;
-    background: var(--color-white, #fff);
-    border: 1px solid var(--color-secondary-base);
-    border-radius: var(--radius-4);
+    background: var(--breadcrumb-overflow-btn-bg);
+    border: 1px solid var(--breadcrumb-overflow-btn-border);
+    border-radius: var(--breadcrumb-radius);
     cursor: pointer;
-    color: var(--color-black, #000);
+    color: var(--breadcrumb-overflow-btn-color);
     transition: border-color 120ms ease, background 120ms ease;
 
     svg {
-      width: 16px;
-      height: 16px;
+      width: var(--breadcrumb-separator-size);
+      height: var(--breadcrumb-separator-size);
     }
 
     &--open,
     &:hover {
-      border-color: var(--color-user-base);
-      background: var(--color-user-5);
-      color: var(--color-user-base);
+      border-color: var(--breadcrumb-overflow-btn-active-border);
+      background: var(--breadcrumb-overflow-btn-active-bg);
+      color: var(--breadcrumb-overflow-btn-active-color);
     }
 
     &:focus-visible {
-      outline: 2px solid var(--color-user-base);
+      outline: 2px solid var(--breadcrumb-link-focus-color);
       outline-offset: 2px;
     }
   }
@@ -138,18 +137,18 @@
 
   &__popover {
     position: absolute;
-    top: calc(100% + 8px);
-    left: -8px;
+    top: calc(100% + var(--spacing-small));
+    left: calc(-1 * var(--spacing-small));
     display: flex;
     align-items: center;
     gap: var(--spacing-x-small);
     padding: var(--spacing-small);
-    background: var(--color-white, #fff);
-    border: 1px solid var(--color-secondary-base);
-    border-radius: var(--radius-4);
-    box-shadow: var(--shadow-light-100);
+    background: var(--breadcrumb-popover-bg);
+    border: 1px solid var(--breadcrumb-popover-border);
+    border-radius: var(--breadcrumb-radius);
+    box-shadow: var(--breadcrumb-popover-shadow);
     white-space: nowrap;
-    z-index: 100;
+    z-index: var(--breadcrumb-popover-z-index);
 
     .ds-breadcrumb__link,
     .ds-breadcrumb__text {
@@ -157,10 +156,10 @@
     }
 
     .ds-breadcrumb__popover-chevron {
-      width: 16px;
-      height: 16px;
+      width: var(--breadcrumb-separator-size);
+      height: var(--breadcrumb-separator-size);
       flex-shrink: 0;
-      color: var(--color-black, #000);
+      color: var(--breadcrumb-text-color);
     }
   }
 }

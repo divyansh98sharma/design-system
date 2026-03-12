@@ -1,43 +1,11 @@
-<label
-  class="ds-checkbox"
-  [class.ds-checkbox--disabled]="disabled"
-  [class.ds-checkbox--checked]="checked && !indeterminate"
-  [class.ds-checkbox--indeterminate]="indeterminate"
-  (click)="toggle(); $event.preventDefault()"
-  (keydown.space)="toggle(); $event.preventDefault()"
-  [attr.tabindex]="disabled ? -1 : 0"
-  [attr.aria-checked]="indeterminate ? 'mixed' : checked"
-  [attr.aria-disabled]="disabled"
-  role="checkbox"
->
-  <!-- Hidden native input for form integration -->
-  <input
-    type="checkbox"
-    class="ds-checkbox__input"
-    [checked]="checked"
+<label class="ds-checkbox" [class.ds-checkbox--disabled]="disabled">
+  <p-checkbox
+    [(ngModel)]="checked"
+    [binary]="true"
     [disabled]="disabled"
     [indeterminate]="indeterminate"
-    tabindex="-1"
-    aria-hidden="true"
+    (onChange)="handleChange($event)"
   />
-
-  <!-- Visual box -->
-  <span [ngClass]="boxClasses">
-    <!-- Checkmark icon -->
-    @if (checked && !indeterminate) {
-      <svg class="ds-checkbox__icon" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    }
-    <!-- Indeterminate dash -->
-    @if (indeterminate) {
-      <svg class="ds-checkbox__icon" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M1 1H9" stroke="white" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    }
-  </span>
-
-  <!-- Label -->
   @if (hasLabel) {
     <span class="ds-checkbox__label">{{ label }}</span>
   }

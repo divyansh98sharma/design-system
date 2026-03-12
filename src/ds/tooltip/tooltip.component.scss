@@ -1,24 +1,16 @@
 // ─── Tooltip Bubble ───────────────────────────────────────────────────────────
-// Implements all 12 caret positions from the Figma spec using a ::before
-// pseudo-element for the arrow. The bubble itself has a white background,
-// light drop shadow, and 4px border radius.
-
-$arrow-size: 6px;
-$arrow-overlap: 1px; // how far the arrow overlaps the bubble edge
 
 .ds-tooltip {
   position: relative;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
-  background: var(--color-white, #fff);
-  border-radius: var(--radius-4);
-  box-shadow: var(--shadow-light-100); // 0 8px 16px -4px rgba(0,0,0,0.16)
-  max-width: 512px;
-  min-width: 42px;
-
-  // ─── Caret (arrow) ─────────────────────────────────────────────────────────
+  padding: var(--tooltip-bubble-padding-y) var(--tooltip-bubble-padding-x);
+  background: var(--tooltip-bubble-bg);
+  border-radius: var(--tooltip-bubble-radius);
+  box-shadow: var(--tooltip-bubble-shadow);
+  max-width: var(--tooltip-bubble-max-width);
+  min-width: var(--tooltip-bubble-min-width);
 
   &::before {
     content: '';
@@ -28,36 +20,25 @@ $arrow-overlap: 1px; // how far the arrow overlaps the bubble edge
     pointer-events: none;
   }
 
-  // ─── Text content ──────────────────────────────────────────────────────────
-
   &__text {
     font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
+    font-size: var(--tooltip-bubble-font-size);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black, #000);
+    color: var(--tooltip-bubble-color);
     white-space: normal;
     word-break: break-word;
   }
 
-  // =========================================================================
-  // CARET POSITIONS
-  // Naming: {edge that the caret touches}-{alignment along that edge}
-  //   top-*    → bubble is BELOW the trigger, caret on top edge
-  //   bottom-* → bubble is ABOVE the trigger, caret on bottom edge
-  //   left-*   → bubble is to the RIGHT of trigger, caret on left edge
-  //   right-*  → bubble is to the LEFT of trigger, caret on right edge
-  // =========================================================================
-
-  // ── Top edge (bubble below trigger) ───────────────────────────────────────
+  // ── Top edge ──────────────────────────────────────────────────────────────
 
   &--top-left::before,
   &--top-center::before,
   &--top-right::before {
-    top: -($arrow-size - $arrow-overlap);
-    border-left: $arrow-size solid transparent;
-    border-right: $arrow-size solid transparent;
-    border-bottom: $arrow-size solid var(--color-white, #fff);
+    top: calc(-1 * var(--tooltip-arrow-size) + var(--tooltip-arrow-overlap));
+    border-left: var(--tooltip-arrow-size) solid transparent;
+    border-right: var(--tooltip-arrow-size) solid transparent;
+    border-bottom: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
     filter: drop-shadow(0 -3px 2px rgba(0, 0, 0, 0.07));
   }
 
@@ -65,15 +46,15 @@ $arrow-overlap: 1px; // how far the arrow overlaps the bubble edge
   &--top-center::before { left: 50%; transform: translateX(-50%); }
   &--top-right::before  { right: 12px; }
 
-  // ── Bottom edge (bubble above trigger) ────────────────────────────────────
+  // ── Bottom edge ───────────────────────────────────────────────────────────
 
   &--bottom-left::before,
   &--bottom-center::before,
   &--bottom-right::before {
-    bottom: -($arrow-size - $arrow-overlap);
-    border-left: $arrow-size solid transparent;
-    border-right: $arrow-size solid transparent;
-    border-top: $arrow-size solid var(--color-white, #fff);
+    bottom: calc(-1 * var(--tooltip-arrow-size) + var(--tooltip-arrow-overlap));
+    border-left: var(--tooltip-arrow-size) solid transparent;
+    border-right: var(--tooltip-arrow-size) solid transparent;
+    border-top: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
     filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.07));
   }
 
@@ -81,15 +62,15 @@ $arrow-overlap: 1px; // how far the arrow overlaps the bubble edge
   &--bottom-center::before { left: 50%; transform: translateX(-50%); }
   &--bottom-right::before  { right: 12px; }
 
-  // ── Left edge (bubble to the right of trigger) ────────────────────────────
+  // ── Left edge ─────────────────────────────────────────────────────────────
 
   &--left-top::before,
   &--left-center::before,
   &--left-bottom::before {
-    left: -($arrow-size - $arrow-overlap);
-    border-top: $arrow-size solid transparent;
-    border-bottom: $arrow-size solid transparent;
-    border-right: $arrow-size solid var(--color-white, #fff);
+    left: calc(-1 * var(--tooltip-arrow-size) + var(--tooltip-arrow-overlap));
+    border-top: var(--tooltip-arrow-size) solid transparent;
+    border-bottom: var(--tooltip-arrow-size) solid transparent;
+    border-right: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
     filter: drop-shadow(-3px 0 2px rgba(0, 0, 0, 0.07));
   }
 
@@ -97,15 +78,15 @@ $arrow-overlap: 1px; // how far the arrow overlaps the bubble edge
   &--left-center::before { top: 50%; transform: translateY(-50%); }
   &--left-bottom::before { bottom: 10px; }
 
-  // ── Right edge (bubble to the left of trigger) ────────────────────────────
+  // ── Right edge ────────────────────────────────────────────────────────────
 
   &--right-top::before,
   &--right-center::before,
   &--right-bottom::before {
-    right: -($arrow-size - $arrow-overlap);
-    border-top: $arrow-size solid transparent;
-    border-bottom: $arrow-size solid transparent;
-    border-left: $arrow-size solid var(--color-white, #fff);
+    right: calc(-1 * var(--tooltip-arrow-size) + var(--tooltip-arrow-overlap));
+    border-top: var(--tooltip-arrow-size) solid transparent;
+    border-bottom: var(--tooltip-arrow-size) solid transparent;
+    border-left: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
     filter: drop-shadow(3px 0 2px rgba(0, 0, 0, 0.07));
   }
 

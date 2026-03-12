@@ -5,31 +5,27 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 16px;
-  height: 16px;
+  width: var(--info-tooltip-size);
+  height: var(--info-tooltip-size);
   cursor: default;
   vertical-align: middle;
 
-  // ─── Icon ────────────────────────────────────────────────────────────────
-
   &__icon {
     display: block;
-    width: 16px;
-    height: 16px;
-    color: var(--color-secondary-70); // #969696 — gray info icon
-    transition: color 120ms ease;
+    width: var(--info-tooltip-size);
+    height: var(--info-tooltip-size);
+    color: var(--info-tooltip-icon-color);
+    transition: color var(--info-tooltip-transition);
   }
-
-  // ─── Hover / focus — icon turns user-blue ────────────────────────────────
 
   &:hover &__icon,
   &:focus-visible &__icon {
-    color: var(--color-user-base); // #0378a7
+    color: var(--info-tooltip-icon-color-hover);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-user-base);
+    outline: 2px solid var(--info-tooltip-focus-color);
     outline-offset: 2px;
-    border-radius: 50%;
+    border-radius: var(--radius-pill);
   }
 }
