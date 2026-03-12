@@ -42,6 +42,19 @@
   --input-padding-y: var(--spacing-x-small);
   --input-font-size: var(--font-size-12);
   --input-line-height: var(--line-height-16);
+  --input-field-height: 24px;
+  --input-field-gap: var(--spacing-x-small);
+  --input-field-horizontal-gap: var(--spacing-small);
+  --input-field-wrapper-padding-x: 6px;
+  --input-field-focus-shadow: 0 0 0 2px var(--color-border-focus);
+  --input-field-label-color: var(--color-text-primary);
+  --input-field-placeholder-color: var(--color-secondary-70);
+  --input-field-icon-color: var(--color-secondary-70);
+  --input-field-support-color: var(--color-secondary-90);
+  --input-field-error-color: var(--color-status-error);
+  --input-field-disabled-bg: var(--color-surface-disabled);
+  --input-field-disabled-border: var(--color-secondary-50);
+  --input-field-disabled-text: var(--color-text-disabled);
 
   // ----------------------------------------------------------
   // Card / Panel
