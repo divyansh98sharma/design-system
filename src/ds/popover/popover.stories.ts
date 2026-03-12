@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/angular';
+import { Meta, StoryObj } from '@storybook/angular';
 import { PopoverComponent, PopoverNotch, PopoverTheme } from './popover.component';
 
 const ALL_NOTCH_POSITIONS: PopoverNotch[] = [
@@ -10,7 +10,7 @@ const ALL_NOTCH_POSITIONS: PopoverNotch[] = [
 ];
 
 const meta: Meta<PopoverComponent> = {
-  title: 'Components/Popover',
+  title: 'Design System/Popover',
   component: PopoverComponent,
   tags: ['autodocs'],
   decorators: [

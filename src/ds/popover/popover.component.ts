@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PopoverModule } from 'primeng/popover';
 
 /** Theme tokens for the popover. */
 export type PopoverTheme = 'user' | 'admin';
@@ -56,7 +57,7 @@ export interface PopoverRadio {
 @Component({
   selector: 'ds-popover',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PopoverModule],
   templateUrl: './popover.component.html',
   styleUrl: './popover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -121,11 +122,11 @@ export class PopoverComponent {
   // ─── Theme helpers ────────────────────────────────────────────────────────
 
   get themeColor(): string {
-    return this.theme === 'admin' ? '#e88842' : '#0378a7';
+    return this.theme === 'admin' ? 'var(--color-admin-base)' : 'var(--color-user-base)';
   }
 
   get footerBorderColor(): string {
-    return this.theme === 'admin' ? '#f1b984' : '#81bbd3';
+    return this.theme === 'admin' ? 'var(--color-admin-30)' : 'var(--color-user-30)';
   }
 
   // ─── Event handlers ───────────────────────────────────────────────────────
