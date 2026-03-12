@@ -1,0 +1,23 @@
+<p-button
+  [styleClass]="styleClass"
+  [ngClass]="themeClass"
+  [disabled]="disabled"
+  [attr.aria-disabled]="disabled || null"
+  (onClick)="onClick($event)"
+>
+  @if (safeIcon && iconPosition === 'left') {
+    <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+  }
+
+  @if (!isIconOnly) {
+    <span class="ds-btn__label">{{ label }}</span>
+  }
+
+  @if (safeIcon && iconPosition === 'right') {
+    <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+  }
+
+  @if (safeIcon && isIconOnly) {
+    <span class="ds-btn__icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+  }
+</p-button>

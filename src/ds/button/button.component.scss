@@ -1,0 +1,190 @@
+// ─── Base ────────────────────────────────────────────────────────────────────
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-md-gap);
+  border: 1px solid transparent;
+  border-radius: var(--button-radius);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+  text-decoration: none;
+  outline-offset: 2px;
+
+  &:focus-visible {
+    outline: 2px solid var(--button-focus-color);
+    outline-offset: 2px;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    // ::ng-deep needed because SVG is injected via [innerHTML]
+    // and doesn't receive Angular's scoped attribute
+    /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+    ::ng-deep svg {
+      display: block;
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+  }
+}
+
+// ─── Sizes ───────────────────────────────────────────────────────────────────
+
+.ds-btn--sm {
+  height: var(--button-sm-height);
+  padding: 0 var(--button-sm-padding-x);
+  font-size: var(--button-sm-font-size);
+  gap: var(--button-sm-gap);
+
+  .ds-btn__icon { font-size: var(--button-sm-icon-size); }
+
+  &.ds-btn--icon-only {
+    width: var(--button-sm-height);
+    padding: 0;
+  }
+}
+
+.ds-btn--md {
+  height: var(--button-md-height);
+  padding: 0 var(--button-md-padding-x);
+  font-size: var(--button-font-size);
+  gap: var(--button-md-gap);
+
+  .ds-btn__icon { font-size: var(--button-md-icon-size); }
+
+  &.ds-btn--icon-only {
+    width: var(--button-md-height);
+    padding: 0;
+  }
+}
+
+.ds-btn--lg {
+  height: var(--button-lg-height);
+  padding: 0 var(--button-lg-padding-x);
+  font-size: var(--button-lg-font-size);
+  gap: var(--button-lg-gap);
+
+  .ds-btn__icon { font-size: var(--button-md-icon-size); }
+
+  &.ds-btn--icon-only {
+    width: var(--button-lg-height);
+    padding: 0;
+  }
+}
+
+// ─── Disabled (shared) ───────────────────────────────────────────────────────
+
+.ds-btn--disabled,
+.ds-btn:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  background: transparent;
+  border-color: var(--button-disabled-border);
+  color: var(--button-disabled-color);
+
+  .ds-btn__icon { opacity: 0.4; }
+}
+
+// ─── Filled variants ─────────────────────────────────────────────────────────
+
+@mixin filled-color($base, $hover, $active) {
+  background: var(#{$base});
+  border-color: transparent;
+  color: var(--color-text-inverse);
+
+  &:hover:not(:disabled):not(.ds-btn--disabled) {
+    background: var(#{$hover});
+  }
+
+  &:active:not(:disabled):not(.ds-btn--disabled) {
+    background: var(#{$active});
+  }
+}
+
+.ds-btn--filled {
+  &.ds-btn--user    { @include filled-color(--color-user-base,    --color-user-70,    --color-user-80); }
+  &.ds-btn--admin   { @include filled-color(--color-admin-base,   --color-admin-70,   --color-admin-80); }
+  &.ds-btn--success { @include filled-color(--color-green-base,   --color-green-70,   --color-green-80); }
+  &.ds-btn--error   { @include filled-color(--color-error-base,   --color-error-70,   --color-error-80); }
+  &.ds-btn--sunoh   { @include filled-color(--color-sunoh-base,   --color-sunoh-70,   --color-sunoh-80); }
+
+  // Secondary filled (neutral gray)
+  &.ds-btn--secondary {
+    background: var(--color-secondary-base);
+    border-color: transparent;
+    color: var(--color-secondary-100);
+
+    &:hover:not(:disabled):not(.ds-btn--disabled) {
+      background: var(--color-secondary-60);
+      color: var(--color-text-inverse);
+    }
+
+    &:active:not(:disabled):not(.ds-btn--disabled) {
+      background: var(--color-secondary-70);
+      color: var(--color-text-inverse);
+    }
+  }
+}
+
+// ─── Outlined variants ───────────────────────────────────────────────────────
+
+@mixin outlined-color($border, $text, $hover-bg, $active-bg) {
+  background: var(--color-surface);
+  border-color: var(#{$border});
+  color: var(#{$text});
+
+  &:hover:not(:disabled):not(.ds-btn--disabled) {
+    background: var(#{$hover-bg});
+  }
+
+  &:active:not(:disabled):not(.ds-btn--disabled) {
+    background: var(#{$active-bg});
+  }
+}
+
+.ds-btn--outlined {
+  &.ds-btn--user      { @include outlined-color(--color-user-base,      --color-user-base,      --color-user-5,      --color-user-10); }
+  &.ds-btn--secondary { @include outlined-color(--color-secondary-base, --color-secondary-80,   --color-secondary-20, --color-secondary-30); }
+  &.ds-btn--success   { @include outlined-color(--color-green-base,     --color-green-base,     --color-green-5,     --color-green-10); }
+  &.ds-btn--error     { @include outlined-color(--color-error-base,     --color-error-base,     --color-error-5,     --color-error-10); }
+  &.ds-btn--admin     { @include outlined-color(--color-admin-base,     --color-admin-base,     --color-admin-5,     --color-admin-10); }
+  &.ds-btn--sunoh     { @include outlined-color(--color-sunoh-base,     --color-sunoh-base,     --color-sunoh-5,     --color-sunoh-10); }
+}
+
+// ─── Ghost (text-only) variants ──────────────────────────────────────────────
+
+@mixin ghost-color($text, $hover-bg, $active-bg) {
+  background: transparent;
+  border-color: transparent;
+  color: var(#{$text});
+
+  &:hover:not(:disabled):not(.ds-btn--disabled) {
+    background: var(#{$hover-bg});
+  }
+
+  &:active:not(:disabled):not(.ds-btn--disabled) {
+    background: var(#{$active-bg});
+  }
+}
+
+.ds-btn--ghost {
+  &.ds-btn--user      { @include ghost-color(--color-user-base,  --color-user-5,  --color-user-10); }
+  &.ds-btn--admin     { @include ghost-color(--color-admin-base, --color-admin-5, --color-admin-10); }
+  &.ds-btn--secondary { @include ghost-color(--color-secondary-80, --color-secondary-20, --color-secondary-30); }
+  &.ds-btn--success   { @include ghost-color(--color-green-base, --color-green-5,  --color-green-10); }
+  &.ds-btn--error     { @include ghost-color(--color-error-base, --color-error-5,  --color-error-10); }
+  &.ds-btn--sunoh     { @include ghost-color(--color-sunoh-base, --color-sunoh-5,  --color-sunoh-10); }
+}
