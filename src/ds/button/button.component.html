@@ -1,5 +1,6 @@
 <p-button
-  [styleClass]="classString"
+  [styleClass]="styleClass"
+  [ngClass]="themeClass"
   [disabled]="disabled"
   [attr.aria-disabled]="disabled || null"
   (onClick)="onClick($event)"

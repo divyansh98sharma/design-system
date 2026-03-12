@@ -49,22 +49,23 @@ export class ButtonComponent {
     return this.iconPosition === 'only';
   }
 
-  get classes(): Record<string, boolean> {
-    return {
-      'ds-btn': true,
-      [`ds-btn--${this.variant}`]: true,
-      [`ds-btn--${this.color}`]: true,
-      [`ds-btn--${this.size}`]: true,
-      'ds-btn--icon-only': this.isIconOnly,
-      'ds-btn--disabled': this.disabled,
-    };
+  /** Structural classes forwarded to the inner <button> via styleClass. */
+  get styleClass(): string {
+    return [
+      'ds-btn',
+      `ds-btn--${this.variant}`,
+      `ds-btn--${this.color}`,
+      `ds-btn--${this.size}`,
+      this.isIconOnly ? 'ds-btn--icon-only' : '',
+      this.disabled ? 'ds-btn--disabled' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
   }
 
-  get classString(): string {
-    return Object.entries(this.classes)
-      .filter(([, v]) => v)
-      .map(([k]) => k)
-      .join(' ');
+  /** Color theme class applied to the <p-button> host via [ngClass]. */
+  get themeClass(): Record<string, boolean> {
+    return { [`ds-btn--${this.color}`]: true };
   }
 
   onClick(event: MouseEvent): void {
