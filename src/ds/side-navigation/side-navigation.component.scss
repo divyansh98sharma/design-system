@@ -1,0 +1,188 @@
+// ─── Design tokens ────────────────────────────────────────────────────────────
+$nav-width:           320px;
+$nav-max-height:      824px;
+$nav-bg:              #fbfbfb;
+$nav-outer-border:    #e6e6e6;
+
+// Heading
+$heading-bg:          #ebebeb;
+$heading-text:        #1a1a1a;
+$heading-font-size:   14px;
+$heading-height:      36px;
+
+// Search row
+$search-row-bg:       #fbfbfb;
+$search-input-border: #bcbcbc;
+$search-placeholder:  #969696;
+
+// List items
+$item-bg:             #fbfbfb;
+$item-border:         #e1e1e1;
+$item-height:         32px;
+$item-font-size:      12px;
+$item-text:           #1a1a1a;
+$item-active-bg:      #e8f4fb;
+$item-active-text:    #0378a7;
+$item-hover-bg:       #f0f0f0;
+$icon-color:          #4b4b4b;
+
+// ─── Panel ────────────────────────────────────────────────────────────────────
+.ds-side-nav {
+  display:     flex;
+  flex-direction: column;
+  width:       $nav-width;
+  max-height:  $nav-max-height;
+  background:  $nav-bg;
+  border-right: 1px solid $nav-outer-border;
+  font-family: inherit;
+  overflow:    hidden;
+}
+
+// ─── Heading bar ──────────────────────────────────────────────────────────────
+.ds-side-nav__heading {
+  display:     flex;
+  align-items: center;
+  justify-content: space-between;
+  height:      $heading-height;
+  background:  $heading-bg;
+  padding:     0 10px 0 12px;
+  flex-shrink: 0;
+}
+
+.ds-side-nav__heading-text {
+  font-size:   $heading-font-size;
+  font-weight: 600;
+  color:       $heading-text;
+}
+
+.ds-side-nav__settings-btn {
+  display:        inline-flex;
+  align-items:    center;
+  justify-content: center;
+  background:     transparent;
+  border:         none;
+  padding:        4px;
+  cursor:         pointer;
+  color:          $icon-color;
+  border-radius:  4px;
+  transition:     background 0.15s;
+
+  &:hover { background: rgba(0,0,0,0.08); }
+  &:focus-visible {
+    outline:    2px solid #0378a7;
+    outline-offset: 2px;
+  }
+}
+
+// ─── Search row ───────────────────────────────────────────────────────────────
+.ds-side-nav__search-row {
+  padding:     8px;
+  background:  $search-row-bg;
+  flex-shrink: 0;
+  border-bottom: 1px solid $item-border;
+}
+
+.ds-side-nav__search-wrapper {
+  display:     flex;
+  align-items: center;
+  height:      24px;
+  background:  #ffffff;
+  border:      1px solid $search-input-border;
+  border-radius: 4px;
+  padding:     0 6px;
+  gap:         4px;
+
+  &:focus-within {
+    border-color: #0378a7;
+    box-shadow:   0 0 0 2px #0378a7;
+  }
+}
+
+.ds-side-nav__search-icon {
+  display:     inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  svg { display: block; }
+}
+
+.ds-side-nav__search-input {
+  flex:       1 1 auto;
+  border:     none;
+  outline:    none;
+  background: transparent;
+  font-size:  12px;
+  color:      $item-text;
+
+  &::placeholder {
+    color:      $search-placeholder;
+    font-style: italic;
+  }
+}
+
+// ─── Scrollable list ──────────────────────────────────────────────────────────
+.ds-side-nav__list {
+  flex:       1 1 auto;
+  overflow-y: auto;
+
+  // Custom scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: #969696 #ebebeb;
+
+  &::-webkit-scrollbar       { width: 8px; }
+  &::-webkit-scrollbar-track { background: #ebebeb; }
+  &::-webkit-scrollbar-thumb {
+    background:    #969696;
+    border-radius: 4px;
+    border:        2px solid #ebebeb;
+  }
+}
+
+// ─── Tree item ────────────────────────────────────────────────────────────────
+.ds-side-nav__item {
+  display:     flex;
+  align-items: center;
+  height:      $item-height;
+  background:  $item-bg;
+  border-top:  1px solid $item-border;
+  cursor:      pointer;
+  gap:         6px;
+  padding-right: 8px;
+  transition:  background 0.1s;
+  box-sizing:  border-box;
+
+  &:hover {
+    background: $item-hover-bg;
+  }
+
+  &--active {
+    background: $item-active-bg;
+    color:      $item-active-text;
+
+    .ds-side-nav__item-label { color: $item-active-text; font-weight: 600; }
+    .ds-side-nav__item-icon  { color: $item-active-text; }
+  }
+}
+
+.ds-side-nav__item-icon {
+  display:     inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width:       16px;
+  color:       $icon-color;
+
+  svg { display: block; }
+}
+
+.ds-side-nav__leaf-spacer {
+  display: inline-block;
+  width:   12px;
+}
+
+.ds-side-nav__item-label {
+  font-size:  $item-font-size;
+  color:      $item-text;
+  white-space: nowrap;
+  overflow:   hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,31 @@
+<span
+  class="ds-info-tooltip"
+  tabindex="0"
+  [attr.aria-describedby]="'tip-' + position"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+>
+  <!-- ⓘ Info icon — 16 × 16 SVG -->
+  <svg
+    class="ds-info-tooltip__icon"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <circle cx="8" cy="8" r="6.17" stroke="currentColor" stroke-width="1.33"/>
+    <path d="M8 7.5v4" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+    <circle cx="8" cy="5.5" r="0.75" fill="currentColor"/>
+  </svg>
+
+  <!-- Tooltip bubble — positioned absolutely via bubbleStyle -->
+  <ds-tooltip
+    [id]="'tip-' + position"
+    [text]="tooltipText"
+    [position]="position"
+    [visible]="hovered"
+    [ngStyle]="bubbleStyle"
+  ></ds-tooltip>
+</span>
