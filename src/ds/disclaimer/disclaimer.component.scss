@@ -1,14 +1,14 @@
 // ─── Disclaimer Banner ────────────────────────────────────────────────────────
 
 .ds-disclaimer {
-  background: #fff9eb;                // var(--warning/base-5)
-  border: 1px solid #fbce2a;          // var(--color-warning-base)
-  border-radius: var(--radius-4);     // 4px
+  background: var(--disclaimer-bg);                // var(--warning/base-5)
+  border: 1px solid var(--disclaimer-border);          // var(--color-warning-base)
+  border-radius: var(--disclaimer-radius);     // 4px
   padding: var(--spacing-small);      // 8px
   font-family: var(--font-family-base);
   font-size: var(--font-size-12);
   line-height: var(--line-height-16);
-  color: var(--color-black, #000);
+  color: var(--disclaimer-text-color);
 
   // ─── Label ──────────────────────────────────────────────────────────────
 
@@ -31,19 +31,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 16px;
-    height: 16px;
+    width: var(--disclaimer-close-size);
+    height: var(--disclaimer-close-size);
     padding: 0;
     background: none;
     border: none;
     cursor: pointer;
     flex-shrink: 0;
-    color: var(--color-black, #000);
+    color: var(--disclaimer-text-color);
     transition: opacity 120ms ease;
 
     &:hover        { opacity: 0.65; }
     &:focus-visible {
-      outline: 2px solid #fbce2a;
+      outline: 2px solid var(--disclaimer-border);
       outline-offset: 2px;
     }
   }
@@ -57,7 +57,7 @@
   // ─── Variant: LEFT ──────────────────────────────────────────────────────
 
   &--left {
-    width: 450px;
+    width: var(--disclaimer-width);
 
     .ds-disclaimer__row {
       display: flex;
@@ -74,7 +74,7 @@
   // ─── Variant: TOP ───────────────────────────────────────────────────────
 
   &--top {
-    width: 450px;
+    width: var(--disclaimer-width);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-x-small); // 4px
@@ -88,7 +88,7 @@
     .ds-disclaimer__text-block {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: var(--spacing-xx-small);
     }
   }
 
@@ -122,23 +122,23 @@
   // ─── Acknowledge button ─────────────────────────────────────────────────
 
   &__ack-btn {
-    height: 24px;
+    height: var(--disclaimer-ack-height);
     padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
-    background: var(--color-secondary-base, #e1e1e1);
-    border: 1px solid var(--color-secondary-70, #969696);
-    border-radius: var(--radius-4);
+    background: var(--disclaimer-ack-bg);
+    border: 1px solid var(--disclaimer-ack-border);
+    border-radius: var(--disclaimer-radius);
     font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black, #000);
+    color: var(--disclaimer-text-color);
     cursor: pointer;
     white-space: nowrap;
     transition: background 120ms ease, border-color 120ms ease;
 
-    &:hover        { background: var(--color-secondary-60, #bcbcbc); }
+    &:hover        { background: var(--disclaimer-ack-bg-hover); }
     &:focus-visible {
-      outline: 2px solid #fbce2a;
+      outline: 2px solid var(--disclaimer-border);
       outline-offset: 2px;
     }
   }

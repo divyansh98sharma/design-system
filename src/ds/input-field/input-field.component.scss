@@ -1,33 +1,15 @@
-// ─── Design tokens ────────────────────────────────────────────────────────────
-$field-height:          24px;
-$field-bg:              #ffffff;
-$field-border:          #bcbcbc;
-$field-border-radius:   4px;
-$field-focus-ring:      #0378a7;
-$field-disabled-bg:     #f5f5f5;
-$field-disabled-text:   #a3a3a3;
-$field-disabled-border: #e6e6e6;
-$placeholder-color:     #969696;
-$label-color:           #1a1a1a;
-$label-font-size:       12px;
-$support-color:         #4b4b4b;
-$support-font-size:     12px;
-$error-color:           #d93025;
-$icon-color:            #969696;
-$gap:                   4px;
-
 // ─── Host block ───────────────────────────────────────────────────────────────
 .ds-input-field {
   display: flex;
   flex-direction: column;
-  gap: $gap;
+  gap: var(--input-field-gap);
   font-family: inherit;
 
   // ── Horizontal layout ───────────────────────────────────────────────────
   &--horizontal {
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: var(--input-field-horizontal-gap);
 
     .ds-input-field__label {
       white-space: nowrap;
@@ -44,12 +26,12 @@ $gap:                   4px;
     pointer-events: none;
 
     .ds-input-field__wrapper {
-      background-color: $field-disabled-bg;
-      border-color:     $field-disabled-border;
+      background-color: var(--input-field-disabled-bg);
+      border-color: var(--input-field-disabled-border);
     }
 
     .ds-input-field__input {
-      color: $field-disabled-text;
+      color: var(--input-field-disabled-text);
       cursor: not-allowed;
     }
   }
@@ -57,7 +39,7 @@ $gap:                   4px;
   // ── Error state ─────────────────────────────────────────────────────────
   &--error {
     .ds-input-field__wrapper {
-      border-color: $error-color;
+      border-color: var(--input-border-error);
     }
   }
 }
@@ -66,17 +48,17 @@ $gap:                   4px;
 .ds-input-field__label {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-size: $label-font-size;
-  font-weight: 600;
-  color: $label-color;
+  gap: var(--input-field-gap);
+  font-size: var(--input-font-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--input-field-label-color);
   line-height: 1.4;
   cursor: default;
 }
 
 .ds-input-field__required {
-  color: $error-color;
-  font-weight: 700;
+  color: var(--input-border-error);
+  font-weight: var(--font-weight-bold);
 }
 
 .ds-input-field__info {
@@ -89,31 +71,31 @@ $gap:                   4px;
 
 // ─── Input wrapper ────────────────────────────────────────────────────────────
 .ds-input-field__wrapper {
-  display:        flex;
-  align-items:    center;
-  height:         $field-height;
-  background:     $field-bg;
-  border:         1px solid $field-border;
-  border-radius:  $field-border-radius;
-  padding:        0 6px;
-  gap:            4px;
-  transition:     border-color 0.15s, box-shadow 0.15s;
-  box-sizing:     border-box;
+  display: flex;
+  align-items: center;
+  height: var(--input-field-height);
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  padding: 0 var(--input-field-wrapper-padding-x);
+  gap: var(--input-field-gap);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  box-sizing: border-box;
 
   &:focus-within {
-    border-color: $field-focus-ring;
-    box-shadow:   0 0 0 2px $field-focus-ring;
-    outline:      none;
+    border-color: var(--input-border-focus);
+    box-shadow: var(--input-field-focus-shadow);
+    outline: none;
   }
 }
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 .ds-input-field__search-icon,
 .ds-input-field__chevron {
-  display:     inline-flex;
+  display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  color:       $icon-color;
+  color: var(--input-field-icon-color);
 
   svg { display: block; }
 }
@@ -124,19 +106,19 @@ $gap:                   4px;
 
 // ─── Native <input> ───────────────────────────────────────────────────────────
 .ds-input-field__input {
-  flex:        1 1 auto;
-  min-width:   0;
-  border:      none;
-  outline:     none;
-  background:  transparent;
-  font-size:   12px;
-  font-style:  italic;
-  color:       $label-color;
-  padding:     0;
-  line-height: $field-height;
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--input-font-size);
+  font-style: italic;
+  color: var(--input-field-label-color);
+  padding: 0;
+  line-height: var(--input-field-height);
 
   &::placeholder {
-    color:      $placeholder-color;
+    color: var(--input-field-placeholder-color);
     font-style: italic;
   }
 
@@ -146,29 +128,29 @@ $gap:                   4px;
 
   &:disabled {
     background: transparent;
-    color:      $field-disabled-text;
+    color: var(--input-field-disabled-text);
   }
 }
 
 // ─── Support text ─────────────────────────────────────────────────────────────
 .ds-input-field__support {
-  font-size:  $support-font-size;
+  font-size: var(--input-font-size);
   font-style: italic;
-  color:      $support-color;
+  color: var(--input-field-support-color);
   line-height: 1.4;
 }
 
 // ─── Error text ───────────────────────────────────────────────────────────────
 .ds-input-field__error {
-  display:     flex;
+  display: flex;
   align-items: center;
-  gap:         4px;
-  font-size:   $support-font-size;
-  color:       $error-color;
+  gap: var(--input-field-gap);
+  font-size: var(--input-font-size);
+  color: var(--input-field-error-color);
   line-height: 1.4;
 }
 
 .ds-input-field__error-icon {
-  display:  block;
+  display: block;
   flex-shrink: 0;
 }

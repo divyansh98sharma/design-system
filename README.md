@@ -1,59 +1,114 @@
-# DsWorkspace
+# Design System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
+Angular component library with Storybook documentation, accessibility testing, and visual regression via Chromatic.
 
-## Development server
+---
 
-To start a local development server, run:
+## Prerequisites
 
-```bash
-ng serve
-```
+| Tool | Version |
+|---|---|
+| Node.js | 22+ |
+| npm | 11+ |
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Setup
 
 ```bash
-ng generate --help
+git clone https://github.com/divyansh98sharma/design-system.git
+cd design-system
+npm install --legacy-peer-deps
 ```
 
-## Building
+> `--legacy-peer-deps` is required because `@storybook/test-runner` has not yet released a version declaring compatibility with Storybook 10.
 
-To build the project run:
+---
+
+## Commands
+
+### Storybook (component development & docs)
 
 ```bash
-ng build
+# Start Storybook dev server → http://localhost:6006
+npm run storybook
+
+# Build a static Storybook for deployment
+npm run build-storybook
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Angular app
 
 ```bash
-ng test
+# Start Angular dev server → http://localhost:4200
+npm start
+
+# Production build
+npm run build
+
+# Watch mode (incremental builds)
+npm run watch
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Testing
 
 ```bash
-ng e2e
+# Run interaction + accessibility tests against a running Storybook
+# Requires Storybook to be running first (npm run storybook)
+npm run test-storybook
+
+# Run Angular unit tests
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Docs (Compodoc)
 
-## Additional Resources
+Compodoc generates `documentation.json` which the Storybook Docs addon uses for API tables.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npx compodoc -p tsconfig.app.json --watch
+```
+
+---
+
+## CI
+
+Two GitHub Actions jobs run on every push and pull request:
+
+| Job | What it does |
+|---|---|
+| **Interaction & Accessibility Tests** | Builds Storybook, serves it, runs `test-storybook` via Playwright |
+| **Visual Tests (Chromatic)** | Sends snapshots to Chromatic for visual diffing |
+
+To enable Chromatic, add a `CHROMATIC_PROJECT_TOKEN` secret in your GitHub repository settings (Settings → Secrets → Actions).
+
+---
+
+## Project structure
+
+```
+src/ds/               # All design system components
+  avatar/
+  button/
+  checkbox/
+  chip/
+  ...
+.storybook/           # Storybook configuration
+  main.ts             # Addons, framework, story globs
+  preview.ts          # Global decorators, parameters, theme
+  theme.ts            # Custom Storybook UI theme
+.github/workflows/
+  storybook-tests.yml # CI pipeline
+```
+
+---
+
+## Tech stack
+
+- **Angular 21** — component framework
+- **Storybook 10** — component documentation and development
+- **@storybook/addon-a11y** — accessibility panel and automated checks
+- **@chromatic-com/storybook** — visual regression testing via Chromatic
+- **@storybook/test-runner** — runs `play` interaction tests via Playwright in CI
+- **Vitest** — Angular unit tests
+- **Compodoc** — API documentation generation

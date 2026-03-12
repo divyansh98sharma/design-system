@@ -3,28 +3,28 @@
 .ds-chip {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-x-small, 4px);     // 4px
-  padding: var(--spacing-x-small, 4px) var(--spacing-small, 8px); // 4px 8px
+  gap: var(--chip-gap);
+  padding: var(--chip-padding-y) var(--chip-padding-x);
   border: 1px solid transparent;
-  border-radius: var(--radius-pill, 999px);
+  border-radius: var(--chip-radius);
   font-family: var(--font-family-base);
-  font-size: var(--font-size-12, 12px);
-  line-height: var(--line-height-16, 16px);
-  color: var(--color-black, #000);
+  font-size: var(--chip-font-size);
+  line-height: var(--line-height-16);
+  color: var(--chip-color);
   cursor: pointer;
-  transition: opacity 120ms ease;
+  transition: opacity var(--chip-transition);
   user-select: none;
 
   &:hover { opacity: 0.85; }
 
   // ─── States ─────────────────────────────────────────────────────────────
 
-  &--default    { background: #fbfbfb; border-color: var(--color-secondary-60, #bcbcbc); }
-  &--active     { background: #f1fef8; border-color: var(--color-green-base, #018145); }
-  &--error      { background: #ffefef; border-color: var(--color-error-base, #d82727); }
-  &--warning    { background: #fff9eb; border-color: var(--color-warning-base, #fbce2a); }
-  &--in-process { background: #f1fbff; border-color: var(--color-user-base, #0378a7); }
-  &--ai         { background: #f7f2ff; border-color: #7d58da; }
+  &--default    { background: var(--chip-bg-default);    border-color: var(--chip-border-default); }
+  &--active     { background: var(--chip-bg-active);     border-color: var(--chip-border-active); }
+  &--error      { background: var(--chip-bg-error);      border-color: var(--chip-border-error); }
+  &--warning    { background: var(--chip-bg-warning);    border-color: var(--chip-border-warning); }
+  &--in-process { background: var(--chip-bg-in-process); border-color: var(--chip-border-in-process); }
+  &--ai         { background: var(--chip-bg-ai);         border-color: var(--chip-border-ai); }
 
   // ─── Badge ──────────────────────────────────────────────────────────────
 
@@ -33,13 +33,13 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    border-radius: 50px;
-    color: var(--color-white, #fff);
+    width: var(--chip-badge-size);
+    height: var(--chip-badge-size);
+    border-radius: var(--chip-badge-radius);
+    color: var(--chip-badge-color);
     font-family: var(--font-family-base);
-    font-size: 10px;
-    font-weight: var(--font-weight-regular, 400);
+    font-size: var(--chip-badge-font-size);
+    font-weight: var(--font-weight-regular);
     line-height: 1;
   }
 
@@ -48,15 +48,15 @@
   &__icon {
     display: block;
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
-    color: var(--color-black, #000);
+    width: var(--chip-icon-size);
+    height: var(--chip-icon-size);
+    color: var(--chip-color);
   }
 
   // ─── Label ──────────────────────────────────────────────────────────────
 
   &__label {
-    font-weight: var(--font-weight-regular, 400);
+    font-weight: var(--font-weight-regular);
     white-space: nowrap;
   }
 
@@ -67,17 +67,17 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 16px;
-    height: 16px;
+    width: var(--chip-close-size);
+    height: var(--chip-close-size);
     padding: 0;
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--color-black, #000);
-    transition: opacity 120ms ease;
+    color: var(--chip-color);
+    transition: opacity var(--chip-transition);
 
     &:hover        { opacity: 0.6; }
-    &:focus-visible { outline: 2px solid var(--color-secondary-70, #969696); outline-offset: 1px; }
+    &:focus-visible { outline: 2px solid var(--chip-close-focus-color); outline-offset: 1px; }
   }
 
   &__close-icon {

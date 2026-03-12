@@ -5,7 +5,7 @@ import {
 } from './healow-connect.component';
 
 const meta: Meta<HealowConnectComponent> = {
-  title    : 'Components/Button/Healow Connect',
+  title    : 'Design System/Button/Healow Connect',
   component: HealowConnectComponent,
   tags     : ['autodocs'],
   argTypes : {
