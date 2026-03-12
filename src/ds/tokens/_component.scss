@@ -70,4 +70,23 @@
   --tooltip-font-size: var(--font-size-10);
   --tooltip-padding-x: var(--spacing-small);
   --tooltip-padding-y: var(--spacing-x-small);
+
+  // ----------------------------------------------------------
+  // Toggle Button Group
+  // ----------------------------------------------------------
+  --toggle-btn-focus-color: var(--color-border-focus);
+  --toggle-btn-disabled-opacity: 0.5;
+  --toggle-btn-sm-height: 24px;
+  --toggle-btn-sm-padding-x: var(--spacing-small);
+  --toggle-btn-sm-font-size: var(--font-size-11);
+  --toggle-btn-sm-gap: var(--spacing-x-small);
+  --toggle-btn-sm-icon-size: 13px;
+  --toggle-btn-md-height: 32px;
+  --toggle-btn-md-padding-x: var(--spacing-medium);
+  --toggle-btn-md-gap: 5px;
+  --toggle-btn-md-icon-size: 15px;
+  --toggle-btn-lg-height: 40px;
+  --toggle-btn-lg-padding-x: var(--spacing-large);
+  --toggle-btn-lg-gap: 6px;
+  --toggle-btn-lg-icon-size: var(--font-size-16);
 }
