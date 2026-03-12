@@ -1,0 +1,35 @@
+<div class="ds-tgl" [ngClass]="groupClasses" role="group" aria-label="Toggle button group">
+  @for (item of options; track item.value; let first = $first; let last = $last) {
+    <button
+      class="ds-tgl__btn"
+      [ngClass]="itemClasses(item)"
+      [class.ds-tgl__btn--first]="first"
+      [class.ds-tgl__btn--last]="last"
+      type="button"
+      [attr.aria-pressed]="isSelected(item.value)"
+      [attr.aria-label]="item.label || 'Toggle'"
+      [disabled]="(item.disabled || disabled) ? true : null"
+      (click)="onToggle(item)"
+    >
+      <!-- Selected check icon (label-based buttons only) -->
+      @if (isSelected(item.value) && !isIconOnly(item) && !item.icon) {
+        <span class="ds-tgl__icon ds-tgl__icon--check" [innerHTML]="checkIcon"></span>
+      }
+
+      <!-- User-supplied icon (icon+label or icon-only buttons) -->
+      @if (item.icon) {
+        <span class="ds-tgl__icon" [innerHTML]="safeIcon(item.icon)"></span>
+      }
+
+      <!-- Label text -->
+      @if (item.label) {
+        <span class="ds-tgl__label">{{ item.label }}</span>
+      }
+
+      <!-- Count badge -->
+      @if (item.count !== undefined) {
+        <span class="ds-tgl__badge">{{ item.count }}</span>
+      }
+    </button>
+  }
+</div>

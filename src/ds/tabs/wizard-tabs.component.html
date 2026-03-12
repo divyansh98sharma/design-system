@@ -1,0 +1,38 @@
+<div
+  class="ds-wizard-tabs"
+  [style.background]="colors.containerBg"
+  [style.border-color]="colors.containerBorder"
+  [style.--active-bg]="colors.activeBg"
+  [style.--active-badge-border]="colors.activeBadgeBorder"
+  [style.--active-badge-text]="colors.activeBadgeText"
+  [style.--active-text]="colors.activeText"
+  role="tablist"
+>
+  @for (step of steps; let i = $index; let last = $last; track step.key) {
+    <button
+      class="ds-wizard-tabs__step"
+      [class.ds-wizard-tabs__step--active]="isActive(step.key)"
+      [class.ds-wizard-tabs__step--first]="i === 0"
+      [class.ds-wizard-tabs__step--last]="last"
+      [style.z-index]="isActive(step.key) ? 10 : steps.length - i"
+      role="tab"
+      [attr.aria-selected]="isActive(step.key)"
+      type="button"
+      (click)="select(step.key)"
+    >
+      <!-- Step number badge ──────────────────────────────────── -->
+      <span class="ds-wizard-tabs__badge"
+            [class.ds-wizard-tabs__badge--active]="isActive(step.key)">
+        {{ i + 1 }}
+      </span>
+
+      <!-- Step label ─────────────────────────────────────────── -->
+      <span class="ds-wizard-tabs__label">
+        {{ step.label }}
+        @if (step.required) {
+          <span class="ds-wizard-tabs__required" aria-label="required">*</span>
+        }
+      </span>
+    </button>
+  }
+</div>

@@ -1,0 +1,210 @@
+// ─── Container ───────────────────────────────────────────────────────────────
+
+.ds-tgl {
+  display: inline-flex;
+  border-radius: var(--radius-4);
+  overflow: hidden;           // Keeps outer radius clean
+  border: 1px solid;          // color set per theme below
+}
+
+// ─── Individual Button ────────────────────────────────────────────────────────
+
+.ds-tgl__btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #fff;
+  border: none;
+  border-left: 1px solid;     // separator; color set per theme
+  cursor: pointer;
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-regular);
+  white-space: nowrap;
+  color: inherit;              // overridden per theme
+  transition: background-color 120ms ease, color 120ms ease;
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-user-base);
+    outline-offset: -2px;
+    z-index: 1;
+  }
+
+  // First button has no left separator
+  &--first { border-left: none; }
+
+  // Selected state
+  &--selected {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  // Disabled state (individual button)
+  &--disabled,
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.45;
+  }
+
+  // Icon wrapper
+  .ds-tgl__icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+    ::ng-deep svg {
+      display: block;
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  // Count badge
+  .ds-tgl__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    font-weight: var(--font-weight-regular);
+    opacity: 0.75;
+
+    &::before { content: '('; }
+    &::after  { content: ')'; }
+  }
+}
+
+// ─── Sizes ───────────────────────────────────────────────────────────────────
+
+.ds-tgl--sm .ds-tgl__btn {
+  height: 24px;
+  padding: 0 8px;
+  font-size: 11px;
+  gap: 4px;
+
+  .ds-tgl__icon { font-size: 13px; }
+
+  &.ds-tgl__btn--icon-only { width: 24px; padding: 0; }
+}
+
+.ds-tgl--md .ds-tgl__btn {
+  height: 32px;
+  padding: 0 12px;
+  font-size: var(--font-size-12);
+  gap: 5px;
+
+  .ds-tgl__icon { font-size: 15px; }
+
+  &.ds-tgl__btn--icon-only { width: 32px; padding: 0; }
+}
+
+.ds-tgl--lg .ds-tgl__btn {
+  height: 40px;
+  padding: 0 16px;
+  font-size: var(--font-size-13);
+  gap: 6px;
+
+  .ds-tgl__icon { font-size: 16px; }
+
+  &.ds-tgl__btn--icon-only { width: 40px; padding: 0; }
+}
+
+// ─── Disabled group ───────────────────────────────────────────────────────────
+
+.ds-tgl--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+// ─── Color Themes ─────────────────────────────────────────────────────────────
+
+// $selected-text accepts a literal colour (e.g. #fff) OR a CSS-variable name
+// (e.g. --color-secondary-90). Use #{} interpolation to emit the raw value;
+// wrap in var() only when the value starts with "--".
+@mixin _tgl-color($value) {
+  @if str-slice(#{$value}, 1, 2) == '--' {
+    color: var(#{$value});
+  } @else {
+    color: #{$value};
+  }
+}
+
+@mixin toggle-theme($border, $text, $selected-bg, $selected-text, $hover-bg) {
+  border-color: var(#{$border});
+
+  .ds-tgl__btn {
+    border-left-color: var(#{$border});
+    color: var(#{$text});
+
+    &:hover:not(:disabled):not(.ds-tgl__btn--disabled):not(.ds-tgl__btn--selected) {
+      background: var(#{$hover-bg});
+    }
+
+    &--selected {
+      background: var(#{$selected-bg});
+      @include _tgl-color($selected-text);
+    }
+  }
+}
+
+.ds-tgl--user {
+  @include toggle-theme(
+    --color-user-base,
+    --color-user-base,
+    --color-user-base,
+    #fff,
+    --color-user-5
+  );
+}
+
+.ds-tgl--admin {
+  @include toggle-theme(
+    --color-admin-base,
+    --color-admin-base,
+    --color-admin-base,
+    #fff,
+    --color-admin-5
+  );
+}
+
+.ds-tgl--secondary {
+  @include toggle-theme(
+    --color-secondary-base,
+    --color-secondary-80,
+    --color-secondary-70,
+    #fff,
+    --color-secondary-20
+  );
+}
+
+.ds-tgl--success {
+  @include toggle-theme(
+    --color-green-base,
+    --color-green-base,
+    --color-green-base,
+    #fff,
+    --color-green-5
+  );
+}
+
+.ds-tgl--error {
+  @include toggle-theme(
+    --color-error-base,
+    --color-error-base,
+    --color-error-base,
+    #fff,
+    --color-error-5
+  );
+}
+
+.ds-tgl--sunoh {
+  @include toggle-theme(
+    --color-sunoh-base,
+    --color-sunoh-base,
+    --color-sunoh-base,
+    #fff,
+    --color-sunoh-5
+  );
+}
