@@ -1,0 +1,55 @@
+<div [ngClass]="['ds-toast', 'ds-toast--' + type]">
+
+  <!-- Left icon -->
+  <div class="ds-toast__icon-wrap" aria-hidden="true">
+    <svg
+      class="ds-toast__icon"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path [attr.d]="iconPath"/>
+    </svg>
+  </div>
+
+  <!-- Content -->
+  <div class="ds-toast__content">
+    <div class="ds-toast__line1">
+      <span class="ds-toast__window-name">{{ windowName }}</span>
+      <span class="ds-toast__sep"> - </span>
+      <span class="ds-toast__description">{{ description }}</span>
+    </div>
+    @if (line2) {
+      <div class="ds-toast__line2">{{ line2 }}</div>
+    }
+  </div>
+
+  <!-- Undo button (confirmation only) -->
+  @if (showUndo && type === 'confirmation') {
+    <button
+      class="ds-toast__undo-btn"
+      type="button"
+      (click)="undoClick.emit()"
+    >{{ undoLabel }}</button>
+  }
+
+  <!-- Close button -->
+  <button
+    class="ds-toast__close-btn"
+    type="button"
+    (click)="closed.emit()"
+    aria-label="Close notification"
+  >
+    <svg
+      class="ds-toast__close-icon"
+      viewBox="0 0 16 16"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M12.59 3.41L11.17 2 8 5.17 4.83 2 3.41 3.41 6.59 6.59 3.41 9.76 4.83 11.17 8 7.99l3.17 3.18 1.42-1.41L9.41 6.59z"/>
+    </svg>
+  </button>
+
+</div>

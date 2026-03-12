@@ -1,0 +1,12 @@
+<label class="ds-checkbox" [class.ds-checkbox--disabled]="disabled">
+  <p-checkbox
+    [(ngModel)]="checked"
+    [binary]="true"
+    [disabled]="disabled"
+    [indeterminate]="indeterminate"
+    (onChange)="handleChange($event)"
+  />
+  @if (hasLabel) {
+    <span class="ds-checkbox__label">{{ label }}</span>
+  }
+</label>
