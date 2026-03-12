@@ -1,0 +1,13 @@
+<div class="ds-loader" role="status" [attr.aria-label]="label">
+  <!-- Three animated dots -->
+  <div [ngClass]="dotsClass">
+    <span class="ds-loader__dot ds-loader__dot--1"></span>
+    <span class="ds-loader__dot ds-loader__dot--2"></span>
+    <span class="ds-loader__dot ds-loader__dot--3"></span>
+  </div>
+
+  <!-- Optional label -->
+  @if (showLabel) {
+    <span class="ds-loader__label" aria-hidden="true">{{ label }}</span>
+  }
+</div>
