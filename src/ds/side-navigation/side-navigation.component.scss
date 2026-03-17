@@ -24,7 +24,7 @@
 .ds-side-nav__heading-text {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
+  color: var(--side-nav-heading-text);
 }
 
 .ds-side-nav__settings-btn {
@@ -35,7 +35,7 @@
   border: none;
   padding: var(--spacing-x-small);
   cursor: pointer;
-  color: var(--color-secondary-90);
+  color: var(--side-nav-settings-color);
   border-radius: var(--radius-standard);
   transition: background 0.15s;
 
@@ -58,15 +58,15 @@
   display: flex;
   align-items: center;
   height: var(--side-nav-search-height);
-  background: var(--color-surface);
-  border: 1px solid var(--color-secondary-60);
+  background: var(--side-nav-search-bg);
+  border: 1px solid var(--side-nav-search-border);
   border-radius: var(--radius-standard);
   padding: 0 var(--side-nav-search-padding-x);
   gap: var(--spacing-x-small);
 
   &:focus-within {
-    border-color: var(--color-border-focus);
-    box-shadow: 0 0 0 2px var(--color-border-focus);
+    border-color: var(--side-nav-search-focus-color);
+    box-shadow: 0 0 0 2px var(--side-nav-search-focus-color);
   }
 }
 
@@ -84,10 +84,10 @@
   outline: none;
   background: transparent;
   font-size: var(--font-size-12);
-  color: var(--color-text-primary);
+  color: var(--side-nav-search-text);
 
   &::placeholder {
-    color: var(--color-secondary-70);
+    color: var(--side-nav-search-placeholder);
     font-style: italic;
   }
 }
@@ -129,10 +129,10 @@
 
   &--active {
     background: var(--side-nav-item-active-bg);
-    color: var(--color-brand-primary);
+    color: var(--side-nav-active-text);
 
-    .ds-side-nav__item-label { color: var(--color-brand-primary); font-weight: var(--font-weight-semibold); }
-    .ds-side-nav__item-icon  { color: var(--color-brand-primary); }
+    .ds-side-nav__item-label { color: var(--side-nav-active-text); font-weight: var(--font-weight-semibold); }
+    .ds-side-nav__item-icon  { color: var(--side-nav-active-text); }
   }
 }
 
@@ -141,7 +141,7 @@
   align-items: center;
   flex-shrink: 0;
   width: var(--side-nav-item-icon-size);
-  color: var(--color-secondary-90);
+  color: var(--side-nav-item-icon-color);
 
   svg { display: block; }
 }
@@ -153,7 +153,7 @@
 
 .ds-side-nav__item-label {
   font-size: var(--font-size-12);
-  color: var(--color-text-primary);
+  color: var(--side-nav-item-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

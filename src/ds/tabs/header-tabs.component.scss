@@ -1,7 +1,7 @@
 // ─── CSS custom property defaults ────────────────────────────────────────────
 :host {
   display: block;
-  --theme-base  : var(--color-user-base);
+  --theme-base  : var(--tab-user-color);
   --theme-base80: var(--color-user-80);
   --theme-text  : var(--color-text-inverse);
 }

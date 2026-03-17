@@ -19,7 +19,7 @@
 .ds-popover__title {
   font-size: var(--font-size-14);
   font-weight: var(--font-weight-semibold);
-  color: var(--popover-theme-color, var(--color-user-base));
+  color: var(--popover-theme-color, var(--popover-user-color));
   line-height: 1.4;
 }
 
@@ -68,8 +68,8 @@
   box-sizing: border-box;
 
   &:focus-within {
-    border-color: var(--popover-theme-color, var(--color-user-base));
-    box-shadow: 0 0 0 2px var(--popover-theme-color, var(--color-user-base));
+    border-color: var(--popover-theme-color, var(--popover-user-color));
+    box-shadow: 0 0 0 2px var(--popover-theme-color, var(--popover-user-color));
   }
 }
 
@@ -81,7 +81,7 @@
   width: 100%;
   color: var(--popover-text-color);
 
-  &::placeholder { color: var(--color-secondary-70); font-style: italic; }
+  &::placeholder { color: var(--popover-placeholder-color); font-style: italic; }
 }
 
 // Checkboxes
@@ -102,7 +102,7 @@
 }
 
 .ds-popover__checkbox-input {
-  accent-color: var(--popover-theme-color, var(--color-user-base));
+  accent-color: var(--popover-theme-color, var(--popover-user-color));
   cursor: pointer;
   width: var(--popover-control-size);
   height: var(--popover-control-size);
@@ -128,7 +128,7 @@
 }
 
 .ds-popover__radio-input {
-  accent-color: var(--popover-theme-color, var(--color-user-base));
+  accent-color: var(--popover-theme-color, var(--popover-user-color));
   cursor: pointer;
   width: var(--popover-control-size);
   height: var(--popover-control-size);
@@ -143,7 +143,7 @@
   align-items: center;
   gap: var(--spacing-small);
   padding: var(--spacing-small) var(--popover-padding-x);
-  border-top: 2px solid var(--popover-footer-border, var(--color-user-30));
+  border-top: 2px solid var(--popover-footer-border, var(--popover-user-border));
 }
 
 .ds-popover__btn {
@@ -154,7 +154,7 @@
   border-radius: var(--popover-radius);
   cursor: pointer;
   transition: opacity 0.15s, background 0.15s;
-  border: 1px solid var(--popover-theme-color, var(--color-user-base));
+  border: 1px solid var(--popover-theme-color, var(--popover-user-color));
 
   &:disabled {
     opacity: var(--popover-btn-disabled-opacity);
@@ -162,8 +162,8 @@
   }
 
   &--primary {
-    background: var(--popover-theme-color, var(--color-user-base));
-    color: var(--color-text-inverse);
+    background: var(--popover-theme-color, var(--popover-user-color));
+    color: var(--popover-btn-text-inverse);
 
     &:hover:not(:disabled) {
       opacity: 0.88;
@@ -172,10 +172,10 @@
 
   &--secondary {
     background: var(--popover-bg);
-    color: var(--popover-theme-color, var(--color-user-base));
+    color: var(--popover-theme-color, var(--popover-user-color));
 
     &:hover:not(:disabled) {
-      background: var(--color-user-5);
+      background: var(--popover-user-hover-bg);
     }
   }
 }

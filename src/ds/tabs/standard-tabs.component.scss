@@ -2,9 +2,9 @@
 :host {
   display: block;
 
-  --theme-base  : var(--color-user-base);
-  --theme-base5 : var(--color-user-5);
-  --theme-base30: var(--color-user-30);
+  --theme-base  : var(--tab-user-color);
+  --theme-base5 : var(--tab-user-bg);
+  --theme-base30: var(--tab-user-border);
 }
 
 // ─── Container ───────────────────────────────────────────────────────────────

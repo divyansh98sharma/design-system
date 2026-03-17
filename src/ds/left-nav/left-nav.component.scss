@@ -33,7 +33,7 @@
   &__menu-icon {
     width : var(--left-nav-menu-icon-size);
     height: var(--left-nav-menu-icon-size);
-    fill  : var(--color-text-inverse);
+    fill  : var(--left-nav-text-color);
     flex-shrink: 0;
   }
 
@@ -52,7 +52,7 @@
     svg {
       width : var(--left-nav-scroll-btn-icon-size);
       height: var(--left-nav-scroll-btn-icon-size);
-      fill  : var(--color-text-inverse);
+      fill  : var(--left-nav-text-color);
     }
 
     &:hover {
@@ -60,7 +60,7 @@
     }
 
     &:focus-visible {
-      outline       : 2px solid var(--color-text-inverse);
+      outline       : 2px solid var(--left-nav-text-color);
       outline-offset: -2px;
     }
   }
@@ -91,7 +91,7 @@
     background     : var(--left-nav-links-bg);
     border         : none;
     cursor         : pointer;
-    color          : var(--color-text-inverse);
+    color          : var(--left-nav-text-color);
     text-align     : center;
     transition     : background 0.15s ease;
 
@@ -100,7 +100,7 @@
     }
 
     &:focus-visible {
-      outline       : 2px solid var(--color-text-inverse);
+      outline       : 2px solid var(--left-nav-text-color);
       outline-offset: -2px;
     }
 
@@ -118,7 +118,7 @@
   &__icon {
     width      : var(--left-nav-icon-size);
     height     : var(--left-nav-icon-size);
-    fill       : var(--color-text-inverse);
+    fill       : var(--left-nav-text-color);
     flex-shrink: 0;
   }
 
@@ -127,7 +127,7 @@
     font-size  : var(--font-size-10);
     font-weight: var(--font-weight-regular);
     line-height: 1.2;
-    color      : var(--color-text-inverse);
+    color      : var(--left-nav-text-color);
     white-space: nowrap;
     overflow   : hidden;
     text-overflow: ellipsis;
@@ -147,7 +147,7 @@
     border         : none;
     border-top     : 1px solid var(--left-nav-outer-bg);
     cursor         : pointer;
-    color          : var(--color-text-inverse);
+    color          : var(--left-nav-text-color);
     font-size      : var(--font-size-12);
     font-weight    : var(--font-weight-regular);
     flex-shrink    : 0;
@@ -161,7 +161,7 @@
     }
 
     &:focus-visible {
-      outline       : 2px solid var(--color-text-inverse);
+      outline       : 2px solid var(--left-nav-text-color);
       outline-offset: -2px;
     }
   }
@@ -169,6 +169,6 @@
   &__logout-icon {
     width : var(--left-nav-icon-size);
     height: var(--left-nav-icon-size);
-    fill  : var(--color-text-inverse);
+    fill  : var(--left-nav-text-color);
   }
 }

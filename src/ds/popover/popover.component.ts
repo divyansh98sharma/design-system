@@ -122,11 +122,11 @@ export class PopoverComponent {
   // ─── Theme helpers ────────────────────────────────────────────────────────
 
   get themeColor(): string {
-    return this.theme === 'admin' ? 'var(--color-admin-base)' : 'var(--color-user-base)';
+    return this.theme === 'admin' ? 'var(--popover-admin-color)' : 'var(--popover-user-color)';
   }
 
   get footerBorderColor(): string {
-    return this.theme === 'admin' ? 'var(--color-admin-30)' : 'var(--color-user-30)';
+    return this.theme === 'admin' ? 'var(--popover-admin-border)' : 'var(--popover-user-border)';
   }
 
   // ─── Event handlers ───────────────────────────────────────────────────────

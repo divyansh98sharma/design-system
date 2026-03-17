@@ -124,7 +124,7 @@
     flex-shrink: 0;
     width: var(--notification-checkbox-size);
     height: var(--notification-checkbox-size);
-    accent-color: var(--color-brand-primary);
+    accent-color: var(--notification-checkbox-accent);
     cursor: pointer;
   }
 
@@ -161,29 +161,29 @@
     transition: background 120ms ease, border-color 120ms ease;
 
     // Default — user theme button
-    background: var(--color-user-base);
-    border-color: var(--color-user-70);
+    background: var(--notification-action-user-bg);
+    border-color: var(--notification-action-user-border);
 
-    &:hover { background: var(--color-user-70); }
+    &:hover { background: var(--notification-action-user-hover); }
     &:focus-visible {
-      outline: 2px solid var(--color-user-base);
+      outline: 2px solid var(--notification-action-user-bg);
       outline-offset: 2px;
     }
   }
 
   // Themed action buttons
   &--admin &__action-btn {
-    background: var(--color-admin-base);
-    border-color: var(--color-admin-60);
-    &:hover { background: var(--color-admin-60); }
-    &:focus-visible { outline-color: var(--color-admin-base); }
+    background: var(--notification-action-admin-bg);
+    border-color: var(--notification-action-admin-border);
+    &:hover { background: var(--notification-action-admin-hover); }
+    &:focus-visible { outline-color: var(--notification-action-admin-bg); }
   }
 
   &--green &__action-btn {
-    background: var(--color-green-base);
-    border-color: var(--color-green-60);
-    &:hover { background: var(--color-green-60); }
-    &:focus-visible { outline-color: var(--color-green-base); }
+    background: var(--notification-action-green-bg);
+    border-color: var(--notification-action-green-border);
+    &:hover { background: var(--notification-action-green-hover); }
+    &:focus-visible { outline-color: var(--notification-action-green-bg); }
   }
 
   // ─── Badge dot (balloon alert) ────────────────────────────────────────────
@@ -194,7 +194,7 @@
     width: var(--notification-badge-size);
     height: var(--notification-badge-size);
     border-radius: var(--radius-pill);
-    background: var(--color-error-base); // #d82727 — typically a red count dot
+    background: var(--notification-badge-bg);
     border: 2px solid var(--notification-bg);
     z-index: 1;
   }

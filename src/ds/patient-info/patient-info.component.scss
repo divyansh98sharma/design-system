@@ -3,8 +3,8 @@
 .ds-patient-info {
   display: flex;
   flex-direction: column;
-  background: var(--color-white);
-  border-bottom: 1px solid var(--color-secondary-base);
+  background: var(--patient-info-bg);
+  border-bottom: 1px solid var(--patient-info-border);
   font-family: var(--font-family-base);
 
   // ─── Main row ─────────────────────────────────────────────────────────────
@@ -25,10 +25,10 @@
     flex-shrink: 0;
     width: var(--patient-info-avatar-size);
     height: var(--patient-info-avatar-size);
-    background: var(--color-user-5);
-    border: 1px solid var(--color-user-10);
+    background: var(--patient-info-avatar-bg);
+    border: 1px solid var(--patient-info-avatar-border);
     border-radius: var(--radius-4);
-    color: var(--color-brand-primary);
+    color: var(--patient-info-avatar-color);
   }
 
   &__avatar-icon {
@@ -62,7 +62,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-bold);
     line-height: var(--line-height-16);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
     white-space: nowrap;
   }
 
@@ -81,37 +81,37 @@
   &__action-btn {
     height: var(--patient-info-btn-height);
     padding: var(--spacing-x-small) var(--spacing-small);
-    background: var(--color-white);
-    border: 1px solid var(--color-secondary-70);
+    background: var(--patient-info-btn-bg);
+    border: 1px solid var(--patient-info-btn-border);
     border-radius: var(--radius-4);
     font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
     cursor: pointer;
     white-space: nowrap;
     transition: background 120ms ease;
 
-    &:hover { background: var(--color-secondary-10); }
+    &:hover { background: var(--patient-info-btn-hover-bg); }
   }
 
   &__secondary-btn {
     height: var(--patient-info-btn-height);
     padding: var(--spacing-x-small) var(--spacing-small);
-    background: var(--color-secondary-base);
-    border: 1px solid var(--color-secondary-70);
+    background: var(--patient-info-secondary-btn-bg);
+    border: 1px solid var(--patient-info-secondary-btn-border);
     border-radius: var(--radius-4);
     font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
     cursor: pointer;
     white-space: nowrap;
 
     &--icon { padding: var(--spacing-x-small) 6px; }
-    &:hover { background: var(--color-secondary-60); }
+    &:hover { background: var(--patient-info-secondary-btn-hover); }
   }
 
   &__healow-btn {
@@ -121,13 +121,13 @@
     height: var(--patient-info-btn-height);
     padding: var(--spacing-x-small) var(--spacing-medium) var(--spacing-x-small) var(--spacing-x-small);
     background: var(--patient-info-healow-btn-bg);
-    border: 1px solid var(--color-secondary-60);
+    border: 1px solid var(--patient-info-secondary-btn-hover);
     border-radius: var(--radius-pill);
     font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
     cursor: pointer;
     white-space: nowrap;
 
@@ -138,7 +138,7 @@
     display: block;
     width: var(--font-size-16);
     height: var(--font-size-16);
-    color: var(--color-brand-primary);
+    color: var(--patient-info-healow-icon-color);
   }
 
   &__sogi {
@@ -152,7 +152,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-white);
+    color: var(--patient-info-text-inverse);
     white-space: nowrap;
     background-image: var(--patient-info-sogi-gradient);
   }
@@ -167,7 +167,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
   }
 
   &__contact-item {
@@ -187,7 +187,7 @@
     flex-shrink: 0;
     width: var(--font-size-16);
     height: var(--font-size-16);
-    color: var(--color-secondary-70);
+    color: var(--patient-info-contact-icon-color);
   }
 
   &__contact-inline {
@@ -198,7 +198,7 @@
   }
 
   &__sep {
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
     font-size: var(--font-size-11);
     line-height: 14px;
   }
@@ -223,14 +223,14 @@
 
   &__meta-label {
     font-weight: var(--font-weight-semibold);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
   }
 
   &__meta-value {
     font-weight: var(--font-weight-semibold);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
 
-    &--yes { color: var(--color-user-base); }
+    &--yes { color: var(--patient-info-meta-yes-color); }
   }
 
   // ─── Alert labels ─────────────────────────────────────────────────────────
@@ -240,7 +240,7 @@
     align-items: center;
     gap: var(--spacing-small);
     padding-top: var(--spacing-x-small);
-    border-top: 1px solid var(--color-secondary-base);
+    border-top: 1px solid var(--patient-info-border);
     flex-wrap: wrap;
   }
 
@@ -255,9 +255,9 @@
     flex-shrink: 0;
     width: var(--font-size-16);
     height: var(--font-size-16);
-    color: var(--color-secondary-70);
+    color: var(--patient-info-alert-icon-color);
 
-    &--warning { color: var(--color-warning-base); }
+    &--warning { color: var(--patient-info-alert-warning-color); }
   }
 
   &__alert-link {
@@ -265,7 +265,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
     text-decoration: underline;
     cursor: pointer;
     white-space: nowrap;
@@ -294,7 +294,7 @@
     font-family: var(--font-family-base);
     font-size: var(--font-size-10);
     line-height: var(--line-height-12);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
 
     &--patient { border-color: var(--patient-info-card-patient-border); background: var(--patient-info-card-patient-bg); }
     &--billing { border-color: var(--patient-info-card-billing-border); background: var(--patient-info-card-billing-bg); }
@@ -368,13 +368,13 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-black);
+    color: var(--patient-info-text-color);
     cursor: pointer;
     white-space: nowrap;
     transition: color 120ms ease;
 
-    &:hover { color: var(--color-user-base); }
-    &:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+    &:hover { color: var(--patient-info-tab-hover-color); }
+    &:focus-visible { outline: 2px solid var(--patient-info-tab-focus-color); outline-offset: 2px; }
   }
 
   &__tab-caret {
@@ -388,7 +388,7 @@
     flex-shrink: 0;
     width: 1px;
     height: var(--font-size-16);
-    background: var(--color-secondary-60);
+    background: var(--patient-info-tab-sep-color);
     margin: 0 var(--spacing-medium);
   }
 }

@@ -15,8 +15,8 @@
 
   // ─── Type colours ─────────────────────────────────────────────────────────
 
-  &--confirmation  { background: var(--color-green-base, #018145); }
-  &--communication { background: #4b4b4b; }
+  &--confirmation  { background: var(--toast-confirmation-bg); }
+  &--communication { background: var(--toast-communication-bg); }
 
   // ─── Left icon ────────────────────────────────────────────────────────────
 
