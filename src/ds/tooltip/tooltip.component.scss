@@ -39,12 +39,12 @@
     border-left: var(--tooltip-arrow-size) solid transparent;
     border-right: var(--tooltip-arrow-size) solid transparent;
     border-bottom: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
-    filter: drop-shadow(0 -3px 2px rgba(0, 0, 0, 0.07));
+    filter: drop-shadow(0 -3px 2px var(--tooltip-arrow-shadow));
   }
 
-  &--top-left::before   { left: 12px; }
+  &--top-left::before   { left: var(--tooltip-arrow-offset); }
   &--top-center::before { left: 50%; transform: translateX(-50%); }
-  &--top-right::before  { right: 12px; }
+  &--top-right::before  { right: var(--tooltip-arrow-offset); }
 
   // ── Bottom edge ───────────────────────────────────────────────────────────
 
@@ -55,12 +55,12 @@
     border-left: var(--tooltip-arrow-size) solid transparent;
     border-right: var(--tooltip-arrow-size) solid transparent;
     border-top: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
-    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.07));
+    filter: drop-shadow(0 3px 2px var(--tooltip-arrow-shadow));
   }
 
-  &--bottom-left::before   { left: 12px; }
+  &--bottom-left::before   { left: var(--tooltip-arrow-offset); }
   &--bottom-center::before { left: 50%; transform: translateX(-50%); }
-  &--bottom-right::before  { right: 12px; }
+  &--bottom-right::before  { right: var(--tooltip-arrow-offset); }
 
   // ── Left edge ─────────────────────────────────────────────────────────────
 
@@ -71,12 +71,12 @@
     border-top: var(--tooltip-arrow-size) solid transparent;
     border-bottom: var(--tooltip-arrow-size) solid transparent;
     border-right: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
-    filter: drop-shadow(-3px 0 2px rgba(0, 0, 0, 0.07));
+    filter: drop-shadow(-3px 0 2px var(--tooltip-arrow-shadow));
   }
 
-  &--left-top::before    { top: 10px; }
+  &--left-top::before    { top: var(--tooltip-arrow-edge-offset); }
   &--left-center::before { top: 50%; transform: translateY(-50%); }
-  &--left-bottom::before { bottom: 10px; }
+  &--left-bottom::before { bottom: var(--tooltip-arrow-edge-offset); }
 
   // ── Right edge ────────────────────────────────────────────────────────────
 
@@ -87,10 +87,10 @@
     border-top: var(--tooltip-arrow-size) solid transparent;
     border-bottom: var(--tooltip-arrow-size) solid transparent;
     border-left: var(--tooltip-arrow-size) solid var(--tooltip-bubble-bg);
-    filter: drop-shadow(3px 0 2px rgba(0, 0, 0, 0.07));
+    filter: drop-shadow(3px 0 2px var(--tooltip-arrow-shadow));
   }
 
-  &--right-top::before    { top: 10px; }
+  &--right-top::before    { top: var(--tooltip-arrow-edge-offset); }
   &--right-center::before { top: 50%; transform: translateY(-50%); }
-  &--right-bottom::before { bottom: 10px; }
+  &--right-bottom::before { bottom: var(--tooltip-arrow-edge-offset); }
 }

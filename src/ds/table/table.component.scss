@@ -36,11 +36,11 @@
   flex: 1 1 auto;
 
   scrollbar-width: thin;
-  scrollbar-color: var(--color-secondary-70) var(--color-secondary-40);
+  scrollbar-color: var(--table-scrollbar-thumb) var(--table-scrollbar-track);
 
   &::-webkit-scrollbar       { height: 6px; }
-  &::-webkit-scrollbar-track { background: var(--color-secondary-40); }
-  &::-webkit-scrollbar-thumb { background: var(--color-secondary-70); border-radius: var(--table-inner-radius); }
+  &::-webkit-scrollbar-track { background: var(--table-scrollbar-track); }
+  &::-webkit-scrollbar-thumb { background: var(--table-scrollbar-thumb); border-radius: var(--table-inner-radius); }
 }
 
 // ─── Table element ────────────────────────────────────────────────────────────
@@ -94,7 +94,7 @@
 
   &--sorted {
     background: var(--table-sorted-bg);
-    color: var(--color-brand-primary);
+    color: var(--table-sorted-text);
   }
 }
 
@@ -187,14 +187,14 @@
   &--empty {
     padding: var(--spacing-x-large) var(--spacing-large);
     text-align: center;
-    color: var(--color-text-disabled);
+    color: var(--table-disabled-text);
     font-style: italic;
   }
 }
 
 // ─── Checkbox ─────────────────────────────────────────────────────────────────
 .ds-table__checkbox {
-  accent-color: var(--color-brand-primary);
+  accent-color: var(--table-accent-color);
   cursor: pointer;
   width: var(--table-control-size);
   height: var(--table-control-size);
@@ -208,13 +208,13 @@
   width: 18px;
   height: 18px;
   background: transparent;
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--table-expand-border);
   border-radius: var(--table-inner-radius);
   cursor: pointer;
   padding: 0;
   transition: border-color 0.15s;
 
-  &:hover { border-color: var(--color-brand-primary); }
+  &:hover { border-color: var(--table-accent-color); }
   svg { display: block; }
 }
 
@@ -226,7 +226,7 @@
   display: inline-block;
   padding: var(--spacing-xx-small) var(--spacing-small);
   background: var(--table-chip-bg);
-  color: var(--color-brand-primary);
+  color: var(--table-chip-text);
   border-radius: var(--radius-pill);
   font-size: var(--table-small-font-size);
   font-weight: var(--font-weight-semibold);
@@ -239,14 +239,14 @@
   padding: 0 var(--spacing-small);
   font-size: var(--table-small-font-size);
   font-weight: var(--font-weight-semibold);
-  border: 1px solid var(--color-brand-primary);
-  color: var(--color-brand-primary);
+  border: 1px solid var(--table-accent-color);
+  color: var(--table-accent-color);
   background: var(--table-bg);
   border-radius: var(--table-inner-radius);
   cursor: pointer;
   transition: background 0.15s;
 
-  &:hover { background: var(--color-user-5); }
+  &:hover { background: var(--table-accent-subtle-bg); }
 }
 
 // ─── Row actions ──────────────────────────────────────────────────────────────
@@ -272,7 +272,7 @@
 
   &:hover { background: var(--table-btn-hover-bg); }
 
-  &--danger:hover { background: var(--color-status-error-subtle); }
+  &--danger:hover { background: var(--table-danger-hover-bg); }
 
   svg { display: block; }
 }
@@ -280,7 +280,7 @@
 // ─── Detail row placeholder ───────────────────────────────────────────────────
 .ds-table__detail-placeholder {
   font-size: var(--table-font-size);
-  color: var(--color-text-disabled);
+  color: var(--table-disabled-text);
   font-style: italic;
 }
 
@@ -311,14 +311,14 @@
 .ds-table__page-size-select {
   height: 22px;
   font-size: var(--table-font-size);
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid var(--table-select-border);
   border-radius: var(--table-inner-radius);
   padding: 0 var(--spacing-x-small);
   background: var(--table-bg);
   cursor: pointer;
   outline: none;
 
-  &:focus { border-color: var(--color-brand-primary); }
+  &:focus { border-color: var(--table-accent-color); }
 }
 
 .ds-table__page-info {
@@ -351,7 +351,7 @@
 
   &:hover:not(:disabled) {
     background: var(--table-btn-hover-bg);
-    border-color: var(--color-border-strong);
+    border-color: var(--table-select-border);
   }
 
   &:disabled {
@@ -362,13 +362,13 @@
   &--number { min-width: 28px; }
 
   &--active {
-    background: var(--color-brand-primary);
-    color: var(--color-text-inverse);
-    border-color: var(--color-brand-primary);
+    background: var(--table-accent-color);
+    color: var(--table-accent-text);
+    border-color: var(--table-accent-color);
     font-weight: var(--font-weight-bold);
 
     &:hover:not(:disabled) {
-      background: var(--color-brand-primary-hover);
+      background: var(--table-accent-color-hover);
     }
   }
 

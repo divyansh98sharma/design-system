@@ -271,6 +271,18 @@
   --table-btn-hover-bg: var(--color-secondary-20);
   --table-chip-bg: var(--color-user-10);
   --table-control-size: 14px;
+  --table-accent-color: var(--color-brand-primary);
+  --table-accent-color-hover: var(--color-brand-primary-hover);
+  --table-accent-text: var(--color-text-inverse);
+  --table-accent-subtle-bg: var(--color-user-5);
+  --table-sorted-text: var(--color-brand-primary);
+  --table-chip-text: var(--color-brand-primary);
+  --table-expand-border: var(--color-border-strong);
+  --table-disabled-text: var(--color-text-disabled);
+  --table-danger-hover-bg: var(--color-status-error-subtle);
+  --table-scrollbar-thumb: var(--color-secondary-70);
+  --table-scrollbar-track: var(--color-secondary-40);
+  --table-select-border: var(--color-border-strong);
 
   // ----------------------------------------------------------
   // Popover
@@ -290,6 +302,14 @@
   --popover-field-label-width: 100px;
   --popover-notch-size: 10px;
   --popover-notch-corner-offset: 16px;
+  --popover-placeholder-color: var(--color-secondary-70);
+  --popover-btn-text-inverse: var(--color-text-inverse);
+  --popover-user-color: var(--color-user-base);
+  --popover-user-border: var(--color-user-30);
+  --popover-user-hover-bg: var(--color-user-5);
+  --popover-admin-color: var(--color-admin-base);
+  --popover-admin-border: var(--color-admin-30);
+  --popover-admin-hover-bg: var(--color-admin-5);
 
   // ----------------------------------------------------------
   // Side Navigation
@@ -311,6 +331,16 @@
   --side-nav-item-gap: 6px;
   --side-nav-leaf-spacer-size: 12px;
   --side-nav-scrollbar-track: var(--color-secondary-40);
+  --side-nav-heading-text: var(--color-text-primary);
+  --side-nav-settings-color: var(--color-secondary-90);
+  --side-nav-search-bg: var(--color-surface);
+  --side-nav-search-border: var(--color-secondary-60);
+  --side-nav-search-focus-color: var(--color-border-focus);
+  --side-nav-search-text: var(--color-text-primary);
+  --side-nav-search-placeholder: var(--color-secondary-70);
+  --side-nav-item-text: var(--color-text-primary);
+  --side-nav-item-icon-color: var(--color-secondary-90);
+  --side-nav-active-text: var(--color-brand-primary);
   --side-nav-scrollbar-thumb: var(--color-secondary-70);
 
   // ----------------------------------------------------------
@@ -326,6 +356,12 @@
   --tab-active-bg: var(--color-surface);
   --tab-border-color: var(--color-secondary-base);
   --tab-transition: 120ms ease;
+  --tab-user-color: var(--color-user-base);
+  --tab-user-bg: var(--color-user-5);
+  --tab-user-border: var(--color-user-30);
+  --tab-admin-color: var(--color-admin-base);
+  --tab-admin-bg: var(--color-admin-5);
+  --tab-admin-border: var(--color-admin-30);
 
   // ----------------------------------------------------------
   // Wizard Tabs
@@ -387,6 +423,7 @@
   --left-nav-scroll-btn-icon-size: 18px;
   --left-nav-item-padding: 12px 4px;
   --left-nav-label-max-width: 52px;
+  --left-nav-text-color: var(--color-text-inverse);
 
   // ----------------------------------------------------------
   // Top Nav
@@ -414,6 +451,11 @@
   --top-nav-jellybean-red-bg: linear-gradient(to bottom, #ff9387, #ff7260);
   --top-nav-jellybean-yellow-bg: linear-gradient(to bottom, #ffea61, #d6b522);
   --top-nav-jellybean-gray-bg: linear-gradient(to bottom, #f2f2f2, #cccccc);
+  --top-nav-text-color: var(--color-text-inverse);
+  --top-nav-jellybean-border: var(--color-user-base);
+  --top-nav-jellybean-text: var(--color-text-primary);
+  --top-nav-jellybean-selected-border: var(--color-text-inverse);
+  --top-nav-radio-green-bg: var(--color-green-base);
 
   // ----------------------------------------------------------
   // Patient Info
@@ -433,6 +475,27 @@
     rgb(226, 106, 38)  76.06%,
     rgb(246, 160, 8)   95.91%
   );
+  --patient-info-bg: var(--color-surface);
+  --patient-info-border: var(--color-secondary-base);
+  --patient-info-text-color: var(--color-text-primary);
+  --patient-info-text-inverse: var(--color-text-inverse);
+  --patient-info-avatar-bg: var(--color-user-5);
+  --patient-info-avatar-border: var(--color-user-10);
+  --patient-info-avatar-color: var(--color-brand-primary);
+  --patient-info-btn-bg: var(--color-surface);
+  --patient-info-btn-border: var(--color-secondary-70);
+  --patient-info-btn-hover-bg: var(--color-secondary-10);
+  --patient-info-secondary-btn-bg: var(--color-secondary-base);
+  --patient-info-secondary-btn-border: var(--color-secondary-70);
+  --patient-info-secondary-btn-hover: var(--color-secondary-60);
+  --patient-info-healow-icon-color: var(--color-brand-primary);
+  --patient-info-contact-icon-color: var(--color-secondary-70);
+  --patient-info-meta-yes-color: var(--color-user-base);
+  --patient-info-alert-icon-color: var(--color-secondary-70);
+  --patient-info-alert-warning-color: var(--color-status-warning);
+  --patient-info-tab-hover-color: var(--color-user-base);
+  --patient-info-tab-focus-color: var(--color-border-focus);
+  --patient-info-tab-sep-color: var(--color-secondary-60);
   --patient-info-card-height: 104px;
   --patient-info-card-width: 120px;
   --patient-info-card-patient-bg: #fff8ec;
@@ -541,6 +604,9 @@
   --tooltip-bubble-min-width: 42px;
   --tooltip-arrow-size: 6px;
   --tooltip-arrow-overlap: 1px;
+  --tooltip-arrow-shadow: rgba(0, 0, 0, 0.07);
+  --tooltip-arrow-offset: 12px;
+  --tooltip-arrow-edge-offset: 10px;
 
   // ----------------------------------------------------------
   // Info Tooltip
@@ -586,6 +652,16 @@
   --notification-badge-size: 10px;
   --notification-badge-bg: var(--color-status-error);
   --notification-badge-border: var(--color-surface);
+  --notification-checkbox-accent: var(--color-brand-primary);
+  --notification-action-user-bg: var(--color-user-base);
+  --notification-action-user-border: var(--color-user-70);
+  --notification-action-user-hover: var(--color-user-70);
+  --notification-action-admin-bg: var(--color-admin-base);
+  --notification-action-admin-border: var(--color-admin-60);
+  --notification-action-admin-hover: var(--color-admin-60);
+  --notification-action-green-bg: var(--color-green-base);
+  --notification-action-green-border: var(--color-green-60);
+  --notification-action-green-hover: var(--color-green-60);
 
   // ----------------------------------------------------------
   // Toast
@@ -630,6 +706,8 @@
   --scrollbar-thumb-bg-hover: var(--color-secondary-80);
   --scrollbar-thumb-bg-active: var(--color-secondary-90);
   --scrollbar-thumb-radius: var(--radius-standard);
+  --scrollbar-arrow-bg: var(--color-secondary-40);
+  --scrollbar-arrow-stroke: var(--color-secondary-70);
 
   // ----------------------------------------------------------
   // Breadcrumb

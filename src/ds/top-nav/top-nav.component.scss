@@ -30,21 +30,21 @@
     transition: background 120ms ease;
 
     &:hover { background: var(--top-nav-menu-toggle-hover-bg); }
-    &:focus-visible { outline: 2px solid var(--color-white); outline-offset: -2px; }
+    &:focus-visible { outline: 2px solid var(--top-nav-text-color); outline-offset: -2px; }
   }
 
   &__menu-chevron {
     display: block;
     width: var(--top-nav-icon-size);
     height: var(--top-nav-icon-size);
-    color: var(--color-white);
+    color: var(--top-nav-text-color);
   }
 
   &__menu-icon {
     display: block;
     width: var(--top-nav-large-icon-size);
     height: var(--top-nav-large-icon-size);
-    color: var(--color-white);
+    color: var(--top-nav-text-color);
   }
 
   // ─── Logo ─────────────────────────────────────────────────────────────────
@@ -61,7 +61,7 @@
     font-family: var(--font-family-base);
     font-size: var(--top-nav-logo-font-size);
     font-weight: var(--font-weight-bold);
-    color: var(--color-white);
+    color: var(--top-nav-text-color);
     letter-spacing: -0.3px;
     line-height: 1;
 
@@ -71,7 +71,7 @@
   &__logo-sup {
     font-size: var(--top-nav-logo-sup-font-size);
     font-weight: var(--font-weight-regular);
-    color: var(--color-white);
+    color: var(--top-nav-text-color);
     align-self: flex-start;
     margin-top: -2px;
   }
@@ -129,7 +129,7 @@
     border-radius: 50%;
     border: var(--top-nav-radio-border);
 
-    &--green { background: var(--color-green-base); }
+    &--green { background: var(--top-nav-radio-green-bg); }
   }
 
   // ─── Right links section ──────────────────────────────────────────────────
@@ -162,7 +162,7 @@
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-white);
+    color: var(--top-nav-text-color);
     flex-shrink: 0;
   }
 
@@ -174,13 +174,13 @@
     justify-content: center;
     min-width: var(--top-nav-jellybean-min-width);
     padding: var(--spacing-x-small) var(--spacing-medium);
-    border: 2px solid var(--color-user-base);
+    border: 2px solid var(--top-nav-jellybean-border);
     border-radius: var(--radius-pill);
     font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
-    color: var(--color-text-primary);
+    color: var(--top-nav-jellybean-text);
     white-space: nowrap;
 
     // Gradient fills
@@ -189,6 +189,6 @@
     &--gray   { background: var(--top-nav-jellybean-gray-bg); }
 
     // Selected state: white border instead of blue
-    &--selected { border-color: var(--color-white); }
+    &--selected { border-color: var(--top-nav-jellybean-selected-border); }
   }
 }
