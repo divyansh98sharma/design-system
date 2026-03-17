@@ -31,8 +31,8 @@ export class CheckboxComponent {
     return this.label !== '';
   }
 
-  handleChange(event: { checked: boolean }): void {
-    this.checked = event.checked;
-    this.checkedChange.emit(event.checked);
+  handleChange(event: { checked?: boolean }): void {
+    this.checked = !!event.checked;
+    this.checkedChange.emit(this.checked);
   }
 }

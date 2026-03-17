@@ -12,16 +12,21 @@ const meta: Meta<RadioButtonComponent> = {
         component:
           'Single-selection control. In a radio group only one option can be selected at a time. ' +
           'Supports **default**, **hover**, and **disabled** states. ' +
-          'Implements `ControlValueAccessor` for Angular forms. ' +
-          'For groups, manage the selected `value` in the parent and pass `[checked]="value === item.value"` to each button.',
+          'Uses PrimeNG `p-radiobutton` with `value`/`model` binding. ' +
+          'For groups, manage the selected `model` in the parent and pass the same `[model]` to each button.',
       },
     },
   },
   argTypes: {
-    checked: {
-      description: 'Whether this radio button is selected.',
-      control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
+    value: {
+      description: 'The value this radio button represents.',
+      control: 'text',
+      table: { defaultValue: { summary: '' } },
+    },
+    model: {
+      description: 'The currently selected value in the group. When `model === value`, the radio is checked.',
+      control: 'text',
+      table: { defaultValue: { summary: 'null' } },
     },
     disabled: {
       description: 'Prevents interaction and applies muted styles.',
@@ -33,15 +38,22 @@ const meta: Meta<RadioButtonComponent> = {
       control: 'text',
       table: { defaultValue: { summary: 'Label' } },
     },
-    checkedChange: {
-      description: 'Emits `true` when the radio button is selected.',
+    name: {
+      description: 'Group name — all radios with the same name form one group.',
+      control: 'text',
+      table: { defaultValue: { summary: 'radio-group' } },
+    },
+    modelChange: {
+      description: 'Emits the selected value when this radio button is selected.',
       table: { category: 'Events' },
     },
   },
   args: {
-    checked: false,
+    value: 'option-a',
+    model: null,
     disabled: false,
     label: 'Label',
+    name: 'radio-group',
   },
 };
 
@@ -67,11 +79,11 @@ export const Overview: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:12px;padding:16px;border:1px solid #e1e1e1;border-radius:8px;width:fit-content">
-        <ds-radio-button [checked]="false" label="Unchecked"></ds-radio-button>
-        <ds-radio-button [checked]="true"  label="Checked"></ds-radio-button>
-        <ds-radio-button [checked]="false" [disabled]="true" label="Disabled unchecked"></ds-radio-button>
-        <ds-radio-button [checked]="true"  [disabled]="true" label="Disabled checked"></ds-radio-button>
-        <ds-radio-button [checked]="false" label=""></ds-radio-button>
+        <ds-radio-button value="a" [model]="null"  label="Unchecked"></ds-radio-button>
+        <ds-radio-button value="b" model="b"       label="Checked"></ds-radio-button>
+        <ds-radio-button value="c" [model]="null"  [disabled]="true" label="Disabled unchecked"></ds-radio-button>
+        <ds-radio-button value="d" model="d"       [disabled]="true" label="Disabled checked"></ds-radio-button>
+        <ds-radio-button value="e" [model]="null"  label=""></ds-radio-button>
       </div>
     `,
   }),
@@ -82,7 +94,7 @@ export const Overview: Story = {
 export const Unchecked: Story = {
   name: 'Unchecked',
   parameters: { docs: { description: { story: 'Default state — empty circle with gray border.' } } },
-  args: { checked: false, label: 'Label' },
+  args: { value: 'option-a', model: null, label: 'Label' },
 };
 
 // ─── Checked ──────────────────────────────────────────────────────────────────
@@ -90,7 +102,7 @@ export const Unchecked: Story = {
 export const Checked: Story = {
   name: 'Checked',
   parameters: { docs: { description: { story: 'Blue border with filled inner dot.' } } },
-  args: { checked: true, label: 'Label' },
+  args: { value: 'option-a', model: 'option-a', label: 'Label' },
 };
 
 // ─── Disabled ─────────────────────────────────────────────────────────────────
@@ -101,8 +113,8 @@ export const Disabled: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:center">
-        <ds-radio-button [checked]="false" [disabled]="true" label="Disabled unchecked"></ds-radio-button>
-        <ds-radio-button [checked]="true"  [disabled]="true" label="Disabled checked"></ds-radio-button>
+        <ds-radio-button value="a" [model]="null" [disabled]="true" label="Disabled unchecked"></ds-radio-button>
+        <ds-radio-button value="b" model="b"      [disabled]="true" label="Disabled checked"></ds-radio-button>
       </div>
     `,
   }),
@@ -117,7 +129,7 @@ export const RadioGroup: Story = {
       description: {
         story:
           'Example of a parent-controlled radio group. ' +
-          'The parent holds the selected value and passes `[checked]="selected === item.value"` to each button.',
+          'The parent holds the selected value and passes the same `[model]` to each button.',
       },
     },
   },
@@ -129,9 +141,6 @@ export const RadioGroup: Story = {
         { value: 'option-b', label: 'Option B' },
         { value: 'option-c', label: 'Option C' },
       ],
-      onSelect(value: string) {
-        (this as { selected: string }).selected = value;
-      },
     },
     template: `
       <fieldset style="border:none;padding:0;margin:0">
@@ -140,8 +149,10 @@ export const RadioGroup: Story = {
           @for (opt of options; track opt.value) {
             <ds-radio-button
               [label]="opt.label"
-              [checked]="selected === opt.value"
-              (checkedChange)="selected = opt.value"
+              [value]="opt.value"
+              [model]="selected"
+              (modelChange)="selected = $event"
+              name="demo-group"
             ></ds-radio-button>
           }
         </div>
@@ -158,8 +169,8 @@ export const NoLabel: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:12px;align-items:center">
-        <ds-radio-button [checked]="false" label=""></ds-radio-button>
-        <ds-radio-button [checked]="true"  label=""></ds-radio-button>
+        <ds-radio-button value="a" [model]="null" label=""></ds-radio-button>
+        <ds-radio-button value="b" model="b"      label=""></ds-radio-button>
       </div>
     `,
   }),
