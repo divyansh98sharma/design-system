@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PanelMenu } from 'primeng/panelmenu';
 
 /**
  * A single left-navigation item — icon path (24 × 24 viewBox SVG) + label.
@@ -72,7 +71,7 @@ export const DEFAULT_LEFT_NAV_ITEMS: LeftNavItem[] = [
 @Component({
   selector: 'ds-left-nav',
   standalone: true,
-  imports: [CommonModule, PanelMenu],
+  imports: [CommonModule],
   templateUrl: './left-nav.component.html',
   styleUrl: './left-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

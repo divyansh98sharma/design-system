@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TreeModule } from 'primeng/tree';
 
 /** A single node in the side navigation tree. */
 export interface SideNavItem {
@@ -36,7 +35,7 @@ export interface SideNavItem {
 @Component({
   selector: 'ds-side-navigation',
   standalone: true,
-  imports: [CommonModule, FormsModule, TreeModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './side-navigation.component.html',
   styleUrl: './side-navigation.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

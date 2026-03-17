@@ -7,7 +7,6 @@ import {
   HostListener,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DialogModule } from 'primeng/dialog';
 
 export type ModalTheme = 'user' | 'admin' | 'green' | 'sunoh' | 'ai';
 
@@ -52,7 +51,7 @@ export interface ModalAction {
 @Component({
   selector: 'ds-modal',
   standalone: true,
-  imports: [CommonModule, DialogModule],
+  imports: [CommonModule],
   templateUrl: './modal.component.html',
   styleUrl: './modal.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

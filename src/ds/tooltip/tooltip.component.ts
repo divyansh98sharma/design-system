@@ -7,7 +7,6 @@ import {
   inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipModule } from 'primeng/tooltip';
 
 export type TooltipPosition =
   | 'top-left'    | 'top-center'    | 'top-right'
@@ -18,7 +17,7 @@ export type TooltipPosition =
 @Component({
   selector: 'ds-tooltip',
   standalone: true,
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule],
   templateUrl: './tooltip.component.html',
   styleUrl: './tooltip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

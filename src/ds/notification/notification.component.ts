@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Message } from 'primeng/message';
 
 export type NotificationType = 'communication' | 'confirmation' | 'warning' | 'error';
 export type NotificationTheme = 'user' | 'admin' | 'green';
@@ -36,7 +35,7 @@ export interface NotificationAction {
 @Component({
   selector: 'ds-notification',
   standalone: true,
-  imports: [CommonModule, Message],
+  imports: [CommonModule],
   templateUrl: './notification.component.html',
   styleUrl: './notification.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

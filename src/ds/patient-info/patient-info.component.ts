@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Card } from 'primeng/card';
 
 // ─── Data interfaces ──────────────────────────────────────────────────────────
 
@@ -61,7 +60,7 @@ export interface ButtonBarTab {
 @Component({
   selector: 'ds-patient-info',
   standalone: true,
-  imports: [CommonModule, Card],
+  imports: [CommonModule],
   templateUrl: './patient-info.component.html',
   styleUrl: './patient-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

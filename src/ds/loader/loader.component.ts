@@ -1,13 +1,12 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProgressSpinner } from 'primeng/progressspinner';
 
 export type LoaderTheme = 'user' | 'admin' | 'green' | 'sunoh';
 
 @Component({
   selector: 'ds-loader',
   standalone: true,
-  imports: [CommonModule, ProgressSpinner],
+  imports: [CommonModule],
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
