@@ -199,4 +199,85 @@
   --color-sunoh-base-80: #7e1633;
   --color-sunoh-base-90: #540e22;
   --color-sunoh-base-100: #320914;
+
+  // ----------------------------------------------------------
+  // LETTER SPACING
+  // ----------------------------------------------------------
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+
+  // ----------------------------------------------------------
+  // BORDER WIDTH
+  // ----------------------------------------------------------
+  --border-width-thin: 1px;
+  --border-width-medium: 1.5px;
+  --border-width-thick: 2px;
+  --border-width-thicker: 3px;
+
+  // ----------------------------------------------------------
+  // OPACITY
+  // ----------------------------------------------------------
+  --opacity-disabled: 0.45;
+  --opacity-loading: 0.65;
+  --opacity-overlay: 0.5;
+  --opacity-hover: 0.08;
+  --opacity-focus: 0.12;
+  --opacity-pressed: 0.12;
+
+  // ----------------------------------------------------------
+  // DURATION
+  // ----------------------------------------------------------
+  --duration-instant: 0ms;
+  --duration-fast-1: 50ms;
+  --duration-fast-2: 100ms;
+  --duration-moderate-1: 150ms;
+  --duration-moderate-2: 200ms;
+  --duration-slow-1: 300ms;
+  --duration-slow-2: 400ms;
+  --duration-slow-3: 500ms;
+
+  // ----------------------------------------------------------
+  // EASING
+  // ----------------------------------------------------------
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --easing-decelerate: cubic-bezier(0, 0, 0, 1);
+  --easing-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --easing-linear: linear;
+  --easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  // ----------------------------------------------------------
+  // Z-INDEX
+  // ----------------------------------------------------------
+  --z-index-base: 0;
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1100;
+  --z-index-banner: 1200;
+  --z-index-overlay: 1300;
+  --z-index-modal: 1400;
+  --z-index-popover: 1500;
+  --z-index-toast: 1700;
+  --z-index-tooltip: 1800;
+
+  // ----------------------------------------------------------
+  // BREAKPOINTS
+  // ----------------------------------------------------------
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1440px;
+
+  // ----------------------------------------------------------
+  // BLUR
+  // ----------------------------------------------------------
+  --blur-none: 0;
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 12px;
+  --blur-xl: 16px;
+  --blur-2xl: 24px;
+  --blur-3xl: 40px;
 }

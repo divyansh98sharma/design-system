@@ -674,4 +674,23 @@
   --toggle-btn-lg-padding-x: var(--spacing-large);
   --toggle-btn-lg-gap: 6px;
   --toggle-btn-lg-icon-size: var(--font-size-16);
+
+  // ----------------------------------------------------------
+  // Global — Icon sizes
+  // ----------------------------------------------------------
+  --icon-size-xs: 12px;
+  --icon-size-sm: 14px;
+  --icon-size-md: 16px;
+  --icon-size-lg: 20px;
+  --icon-size-xl: 24px;
+  --icon-size-2xl: 32px;
+
+  // ----------------------------------------------------------
+  // Global — Control / Component height scale
+  // ----------------------------------------------------------
+  --control-height-xs: 20px;
+  --control-height-sm: 24px;
+  --control-height-md: 32px;
+  --control-height-lg: 40px;
+  --control-height-xl: 48px;
 }
