@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Toolbar } from 'primeng/toolbar';
 
 /**
  * Jellybean badge colour gradient style.
@@ -58,7 +57,7 @@ export interface TopNavLink {
 @Component({
   selector: 'ds-top-nav',
   standalone: true,
-  imports: [CommonModule, Toolbar],
+  imports: [CommonModule],
   templateUrl: './top-nav.component.html',
   styleUrl: './top-nav.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

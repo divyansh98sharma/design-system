@@ -72,7 +72,7 @@ export class ButtonComponent {
 
     return [
       variantClass,
-      `${this.color}-btn`,
+      `p-button-${this.color}`,
       sizeClass,
       this.isIconOnly ? 'p-button-icon-only' : '',
       this.disabled ? 'p-disabled' : '',
@@ -83,7 +83,7 @@ export class ButtonComponent {
 
   /** Color theme class applied to the <p-button> host via [ngClass]. */
   get themeClass(): Record<string, boolean> {
-    return { [`${this.color}-btn`]: true };
+    return { [`p-button-${this.color}`]: true };
   }
 
   onClick(event: MouseEvent): void {

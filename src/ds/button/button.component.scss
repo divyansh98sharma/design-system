@@ -120,14 +120,14 @@
 }
 
 .p-button:not(.p-button-outlined):not(.p-button-text) {
-  &.user-btn    { @include filled-color(--button-user-bg,    --button-user-hover,    --button-user-active); }
-  &.admin-btn   { @include filled-color(--button-admin-bg,   --button-admin-hover,   --button-admin-active); }
-  &.success-btn { @include filled-color(--button-success-bg, --button-success-hover, --button-success-active); }
-  &.error-btn   { @include filled-color(--button-error-bg,   --button-error-hover,   --button-error-active); }
-  &.sunoh-btn   { @include filled-color(--button-sunoh-bg,   --button-sunoh-hover,   --button-sunoh-active); }
+  &.p-button-user    { @include filled-color(--button-user-bg,    --button-user-hover,    --button-user-active); }
+  &.p-button-admin   { @include filled-color(--button-admin-bg,   --button-admin-hover,   --button-admin-active); }
+  &.p-button-success { @include filled-color(--button-success-bg, --button-success-hover, --button-success-active); }
+  &.p-button-error   { @include filled-color(--button-error-bg,   --button-error-hover,   --button-error-active); }
+  &.p-button-sunoh   { @include filled-color(--button-sunoh-bg,   --button-sunoh-hover,   --button-sunoh-active); }
 
   // Secondary filled (neutral gray)
-  &.secondary-btn {
+  &.p-button-secondary {
     background: var(--button-secondary-filled-bg);
     border-color: transparent;
     color: var(--button-secondary-filled-text);
@@ -161,12 +161,12 @@
 }
 
 .p-button-outlined {
-  &.user-btn       { @include outlined-color(--button-user-bg,    --button-user-bg,    --button-user-outlined-hover,      --button-user-outlined-active); }
-  &.secondary-btn  { @include outlined-color(--button-secondary-filled-bg, --button-secondary-outlined-text, --button-secondary-outlined-hover, --button-secondary-outlined-active); }
-  &.success-btn    { @include outlined-color(--button-success-bg, --button-success-bg, --button-success-outlined-hover,   --button-success-outlined-active); }
-  &.error-btn      { @include outlined-color(--button-error-bg,   --button-error-bg,   --button-error-outlined-hover,     --button-error-outlined-active); }
-  &.admin-btn      { @include outlined-color(--button-admin-bg,   --button-admin-bg,   --button-admin-outlined-hover,     --button-admin-outlined-active); }
-  &.sunoh-btn      { @include outlined-color(--button-sunoh-bg,   --button-sunoh-bg,   --button-sunoh-outlined-hover,     --button-sunoh-outlined-active); }
+  &.p-button-user       { @include outlined-color(--button-user-bg,    --button-user-bg,    --button-user-outlined-hover,      --button-user-outlined-active); }
+  &.p-button-secondary  { @include outlined-color(--button-secondary-filled-bg, --button-secondary-outlined-text, --button-secondary-outlined-hover, --button-secondary-outlined-active); }
+  &.p-button-success    { @include outlined-color(--button-success-bg, --button-success-bg, --button-success-outlined-hover,   --button-success-outlined-active); }
+  &.p-button-error      { @include outlined-color(--button-error-bg,   --button-error-bg,   --button-error-outlined-hover,     --button-error-outlined-active); }
+  &.p-button-admin      { @include outlined-color(--button-admin-bg,   --button-admin-bg,   --button-admin-outlined-hover,     --button-admin-outlined-active); }
+  &.p-button-sunoh      { @include outlined-color(--button-sunoh-bg,   --button-sunoh-bg,   --button-sunoh-outlined-hover,     --button-sunoh-outlined-active); }
 }
 
 // ─── Ghost (text-only) variants ──────────────────────────────────────────────
@@ -186,10 +186,10 @@
 }
 
 .p-button-text {
-  &.user-btn       { @include ghost-color(--button-user-bg,              --button-user-ghost-hover,      --button-user-ghost-active); }
-  &.admin-btn      { @include ghost-color(--button-admin-bg,             --button-admin-ghost-hover,     --button-admin-ghost-active); }
-  &.secondary-btn  { @include ghost-color(--button-secondary-ghost-text, --button-secondary-ghost-hover, --button-secondary-ghost-active); }
-  &.success-btn    { @include ghost-color(--button-success-bg,           --button-success-ghost-hover,   --button-success-ghost-active); }
-  &.error-btn      { @include ghost-color(--button-error-bg,             --button-error-ghost-hover,     --button-error-ghost-active); }
-  &.sunoh-btn      { @include ghost-color(--button-sunoh-bg,             --button-sunoh-ghost-hover,     --button-sunoh-ghost-active); }
+  &.p-button-user       { @include ghost-color(--button-user-bg,              --button-user-ghost-hover,      --button-user-ghost-active); }
+  &.p-button-admin      { @include ghost-color(--button-admin-bg,             --button-admin-ghost-hover,     --button-admin-ghost-active); }
+  &.p-button-secondary  { @include ghost-color(--button-secondary-ghost-text, --button-secondary-ghost-hover, --button-secondary-ghost-active); }
+  &.p-button-success    { @include ghost-color(--button-success-bg,           --button-success-ghost-hover,   --button-success-ghost-active); }
+  &.p-button-error      { @include ghost-color(--button-error-bg,             --button-error-ghost-hover,     --button-error-ghost-active); }
+  &.p-button-sunoh      { @include ghost-color(--button-sunoh-bg,             --button-sunoh-ghost-hover,     --button-sunoh-ghost-active); }
 }

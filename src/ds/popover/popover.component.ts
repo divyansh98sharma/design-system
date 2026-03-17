@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PopoverModule } from 'primeng/popover';
 
 /** Theme tokens for the popover. */
 export type PopoverTheme = 'user' | 'admin';
@@ -57,7 +56,7 @@ export interface PopoverRadio {
 @Component({
   selector: 'ds-popover',
   standalone: true,
-  imports: [CommonModule, FormsModule, PopoverModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './popover.component.html',
   styleUrl: './popover.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

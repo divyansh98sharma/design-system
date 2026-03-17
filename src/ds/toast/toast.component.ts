@@ -6,8 +6,6 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
 
 export type ToastType = 'confirmation' | 'communication';
 
@@ -25,11 +23,10 @@ export type ToastType = 'confirmation' | 'communication';
 @Component({
   selector: 'ds-toast',
   standalone: true,
-  imports: [CommonModule, ToastModule],
+  imports: [CommonModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [MessageService],
 })
 export class ToastComponent {
   /** Visual type — changes background colour and icon. */

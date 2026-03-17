@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { InputText } from 'primeng/inputtext';
 
 /** Label layout relative to the field. */
 export type InputFieldAlignment = 'vertical' | 'horizontal';
@@ -33,7 +32,7 @@ export type InputFieldAlignment = 'vertical' | 'horizontal';
 @Component({
   selector: 'ds-input-field',
   standalone: true,
-  imports: [CommonModule, FormsModule, InputText],
+  imports: [CommonModule, FormsModule],
   templateUrl: './input-field.component.html',
   styleUrl: './input-field.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

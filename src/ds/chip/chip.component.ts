@@ -6,7 +6,6 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Chip } from 'primeng/chip';
 
 /**
  * Chip / tag state — controls background colour and border colour.
@@ -45,7 +44,7 @@ export type ChipState =
 @Component({
   selector: 'ds-chip',
   standalone: true,
-  imports: [CommonModule, Chip],
+  imports: [CommonModule],
   templateUrl: './chip.component.html',
   styleUrl: './chip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
