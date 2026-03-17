@@ -1,0 +1,142 @@
+{
+  "primitives": {
+    "letter-spacing": {
+      "letter-spacing/tight": "-0.025em",
+      "letter-spacing/normal": "0",
+      "letter-spacing/wide": "0.025em",
+      "letter-spacing/wider": "0.05em",
+      "letter-spacing/widest": "0.1em"
+    },
+    "border-width": {
+      "border-width/thin": "1px",
+      "border-width/medium": "1.5px",
+      "border-width/thick": "2px",
+      "border-width/thicker": "3px"
+    },
+    "opacity": {
+      "opacity/disabled": 0.45,
+      "opacity/loading": 0.65,
+      "opacity/overlay": 0.5,
+      "opacity/hover": 0.08,
+      "opacity/focus": 0.12,
+      "opacity/pressed": 0.12
+    },
+    "duration": {
+      "duration/instant": "0ms",
+      "duration/fast-1": "50ms",
+      "duration/fast-2": "100ms",
+      "duration/moderate-1": "150ms",
+      "duration/moderate-2": "200ms",
+      "duration/slow-1": "300ms",
+      "duration/slow-2": "400ms",
+      "duration/slow-3": "500ms"
+    },
+    "easing": {
+      "easing/standard": "cubic-bezier(0.2, 0, 0, 1)",
+      "easing/decelerate": "cubic-bezier(0, 0, 0, 1)",
+      "easing/accelerate": "cubic-bezier(0.3, 0, 1, 1)",
+      "easing/linear": "linear",
+      "easing/emphasized": "cubic-bezier(0.2, 0, 0, 1)"
+    },
+    "z-index": {
+      "z-index/base": 0,
+      "z-index/dropdown": 1000,
+      "z-index/sticky": 1100,
+      "z-index/banner": 1200,
+      "z-index/overlay": 1300,
+      "z-index/modal": 1400,
+      "z-index/popover": 1500,
+      "z-index/toast": 1700,
+      "z-index/tooltip": 1800
+    },
+    "breakpoints": {
+      "breakpoint/sm": "480px",
+      "breakpoint/md": "768px",
+      "breakpoint/lg": "1024px",
+      "breakpoint/xl": "1280px",
+      "breakpoint/xxl": "1440px"
+    },
+    "blur": {
+      "blur/none": "0",
+      "blur/sm": "4px",
+      "blur/md": "8px",
+      "blur/lg": "12px",
+      "blur/xl": "16px",
+      "blur/2xl": "24px",
+      "blur/3xl": "40px"
+    }
+  },
+  "semantic": {
+    "icon-colors": {
+      "color/icon/default": "{color.secondary.base-90}",
+      "color/icon/secondary": "{color.secondary.base-70}",
+      "color/icon/disabled": "{color.secondary.base-60}",
+      "color/icon/inverse": "{color.white}",
+      "color/icon/brand": "{color.user.base}",
+      "color/icon/success": "{color.green.base}",
+      "color/icon/error": "{color.error.base}",
+      "color/icon/warning": "{color.warning.base}",
+      "color/icon/ai": "{color.ai.base}",
+      "color/icon/sunoh": "{color.sunoh.base}"
+    },
+    "surface-container": {
+      "color/surface/container-lowest": "{color.white}",
+      "color/surface/container-low": "{color.secondary.base-5}",
+      "color/surface/container": "{color.secondary.base-10}",
+      "color/surface/container-high": "{color.secondary.base-20}",
+      "color/surface/container-highest": "{color.secondary.base-30}"
+    },
+    "focus-ring": {
+      "focus-ring/width": "2px",
+      "focus-ring/offset": "2px",
+      "focus-ring/color": "{color.border.focus}"
+    },
+    "motion-duration": {
+      "motion/duration/instant": "{duration.instant}",
+      "motion/duration/fast": "{duration.fast-2}",
+      "motion/duration/normal": "{duration.moderate-2}",
+      "motion/duration/slow": "{duration.slow-1}",
+      "motion/duration/slower": "{duration.slow-2}"
+    },
+    "motion-easing": {
+      "motion/easing/standard": "{easing.standard}",
+      "motion/easing/decelerate": "{easing.decelerate}",
+      "motion/easing/accelerate": "{easing.accelerate}",
+      "motion/easing/linear": "{easing.linear}",
+      "motion/easing/emphasized": "{easing.emphasized}"
+    },
+    "overlay": {
+      "color/overlay": "rgba(0, 0, 0, 0.5)",
+      "color/skeleton": "{color.secondary.base-30}",
+      "color/skeleton/subtle": "{color.secondary.base-20}"
+    },
+    "state-layer": {
+      "state/hover-opacity": "{opacity.hover}",
+      "state/focus-opacity": "{opacity.focus}",
+      "state/pressed-opacity": "{opacity.pressed}",
+      "state/disabled-opacity": "{opacity.disabled}"
+    },
+    "content-width": {
+      "content-width/narrow": "45ch",
+      "content-width/medium": "60ch",
+      "content-width/wide": "80ch"
+    }
+  },
+  "component": {
+    "icon-sizes": {
+      "icon-size/xs": "12px",
+      "icon-size/sm": "14px",
+      "icon-size/md": "16px",
+      "icon-size/lg": "20px",
+      "icon-size/xl": "24px",
+      "icon-size/2xl": "32px"
+    },
+    "control-heights": {
+      "control-height/xs": "20px",
+      "control-height/sm": "24px",
+      "control-height/md": "32px",
+      "control-height/lg": "40px",
+      "control-height/xl": "48px"
+    }
+  }
+}

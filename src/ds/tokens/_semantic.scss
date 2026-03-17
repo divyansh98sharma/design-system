@@ -97,4 +97,74 @@
   --radius-standard: var(--radius-4);
   --radius-large: var(--radius-8);
   --radius-xl: var(--radius-12);
+
+  // ----------------------------------------------------------
+  // Icon colors
+  // ----------------------------------------------------------
+  --color-icon-default: var(--color-secondary-90);
+  --color-icon-secondary: var(--color-secondary-70);
+  --color-icon-disabled: var(--color-secondary-60);
+  --color-icon-inverse: var(--color-white);
+  --color-icon-brand: var(--color-user-base);
+  --color-icon-success: var(--color-green-base);
+  --color-icon-error: var(--color-error-base);
+  --color-icon-warning: var(--color-warning-base);
+  --color-icon-ai: var(--color-ai-base);
+  --color-icon-sunoh: var(--color-sunoh-base);
+
+  // ----------------------------------------------------------
+  // Surface container hierarchy (background layers)
+  // ----------------------------------------------------------
+  --color-surface-container-lowest: var(--color-white);
+  --color-surface-container-low: var(--color-secondary-5);
+  --color-surface-container: var(--color-secondary-10);
+  --color-surface-container-high: var(--color-secondary-20);
+  --color-surface-container-highest: var(--color-secondary-30);
+
+  // ----------------------------------------------------------
+  // Focus ring
+  // ----------------------------------------------------------
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
+  // Motion — semantic durations
+  // ----------------------------------------------------------
+  --motion-duration-instant: var(--duration-instant);
+  --motion-duration-fast: var(--duration-fast-2);
+  --motion-duration-normal: var(--duration-moderate-2);
+  --motion-duration-slow: var(--duration-slow-1);
+  --motion-duration-slower: var(--duration-slow-2);
+
+  // ----------------------------------------------------------
+  // Motion — semantic easings
+  // ----------------------------------------------------------
+  --motion-easing-standard: var(--easing-standard);
+  --motion-easing-decelerate: var(--easing-decelerate);
+  --motion-easing-accelerate: var(--easing-accelerate);
+  --motion-easing-linear: var(--easing-linear);
+  --motion-easing-emphasized: var(--easing-emphasized);
+
+  // ----------------------------------------------------------
+  // Overlay / Backdrop / Skeleton
+  // ----------------------------------------------------------
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-skeleton: var(--color-secondary-30);
+  --color-skeleton-subtle: var(--color-secondary-20);
+
+  // ----------------------------------------------------------
+  // State layer opacity
+  // ----------------------------------------------------------
+  --state-hover-opacity: var(--opacity-hover);
+  --state-focus-opacity: var(--opacity-focus);
+  --state-pressed-opacity: var(--opacity-pressed);
+  --state-disabled-opacity: var(--opacity-disabled);
+
+  // ----------------------------------------------------------
+  // Content width (readable text)
+  // ----------------------------------------------------------
+  --content-width-narrow: 45ch;
+  --content-width-medium: 60ch;
+  --content-width-wide: 80ch;
 }
