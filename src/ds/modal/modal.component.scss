@@ -184,37 +184,37 @@
 
   // Themed primary buttons
   &--user &__action-btn--primary {
-    background: var(--color-user-base);
-    border-color: var(--color-user-70);
-    &:hover { background: var(--color-user-70); }
-    &:focus-visible { outline: 2px solid var(--color-user-base); outline-offset: 2px; }
+    background: var(--modal-action-primary-user-bg);
+    border-color: var(--modal-action-primary-user-border);
+    &:hover { background: var(--modal-action-primary-user-hover); }
+    &:focus-visible { outline: 2px solid var(--modal-action-primary-user-bg); outline-offset: 2px; }
   }
 
   &--admin &__action-btn--primary {
-    background: var(--color-admin-base);
-    border-color: var(--color-admin-60);
-    &:hover { background: var(--color-admin-60); }
-    &:focus-visible { outline: 2px solid var(--color-admin-base); outline-offset: 2px; }
+    background: var(--modal-action-primary-admin-bg);
+    border-color: var(--modal-action-primary-admin-border);
+    &:hover { background: var(--modal-action-primary-admin-hover); }
+    &:focus-visible { outline: 2px solid var(--modal-action-primary-admin-bg); outline-offset: 2px; }
   }
 
   &--green &__action-btn--primary {
-    background: var(--color-green-base);
-    border-color: var(--color-green-60);
-    &:hover { background: var(--color-green-60); }
-    &:focus-visible { outline: 2px solid var(--color-green-base); outline-offset: 2px; }
+    background: var(--modal-action-primary-green-bg);
+    border-color: var(--modal-action-primary-green-border);
+    &:hover { background: var(--modal-action-primary-green-hover); }
+    &:focus-visible { outline: 2px solid var(--modal-action-primary-green-bg); outline-offset: 2px; }
   }
 
   &--sunoh &__action-btn--primary {
-    background: var(--color-sunoh-base);
-    border-color: var(--color-sunoh-60);
-    &:hover { background: var(--color-sunoh-60); }
-    &:focus-visible { outline: 2px solid var(--color-sunoh-base); outline-offset: 2px; }
+    background: var(--modal-action-primary-sunoh-bg);
+    border-color: var(--modal-action-primary-sunoh-border);
+    &:hover { background: var(--modal-action-primary-sunoh-hover); }
+    &:focus-visible { outline: 2px solid var(--modal-action-primary-sunoh-bg); outline-offset: 2px; }
   }
 
   &--ai &__action-btn--primary {
-    background: var(--color-ai-base);
-    border-color: var(--color-ai-70);
-    &:hover { background: var(--color-ai-70); }
-    &:focus-visible { outline: 2px solid var(--color-ai-base); outline-offset: 2px; }
+    background: var(--modal-action-primary-ai-bg);
+    border-color: var(--modal-action-primary-ai-border);
+    &:hover { background: var(--modal-action-primary-ai-hover); }
+    &:focus-visible { outline: 2px solid var(--modal-action-primary-ai-bg); outline-offset: 2px; }
   }
 }

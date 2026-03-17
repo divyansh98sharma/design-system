@@ -120,25 +120,25 @@
 }
 
 .p-button:not(.p-button-outlined):not(.p-button-text) {
-  &.user-btn    { @include filled-color(--color-user-base,    --color-user-70,    --color-user-80); }
-  &.admin-btn   { @include filled-color(--color-admin-base,   --color-admin-70,   --color-admin-80); }
-  &.success-btn { @include filled-color(--color-green-base,   --color-green-70,   --color-green-80); }
-  &.error-btn   { @include filled-color(--color-error-base,   --color-error-70,   --color-error-80); }
-  &.sunoh-btn   { @include filled-color(--color-sunoh-base,   --color-sunoh-70,   --color-sunoh-80); }
+  &.user-btn    { @include filled-color(--button-user-bg,    --button-user-hover,    --button-user-active); }
+  &.admin-btn   { @include filled-color(--button-admin-bg,   --button-admin-hover,   --button-admin-active); }
+  &.success-btn { @include filled-color(--button-success-bg, --button-success-hover, --button-success-active); }
+  &.error-btn   { @include filled-color(--button-error-bg,   --button-error-hover,   --button-error-active); }
+  &.sunoh-btn   { @include filled-color(--button-sunoh-bg,   --button-sunoh-hover,   --button-sunoh-active); }
 
   // Secondary filled (neutral gray)
   &.secondary-btn {
-    background: var(--color-secondary-base);
+    background: var(--button-secondary-filled-bg);
     border-color: transparent;
-    color: var(--color-secondary-100);
+    color: var(--button-secondary-filled-text);
 
     &:hover:not(:disabled):not(.p-disabled) {
-      background: var(--color-secondary-60);
+      background: var(--button-secondary-filled-hover);
       color: var(--color-text-inverse);
     }
 
     &:active:not(:disabled):not(.p-disabled) {
-      background: var(--color-secondary-70);
+      background: var(--button-secondary-filled-active);
       color: var(--color-text-inverse);
     }
   }
@@ -161,12 +161,12 @@
 }
 
 .p-button-outlined {
-  &.user-btn       { @include outlined-color(--color-user-base,      --color-user-base,      --color-user-5,       --color-user-10); }
-  &.secondary-btn  { @include outlined-color(--color-secondary-base, --color-secondary-80,   --color-secondary-20, --color-secondary-30); }
-  &.success-btn    { @include outlined-color(--color-green-base,     --color-green-base,     --color-green-5,      --color-green-10); }
-  &.error-btn      { @include outlined-color(--color-error-base,     --color-error-base,     --color-error-5,      --color-error-10); }
-  &.admin-btn      { @include outlined-color(--color-admin-base,     --color-admin-base,     --color-admin-5,      --color-admin-10); }
-  &.sunoh-btn      { @include outlined-color(--color-sunoh-base,     --color-sunoh-base,     --color-sunoh-5,      --color-sunoh-10); }
+  &.user-btn       { @include outlined-color(--button-user-bg,    --button-user-bg,    --button-user-outlined-hover,      --button-user-outlined-active); }
+  &.secondary-btn  { @include outlined-color(--button-secondary-filled-bg, --button-secondary-outlined-text, --button-secondary-outlined-hover, --button-secondary-outlined-active); }
+  &.success-btn    { @include outlined-color(--button-success-bg, --button-success-bg, --button-success-outlined-hover,   --button-success-outlined-active); }
+  &.error-btn      { @include outlined-color(--button-error-bg,   --button-error-bg,   --button-error-outlined-hover,     --button-error-outlined-active); }
+  &.admin-btn      { @include outlined-color(--button-admin-bg,   --button-admin-bg,   --button-admin-outlined-hover,     --button-admin-outlined-active); }
+  &.sunoh-btn      { @include outlined-color(--button-sunoh-bg,   --button-sunoh-bg,   --button-sunoh-outlined-hover,     --button-sunoh-outlined-active); }
 }
 
 // ─── Ghost (text-only) variants ──────────────────────────────────────────────
@@ -186,10 +186,10 @@
 }
 
 .p-button-text {
-  &.user-btn       { @include ghost-color(--color-user-base,    --color-user-5,       --color-user-10); }
-  &.admin-btn      { @include ghost-color(--color-admin-base,   --color-admin-5,      --color-admin-10); }
-  &.secondary-btn  { @include ghost-color(--color-secondary-80, --color-secondary-20, --color-secondary-30); }
-  &.success-btn    { @include ghost-color(--color-green-base,   --color-green-5,      --color-green-10); }
-  &.error-btn      { @include ghost-color(--color-error-base,   --color-error-5,      --color-error-10); }
-  &.sunoh-btn      { @include ghost-color(--color-sunoh-base,   --color-sunoh-5,      --color-sunoh-10); }
+  &.user-btn       { @include ghost-color(--button-user-bg,              --button-user-ghost-hover,      --button-user-ghost-active); }
+  &.admin-btn      { @include ghost-color(--button-admin-bg,             --button-admin-ghost-hover,     --button-admin-ghost-active); }
+  &.secondary-btn  { @include ghost-color(--button-secondary-ghost-text, --button-secondary-ghost-hover, --button-secondary-ghost-active); }
+  &.success-btn    { @include ghost-color(--button-success-bg,           --button-success-ghost-hover,   --button-success-ghost-active); }
+  &.error-btn      { @include ghost-color(--button-error-bg,             --button-error-ghost-hover,     --button-error-ghost-active); }
+  &.sunoh-btn      { @include ghost-color(--button-sunoh-bg,             --button-sunoh-ghost-hover,     --button-sunoh-ghost-active); }
 }

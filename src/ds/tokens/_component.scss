@@ -121,6 +121,57 @@
   --button-lg-font-size: var(--font-size-13);
   --button-lg-gap: var(--spacing-small);
 
+  // Button — theme colors (filled)
+  --button-user-bg: var(--color-user-base);
+  --button-user-hover: var(--color-user-70);
+  --button-user-active: var(--color-user-80);
+  --button-admin-bg: var(--color-admin-base);
+  --button-admin-hover: var(--color-admin-70);
+  --button-admin-active: var(--color-admin-80);
+  --button-success-bg: var(--color-green-base);
+  --button-success-hover: var(--color-green-70);
+  --button-success-active: var(--color-green-80);
+  --button-error-bg: var(--color-error-base);
+  --button-error-hover: var(--color-error-70);
+  --button-error-active: var(--color-error-80);
+  --button-sunoh-bg: var(--color-sunoh-base);
+  --button-sunoh-hover: var(--color-sunoh-70);
+  --button-sunoh-active: var(--color-sunoh-80);
+  --button-secondary-filled-bg: var(--color-secondary-base);
+  --button-secondary-filled-hover: var(--color-secondary-60);
+  --button-secondary-filled-active: var(--color-secondary-70);
+  --button-secondary-filled-text: var(--color-secondary-100);
+
+  // Button — theme colors (outlined hover/active backgrounds)
+  --button-user-outlined-hover: var(--color-user-5);
+  --button-user-outlined-active: var(--color-user-10);
+  --button-admin-outlined-hover: var(--color-admin-5);
+  --button-admin-outlined-active: var(--color-admin-10);
+  --button-secondary-outlined-hover: var(--color-secondary-20);
+  --button-secondary-outlined-active: var(--color-secondary-30);
+  --button-secondary-outlined-text: var(--color-secondary-80);
+  --button-success-outlined-hover: var(--color-green-5);
+  --button-success-outlined-active: var(--color-green-10);
+  --button-error-outlined-hover: var(--color-error-5);
+  --button-error-outlined-active: var(--color-error-10);
+  --button-sunoh-outlined-hover: var(--color-sunoh-5);
+  --button-sunoh-outlined-active: var(--color-sunoh-10);
+
+  // Button — theme colors (ghost hover/active backgrounds)
+  --button-user-ghost-hover: var(--color-user-5);
+  --button-user-ghost-active: var(--color-user-10);
+  --button-admin-ghost-hover: var(--color-admin-5);
+  --button-admin-ghost-active: var(--color-admin-10);
+  --button-secondary-ghost-text: var(--color-secondary-80);
+  --button-secondary-ghost-hover: var(--color-secondary-20);
+  --button-secondary-ghost-active: var(--color-secondary-30);
+  --button-success-ghost-hover: var(--color-green-5);
+  --button-success-ghost-active: var(--color-green-10);
+  --button-error-ghost-hover: var(--color-error-5);
+  --button-error-ghost-active: var(--color-error-10);
+  --button-sunoh-ghost-hover: var(--color-sunoh-5);
+  --button-sunoh-ghost-active: var(--color-sunoh-10);
+
   // ----------------------------------------------------------
   // Input / Form
   // ----------------------------------------------------------
@@ -459,6 +510,23 @@
   --modal-action-btn-secondary-color: var(--color-text-primary);
   --modal-action-btn-secondary-bg-hover: var(--color-secondary-60);
 
+  // Modal — themed primary action buttons
+  --modal-action-primary-user-bg: var(--color-user-base);
+  --modal-action-primary-user-border: var(--color-user-70);
+  --modal-action-primary-user-hover: var(--color-user-70);
+  --modal-action-primary-admin-bg: var(--color-admin-base);
+  --modal-action-primary-admin-border: var(--color-admin-60);
+  --modal-action-primary-admin-hover: var(--color-admin-60);
+  --modal-action-primary-green-bg: var(--color-green-base);
+  --modal-action-primary-green-border: var(--color-green-60);
+  --modal-action-primary-green-hover: var(--color-green-60);
+  --modal-action-primary-sunoh-bg: var(--color-sunoh-base);
+  --modal-action-primary-sunoh-border: var(--color-sunoh-60);
+  --modal-action-primary-sunoh-hover: var(--color-sunoh-60);
+  --modal-action-primary-ai-bg: var(--color-ai-base);
+  --modal-action-primary-ai-border: var(--color-ai-70);
+  --modal-action-primary-ai-hover: var(--color-ai-70);
+
   // ----------------------------------------------------------
   // Tooltip Bubble (white popup — 12-position caret)
   // ----------------------------------------------------------
@@ -535,6 +603,8 @@
   --toast-font-size: var(--font-size-12);
   --toast-font-weight: var(--font-weight-regular);
   --toast-title-font-weight: var(--font-weight-bold);
+  --toast-close-size: 16px;
+  --toast-undo-radius: var(--radius-standard);
 
   // ----------------------------------------------------------
   // Disclaimer
