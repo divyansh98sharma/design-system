@@ -33,53 +33,146 @@
   --color-border-error: var(--color-error-base);
 
   // ----------------------------------------------------------
-  // User (primary blue)
+  // User (primary blue) — shade aliases
   // ----------------------------------------------------------
   --color-user: var(--color-user-base);
+  --color-user-5: var(--color-user-base-5);
+  --color-user-10: var(--color-user-base-10);
+  --color-user-20: var(--color-user-base-20);
+  --color-user-30: var(--color-user-base-30);
+  --color-user-40: var(--color-user-base-40);
+  --color-user-50: var(--color-user-base-50);
+  --color-user-60: var(--color-user-base-60);
+  --color-user-70: var(--color-user-base-70);
+  --color-user-80: var(--color-user-base-80);
+  --color-user-90: var(--color-user-base-90);
+  --color-user-100: var(--color-user-base-100);
   --color-user-subtle: var(--color-user-5);
   --color-user-hover: var(--color-user-60);
   --color-user-text: var(--color-white);
 
   // ----------------------------------------------------------
-  // Admin (orange)
+  // Admin (orange) — shade aliases
   // ----------------------------------------------------------
   --color-admin: var(--color-admin-base);
+  --color-admin-5: var(--color-admin-base-5);
+  --color-admin-10: var(--color-admin-base-10);
+  --color-admin-20: var(--color-admin-base-20);
+  --color-admin-30: var(--color-admin-base-30);
+  --color-admin-40: var(--color-admin-base-40);
+  --color-admin-50: var(--color-admin-base-50);
+  --color-admin-60: var(--color-admin-base-60);
+  --color-admin-70: var(--color-admin-base-70);
+  --color-admin-80: var(--color-admin-base-80);
+  --color-admin-90: var(--color-admin-base-90);
+  --color-admin-100: var(--color-admin-base-100);
   --color-admin-subtle: var(--color-admin-5);
   --color-admin-hover: var(--color-admin-60);
   --color-admin-text: var(--color-white);
 
   // ----------------------------------------------------------
-  // Status — Success
+  // Secondary (gray) — shade aliases
+  // ----------------------------------------------------------
+  --color-secondary: var(--color-secondary-base);
+  --color-secondary-5: var(--color-secondary-base-5);
+  --color-secondary-10: var(--color-secondary-base-10);
+  --color-secondary-20: var(--color-secondary-base-20);
+  --color-secondary-30: var(--color-secondary-base-30);
+  --color-secondary-40: var(--color-secondary-base-40);
+  --color-secondary-50: var(--color-secondary-base-50);
+  --color-secondary-60: var(--color-secondary-base-60);
+  --color-secondary-70: var(--color-secondary-base-70);
+  --color-secondary-80: var(--color-secondary-base-80);
+  --color-secondary-90: var(--color-secondary-base-90);
+  --color-secondary-100: var(--color-secondary-base-100);
+
+  // ----------------------------------------------------------
+  // Status — Success (green) — shade aliases
   // ----------------------------------------------------------
   --color-status-success: var(--color-green-base);
   --color-status-success-subtle: var(--color-green-5);
   --color-status-success-text: var(--color-green-60);
+  --color-green-5: var(--color-green-base-5);
+  --color-green-10: var(--color-green-base-10);
+  --color-green-20: var(--color-green-base-20);
+  --color-green-30: var(--color-green-base-30);
+  --color-green-40: var(--color-green-base-40);
+  --color-green-50: var(--color-green-base-50);
+  --color-green-60: var(--color-green-base-60);
+  --color-green-70: var(--color-green-base-70);
+  --color-green-80: var(--color-green-base-80);
+  --color-green-90: var(--color-green-base-90);
+  --color-green-100: var(--color-green-base-100);
 
   // ----------------------------------------------------------
-  // Status — Warning
+  // Status — Warning (yellow) — shade aliases
   // ----------------------------------------------------------
   --color-status-warning: var(--color-warning-base);
   --color-status-warning-subtle: var(--color-warning-5);
   --color-status-warning-text: var(--color-warning-70);
+  --color-warning-5: var(--color-warning-base-5);
+  --color-warning-10: var(--color-warning-base-10);
+  --color-warning-20: var(--color-warning-base-20);
+  --color-warning-30: var(--color-warning-base-30);
+  --color-warning-40: var(--color-warning-base-40);
+  --color-warning-50: var(--color-warning-base-50);
+  --color-warning-60: var(--color-warning-base-60);
+  --color-warning-70: var(--color-warning-base-70);
+  --color-warning-80: var(--color-warning-base-80);
+  --color-warning-90: var(--color-warning-base-90);
+  --color-warning-100: var(--color-warning-base-100);
 
   // ----------------------------------------------------------
-  // Status — Error
+  // Status — Error (red) — shade aliases
   // ----------------------------------------------------------
   --color-status-error: var(--color-error-base);
   --color-status-error-subtle: var(--color-error-5);
   --color-status-error-text: var(--color-error-60);
+  --color-error-5: var(--color-error-base-5);
+  --color-error-10: var(--color-error-base-10);
+  --color-error-20: var(--color-error-base-20);
+  --color-error-30: var(--color-error-base-30);
+  --color-error-40: var(--color-error-base-40);
+  --color-error-50: var(--color-error-base-50);
+  --color-error-60: var(--color-error-base-60);
+  --color-error-70: var(--color-error-base-70);
+  --color-error-80: var(--color-error-base-80);
+  --color-error-90: var(--color-error-base-90);
+  --color-error-100: var(--color-error-base-100);
 
   // ----------------------------------------------------------
-  // AI
+  // AI (purple) — shade aliases
   // ----------------------------------------------------------
   --color-ai: var(--color-ai-base);
+  --color-ai-5: var(--color-ai-base-5);
+  --color-ai-10: var(--color-ai-base-10);
+  --color-ai-20: var(--color-ai-base-20);
+  --color-ai-30: var(--color-ai-base-30);
+  --color-ai-40: var(--color-ai-base-40);
+  --color-ai-50: var(--color-ai-base-50);
+  --color-ai-60: var(--color-ai-base-60);
+  --color-ai-70: var(--color-ai-base-70);
+  --color-ai-80: var(--color-ai-base-80);
+  --color-ai-90: var(--color-ai-base-90);
+  --color-ai-100: var(--color-ai-base-100);
   --color-ai-subtle: var(--color-ai-5);
   --color-ai-text: var(--color-ai-60);
 
   // ----------------------------------------------------------
-  // Sunoh
+  // Sunoh (pink) — shade aliases
   // ----------------------------------------------------------
   --color-sunoh: var(--color-sunoh-base);
+  --color-sunoh-5: var(--color-sunoh-base-5);
+  --color-sunoh-10: var(--color-sunoh-base-10);
+  --color-sunoh-20: var(--color-sunoh-base-20);
+  --color-sunoh-30: var(--color-sunoh-base-30);
+  --color-sunoh-40: var(--color-sunoh-base-40);
+  --color-sunoh-50: var(--color-sunoh-base-50);
+  --color-sunoh-60: var(--color-sunoh-base-60);
+  --color-sunoh-70: var(--color-sunoh-base-70);
+  --color-sunoh-80: var(--color-sunoh-base-80);
+  --color-sunoh-90: var(--color-sunoh-base-90);
+  --color-sunoh-100: var(--color-sunoh-base-100);
   --color-sunoh-subtle: var(--color-sunoh-5);
   --color-sunoh-text: var(--color-sunoh-60);
 
@@ -106,6 +199,7 @@
   --color-icon-disabled: var(--color-secondary-60);
   --color-icon-inverse: var(--color-white);
   --color-icon-user: var(--color-user-base);
+  --color-icon-admin: var(--color-admin-base);
   --color-icon-success: var(--color-green-base);
   --color-icon-error: var(--color-error-base);
   --color-icon-warning: var(--color-warning-base);
