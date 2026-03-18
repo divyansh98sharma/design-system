@@ -1,10 +1,307 @@
 // ============================================================
 // SEMANTIC TOKENS
-// Intent-based aliases derived from primitives.
-// Use these in component styles and layouts.
+// Aliases derived from primitives. Components and layouts
+// should reference ONLY these tokens, never primitives directly.
 // ============================================================
 
 :root {
+  // ----------------------------------------------------------
+  // Font Family
+  // ----------------------------------------------------------
+  --font-family-base: var(--prim-font-family-base);
+
+  // ----------------------------------------------------------
+  // Font Size
+  // ----------------------------------------------------------
+  --font-size-10: var(--prim-font-size-10);
+  --font-size-11: var(--prim-font-size-11);
+  --font-size-12: var(--prim-font-size-12);
+  --font-size-13: var(--prim-font-size-13);
+  --font-size-14: var(--prim-font-size-14);
+  --font-size-16: var(--prim-font-size-16);
+  --font-size-26: var(--prim-font-size-26);
+
+  // ----------------------------------------------------------
+  // Line Height
+  // ----------------------------------------------------------
+  --line-height-12: var(--prim-line-height-12);
+  --line-height-16: var(--prim-line-height-16);
+  --line-height-20: var(--prim-line-height-20);
+  --line-height-36: var(--prim-line-height-36);
+
+  // ----------------------------------------------------------
+  // Font Weight
+  // ----------------------------------------------------------
+  --font-weight-regular: var(--prim-font-weight-regular);
+  --font-weight-semibold: var(--prim-font-weight-semibold);
+  --font-weight-bold: var(--prim-font-weight-bold);
+
+  // ----------------------------------------------------------
+  // Spacing
+  // ----------------------------------------------------------
+  --spacing-xx-small: var(--prim-spacing-xx-small);
+  --spacing-x-small: var(--prim-spacing-x-small);
+  --spacing-small: var(--prim-spacing-small);
+  --spacing-medium: var(--prim-spacing-medium);
+  --spacing-large: var(--prim-spacing-large);
+  --spacing-x-large: var(--prim-spacing-x-large);
+  --spacing-xx-large: var(--prim-spacing-xx-large);
+
+  // ----------------------------------------------------------
+  // Border Radius
+  // ----------------------------------------------------------
+  --radius-4: var(--prim-radius-4);
+  --radius-8: var(--prim-radius-8);
+  --radius-12: var(--prim-radius-12);
+  --radius-pill: var(--prim-radius-pill);
+  --radius-standard: var(--radius-4);
+  --radius-large: var(--radius-8);
+  --radius-xl: var(--radius-12);
+
+  // ----------------------------------------------------------
+  // Shadows
+  // ----------------------------------------------------------
+  --shadow-light-50: var(--prim-shadow-light-50);
+  --shadow-light-100: var(--prim-shadow-light-100);
+  --shadow-light-200: var(--prim-shadow-light-200);
+  --shadow-light-300: var(--prim-shadow-light-300);
+  --shadow-sm: var(--shadow-light-50);
+  --shadow-md: var(--shadow-light-100);
+  --shadow-lg: var(--shadow-light-200);
+  --shadow-xl: var(--shadow-light-300);
+
+  // ----------------------------------------------------------
+  // Letter Spacing
+  // ----------------------------------------------------------
+  --letter-spacing-tight: var(--prim-letter-spacing-tight);
+  --letter-spacing-normal: var(--prim-letter-spacing-normal);
+  --letter-spacing-wide: var(--prim-letter-spacing-wide);
+  --letter-spacing-wider: var(--prim-letter-spacing-wider);
+  --letter-spacing-widest: var(--prim-letter-spacing-widest);
+
+  // ----------------------------------------------------------
+  // Border Width
+  // ----------------------------------------------------------
+  --border-width-thin: var(--prim-border-width-thin);
+  --border-width-medium: var(--prim-border-width-medium);
+  --border-width-thick: var(--prim-border-width-thick);
+  --border-width-thicker: var(--prim-border-width-thicker);
+
+  // ----------------------------------------------------------
+  // Opacity
+  // ----------------------------------------------------------
+  --opacity-disabled: var(--prim-opacity-disabled);
+  --opacity-loading: var(--prim-opacity-loading);
+  --opacity-overlay: var(--prim-opacity-overlay);
+  --opacity-hover: var(--prim-opacity-hover);
+  --opacity-focus: var(--prim-opacity-focus);
+  --opacity-pressed: var(--prim-opacity-pressed);
+
+  // ----------------------------------------------------------
+  // Duration
+  // ----------------------------------------------------------
+  --duration-instant: var(--prim-duration-instant);
+  --duration-fast-1: var(--prim-duration-fast-1);
+  --duration-fast-2: var(--prim-duration-fast-2);
+  --duration-moderate-1: var(--prim-duration-moderate-1);
+  --duration-moderate-2: var(--prim-duration-moderate-2);
+  --duration-slow-1: var(--prim-duration-slow-1);
+  --duration-slow-2: var(--prim-duration-slow-2);
+  --duration-slow-3: var(--prim-duration-slow-3);
+
+  // ----------------------------------------------------------
+  // Easing
+  // ----------------------------------------------------------
+  --easing-standard: var(--prim-easing-standard);
+  --easing-decelerate: var(--prim-easing-decelerate);
+  --easing-accelerate: var(--prim-easing-accelerate);
+  --easing-linear: var(--prim-easing-linear);
+  --easing-emphasized: var(--prim-easing-emphasized);
+
+  // ----------------------------------------------------------
+  // Z-Index
+  // ----------------------------------------------------------
+  --z-index-base: var(--prim-z-index-base);
+  --z-index-dropdown: var(--prim-z-index-dropdown);
+  --z-index-sticky: var(--prim-z-index-sticky);
+  --z-index-banner: var(--prim-z-index-banner);
+  --z-index-overlay: var(--prim-z-index-overlay);
+  --z-index-modal: var(--prim-z-index-modal);
+  --z-index-popover: var(--prim-z-index-popover);
+  --z-index-toast: var(--prim-z-index-toast);
+  --z-index-tooltip: var(--prim-z-index-tooltip);
+
+  // ----------------------------------------------------------
+  // Breakpoints
+  // ----------------------------------------------------------
+  --breakpoint-sm: var(--prim-breakpoint-sm);
+  --breakpoint-md: var(--prim-breakpoint-md);
+  --breakpoint-lg: var(--prim-breakpoint-lg);
+  --breakpoint-xl: var(--prim-breakpoint-xl);
+  --breakpoint-xxl: var(--prim-breakpoint-xxl);
+
+  // ----------------------------------------------------------
+  // Blur
+  // ----------------------------------------------------------
+  --blur-none: var(--prim-blur-none);
+  --blur-sm: var(--prim-blur-sm);
+  --blur-md: var(--prim-blur-md);
+  --blur-lg: var(--prim-blur-lg);
+  --blur-xl: var(--prim-blur-xl);
+  --blur-2xl: var(--prim-blur-2xl);
+  --blur-3xl: var(--prim-blur-3xl);
+
+  // ----------------------------------------------------------
+  // Colors — Global
+  // ----------------------------------------------------------
+  --color-white: var(--prim-color-white);
+  --color-black: var(--prim-color-black);
+  --color-hover: var(--prim-color-hover);
+  --color-select: var(--prim-color-select);
+
+  // ----------------------------------------------------------
+  // Colors — User (Blue) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-user-base: var(--prim-color-user-base);
+  --color-user: var(--color-user-base);
+  --color-user-5: var(--prim-color-user-base-5);
+  --color-user-10: var(--prim-color-user-base-10);
+  --color-user-20: var(--prim-color-user-base-20);
+  --color-user-30: var(--prim-color-user-base-30);
+  --color-user-40: var(--prim-color-user-base-40);
+  --color-user-50: var(--prim-color-user-base-50);
+  --color-user-60: var(--prim-color-user-base-60);
+  --color-user-70: var(--prim-color-user-base-70);
+  --color-user-80: var(--prim-color-user-base-80);
+  --color-user-90: var(--prim-color-user-base-90);
+  --color-user-100: var(--prim-color-user-base-100);
+  --color-user-subtle: var(--color-user-5);
+  --color-user-hover: var(--color-user-60);
+  --color-user-text: var(--color-white);
+
+  // ----------------------------------------------------------
+  // Colors — Admin (Orange) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-admin-base: var(--prim-color-admin-base);
+  --color-admin: var(--color-admin-base);
+  --color-admin-5: var(--prim-color-admin-base-5);
+  --color-admin-10: var(--prim-color-admin-base-10);
+  --color-admin-20: var(--prim-color-admin-base-20);
+  --color-admin-30: var(--prim-color-admin-base-30);
+  --color-admin-40: var(--prim-color-admin-base-40);
+  --color-admin-50: var(--prim-color-admin-base-50);
+  --color-admin-60: var(--prim-color-admin-base-60);
+  --color-admin-70: var(--prim-color-admin-base-70);
+  --color-admin-80: var(--prim-color-admin-base-80);
+  --color-admin-90: var(--prim-color-admin-base-90);
+  --color-admin-100: var(--prim-color-admin-base-100);
+  --color-admin-subtle: var(--color-admin-5);
+  --color-admin-hover: var(--color-admin-60);
+  --color-admin-text: var(--color-white);
+
+  // ----------------------------------------------------------
+  // Colors — Secondary (Gray) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-secondary-base: var(--prim-color-secondary-base);
+  --color-secondary: var(--color-secondary-base);
+  --color-secondary-5: var(--prim-color-secondary-base-5);
+  --color-secondary-10: var(--prim-color-secondary-base-10);
+  --color-secondary-20: var(--prim-color-secondary-base-20);
+  --color-secondary-30: var(--prim-color-secondary-base-30);
+  --color-secondary-40: var(--prim-color-secondary-base-40);
+  --color-secondary-50: var(--prim-color-secondary-base-50);
+  --color-secondary-60: var(--prim-color-secondary-base-60);
+  --color-secondary-70: var(--prim-color-secondary-base-70);
+  --color-secondary-80: var(--prim-color-secondary-base-80);
+  --color-secondary-90: var(--prim-color-secondary-base-90);
+  --color-secondary-100: var(--prim-color-secondary-base-100);
+
+  // ----------------------------------------------------------
+  // Colors — Green (Success) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-green-base: var(--prim-color-green-base);
+  --color-green-5: var(--prim-color-green-base-5);
+  --color-green-10: var(--prim-color-green-base-10);
+  --color-green-20: var(--prim-color-green-base-20);
+  --color-green-30: var(--prim-color-green-base-30);
+  --color-green-40: var(--prim-color-green-base-40);
+  --color-green-50: var(--prim-color-green-base-50);
+  --color-green-60: var(--prim-color-green-base-60);
+  --color-green-70: var(--prim-color-green-base-70);
+  --color-green-80: var(--prim-color-green-base-80);
+  --color-green-90: var(--prim-color-green-base-90);
+  --color-green-100: var(--prim-color-green-base-100);
+
+  // ----------------------------------------------------------
+  // Colors — Warning (Yellow) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-warning-base: var(--prim-color-warning-base);
+  --color-warning-5: var(--prim-color-warning-base-5);
+  --color-warning-10: var(--prim-color-warning-base-10);
+  --color-warning-20: var(--prim-color-warning-base-20);
+  --color-warning-30: var(--prim-color-warning-base-30);
+  --color-warning-40: var(--prim-color-warning-base-40);
+  --color-warning-50: var(--prim-color-warning-base-50);
+  --color-warning-60: var(--prim-color-warning-base-60);
+  --color-warning-70: var(--prim-color-warning-base-70);
+  --color-warning-80: var(--prim-color-warning-base-80);
+  --color-warning-90: var(--prim-color-warning-base-90);
+  --color-warning-100: var(--prim-color-warning-base-100);
+
+  // ----------------------------------------------------------
+  // Colors — Error (Red) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-error-base: var(--prim-color-error-base);
+  --color-error-5: var(--prim-color-error-base-5);
+  --color-error-10: var(--prim-color-error-base-10);
+  --color-error-20: var(--prim-color-error-base-20);
+  --color-error-30: var(--prim-color-error-base-30);
+  --color-error-40: var(--prim-color-error-base-40);
+  --color-error-50: var(--prim-color-error-base-50);
+  --color-error-60: var(--prim-color-error-base-60);
+  --color-error-70: var(--prim-color-error-base-70);
+  --color-error-80: var(--prim-color-error-base-80);
+  --color-error-90: var(--prim-color-error-base-90);
+  --color-error-100: var(--prim-color-error-base-100);
+
+  // ----------------------------------------------------------
+  // Colors — AI (Purple) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-ai-base: var(--prim-color-ai-base);
+  --color-ai: var(--color-ai-base);
+  --color-ai-5: var(--prim-color-ai-base-5);
+  --color-ai-10: var(--prim-color-ai-base-10);
+  --color-ai-20: var(--prim-color-ai-base-20);
+  --color-ai-30: var(--prim-color-ai-base-30);
+  --color-ai-40: var(--prim-color-ai-base-40);
+  --color-ai-50: var(--prim-color-ai-base-50);
+  --color-ai-60: var(--prim-color-ai-base-60);
+  --color-ai-70: var(--prim-color-ai-base-70);
+  --color-ai-80: var(--prim-color-ai-base-80);
+  --color-ai-90: var(--prim-color-ai-base-90);
+  --color-ai-100: var(--prim-color-ai-base-100);
+  --color-ai-subtle: var(--color-ai-5);
+  --color-ai-text: var(--color-ai-60);
+
+  // ----------------------------------------------------------
+  // Colors — Sunoh (Pink) — base + shade aliases
+  // ----------------------------------------------------------
+  --color-sunoh-base: var(--prim-color-sunoh-base);
+  --color-sunoh: var(--color-sunoh-base);
+  --color-sunoh-5: var(--prim-color-sunoh-base-5);
+  --color-sunoh-10: var(--prim-color-sunoh-base-10);
+  --color-sunoh-20: var(--prim-color-sunoh-base-20);
+  --color-sunoh-30: var(--prim-color-sunoh-base-30);
+  --color-sunoh-40: var(--prim-color-sunoh-base-40);
+  --color-sunoh-50: var(--prim-color-sunoh-base-50);
+  --color-sunoh-60: var(--prim-color-sunoh-base-60);
+  --color-sunoh-70: var(--prim-color-sunoh-base-70);
+  --color-sunoh-80: var(--prim-color-sunoh-base-80);
+  --color-sunoh-90: var(--prim-color-sunoh-base-90);
+  --color-sunoh-100: var(--prim-color-sunoh-base-100);
+  --color-sunoh-subtle: var(--color-sunoh-5);
+  --color-sunoh-text: var(--color-sunoh-60);
+
   // ----------------------------------------------------------
   // Surface
   // ----------------------------------------------------------
@@ -33,163 +330,25 @@
   --color-border-error: var(--color-error-base);
 
   // ----------------------------------------------------------
-  // User (primary blue) — shade aliases
-  // ----------------------------------------------------------
-  --color-user: var(--color-user-base);
-  --color-user-5: var(--color-user-base-5);
-  --color-user-10: var(--color-user-base-10);
-  --color-user-20: var(--color-user-base-20);
-  --color-user-30: var(--color-user-base-30);
-  --color-user-40: var(--color-user-base-40);
-  --color-user-50: var(--color-user-base-50);
-  --color-user-60: var(--color-user-base-60);
-  --color-user-70: var(--color-user-base-70);
-  --color-user-80: var(--color-user-base-80);
-  --color-user-90: var(--color-user-base-90);
-  --color-user-100: var(--color-user-base-100);
-  --color-user-subtle: var(--color-user-5);
-  --color-user-hover: var(--color-user-60);
-  --color-user-text: var(--color-white);
-
-  // ----------------------------------------------------------
-  // Admin (orange) — shade aliases
-  // ----------------------------------------------------------
-  --color-admin: var(--color-admin-base);
-  --color-admin-5: var(--color-admin-base-5);
-  --color-admin-10: var(--color-admin-base-10);
-  --color-admin-20: var(--color-admin-base-20);
-  --color-admin-30: var(--color-admin-base-30);
-  --color-admin-40: var(--color-admin-base-40);
-  --color-admin-50: var(--color-admin-base-50);
-  --color-admin-60: var(--color-admin-base-60);
-  --color-admin-70: var(--color-admin-base-70);
-  --color-admin-80: var(--color-admin-base-80);
-  --color-admin-90: var(--color-admin-base-90);
-  --color-admin-100: var(--color-admin-base-100);
-  --color-admin-subtle: var(--color-admin-5);
-  --color-admin-hover: var(--color-admin-60);
-  --color-admin-text: var(--color-white);
-
-  // ----------------------------------------------------------
-  // Secondary (gray) — shade aliases
-  // ----------------------------------------------------------
-  --color-secondary: var(--color-secondary-base);
-  --color-secondary-5: var(--color-secondary-base-5);
-  --color-secondary-10: var(--color-secondary-base-10);
-  --color-secondary-20: var(--color-secondary-base-20);
-  --color-secondary-30: var(--color-secondary-base-30);
-  --color-secondary-40: var(--color-secondary-base-40);
-  --color-secondary-50: var(--color-secondary-base-50);
-  --color-secondary-60: var(--color-secondary-base-60);
-  --color-secondary-70: var(--color-secondary-base-70);
-  --color-secondary-80: var(--color-secondary-base-80);
-  --color-secondary-90: var(--color-secondary-base-90);
-  --color-secondary-100: var(--color-secondary-base-100);
-
-  // ----------------------------------------------------------
-  // Status — Success (green) — shade aliases
+  // Status — Success
   // ----------------------------------------------------------
   --color-status-success: var(--color-green-base);
   --color-status-success-subtle: var(--color-green-5);
   --color-status-success-text: var(--color-green-60);
-  --color-green-5: var(--color-green-base-5);
-  --color-green-10: var(--color-green-base-10);
-  --color-green-20: var(--color-green-base-20);
-  --color-green-30: var(--color-green-base-30);
-  --color-green-40: var(--color-green-base-40);
-  --color-green-50: var(--color-green-base-50);
-  --color-green-60: var(--color-green-base-60);
-  --color-green-70: var(--color-green-base-70);
-  --color-green-80: var(--color-green-base-80);
-  --color-green-90: var(--color-green-base-90);
-  --color-green-100: var(--color-green-base-100);
 
   // ----------------------------------------------------------
-  // Status — Warning (yellow) — shade aliases
+  // Status — Warning
   // ----------------------------------------------------------
   --color-status-warning: var(--color-warning-base);
   --color-status-warning-subtle: var(--color-warning-5);
   --color-status-warning-text: var(--color-warning-70);
-  --color-warning-5: var(--color-warning-base-5);
-  --color-warning-10: var(--color-warning-base-10);
-  --color-warning-20: var(--color-warning-base-20);
-  --color-warning-30: var(--color-warning-base-30);
-  --color-warning-40: var(--color-warning-base-40);
-  --color-warning-50: var(--color-warning-base-50);
-  --color-warning-60: var(--color-warning-base-60);
-  --color-warning-70: var(--color-warning-base-70);
-  --color-warning-80: var(--color-warning-base-80);
-  --color-warning-90: var(--color-warning-base-90);
-  --color-warning-100: var(--color-warning-base-100);
 
   // ----------------------------------------------------------
-  // Status — Error (red) — shade aliases
+  // Status — Error
   // ----------------------------------------------------------
   --color-status-error: var(--color-error-base);
   --color-status-error-subtle: var(--color-error-5);
   --color-status-error-text: var(--color-error-60);
-  --color-error-5: var(--color-error-base-5);
-  --color-error-10: var(--color-error-base-10);
-  --color-error-20: var(--color-error-base-20);
-  --color-error-30: var(--color-error-base-30);
-  --color-error-40: var(--color-error-base-40);
-  --color-error-50: var(--color-error-base-50);
-  --color-error-60: var(--color-error-base-60);
-  --color-error-70: var(--color-error-base-70);
-  --color-error-80: var(--color-error-base-80);
-  --color-error-90: var(--color-error-base-90);
-  --color-error-100: var(--color-error-base-100);
-
-  // ----------------------------------------------------------
-  // AI (purple) — shade aliases
-  // ----------------------------------------------------------
-  --color-ai: var(--color-ai-base);
-  --color-ai-5: var(--color-ai-base-5);
-  --color-ai-10: var(--color-ai-base-10);
-  --color-ai-20: var(--color-ai-base-20);
-  --color-ai-30: var(--color-ai-base-30);
-  --color-ai-40: var(--color-ai-base-40);
-  --color-ai-50: var(--color-ai-base-50);
-  --color-ai-60: var(--color-ai-base-60);
-  --color-ai-70: var(--color-ai-base-70);
-  --color-ai-80: var(--color-ai-base-80);
-  --color-ai-90: var(--color-ai-base-90);
-  --color-ai-100: var(--color-ai-base-100);
-  --color-ai-subtle: var(--color-ai-5);
-  --color-ai-text: var(--color-ai-60);
-
-  // ----------------------------------------------------------
-  // Sunoh (pink) — shade aliases
-  // ----------------------------------------------------------
-  --color-sunoh: var(--color-sunoh-base);
-  --color-sunoh-5: var(--color-sunoh-base-5);
-  --color-sunoh-10: var(--color-sunoh-base-10);
-  --color-sunoh-20: var(--color-sunoh-base-20);
-  --color-sunoh-30: var(--color-sunoh-base-30);
-  --color-sunoh-40: var(--color-sunoh-base-40);
-  --color-sunoh-50: var(--color-sunoh-base-50);
-  --color-sunoh-60: var(--color-sunoh-base-60);
-  --color-sunoh-70: var(--color-sunoh-base-70);
-  --color-sunoh-80: var(--color-sunoh-base-80);
-  --color-sunoh-90: var(--color-sunoh-base-90);
-  --color-sunoh-100: var(--color-sunoh-base-100);
-  --color-sunoh-subtle: var(--color-sunoh-5);
-  --color-sunoh-text: var(--color-sunoh-60);
-
-  // ----------------------------------------------------------
-  // Shadow elevation aliases
-  // ----------------------------------------------------------
-  --shadow-sm: var(--shadow-light-50);
-  --shadow-md: var(--shadow-light-100);
-  --shadow-lg: var(--shadow-light-200);
-  --shadow-xl: var(--shadow-light-300);
-
-  // ----------------------------------------------------------
-  // Radius aliases
-  // ----------------------------------------------------------
-  --radius-standard: var(--radius-4);
-  --radius-large: var(--radius-8);
-  --radius-xl: var(--radius-12);
 
   // ----------------------------------------------------------
   // Icon colors
