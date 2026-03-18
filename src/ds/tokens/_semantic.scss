@@ -33,20 +33,20 @@
   --color-border-error: var(--color-error-base);
 
   // ----------------------------------------------------------
-  // Brand — User (primary blue)
+  // User (primary blue)
   // ----------------------------------------------------------
-  --color-brand-primary: var(--color-user-base);
-  --color-brand-primary-subtle: var(--color-user-5);
-  --color-brand-primary-hover: var(--color-user-60);
-  --color-brand-primary-text: var(--color-white);
+  --color-user: var(--color-user-base);
+  --color-user-subtle: var(--color-user-5);
+  --color-user-hover: var(--color-user-60);
+  --color-user-text: var(--color-white);
 
   // ----------------------------------------------------------
-  // Brand — Admin (orange)
+  // Admin (orange)
   // ----------------------------------------------------------
-  --color-brand-admin: var(--color-admin-base);
-  --color-brand-admin-subtle: var(--color-admin-5);
-  --color-brand-admin-hover: var(--color-admin-60);
-  --color-brand-admin-text: var(--color-white);
+  --color-admin: var(--color-admin-base);
+  --color-admin-subtle: var(--color-admin-5);
+  --color-admin-hover: var(--color-admin-60);
+  --color-admin-text: var(--color-white);
 
   // ----------------------------------------------------------
   // Status — Success
@@ -105,7 +105,7 @@
   --color-icon-secondary: var(--color-secondary-70);
   --color-icon-disabled: var(--color-secondary-60);
   --color-icon-inverse: var(--color-white);
-  --color-icon-brand: var(--color-user-base);
+  --color-icon-user: var(--color-user-base);
   --color-icon-success: var(--color-green-base);
   --color-icon-error: var(--color-error-base);
   --color-icon-warning: var(--color-warning-base);
