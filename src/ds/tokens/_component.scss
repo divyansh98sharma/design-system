@@ -12,11 +12,11 @@
   --checkbox-radius: 3px;
   --checkbox-border-width: 1.5px;
   --checkbox-border: var(--color-border-strong);
-  --checkbox-border-checked: var(--color-brand-primary);
-  --checkbox-border-hover: var(--color-brand-primary-hover);
+  --checkbox-border-checked: var(--color-user);
+  --checkbox-border-hover: var(--color-user-hover);
   --checkbox-bg: var(--color-surface);
-  --checkbox-bg-checked: var(--color-brand-primary);
-  --checkbox-bg-hover: var(--color-brand-primary-hover);
+  --checkbox-bg-checked: var(--color-user);
+  --checkbox-bg-hover: var(--color-user-hover);
   --checkbox-bg-disabled: var(--color-surface-disabled);
   --checkbox-border-disabled: var(--color-border-strong);
   --checkbox-icon-color: var(--color-text-inverse);
@@ -34,12 +34,12 @@
   // ----------------------------------------------------------
   --radio-size: 16px;
   --radio-border: var(--color-border-strong);
-  --radio-border-checked: var(--color-brand-primary);
-  --radio-border-hover: var(--color-brand-primary-hover);
+  --radio-border-checked: var(--color-user);
+  --radio-border-hover: var(--color-user-hover);
   --radio-bg: var(--color-surface);
   --radio-dot-size: 8px;
-  --radio-dot-color: var(--color-brand-primary);
-  --radio-dot-color-hover: var(--color-brand-primary-hover);
+  --radio-dot-color: var(--color-user);
+  --radio-dot-color-hover: var(--color-user-hover);
   --radio-bg-disabled: var(--color-surface);
   --radio-border-disabled: var(--color-border-strong);
   --radio-label-font-size: var(--font-size-12);
@@ -86,16 +86,16 @@
   --button-font-weight: var(--font-weight-semibold);
   --button-line-height: var(--line-height-16);
 
-  --button-primary-bg: var(--color-brand-primary);
+  --button-primary-bg: var(--color-user);
   --button-primary-color: var(--color-text-inverse);
-  --button-primary-bg-hover: var(--color-brand-primary-hover);
+  --button-primary-bg-hover: var(--color-user-hover);
 
   --button-secondary-bg: var(--color-surface);
-  --button-secondary-color: var(--color-brand-primary);
-  --button-secondary-border: var(--color-brand-primary);
+  --button-secondary-color: var(--color-user);
+  --button-secondary-border: var(--color-user);
 
   --button-ghost-bg: transparent;
-  --button-ghost-color: var(--color-brand-primary);
+  --button-ghost-color: var(--color-user);
 
   --button-danger-bg: var(--color-status-error);
   --button-danger-color: var(--color-text-inverse);
@@ -227,7 +227,7 @@
   --avatar-font-weight: var(--font-weight-semibold);
   --avatar-font-family: var(--font-family-base);
   --avatar-bg: var(--color-surface-subtle);
-  --avatar-color: var(--color-brand-primary);
+  --avatar-color: var(--color-user);
   --avatar-dummy-icon-size-sm: 18px;
   --avatar-dummy-icon-size-lg: 40px;
   --avatar-dummy-icon-color: var(--color-text-disabled);
@@ -271,12 +271,12 @@
   --table-btn-hover-bg: var(--color-secondary-20);
   --table-chip-bg: var(--color-user-10);
   --table-control-size: 14px;
-  --table-accent-color: var(--color-brand-primary);
-  --table-accent-color-hover: var(--color-brand-primary-hover);
+  --table-accent-color: var(--color-user);
+  --table-accent-color-hover: var(--color-user-hover);
   --table-accent-text: var(--color-text-inverse);
   --table-accent-subtle-bg: var(--color-user-5);
-  --table-sorted-text: var(--color-brand-primary);
-  --table-chip-text: var(--color-brand-primary);
+  --table-sorted-text: var(--color-user);
+  --table-chip-text: var(--color-user);
   --table-expand-border: var(--color-border-strong);
   --table-disabled-text: var(--color-text-disabled);
   --table-danger-hover-bg: var(--color-status-error-subtle);
@@ -340,7 +340,7 @@
   --side-nav-search-placeholder: var(--color-secondary-70);
   --side-nav-item-text: var(--color-text-primary);
   --side-nav-item-icon-color: var(--color-secondary-90);
-  --side-nav-active-text: var(--color-brand-primary);
+  --side-nav-active-text: var(--color-user);
   --side-nav-scrollbar-thumb: var(--color-secondary-70);
 
   // ----------------------------------------------------------
@@ -481,14 +481,14 @@
   --patient-info-text-inverse: var(--color-text-inverse);
   --patient-info-avatar-bg: var(--color-user-5);
   --patient-info-avatar-border: var(--color-user-10);
-  --patient-info-avatar-color: var(--color-brand-primary);
+  --patient-info-avatar-color: var(--color-user);
   --patient-info-btn-bg: var(--color-surface);
   --patient-info-btn-border: var(--color-secondary-70);
   --patient-info-btn-hover-bg: var(--color-secondary-10);
   --patient-info-secondary-btn-bg: var(--color-secondary-base);
   --patient-info-secondary-btn-border: var(--color-secondary-70);
   --patient-info-secondary-btn-hover: var(--color-secondary-60);
-  --patient-info-healow-icon-color: var(--color-brand-primary);
+  --patient-info-healow-icon-color: var(--color-user);
   --patient-info-contact-icon-color: var(--color-secondary-70);
   --patient-info-meta-yes-color: var(--color-user-base);
   --patient-info-alert-icon-color: var(--color-secondary-70);
@@ -528,7 +528,7 @@
   --chip-bg-warning: var(--color-status-warning-subtle);
   --chip-border-warning: var(--color-status-warning);
   --chip-bg-in-process: var(--color-user-5);
-  --chip-border-in-process: var(--color-brand-primary);
+  --chip-border-in-process: var(--color-user);
   --chip-bg-ai: var(--color-ai-subtle);
   --chip-border-ai: var(--color-ai);
   --chip-badge-size: 16px;
@@ -613,7 +613,7 @@
   // ----------------------------------------------------------
   --info-tooltip-size: 16px;
   --info-tooltip-icon-color: var(--color-text-secondary);
-  --info-tooltip-icon-color-hover: var(--color-brand-primary);
+  --info-tooltip-icon-color-hover: var(--color-user);
   --info-tooltip-focus-color: var(--color-border-focus);
   --info-tooltip-transition: 120ms ease;
 
@@ -644,15 +644,15 @@
   --notification-text-color: var(--color-text-primary);
   --notification-sidebar-min-width: 62px;
   --notification-icon-wrap-size: 30px;
-  --notification-sidebar-user-bg: var(--color-brand-primary);
-  --notification-sidebar-admin-bg: var(--color-brand-admin);
+  --notification-sidebar-user-bg: var(--color-user);
+  --notification-sidebar-admin-bg: var(--color-admin);
   --notification-sidebar-green-bg: var(--color-status-success);
   --notification-checkbox-size: 16px;
   --notification-action-height: 24px;
   --notification-badge-size: 10px;
   --notification-badge-bg: var(--color-status-error);
   --notification-badge-border: var(--color-surface);
-  --notification-checkbox-accent: var(--color-brand-primary);
+  --notification-checkbox-accent: var(--color-user);
   --notification-action-user-bg: var(--color-user-base);
   --notification-action-user-border: var(--color-user-70);
   --notification-action-user-hover: var(--color-user-70);
@@ -727,8 +727,8 @@
   --breadcrumb-overflow-btn-border: var(--color-secondary-base);
   --breadcrumb-overflow-btn-color: var(--color-text-primary);
   --breadcrumb-overflow-btn-active-bg: var(--color-user-5);
-  --breadcrumb-overflow-btn-active-border: var(--color-brand-primary);
-  --breadcrumb-overflow-btn-active-color: var(--color-brand-primary);
+  --breadcrumb-overflow-btn-active-border: var(--color-user);
+  --breadcrumb-overflow-btn-active-color: var(--color-user);
   --breadcrumb-popover-bg: var(--color-surface);
   --breadcrumb-popover-border: var(--color-secondary-base);
   --breadcrumb-popover-shadow: var(--shadow-md);

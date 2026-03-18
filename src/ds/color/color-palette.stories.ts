@@ -12,7 +12,7 @@ const meta: Meta<ColorPaletteComponent> = {
         component:
           'Complete color palette derived from Figma variables. ' +
           'Each palette maps to CSS custom properties in the format `--color-<group>-<shade>`. ' +
-          'Use **semantic tokens** (`--color-brand-primary`, `--color-status-error`, etc.) in components, ' +
+          'Use **semantic tokens** (`--color-user`, `--color-status-error`, etc.) in components, ' +
           'not primitive tokens directly.',
       },
     },
