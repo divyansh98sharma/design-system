@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ButtonModule } from 'primeng/button';
 
 export type ButtonVariant = 'filled' | 'outlined' | 'ghost';
 export type ButtonColor =
@@ -26,7 +25,7 @@ export type IconPosition = 'left' | 'right' | 'only';
 @Component({
   selector: 'ds-button',
   standalone: true,
-  imports: [CommonModule, ButtonModule, NgTemplateOutlet],
+  imports: [CommonModule, NgTemplateOutlet],
   templateUrl: './button.component.html',
   styleUrl: './button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

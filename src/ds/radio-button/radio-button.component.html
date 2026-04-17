@@ -1,11 +1,17 @@
 <label class="ds-radio" [class.ds-radio--disabled]="disabled">
-  <p-radiobutton
-    [name]="name"
-    [value]="value"
-    [(ngModel)]="model"
-    [disabled]="disabled"
-    (onClick)="handleChange($event)"
-  />
+  <div class="p-radiobutton" [class.p-radiobutton-checked]="model === value" [class.p-disabled]="disabled">
+    <div style="border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px;">
+      <input type="radio"
+        [name]="name"
+        [value]="value"
+        [(ngModel)]="model"
+        [disabled]="disabled"
+        (ngModelChange)="handleChange({value: $event})" />
+    </div>
+    <div class="p-radiobutton-box">
+      <div class="p-radiobutton-icon" [style.transform]="model === value ? 'scale(1)' : 'scale(0)'"></div>
+    </div>
+  </div>
   @if (hasLabel) {
     <span class="ds-radio__label">{{ label }}</span>
   }

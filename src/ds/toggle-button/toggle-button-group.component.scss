@@ -1,3 +1,5 @@
+@use "sass:string";
+
 // ─── Container ───────────────────────────────────────────────────────────────
 
 .ds-tgl {
@@ -123,7 +125,7 @@
 // $selected-text accepts a CSS-variable name (e.g. --color-text-inverse).
 // Use #{} interpolation; wrap in var() when the value starts with "--".
 @mixin _tgl-color($value) {
-  @if str-slice(#{$value}, 1, 2) == '--' {
+  @if string.slice(#{$value}, 1, 2) == '--' {
     color: var(#{$value});
   } @else {
     color: #{$value};

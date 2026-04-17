@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { NgStyle, NgClass } from '@angular/common';
 
 export interface ColorSwatch {
   name: string;
@@ -15,7 +14,7 @@ export interface ColorGroup {
 @Component({
   selector: 'ds-color-palette',
   standalone: true,
-  imports: [NgStyle, NgClass],
+  imports: [],
   templateUrl: './color-palette.component.html',
   styleUrl: './color-palette.component.scss',
 })

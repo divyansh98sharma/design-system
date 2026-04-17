@@ -1,12 +1,11 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipModule } from 'primeng/tooltip';
 import { TooltipPosition, TooltipComponent } from '../tooltip/tooltip.component';
 
 @Component({
   selector: 'ds-info-tooltip',
   standalone: true,
-  imports: [CommonModule, TooltipModule, TooltipComponent],
+  imports: [CommonModule, TooltipComponent],
   templateUrl: './info-tooltip.component.html',
   styleUrl: './info-tooltip.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
