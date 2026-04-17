@@ -1,14 +1,13 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ToggleSwitch } from 'primeng/toggleswitch';
 
 export type ToggleTheme = 'user' | 'admin' | 'green' | 'sunoh';
 
 @Component({
   selector: 'ds-toggle',
   standalone: true,
-  imports: [CommonModule, FormsModule, ToggleSwitch],
+  imports: [CommonModule, FormsModule],
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,12 +1,11 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RadioButton } from 'primeng/radiobutton';
 
 @Component({
   selector: 'ds-radio-button',
   standalone: true,
-  imports: [CommonModule, FormsModule, RadioButton],
+  imports: [CommonModule, FormsModule],
   templateUrl: './radio-button.component.html',
   styleUrl: './radio-button.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

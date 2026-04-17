@@ -1,12 +1,11 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Checkbox } from 'primeng/checkbox';
 
 @Component({
   selector: 'ds-checkbox',
   standalone: true,
-  imports: [CommonModule, FormsModule, Checkbox],
+  imports: [CommonModule, FormsModule],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

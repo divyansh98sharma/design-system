@@ -1,9 +1,11 @@
-<p-button
-  [styleClass]="styleClass"
+<button
+  type="button"
+  class="p-button"
+  [class]="styleClass"
   [ngClass]="themeClass"
   [disabled]="disabled"
   [attr.aria-disabled]="disabled || null"
-  (onClick)="onClick($event)"
+  (click)="onClick($event)"
 >
   @if (hasIcon && iconPosition === 'left') {
     @if (customIconTemplate) {
@@ -38,4 +40,4 @@
       <span class="p-button-icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
     }
   }
-</p-button>
+</button>

@@ -9,275 +9,270 @@
   // ----------------------------------------------------------
   // FONT FAMILY
   // ----------------------------------------------------------
-  --prim-font-family-base: 'Open Sans', system-ui, -apple-system, sans-serif;
+  --inter: 'Inter', system-ui, -apple-system, sans-serif;
 
   // ----------------------------------------------------------
   // FONT SIZE
   // ----------------------------------------------------------
-  --prim-font-size-10: 10px;
-  --prim-font-size-11: 11px;
-  --prim-font-size-12: 12px;
-  --prim-font-size-13: 13px;
-  --prim-font-size-14: 14px;
-  --prim-font-size-16: 16px;
-  --prim-font-size-26: 26px;
+  --12: 12px;
+  --14: 14px;
+  --16: 16px;
 
   // ----------------------------------------------------------
   // LINE HEIGHT
   // ----------------------------------------------------------
-  --prim-line-height-12: 12px;
-  --prim-line-height-16: 16px;
-  --prim-line-height-20: 20px;
-  --prim-line-height-36: 36px;
+  --16: 16px;
+  --20: 20px;
 
   // ----------------------------------------------------------
   // FONT WEIGHT
   // ----------------------------------------------------------
-  --prim-font-weight-regular: 400;
-  --prim-font-weight-semibold: 600;
-  --prim-font-weight-bold: 700;
+  --regular: 400;
+  --medium: 500;
+  --semibold: 600;
+  --bold: 700;
 
   // ----------------------------------------------------------
   // SPACING
   // ----------------------------------------------------------
-  --prim-spacing-xx-small: 2px;
-  --prim-spacing-x-small: 4px;
-  --prim-spacing-small: 8px;
-  --prim-spacing-medium: 12px;
-  --prim-spacing-large: 16px;
-  --prim-spacing-x-large: 20px;
-  --prim-spacing-xx-large: 24px;
+  --2: 2px;
+  --4: 4px;
+  --8: 8px;
+  --12: 12px;
+  --16: 16px;
+  --20: 20px;
+  --24: 24px;
 
   // ----------------------------------------------------------
   // BORDER RADIUS
   // ----------------------------------------------------------
-  --prim-radius-4: 4px;
-  --prim-radius-8: 8px;
-  --prim-radius-12: 12px;
-  --prim-radius-pill: 999px;
+  --4: 4px;
+  --8: 8px;
+  --12: 12px;
+  --pill: 999px;
 
   // ----------------------------------------------------------
   // SHADOWS
   // ----------------------------------------------------------
-  --prim-shadow-light-50: 0px 4px 8px -2px rgba(0, 0, 0, 0.08);
-  --prim-shadow-light-100: 0px 8px 16px -4px rgba(0, 0, 0, 0.16);
-  --prim-shadow-light-200: 0px 12px 24px -4px rgba(0, 0, 0, 0.12);
-  --prim-shadow-light-300: 0px 20px 36px 0px rgba(0, 0, 0, 0.12);
+  --shadow-light-50: 0px 4px 8px -2px rgba(0, 0, 0, 0.08);
+  --shadow-light-100: 0px 8px 16px -4px rgba(0, 0, 0, 0.16);
+  --shadow-light-200: 0px 12px 24px -4px rgba(0, 0, 0, 0.12);
+  --shadow-light-300: 0px 20px 36px 0px rgba(0, 0, 0, 0.12);
 
   // ----------------------------------------------------------
   // COLORS — Global
   // ----------------------------------------------------------
-  --prim-color-white: #ffffff;
-  --prim-color-black: #000000;
-  --prim-color-hover: #fbf3e6;
-  --prim-color-select: #f7e7ce;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-hover: #fbf3e6;
+  --color-select: #f7e7ce;
 
   // ----------------------------------------------------------
   // COLORS — User (Blue)
   // ----------------------------------------------------------
-  --prim-color-user-base: #0378a7;
-  --prim-color-user-base-5: #f1fbff;
-  --prim-color-user-base-10: #cde4ed;
-  --prim-color-user-base-20: #abd2e2;
-  --prim-color-user-base-30: #81bbd3;
-  --prim-color-user-base-40: #57a5c4;
-  --prim-color-user-base-50: #2d8eb6;
-  --prim-color-user-base-60: #03648b;
-  --prim-color-user-base-70: #02506f;
-  --prim-color-user-base-80: #023c54;
-  --prim-color-user-base-90: #012837;
-  --prim-color-user-base-100: #011821;
+  --color-user-base: #0378a7;
+  --color-user-base-5: #f1fbff;
+  --color-user-base-10: #cde4ed;
+  --color-user-base-20: #abd2e2;
+  --color-user-base-30: #81bbd3;
+  --color-user-base-40: #57a5c4;
+  --color-user-base-50: #2d8eb6;
+  --color-user-base-60: #03648b;
+  --color-user-base-70: #02506f;
+  --color-user-base-80: #023c54;
+  --color-user-base-90: #012837;
+  --color-user-base-100: #011821;
 
   // ----------------------------------------------------------
   // COLORS — Admin (Orange)
   // ----------------------------------------------------------
-  --prim-color-admin-base: #e88842;
-  --prim-color-admin-base-5: #fff3ea;
-  --prim-color-admin-base-10: #fae7d9;
-  --prim-color-admin-base-20: #f7d7c0;
-  --prim-color-admin-base-30: #f3c3a0;
-  --prim-color-admin-base-40: #f0b081;
-  --prim-color-admin-base-50: #ec9c62;
-  --prim-color-admin-base-60: #c17137;
-  --prim-color-admin-base-70: #9b5b2c;
-  --prim-color-admin-base-80: #744421;
-  --prim-color-admin-base-90: #4d2d16;
-  --prim-color-admin-base-100: #2e1b0d;
+  --color-admin-base: #e88842;
+  --color-admin-base-5: #fff3ea;
+  --color-admin-base-10: #fae7d9;
+  --color-admin-base-20: #f7d7c0;
+  --color-admin-base-30: #f3c3a0;
+  --color-admin-base-40: #f0b081;
+  --color-admin-base-50: #ec9c62;
+  --color-admin-base-60: #c17137;
+  --color-admin-base-70: #9b5b2c;
+  --color-admin-base-80: #744421;
+  --color-admin-base-90: #4d2d16;
+  --color-admin-base-100: #2e1b0d;
 
   // ----------------------------------------------------------
   // COLORS — Secondary (Gray)
   // ----------------------------------------------------------
-  --prim-color-secondary-base: #e1e1e1;
-  --prim-color-secondary-base-5: #fbfbfb;
-  --prim-color-secondary-base-10: #f7f7f7;
-  --prim-color-secondary-base-20: #f5f5f5;
-  --prim-color-secondary-base-30: #f0f0f0;
-  --prim-color-secondary-base-40: #ebebeb;
-  --prim-color-secondary-base-50: #e6e6e6;
-  --prim-color-secondary-base-60: #bcbcbc;
-  --prim-color-secondary-base-70: #969696;
-  --prim-color-secondary-base-80: #717171;
-  --prim-color-secondary-base-90: #4b4b4b;
-  --prim-color-secondary-base-100: #2d2d2d;
+  --color-secondary-base: #e1e1e1;
+  --color-secondary-base-5: #fbfbfb;
+  --color-secondary-base-10: #f7f7f7;
+  --color-secondary-base-20: #f5f5f5;
+  --color-secondary-base-30: #f0f0f0;
+  --color-secondary-base-40: #ebebeb;
+  --color-secondary-base-50: #e6e6e6;
+  --color-secondary-base-60: #bcbcbc;
+  --color-secondary-base-70: #969696;
+  --color-secondary-base-80: #717171;
+  --color-secondary-base-90: #4b4b4b;
+  --color-secondary-base-100: #2d2d2d;
 
   // ----------------------------------------------------------
   // COLORS — Warning (Yellow)
   // ----------------------------------------------------------
-  --prim-color-warning-base: #fbce2a;
-  --prim-color-warning-base-5: #fff9eb;
-  --prim-color-warning-base-10: #fef5d4;
-  --prim-color-warning-base-20: #feefb8;
-  --prim-color-warning-base-30: #fde795;
-  --prim-color-warning-base-40: #fcde71;
-  --prim-color-warning-base-50: #fcd64e;
-  --prim-color-warning-base-60: #d1ac23;
-  --prim-color-warning-base-70: #a7891c;
-  --prim-color-warning-base-80: #7e6715;
-  --prim-color-warning-base-90: #54450e;
-  --prim-color-warning-base-100: #322908;
+  --color-warning-base: #fbce2a;
+  --color-warning-base-5: #fff9eb;
+  --color-warning-base-10: #fef5d4;
+  --color-warning-base-20: #feefb8;
+  --color-warning-base-30: #fde795;
+  --color-warning-base-40: #fcde71;
+  --color-warning-base-50: #fcd64e;
+  --color-warning-base-60: #d1ac23;
+  --color-warning-base-70: #a7891c;
+  --color-warning-base-80: #7e6715;
+  --color-warning-base-90: #54450e;
+  --color-warning-base-100: #322908;
 
   // ----------------------------------------------------------
   // COLORS — Error (Red)
   // ----------------------------------------------------------
-  --prim-color-error-base: #d82727;
-  --prim-color-error-base-5: #ffefef;
-  --prim-color-error-base-10: #f7d4d4;
-  --prim-color-error-base-20: #f2b7b7;
-  --prim-color-error-base-30: #ec9393;
-  --prim-color-error-base-40: #e56f6f;
-  --prim-color-error-base-50: #df4b4b;
-  --prim-color-error-base-60: #b42121;
-  --prim-color-error-base-70: #901a1a;
-  --prim-color-error-base-80: #6c1414;
-  --prim-color-error-base-90: #480d0d;
-  --prim-color-error-base-100: #2b0808;
+  --color-error-base: #d82727;
+  --color-error-base-5: #ffefef;
+  --color-error-base-10: #f7d4d4;
+  --color-error-base-20: #f2b7b7;
+  --color-error-base-30: #ec9393;
+  --color-error-base-40: #e56f6f;
+  --color-error-base-50: #df4b4b;
+  --color-error-base-60: #b42121;
+  --color-error-base-70: #901a1a;
+  --color-error-base-80: #6c1414;
+  --color-error-base-90: #480d0d;
+  --color-error-base-100: #2b0808;
 
   // ----------------------------------------------------------
   // COLORS — Green (Success)
   // ----------------------------------------------------------
-  --prim-color-green-base: #018145;
-  --prim-color-green-base-5: #f1fef8;
-  --prim-color-green-base-10: #cce6da;
-  --prim-color-green-base-20: #aad5c1;
-  --prim-color-green-base-30: #80c0a2;
-  --prim-color-green-base-40: #56ab83;
-  --prim-color-green-base-50: #2b9664;
-  --prim-color-green-base-60: #016c3a;
-  --prim-color-green-base-70: #01562e;
-  --prim-color-green-base-80: #014123;
-  --prim-color-green-base-90: #002b17;
-  --prim-color-green-base-100: #001a0e;
+  --color-green-base: #018145;
+  --color-green-base-5: #f1fef8;
+  --color-green-base-10: #cce6da;
+  --color-green-base-20: #aad5c1;
+  --color-green-base-30: #80c0a2;
+  --color-green-base-40: #56ab83;
+  --color-green-base-50: #2b9664;
+  --color-green-base-60: #016c3a;
+  --color-green-base-70: #01562e;
+  --color-green-base-80: #014123;
+  --color-green-base-90: #002b17;
+  --color-green-base-100: #001a0e;
 
   // ----------------------------------------------------------
   // COLORS — AI (Purple)
   // ----------------------------------------------------------
-  --prim-color-ai-base: #7d58da;
-  --prim-color-ai-base-5: #f7f2ff;
-  --prim-color-ai-base-10: #e5def8;
-  --prim-color-ai-base-20: #d4c7f3;
-  --prim-color-ai-base-30: #beabec;
-  --prim-color-ai-base-40: #a890e6;
-  --prim-color-ai-base-50: #9374e0;
-  --prim-color-ai-base-60: #6849b6;
-  --prim-color-ai-base-70: #533b91;
-  --prim-color-ai-base-80: #3f2c6d;
-  --prim-color-ai-base-90: #2a1d49;
-  --prim-color-ai-base-100: #19122c;
+  --color-ai-base: #7d58da;
+  --color-ai-base-5: #f7f2ff;
+  --color-ai-base-10: #e5def8;
+  --color-ai-base-20: #d4c7f3;
+  --color-ai-base-30: #beabec;
+  --color-ai-base-40: #a890e6;
+  --color-ai-base-50: #9374e0;
+  --color-ai-base-60: #6849b6;
+  --color-ai-base-70: #533b91;
+  --color-ai-base-80: #3f2c6d;
+  --color-ai-base-90: #2a1d49;
+  --color-ai-base-100: #19122c;
 
   // ----------------------------------------------------------
   // COLORS — Sunoh (Pink)
   // ----------------------------------------------------------
-  --prim-color-sunoh-base: #fb2b66;
-  --prim-color-sunoh-base-5: #ffebf0;
-  --prim-color-sunoh-base-10: #fed5e0;
-  --prim-color-sunoh-base-20: #feb8cc;
-  --prim-color-sunoh-base-30: #fd95b3;
-  --prim-color-sunoh-base-40: #fc7299;
-  --prim-color-sunoh-base-50: #fc4e80;
-  --prim-color-sunoh-base-60: #d12455;
-  --prim-color-sunoh-base-70: #a71d44;
-  --prim-color-sunoh-base-80: #7e1633;
-  --prim-color-sunoh-base-90: #540e22;
-  --prim-color-sunoh-base-100: #320914;
+  --color-sunoh-base: #fb2b66;
+  --color-sunoh-base-5: #ffebf0;
+  --color-sunoh-base-10: #fed5e0;
+  --color-sunoh-base-20: #feb8cc;
+  --color-sunoh-base-30: #fd95b3;
+  --color-sunoh-base-40: #fc7299;
+  --color-sunoh-base-50: #fc4e80;
+  --color-sunoh-base-60: #d12455;
+  --color-sunoh-base-70: #a71d44;
+  --color-sunoh-base-80: #7e1633;
+  --color-sunoh-base-90: #540e22;
+  --color-sunoh-base-100: #320914;
 
   // ----------------------------------------------------------
   // LETTER SPACING
   // ----------------------------------------------------------
-  --prim-letter-spacing-tight: -0.025em;
-  --prim-letter-spacing-normal: 0;
-  --prim-letter-spacing-wide: 0.025em;
-  --prim-letter-spacing-wider: 0.05em;
-  --prim-letter-spacing-widest: 0.1em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
 
   // ----------------------------------------------------------
   // BORDER WIDTH
   // ----------------------------------------------------------
-  --prim-border-width-thin: 1px;
-  --prim-border-width-medium: 1.5px;
-  --prim-border-width-thick: 2px;
-  --prim-border-width-thicker: 3px;
+  --border-width-thin: 1px;
+  --border-width-medium: 1.5px;
+  --border-width-thick: 2px;
+  --border-width-thicker: 3px;
 
   // ----------------------------------------------------------
   // OPACITY
   // ----------------------------------------------------------
-  --prim-opacity-disabled: 0.45;
-  --prim-opacity-loading: 0.65;
-  --prim-opacity-overlay: 0.5;
-  --prim-opacity-hover: 0.08;
-  --prim-opacity-focus: 0.12;
-  --prim-opacity-pressed: 0.12;
+  --opacity-disabled: 0.45;
+  --opacity-loading: 0.65;
+  --opacity-overlay: 0.5;
+  --opacity-hover: 0.08;
+  --opacity-focus: 0.12;
+  --opacity-pressed: 0.12;
 
   // ----------------------------------------------------------
   // DURATION
   // ----------------------------------------------------------
-  --prim-duration-instant: 0ms;
-  --prim-duration-fast-1: 50ms;
-  --prim-duration-fast-2: 100ms;
-  --prim-duration-moderate-1: 150ms;
-  --prim-duration-moderate-2: 200ms;
-  --prim-duration-slow-1: 300ms;
-  --prim-duration-slow-2: 400ms;
-  --prim-duration-slow-3: 500ms;
+  --duration-instant: 0ms;
+  --duration-fast-1: 50ms;
+  --duration-fast-2: 100ms;
+  --duration-moderate-1: 150ms;
+  --duration-moderate-2: 200ms;
+  --duration-slow-1: 300ms;
+  --duration-slow-2: 400ms;
+  --duration-slow-3: 500ms;
 
   // ----------------------------------------------------------
   // EASING
   // ----------------------------------------------------------
-  --prim-easing-standard: cubic-bezier(0.2, 0, 0, 1);
-  --prim-easing-decelerate: cubic-bezier(0, 0, 0, 1);
-  --prim-easing-accelerate: cubic-bezier(0.3, 0, 1, 1);
-  --prim-easing-linear: linear;
-  --prim-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --easing-decelerate: cubic-bezier(0, 0, 0, 1);
+  --easing-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --easing-linear: linear;
+  --easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
 
   // ----------------------------------------------------------
   // Z-INDEX
   // ----------------------------------------------------------
-  --prim-z-index-base: 0;
-  --prim-z-index-dropdown: 1000;
-  --prim-z-index-sticky: 1100;
-  --prim-z-index-banner: 1200;
-  --prim-z-index-overlay: 1300;
-  --prim-z-index-modal: 1400;
-  --prim-z-index-popover: 1500;
-  --prim-z-index-toast: 1700;
-  --prim-z-index-tooltip: 1800;
+  --z-index-base: 0;
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1100;
+  --z-index-banner: 1200;
+  --z-index-overlay: 1300;
+  --z-index-modal: 1400;
+  --z-index-popover: 1500;
+  --z-index-toast: 1700;
+  --z-index-tooltip: 1800;
 
   // ----------------------------------------------------------
   // BREAKPOINTS
   // ----------------------------------------------------------
-  --prim-breakpoint-sm: 480px;
-  --prim-breakpoint-md: 768px;
-  --prim-breakpoint-lg: 1024px;
-  --prim-breakpoint-xl: 1280px;
-  --prim-breakpoint-xxl: 1440px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-xxl: 1440px;
 
   // ----------------------------------------------------------
   // BLUR
   // ----------------------------------------------------------
-  --prim-blur-none: 0;
-  --prim-blur-sm: 4px;
-  --prim-blur-md: 8px;
-  --prim-blur-lg: 12px;
-  --prim-blur-xl: 16px;
-  --prim-blur-2xl: 24px;
-  --prim-blur-3xl: 40px;
+  --blur-none: 0;
+  --blur-sm: 4px;
+  --blur-md: 8px;
+  --blur-lg: 12px;
+  --blur-xl: 16px;
+  --blur-2xl: 24px;
+  --blur-3xl: 40px;
 }

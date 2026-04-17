@@ -5,7 +5,6 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
 
 /**
  * SOGI badge — a pill-shaped label with a rainbow pride gradient.
@@ -17,7 +16,7 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'ds-sogi',
   standalone: true,
-  imports: [CommonModule, ButtonModule],
+  imports: [CommonModule],
   template: `
     <button
       class="ds-sogi"
