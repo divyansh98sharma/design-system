@@ -754,6 +754,98 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // AI Panel
+  // ----------------------------------------------------------
+  --ai-panel-width: 433px;
+  --ai-panel-radius: var(--radius-4);
+  --ai-panel-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.16);
+
+  // Header
+  --ai-panel-header-height: 36px;
+  --ai-panel-header-bg: var(--color-surface);
+  --ai-panel-header-border: var(--color-secondary-base);
+  --ai-panel-header-padding-x: var(--spacing-small);
+  --ai-panel-header-padding-y: var(--spacing-small);
+  --ai-panel-header-gap: var(--spacing-small);
+  --ai-panel-header-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.08);
+
+  // Header — title (gradient)
+  --ai-panel-title-font-size: var(--font-size-14);
+  --ai-panel-title-line-height: var(--line-height-20);
+  --ai-panel-title-font-weight: var(--font-weight-semibold);
+  --ai-panel-title-gap: var(--spacing-x-small);
+  --ai-panel-title-gradient: linear-gradient(
+    90deg,
+    #007B95 0%,
+    #006B6B 50%,
+    #BA654E 100%
+  );
+
+  // Header — leading AI icon (sparkles in 20×20 rounded badge)
+  --ai-panel-ai-icon-size: 20px;
+  --ai-panel-ai-icon-inner-size: 16px;
+
+  // Header / section / tile — small action button (24×24)
+  --ai-panel-icon-button-size: 24px;
+  --ai-panel-icon-button-bg: var(--color-secondary-5);
+  --ai-panel-icon-button-radius: var(--radius-4);
+  --ai-panel-icon-button-padding: var(--spacing-x-small);
+  --ai-panel-icon-button-icon-size: 16px;
+  --ai-panel-icon-button-color: var(--color-text-primary);
+  --ai-panel-icon-button-bg-hover: var(--color-secondary-20);
+  --ai-panel-icon-button-focus-color: var(--color-border-focus);
+
+  // Header — group gap for header actions
+  --ai-panel-header-actions-gap: var(--spacing-small);
+
+  // Body
+  --ai-panel-body-bg: var(--color-surface);
+  --ai-panel-body-padding: var(--spacing-small);
+  --ai-panel-body-gap: var(--spacing-large);
+
+  // Section
+  --ai-panel-section-gap: var(--spacing-x-small);
+  --ai-panel-section-header-gap: var(--spacing-small);
+  --ai-panel-section-title-font-size: var(--font-size-12);
+  --ai-panel-section-title-line-height: var(--line-height-16);
+  --ai-panel-section-title-font-weight: var(--font-weight-semibold);
+  --ai-panel-section-title-color: var(--color-text-primary);
+  --ai-panel-section-chevron-size: 16px;
+  --ai-panel-section-actions-gap: var(--spacing-small);
+
+  // Tile — default (solid border)
+  --ai-panel-tile-bg: var(--color-surface);
+  --ai-panel-tile-border: var(--color-secondary-40);
+  --ai-panel-tile-radius: var(--radius-4);
+  --ai-panel-tile-padding-x: var(--spacing-small);
+  --ai-panel-tile-padding-y: var(--spacing-small);
+  --ai-panel-tile-gap: var(--spacing-small);
+  --ai-panel-tile-title-color: var(--color-text-primary);
+  --ai-panel-tile-title-font-size: var(--font-size-12);
+  --ai-panel-tile-title-line-height: var(--line-height-16);
+
+  // Tile — placeholder (dashed border)
+  --ai-panel-tile-placeholder-border: var(--color-secondary-base);
+  --ai-panel-tile-placeholder-padding: var(--spacing-medium);
+  --ai-panel-tile-placeholder-text-color: var(--color-secondary-80);
+
+  // Footer
+  --ai-panel-footer-bg: var(--color-surface);
+  --ai-panel-footer-border: var(--color-secondary-30);
+  --ai-panel-footer-padding-x: var(--spacing-medium);
+  --ai-panel-footer-padding-y: var(--spacing-small);
+
+  // Footer — button (stronger fill than header buttons)
+  --ai-panel-footer-button-size: 24px;
+  --ai-panel-footer-button-bg: var(--color-secondary-40);
+  --ai-panel-footer-button-border: var(--color-secondary-base);
+  --ai-panel-footer-button-radius: var(--radius-4);
+  --ai-panel-footer-button-icon-size: 16px;
+  --ai-panel-footer-button-color: var(--color-text-primary);
+  --ai-panel-footer-button-bg-hover: var(--color-secondary-50);
+  --ai-panel-footer-button-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;

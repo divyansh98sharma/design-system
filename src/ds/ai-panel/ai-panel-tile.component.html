@@ -1,0 +1,71 @@
+@if (variant === 'placeholder') {
+  <div class="ds-ai-panel-tile ds-ai-panel-tile--placeholder">
+    <span class="ds-ai-panel-tile__placeholder-text">{{ placeholderText }}</span>
+  </div>
+} @else {
+  <div class="ds-ai-panel-tile">
+    @if (title || actions.length) {
+      <div class="ds-ai-panel-tile__header">
+        @if (title) {
+          <h4 class="ds-ai-panel-tile__title">{{ title }}</h4>
+        }
+
+        @if (actions.length) {
+          <span class="ds-ai-panel-tile__actions">
+            @for (action of actions; track trackByIndex($index)) {
+
+              @if (action.kind === 'icon') {
+                <button
+                  type="button"
+                  class="ds-ai-panel__icon-btn"
+                  [attr.aria-label]="action.label"
+                  [title]="action.label"
+                  (click)="actionClick.emit({ action, index: $index })"
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path [attr.d]="action.iconPath"/>
+                  </svg>
+                </button>
+              }
+
+              @if (action.kind === 'text') {
+                <button
+                  type="button"
+                  class="ds-ai-panel-tile__text-action"
+                  (click)="actionClick.emit({ action, index: $index })"
+                >
+                  {{ action.label }}
+                </button>
+              }
+
+              @if (action.kind === 'button') {
+                <button
+                  type="button"
+                  class="ds-ai-panel-tile__button-action"
+                  (click)="actionClick.emit({ action, index: $index })"
+                >
+                  @if (action.iconPath && action.iconPosition !== 'trailing') {
+                    <svg class="ds-ai-panel-tile__button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path [attr.d]="action.iconPath"/>
+                    </svg>
+                  }
+                  <span>{{ action.label }}</span>
+                  @if (action.iconPath && action.iconPosition === 'trailing') {
+                    <svg class="ds-ai-panel-tile__button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path [attr.d]="action.iconPath"/>
+                    </svg>
+                  }
+                </button>
+              }
+
+            }
+          </span>
+        }
+      </div>
+    }
+
+    <div class="ds-ai-panel-tile__content">
+      <ng-content/>
+    </div>
+  </div>
+}
