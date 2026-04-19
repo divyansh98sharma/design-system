@@ -1,0 +1,103 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/AI Bubbles/Usage" />
+
+# AI Bubbles — Usage
+
+A horizontal row of pill-shaped suggestion chips used to surface AI-generated
+quick replies, follow-up prompts, or one-tap actions. The optional
+hand-pointing leading icon hints that the chips are AI suggestions and helps
+distinguish them from regular chip groups.
+
+## When to use
+
+- **AI quick replies** — model-generated follow-up questions or short reply suggestions.
+- **AI-suggested actions** — one-tap actions surfaced by an AI assistant (e.g. "Order labs", "Summarise note").
+- **Inline prompts** — short, alternative inputs the user can pick instead of typing.
+
+## When **not** to use
+
+- **Status / tags** — use the [`Chip`](/?path=/docs/components-chip--docs) component, which has explicit colour states (`active`, `error`, `warning`, etc.).
+- **Filters** — use a filter chip group with selected/unselected states.
+- **Navigation tabs** — use [`Tabs`](/?path=/docs/components-tabs--docs).
+- **More than 5 chips on one line** — wrap, paginate, or move overflow into a "More" affordance. The Figma library defines variants only up to 5.
+
+## Anatomy
+
+```
+[ leading-icon ]   [ chip₁ ]   [ chip₂ ]   …   [ chipₙ ]
+       │              │
+       │              └── pill-shaped button: optional icon + label
+       └── hand-pointing cursor (defaults on, can be hidden)
+```
+
+| Slot           | Size         | Notes                                                              |
+| -------------- | ------------ | ------------------------------------------------------------------ |
+| Leading icon   | 16 × 16      | Hand-pointing cursor by default; override via `leadingIconPath`.   |
+| Chip           | 20 px tall   | Pill (`border-radius: 999px`), 1 px solid border in user/base teal. |
+| Chip icon      | 16 × 16      | Optional per chip via `chip.iconPath`.                             |
+| Chip label     | 12 / 16      | Open Sans regular, single line, no wrap.                           |
+| Container gap  | 8 px         | Between leading icon and chips, and between chips.                 |
+
+## Variants
+
+Five Figma variants — **One Chip → Five Chips** — control how many chips
+render in the row. Pass an array of `AiBubbleChip` objects of any length;
+the component renders one chip per entry.
+
+```ts
+interface AiBubbleChip {
+  label: string;
+  iconPath?: string | null; // optional 24×24 SVG path
+}
+```
+
+## Do / don't
+
+**Do**
+- Keep labels short — 1 to 3 words. Long labels look awkward in a 20 px pill.
+- Group chips that share a single underlying intent (e.g. all "next questions").
+- Emit a single `chipSelected` handler and switch on `chip.label` or an enum.
+
+**Don't**
+- Don't mix this component with status chips or filter chips on the same row — visual noise.
+- Don't disable individual chips. If a suggestion is unavailable, omit it from the array instead.
+- Don't change the border colour per chip to convey state. Use [`Chip`](/?path=/docs/components-chip--docs) for that.
+
+## Accessibility
+
+- Each chip is a real `<button type="button">`, keyboard-focusable and Enter/Space activatable.
+- The row has `role="group"` with an `aria-label` (`"AI suggestions"` by default; override via `ariaLabel`).
+- The leading icon is decorative (`aria-hidden="true"`); the visible label carries meaning.
+- Focus state: 2 px outline in user/base teal with a 2 px offset — meets WCAG 2.1 SC 2.4.7 (Focus Visible).
+- Border + label contrast against the white chip background exceeds WCAG AA (4.5:1) for normal text using `--color-user-base` (`#0378A7`) on `--color-surface` (`#FFFFFF`).
+- Hover background uses `--color-user-5` (`#F1FBFF`); contrast is preserved.
+
+## Tokens
+
+All styling routes through the `--ai-bubbles-*` component-token namespace
+defined in `src/ds/tokens/_component.scss`. Override these to retheme without
+forking the component.
+
+| Token                                | Default                       |
+| ------------------------------------ | ----------------------------- |
+| `--ai-bubbles-gap`                   | `var(--spacing-small)` (8 px) |
+| `--ai-bubbles-leading-icon-size`     | `16px`                        |
+| `--ai-bubbles-leading-icon-color`    | `var(--color-text-primary)`   |
+| `--ai-bubbles-chip-height`           | `20px`                        |
+| `--ai-bubbles-chip-padding-x` / `-y` | `8px` / `2px`                 |
+| `--ai-bubbles-chip-gap`              | `var(--spacing-x-small)` (4 px) |
+| `--ai-bubbles-chip-radius`           | `var(--radius-pill)` (999 px) |
+| `--ai-bubbles-chip-bg`               | `var(--color-surface)`        |
+| `--ai-bubbles-chip-bg-hover`         | `var(--color-user-5)`         |
+| `--ai-bubbles-chip-border`           | `var(--color-user-base)`      |
+| `--ai-bubbles-chip-text`             | `var(--color-text-primary)`   |
+| `--ai-bubbles-chip-font-size`        | `var(--font-size-12)`         |
+| `--ai-bubbles-chip-line-height`      | `var(--line-height-16)`       |
+| `--ai-bubbles-chip-icon-size`        | `16px`                        |
+| `--ai-bubbles-chip-focus-color`      | `var(--color-user-base)`      |
+
+## Related
+
+- [`Chip`](/?path=/docs/components-chip--docs) — pill-shaped tag with explicit colour states.
+- [`Disclaimer`](/?path=/docs/components-disclaimer--docs) — AI disclaimer banner that often pairs with this row.

@@ -754,6 +754,27 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // AI Bubbles
+  // ----------------------------------------------------------
+  --ai-bubbles-gap: var(--spacing-small);            // 8px
+  --ai-bubbles-leading-icon-size: 16px;
+  --ai-bubbles-leading-icon-color: var(--color-text-primary);
+  --ai-bubbles-chip-height: 20px;
+  --ai-bubbles-chip-padding-x: var(--spacing-small); // 8px
+  --ai-bubbles-chip-padding-y: 2px;
+  --ai-bubbles-chip-gap: var(--spacing-x-small);     // 4px
+  --ai-bubbles-chip-radius: var(--radius-pill);
+  --ai-bubbles-chip-bg: var(--color-surface);
+  --ai-bubbles-chip-bg-hover: var(--color-user-5);
+  --ai-bubbles-chip-border: var(--color-user-base);
+  --ai-bubbles-chip-text: var(--color-text-primary);
+  --ai-bubbles-chip-font-size: var(--font-size-12);
+  --ai-bubbles-chip-line-height: var(--line-height-16);
+  --ai-bubbles-chip-icon-size: 16px;
+  --ai-bubbles-chip-transition: 120ms ease;
+  --ai-bubbles-chip-focus-color: var(--color-user-base);
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;
