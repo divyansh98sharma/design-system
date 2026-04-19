@@ -34,7 +34,7 @@ distinguish them from regular chip groups.
 | Slot           | Size         | Notes                                                              |
 | -------------- | ------------ | ------------------------------------------------------------------ |
 | Leading icon   | 16 × 16      | Hand-pointing cursor by default; override via `leadingIconPath`.   |
-| Chip           | 20 px tall   | Pill (`border-radius: 999px`), 1 px solid border in user/base teal. |
+| Chip           | 20 px tall   | Pill (`border-radius: 999px`), 1 px gradient border (teal → dark teal → terracotta). |
 | Chip icon      | 16 × 16      | Optional per chip via `chip.iconPath`.                             |
 | Chip label     | 12 / 16      | Open Sans regular, single line, no wrap.                           |
 | Container gap  | 8 px         | Between leading icon and chips, and between chips.                 |
@@ -69,9 +69,10 @@ interface AiBubbleChip {
 - Each chip is a real `<button type="button">`, keyboard-focusable and Enter/Space activatable.
 - The row has `role="group"` with an `aria-label` (`"AI suggestions"` by default; override via `ariaLabel`).
 - The leading icon is decorative (`aria-hidden="true"`); the visible label carries meaning.
-- Focus state: 2 px outline in user/base teal with a 2 px offset — meets WCAG 2.1 SC 2.4.7 (Focus Visible).
-- Border + label contrast against the white chip background exceeds WCAG AA (4.5:1) for normal text using `--color-user-base` (`#0378A7`) on `--color-surface` (`#FFFFFF`).
-- Hover background uses `--color-user-5` (`#F1FBFF`); contrast is preserved.
+- Focus state: 2 px outline in `#007B95` (the first gradient stop) with a 2 px offset — meets WCAG 2.1 SC 2.4.7 (Focus Visible).
+- Label contrast against the white chip background uses `--color-text-primary` on `--color-surface`, well above WCAG AA (4.5:1) for normal text.
+- The 1 px gradient border is decorative — the text label, not the border colour, carries meaning. Consumers relying on screen readers or high-contrast mode are unaffected.
+- Hover background uses `--color-user-5` (`#F1FBFF`); the gradient border remains visible on hover.
 
 ## Tokens
 
@@ -90,12 +91,15 @@ forking the component.
 | `--ai-bubbles-chip-radius`           | `var(--radius-pill)` (999 px) |
 | `--ai-bubbles-chip-bg`               | `var(--color-surface)`        |
 | `--ai-bubbles-chip-bg-hover`         | `var(--color-user-5)`         |
-| `--ai-bubbles-chip-border`           | `var(--color-user-base)`      |
+| `--ai-bubbles-chip-border-stop-1`    | `#007B95`                     |
+| `--ai-bubbles-chip-border-stop-2`    | `#006B6B`                     |
+| `--ai-bubbles-chip-border-stop-3`    | `#BA654E`                     |
+| `--ai-bubbles-chip-border-gradient`  | `linear-gradient(90deg, stop-1 0%, stop-2 50%, stop-3 100%)` |
 | `--ai-bubbles-chip-text`             | `var(--color-text-primary)`   |
 | `--ai-bubbles-chip-font-size`        | `var(--font-size-12)`         |
 | `--ai-bubbles-chip-line-height`      | `var(--line-height-16)`       |
 | `--ai-bubbles-chip-icon-size`        | `16px`                        |
-| `--ai-bubbles-chip-focus-color`      | `var(--color-user-base)`      |
+| `--ai-bubbles-chip-focus-color`      | `var(--ai-bubbles-chip-border-stop-1)` (`#007B95`) |
 
 ## Related
 

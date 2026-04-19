@@ -766,13 +766,23 @@
   --ai-bubbles-chip-radius: var(--radius-pill);
   --ai-bubbles-chip-bg: var(--color-surface);
   --ai-bubbles-chip-bg-hover: var(--color-user-5);
-  --ai-bubbles-chip-border: var(--color-user-base);
   --ai-bubbles-chip-text: var(--color-text-primary);
   --ai-bubbles-chip-font-size: var(--font-size-12);
   --ai-bubbles-chip-line-height: var(--line-height-16);
   --ai-bubbles-chip-icon-size: 16px;
   --ai-bubbles-chip-transition: 120ms ease;
-  --ai-bubbles-chip-focus-color: var(--color-user-base);
+
+  // AI Bubbles — gradient border (Figma linear, 3 stops)
+  --ai-bubbles-chip-border-stop-1: #007B95;
+  --ai-bubbles-chip-border-stop-2: #006B6B;
+  --ai-bubbles-chip-border-stop-3: #BA654E;
+  --ai-bubbles-chip-border-gradient: linear-gradient(
+    90deg,
+    var(--ai-bubbles-chip-border-stop-1) 0%,
+    var(--ai-bubbles-chip-border-stop-2) 50%,
+    var(--ai-bubbles-chip-border-stop-3) 100%
+  );
+  --ai-bubbles-chip-focus-color: var(--ai-bubbles-chip-border-stop-1);
 
   // ----------------------------------------------------------
   // Global — Icon sizes
