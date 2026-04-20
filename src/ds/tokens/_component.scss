@@ -635,33 +635,46 @@
   --loader-color-sunoh: var(--color-sunoh-base);
 
   // ----------------------------------------------------------
-  // Notification
+  // Notification (redesigned: 540px card with circular icon badge)
   // ----------------------------------------------------------
-  --notification-width: 540px;
-  --notification-radius: var(--radius-standard);
-  --notification-shadow: var(--shadow-md);
-  --notification-bg: var(--color-surface);
-  --notification-text-color: var(--color-text-primary);
-  --notification-sidebar-min-width: 62px;
-  --notification-icon-wrap-size: 30px;
-  --notification-sidebar-user-bg: var(--color-user);
-  --notification-sidebar-admin-bg: var(--color-admin);
-  --notification-sidebar-green-bg: var(--color-status-success);
-  --notification-checkbox-size: 16px;
-  --notification-action-height: 24px;
-  --notification-badge-size: 10px;
-  --notification-badge-bg: var(--color-status-error);
-  --notification-badge-border: var(--color-surface);
-  --notification-checkbox-accent: var(--color-user);
-  --notification-action-user-bg: var(--color-user-base);
-  --notification-action-user-border: var(--color-user-70);
-  --notification-action-user-hover: var(--color-user-70);
-  --notification-action-admin-bg: var(--color-admin-base);
-  --notification-action-admin-border: var(--color-admin-60);
-  --notification-action-admin-hover: var(--color-admin-60);
-  --notification-action-green-bg: var(--color-green-base);
-  --notification-action-green-border: var(--color-green-60);
-  --notification-action-green-hover: var(--color-green-60);
+  --notif-width: 540px;
+  --notif-padding: 12px;
+  --notif-gap: 12px;
+  --notif-radius: 8px;
+  --notif-bg: #ffffff;
+  --notif-border: #f0f0f0;
+  --notif-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+
+  --notif-icon-badge-size: 48px;
+  --notif-icon-size: 24px;
+
+  // Icon-badge colours per notification type
+  --notif-comm-bg: #007b95;
+  --notif-confirm-bg: #018145;
+  --notif-warn-bg: #fbce2a;
+  --notif-error-bg: #d82727;
+
+  --notif-text-gap: 12px;
+  --notif-header-gap: 12px;
+  --notif-heading-gap: 4px;
+  --notif-heading-font-size: 14px;
+  --notif-heading-line-height: 20px;
+  --notif-body-font-size: 12px;
+  --notif-body-line-height: 16px;
+
+  --notif-footer-height: 24px;
+  --notif-footer-gap: 8px;
+  --notif-checkbox-size: 16px;
+  --notif-checkbox-gap: 4px;
+
+  --notif-action-btn-height: 24px;
+  --notif-action-btn-radius: 4px;
+  --notif-action-btn-padding: 4px;
+  --notif-action-primary-bg: #007b95;
+  --notif-action-primary-hover: #006a80;
+  --notif-action-secondary-bg: #ebebeb;
+  --notif-action-secondary-border: #e1e1e1;
+  --notif-action-secondary-hover: #dcdcdc;
 
   // ----------------------------------------------------------
   // Toast
