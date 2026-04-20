@@ -2,15 +2,12 @@
 
 .ds-modal {
   display: flex;
-  flex-direction: column;
-  background: var(--modal-bg);
+  align-items: stretch;
+  background: transparent;
   border-radius: var(--modal-radius);
   box-shadow: var(--modal-shadow);
   overflow: hidden;
-
-  // ─── Size variants ────────────────────────────────────────────────────────
-  // Design spec ideal sizes: 420×420, 720×620, 1000×620, 1240×620, 1340×620.
-  // Height ≤ 620px (per spec "height does not exceed 620px").
+  font-family: var(--font-family-base);
 
   &--small   { width: var(--modal-width-small);   height: var(--modal-height-small); }
   &--medium  { width: var(--modal-width-medium);  height: var(--modal-height-default); }
@@ -18,51 +15,131 @@
   &--xlarge  { width: var(--modal-width-xlarge);  height: var(--modal-height-default); }
   &--xxlarge { width: var(--modal-width-xxlarge); height: var(--modal-height-default); }
 
-  // ─── Header ───────────────────────────────────────────────────────────────
+  // ─── Floating Toolbar ─────────────────────────────────────────────────────
+  &__toolbar {
+    flex-shrink: 0;
+    width: var(--modal-toolbar-width);
+    min-width: var(--modal-toolbar-width);
+    max-width: var(--modal-toolbar-width);
+    background: var(--modal-toolbar-bg);
+    border-top-left-radius: var(--modal-radius);
+    border-bottom-left-radius: var(--modal-radius);
+    box-shadow: var(--modal-toolbar-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
+  &__toolbar-items {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    min-height: 0;
+  }
+
+  &__toolbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 0 0 0;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--modal-toolbar-text);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-12);
+    line-height: 16px;
+
+    svg { display: block; }
+
+    &:hover { background: rgba(0, 0, 0, 0.04); }
+
+    &--active {
+      background: var(--modal-toolbar-active-bg);
+      color: var(--modal-toolbar-active-text);
+    }
+  }
+
+  &__toolbar-label {
+    display: block;
+    width: 100%;
+    padding: 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+
+  &__toolbar-more {
+    background: var(--modal-toolbar-bg);
+    padding: 4px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__toolbar-more-link {
+    color: var(--modal-toolbar-more-color);
+    text-decoration: underline;
+    font-size: var(--font-size-12);
+    line-height: 16px;
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+  }
+
+  // ─── Inner (the main card) ────────────────────────────────────────────────
+  &__inner {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--modal-bg);
+    border: 1px solid var(--modal-border);
+    border-radius: var(--modal-radius);
+  }
+
+  &--with-toolbar &__inner {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  // ─── Header ───────────────────────────────────────────────────────────────
   &__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-small);
-    min-height: var(--modal-header-height);
-    max-height: var(--modal-header-height);
-    padding: var(--spacing-small) var(--spacing-large);
+    gap: 8px;
+    padding: 4px 12px;
+    border-bottom: 1px solid var(--modal-header-border);
     flex-shrink: 0;
-    border-radius: var(--modal-radius) var(--modal-radius) 0 0;
+    min-height: var(--modal-header-height);
+    overflow: hidden;
+    background: var(--modal-header-bg);
   }
 
   &__header-left {
     display: flex;
     align-items: center;
-    gap: var(--spacing-small);
-    overflow: hidden;
-    flex: 1 0 0;
+    gap: 12px;
     min-width: 0;
-  }
-
-  &__header-right {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-small);
-    flex-shrink: 0;
+    flex: 1 1 auto;
   }
 
   &__heading {
-    font-family: var(--font-family-base);
     font-size: var(--font-size-14);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--line-height-16);
+    font-weight: var(--font-weight-medium);
+    line-height: 20px;
     color: var(--modal-header-text-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  // ─── Dirty flag ───────────────────────────────────────────────────────────
-
   &__dirty-flag {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
@@ -75,8 +152,63 @@
     color: var(--modal-dirty-flag-color);
   }
 
-  // ─── Close button ─────────────────────────────────────────────────────────
+  // ─── Patient identifier ───────────────────────────────────────────────────
+  &__patient {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    min-width: 0;
+    overflow: hidden;
+  }
 
+  &__patient-name {
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-semibold);
+    line-height: 16px;
+    color: var(--modal-header-text-color);
+    white-space: nowrap;
+  }
+
+  &__patient-demo {
+    font-size: var(--font-size-12);
+    line-height: 16px;
+    color: var(--modal-patient-muted);
+    white-space: nowrap;
+  }
+
+  &__patient-field {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--font-size-12);
+    line-height: 16px;
+    color: var(--modal-patient-muted);
+    white-space: nowrap;
+
+    svg { display: block; }
+  }
+
+  &__header-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    min-width: 24px;
+    padding: 4px;
+    background: var(--modal-header-btn-bg);
+    border: 1px solid var(--modal-header-btn-border);
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: var(--font-size-12);
+    line-height: 16px;
+    color: var(--modal-header-text-color);
+    cursor: pointer;
+
+    &:hover { background: var(--modal-header-btn-hover); }
+  }
+
+  // ─── Close button ─────────────────────────────────────────────────────────
   &__close-btn {
     display: flex;
     align-items: center;
@@ -91,7 +223,7 @@
     flex-shrink: 0;
     transition: opacity 120ms ease;
 
-    &:hover        { opacity: 0.75; }
+    &:hover { opacity: 0.75; }
     &:focus-visible {
       outline: 2px solid var(--modal-close-focus-color);
       outline-offset: 2px;
@@ -104,117 +236,83 @@
     height: 100%;
   }
 
-  // ─── Theme colours for header ─────────────────────────────────────────────
-
-  &--user    &__header { background: var(--modal-header-user-bg); }
-  &--admin   &__header { background: var(--modal-header-admin-bg); }
-  &--green   &__header { background: var(--modal-header-green-bg); }
-  &--sunoh   &__header { background: var(--modal-header-sunoh-bg); }
-  &--ai      &__header { background: var(--modal-header-ai-bg); }
-
   // ─── Body ─────────────────────────────────────────────────────────────────
-
   &__body {
-    flex: 1 0 0;
+    flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
     background: var(--modal-bg);
+    padding: 0;
   }
 
   // ─── Footer ───────────────────────────────────────────────────────────────
-
   &__footer {
     display: flex;
     align-items: center;
-    gap: var(--spacing-large);
-    min-height: var(--modal-footer-height);
-    max-height: var(--modal-footer-height);
-    padding: var(--spacing-small) var(--spacing-large);
+    justify-content: space-between;
+    gap: 8px;
+    padding: var(--modal-footer-pad-y) var(--modal-footer-pad-x);
     background: var(--modal-bg);
     border-top: 1px solid var(--modal-footer-border);
     flex-shrink: 0;
+    overflow: hidden;
   }
 
   &__footer-left {
     display: flex;
     align-items: center;
-    gap: var(--spacing-small);
-    flex: 1 0 0;
-    min-width: 0;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   &__footer-right {
     display: flex;
     align-items: center;
-    gap: var(--spacing-small);
-    flex-shrink: 0;
+    gap: 8px;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    min-width: 0;
   }
 
   // ─── Footer action buttons ────────────────────────────────────────────────
-
   &__action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
     height: var(--modal-action-btn-height);
-    padding: var(--spacing-x-small) var(--spacing-small);
-    border: 1px solid transparent;
+    min-width: 24px;
+    padding: 4px;
     border-radius: var(--modal-action-btn-radius);
-    font-family: var(--font-family-base);
+    font-family: inherit;
     font-size: var(--font-size-12);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-16);
+    line-height: 16px;
     cursor: pointer;
     white-space: nowrap;
-    transition: background 120ms ease, border-color 120ms ease;
+    border: 1px solid transparent;
 
-    // Secondary (default)
+    svg { display: block; }
+
     &--secondary {
       background: var(--modal-action-btn-secondary-bg);
       border-color: var(--modal-action-btn-secondary-border);
       color: var(--modal-action-btn-secondary-color);
 
       &:hover { background: var(--modal-action-btn-secondary-bg-hover); }
-      &:focus-visible { outline: 2px solid var(--modal-action-btn-secondary-border); outline-offset: 2px; }
     }
 
-    // Primary — themed per modal theme
     &--primary {
-      color: var(--color-text-inverse);
+      background: var(--modal-action-primary-bg);
+      border-color: var(--modal-action-primary-bg);
+      color: var(--modal-action-primary-text);
+      font-weight: var(--font-weight-semibold);
+
+      &:hover { background: var(--modal-action-primary-hover); }
     }
   }
 
-  // Themed primary buttons
-  &--user &__action-btn--primary {
-    background: var(--modal-action-primary-user-bg);
-    border-color: var(--modal-action-primary-user-border);
-    &:hover { background: var(--modal-action-primary-user-hover); }
-    &:focus-visible { outline: 2px solid var(--modal-action-primary-user-bg); outline-offset: 2px; }
-  }
-
-  &--admin &__action-btn--primary {
-    background: var(--modal-action-primary-admin-bg);
-    border-color: var(--modal-action-primary-admin-border);
-    &:hover { background: var(--modal-action-primary-admin-hover); }
-    &:focus-visible { outline: 2px solid var(--modal-action-primary-admin-bg); outline-offset: 2px; }
-  }
-
-  &--green &__action-btn--primary {
-    background: var(--modal-action-primary-green-bg);
-    border-color: var(--modal-action-primary-green-border);
-    &:hover { background: var(--modal-action-primary-green-hover); }
-    &:focus-visible { outline: 2px solid var(--modal-action-primary-green-bg); outline-offset: 2px; }
-  }
-
-  &--sunoh &__action-btn--primary {
-    background: var(--modal-action-primary-sunoh-bg);
-    border-color: var(--modal-action-primary-sunoh-border);
-    &:hover { background: var(--modal-action-primary-sunoh-hover); }
-    &:focus-visible { outline: 2px solid var(--modal-action-primary-sunoh-bg); outline-offset: 2px; }
-  }
-
-  &--ai &__action-btn--primary {
-    background: var(--modal-action-primary-ai-bg);
-    border-color: var(--modal-action-primary-ai-border);
-    &:hover { background: var(--modal-action-primary-ai-hover); }
-    &:focus-visible { outline: 2px solid var(--modal-action-primary-ai-bg); outline-offset: 2px; }
+  &__action-caret {
+    display: block;
   }
 }
