@@ -754,6 +754,47 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Feedback Loop
+  // ----------------------------------------------------------
+  --feedback-loop-width: 566px;
+  --feedback-loop-radius: var(--radius-8, 8px);
+  --feedback-loop-bg: var(--color-surface);
+  --feedback-loop-border: var(--color-secondary-40);
+  --feedback-loop-shadow: 0 4px 8px -4px rgba(0, 0, 0, 0.08);
+
+  --feedback-loop-trigger-size: 24px;
+  --feedback-loop-trigger-radius: var(--radius-standard);
+  --feedback-loop-trigger-bg: #fbfbfb;
+  --feedback-loop-trigger-bg-hover: var(--color-secondary-20);
+  --feedback-loop-trigger-icon-color: var(--color-text-primary);
+
+  --feedback-loop-header-bg: #007b95;
+  --feedback-loop-header-text: var(--color-text-inverse);
+
+  --feedback-loop-chip-height: 24px;
+  --feedback-loop-chip-padding-x: var(--spacing-small);
+  --feedback-loop-chip-padding-y: var(--spacing-x-small);
+  --feedback-loop-chip-bg: var(--color-surface);
+  --feedback-loop-chip-border: var(--color-secondary-40);
+  --feedback-loop-chip-text: var(--color-text-primary);
+  --feedback-loop-chip-bg-selected: #e6f4f3;
+  --feedback-loop-chip-border-selected: #0378a7;
+
+  --feedback-loop-fmt-btn-bg: #ebebeb;
+  --feedback-loop-fmt-btn-border: #e1e1e1;
+
+  --feedback-loop-textarea-min-height: 96px;
+  --feedback-loop-textarea-border: #e1e1e1;
+  --feedback-loop-textarea-radius: var(--radius-8, 8px);
+  --feedback-loop-textarea-placeholder: #bcbcbc;
+
+  --feedback-loop-ring-color: #0378a7;
+
+  --feedback-loop-submit-bg: #007b95;
+  --feedback-loop-submit-bg-hover: #006a80;
+  --feedback-loop-submit-text: var(--color-text-inverse);
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;
