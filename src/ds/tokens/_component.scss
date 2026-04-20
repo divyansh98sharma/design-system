@@ -771,4 +771,30 @@
   --control-height-md: 32px;
   --control-height-lg: 40px;
   --control-height-xl: 48px;
+
+  // ----------------------------------------------------------
+  // Card
+  // ----------------------------------------------------------
+  --card-bg: var(--color-surface);
+  --card-radius: var(--radius-large);
+  --card-padding-x: 8px;
+  --card-padding-y: 8px;
+  --card-gap: 8px;
+
+  --card-border-default: #ebebeb;
+  --card-border-selected: #3ecfbe;
+  --card-border-width: 1px;
+
+  --card-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --card-shadow-selected: 0 4px 8px rgba(62, 207, 190, 0.12);
+
+  --card-header-text: var(--color-text-primary);
+  --card-header-font-weight: var(--font-weight-semibold);
+  --card-meta-text: var(--color-text-secondary);
+  --card-meta-divider: var(--color-border-default);
+  --card-divider: var(--color-border-default);
+  --card-footer-label: var(--color-text-secondary);
+  --card-footer-value: var(--color-text-primary);
+
+  --card-min-width: 322px;
 }
