@@ -542,53 +542,60 @@
   // ----------------------------------------------------------
   // Modal
   // ----------------------------------------------------------
-  --modal-bg: var(--color-surface);
-  --modal-radius: var(--radius-standard);
-  --modal-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
-  --modal-header-height: 36px;
-  --modal-header-text-color: var(--color-text-inverse);
-  --modal-header-user-bg: var(--color-user-base);
-  --modal-header-admin-bg: var(--color-admin-base);
-  --modal-header-green-bg: var(--color-green-base);
-  --modal-header-sunoh-bg: var(--color-sunoh-base);
-  --modal-header-ai-bg: var(--color-ai-base);
+  --modal-bg: #fbfbfb;
+  --modal-border: #ebebeb;
+  --modal-radius: 8px;
+  --modal-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.16);
+
+  --modal-header-bg: #fbfbfb;
+  --modal-header-border: #ebebeb;
+  --modal-header-height: 32px;
+  --modal-header-text-color: #000000;
+  --modal-patient-muted: #4b586b;
+
+  --modal-header-btn-bg: #ebebeb;
+  --modal-header-btn-border: #e1e1e1;
+  --modal-header-btn-hover: #d9d9d9;
+
   --modal-footer-height: 40px;
-  --modal-footer-border: var(--color-border-default);
+  --modal-footer-border: #ebebeb;
+  --modal-footer-pad-x: 12px;
+  --modal-footer-pad-y: 8px;
+
   --modal-dirty-flag-color: var(--color-status-warning);
   --modal-dirty-icon-size: 16px;
-  --modal-close-btn-size: 20px;
-  --modal-close-btn-color: var(--color-text-inverse);
-  --modal-close-focus-color: var(--color-text-inverse);
+
+  --modal-close-btn-size: 24px;
+  --modal-close-btn-color: #000000;
+  --modal-close-focus-color: #0378a7;
+
   --modal-width-small: 420px;
   --modal-width-medium: 720px;
-  --modal-width-large: 1000px;
+  --modal-width-large: 900px;
   --modal-width-xlarge: 1240px;
   --modal-width-xxlarge: 1340px;
   --modal-height-small: 420px;
-  --modal-height-default: 620px;
-  --modal-action-btn-height: 24px;
-  --modal-action-btn-radius: var(--radius-standard);
-  --modal-action-btn-secondary-bg: var(--color-secondary-base);
-  --modal-action-btn-secondary-border: var(--color-secondary-70);
-  --modal-action-btn-secondary-color: var(--color-text-primary);
-  --modal-action-btn-secondary-bg-hover: var(--color-secondary-60);
+  --modal-height-default: 440px;
 
-  // Modal — themed primary action buttons
-  --modal-action-primary-user-bg: var(--color-user-base);
-  --modal-action-primary-user-border: var(--color-user-70);
-  --modal-action-primary-user-hover: var(--color-user-70);
-  --modal-action-primary-admin-bg: var(--color-admin-base);
-  --modal-action-primary-admin-border: var(--color-admin-60);
-  --modal-action-primary-admin-hover: var(--color-admin-60);
-  --modal-action-primary-green-bg: var(--color-green-base);
-  --modal-action-primary-green-border: var(--color-green-60);
-  --modal-action-primary-green-hover: var(--color-green-60);
-  --modal-action-primary-sunoh-bg: var(--color-sunoh-base);
-  --modal-action-primary-sunoh-border: var(--color-sunoh-60);
-  --modal-action-primary-sunoh-hover: var(--color-sunoh-60);
-  --modal-action-primary-ai-bg: var(--color-ai-base);
-  --modal-action-primary-ai-border: var(--color-ai-70);
-  --modal-action-primary-ai-hover: var(--color-ai-70);
+  --modal-action-btn-height: 24px;
+  --modal-action-btn-radius: 4px;
+  --modal-action-btn-secondary-bg: #ebebeb;
+  --modal-action-btn-secondary-border: #e1e1e1;
+  --modal-action-btn-secondary-color: #000000;
+  --modal-action-btn-secondary-bg-hover: #d9d9d9;
+
+  --modal-action-primary-bg: #007b95;
+  --modal-action-primary-hover: #006580;
+  --modal-action-primary-text: #ffffff;
+
+  // Modal — floating toolbar
+  --modal-toolbar-width: 52px;
+  --modal-toolbar-bg: #e6f4f3;
+  --modal-toolbar-text: #000000;
+  --modal-toolbar-active-bg: #007b95;
+  --modal-toolbar-active-text: #ffffff;
+  --modal-toolbar-more-color: #02506f;
+  --modal-toolbar-shadow: -4px 0 8px 0 rgba(0, 0, 0, 0.08);
 
   // ----------------------------------------------------------
   // Tooltip Bubble (white popup — 12-position caret)

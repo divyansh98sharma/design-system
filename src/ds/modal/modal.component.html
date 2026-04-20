@@ -1,67 +1,128 @@
-<div [ngClass]="modalClasses">
+<div [ngClass]="modalClasses" role="dialog" aria-modal="true" [attr.aria-label]="heading">
 
-  <!-- ─── Header ──────────────────────────────────────────────────────────── -->
-  <div class="ds-modal__header">
-
-    <div class="ds-modal__header-left">
-      <span class="ds-modal__heading">{{ heading }}</span>
-
-      @if (showDirtyFlag) {
-        <span class="ds-modal__dirty-flag" title="You have unsaved changes" aria-label="Unsaved changes">
-          <svg class="ds-modal__dirty-icon" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M8 1L1 14h14L8 1zm0 2.18L13.54 13H2.46L8 3.18zM7 7v3h2V7H7zm0 4v2h2v-2H7z"/>
-          </svg>
-        </span>
+  @if (showFloatingToolbar) {
+    <aside class="ds-modal__toolbar" aria-label="Modal toolbar">
+      <div class="ds-modal__toolbar-items">
+        @for (item of toolbarItems; track trackToolbar($index, item)) {
+          <button
+            type="button"
+            class="ds-modal__toolbar-item"
+            [class.ds-modal__toolbar-item--active]="item.active"
+            (click)="onToolbarItem(item)"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path [attr.d]="item.iconPath || 'M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z'" fill="currentColor"/>
+            </svg>
+            <span class="ds-modal__toolbar-label">{{ item.label }}</span>
+          </button>
+        }
+      </div>
+      @if (showToolbarMore) {
+        <div class="ds-modal__toolbar-more">
+          <a class="ds-modal__toolbar-more-link" href="javascript:void(0)" (click)="onToolbarMore()">{{ toolbarMoreLabel }}</a>
+        </div>
       }
-    </div>
+    </aside>
+  }
 
-    <!-- Right: projected header actions + close button -->
-    <div class="ds-modal__header-right">
-      <ng-content select="[header-actions]"></ng-content>
+  <div class="ds-modal__inner">
+
+    <div class="ds-modal__header">
+      <div class="ds-modal__header-left">
+        <span class="ds-modal__heading">{{ heading }}</span>
+
+        @if (showDirtyFlag) {
+          <span class="ds-modal__dirty-flag" title="You have unsaved changes" aria-label="Unsaved changes">
+            <svg class="ds-modal__dirty-icon" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 1L1 14h14L8 1zm0 2.18L13.54 13H2.46L8 3.18zM7 7v3h2V7H7zm0 4v2h2v-2H7z"/>
+            </svg>
+          </span>
+        }
+
+        @if (showPatientIdentifier && patient) {
+          <div class="ds-modal__patient">
+            <span class="ds-modal__patient-name">{{ patient.name }}</span>
+            @if (patient.demographics) {
+              <span class="ds-modal__patient-demo">{{ patient.demographics }}</span>
+            }
+            @if (patient.dob) {
+              <span class="ds-modal__patient-field">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 6a2 2 0 1 0-2-2c0 .5.2 1 .5 1.4L12 7l1.5-1.6c.3-.4.5-.9.5-1.4a2 2 0 0 0-2 0zM5 11h14v3a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-3zm-1-1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v1H4v-1zm2 9h12v2H6v-2z" fill="currentColor"/>
+                </svg>
+                <span>{{ patient.dob }}</span>
+              </span>
+            }
+            @if (patient.accountNumber) {
+              <span class="ds-modal__patient-field">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z" fill="currentColor"/>
+                </svg>
+                <span>Acc. No. {{ patient.accountNumber }}</span>
+              </span>
+            }
+            @for (btn of headerButtons; track trackHeaderBtn($index, btn)) {
+              <button type="button" class="ds-modal__header-btn" (click)="onHeaderButton(btn)">
+                {{ btn.label }}
+              </button>
+            }
+          </div>
+        }
+
+        <ng-content select="[header-actions]"></ng-content>
+      </div>
+
       <button
         class="ds-modal__close-btn"
         type="button"
         (click)="closed.emit()"
         aria-label="Close modal"
       >
-        <svg class="ds-modal__close-icon" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M15.59 4.41L14.17 3 10 7.17 5.83 3 4.41 4.41 8.59 8.59 4.41 12.76 5.83 14.17 10 9.99l4.17 4.18 1.42-1.41L11.41 8.59z"/>
+        <svg class="ds-modal__close-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18.3 5.71 12 12.01l-6.29-6.3-1.42 1.42L10.59 13.4l-6.3 6.3 1.42 1.41L12 14.82l6.29 6.29 1.42-1.41-6.3-6.3 6.3-6.29z"/>
         </svg>
       </button>
     </div>
 
-  </div>
-
-  <!-- ─── Body (projected content) ───────────────────────────────────────── -->
-  <div class="ds-modal__body">
-    <ng-content></ng-content>
-  </div>
-
-  <!-- ─── Footer ──────────────────────────────────────────────────────────── -->
-  <div class="ds-modal__footer">
-
-    <!-- Left side actions -->
-    <div class="ds-modal__footer-left">
-      @for (action of footerLeftActions; track action.label) {
-        <button
-          [ngClass]="['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]"
-          type="button"
-          (click)="onAction(action)"
-        >{{ action.label }}</button>
-      }
+    <div class="ds-modal__body">
+      <ng-content></ng-content>
     </div>
 
-    <!-- Right side actions -->
-    <div class="ds-modal__footer-right">
-      @for (action of footerRightActions; track action.label) {
-        <button
-          [ngClass]="['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]"
-          type="button"
-          (click)="onAction(action)"
-        >{{ action.label }}</button>
-      }
+    <div class="ds-modal__footer">
+      <div class="ds-modal__footer-left">
+        @for (action of footerLeftActions; track trackAction($index, action)) {
+          <button
+            type="button"
+            [ngClass]="['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]"
+            (click)="onAction(action)"
+          >
+            <span>{{ action.label }}</span>
+            @if (action.showCaret) {
+              <svg class="ds-modal__action-caret" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            }
+          </button>
+        }
+      </div>
+
+      <div class="ds-modal__footer-right">
+        @for (action of footerRightActions; track trackAction($index, action)) {
+          <button
+            type="button"
+            [ngClass]="['ds-modal__action-btn', 'ds-modal__action-btn--' + (action.variant ?? 'secondary')]"
+            (click)="onAction(action)"
+          >
+            <span>{{ action.label }}</span>
+            @if (action.showCaret) {
+              <svg class="ds-modal__action-caret" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            }
+          </button>
+        }
+      </div>
     </div>
 
   </div>
-
 </div>

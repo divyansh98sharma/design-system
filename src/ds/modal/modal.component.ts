@@ -8,45 +8,56 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type ModalTheme = 'user' | 'admin' | 'green' | 'sunoh' | 'ai';
-
 /**
  * Modal size — maps to recommended width × height from the design spec:
  * - `small`   → 420 × 420 px
  * - `medium`  → 720 × 620 px
- * - `large`   → 1000 × 620 px
+ * - `large`   → 900 × 440 px (current Figma default)
  * - `xlarge`  → 1240 × 620 px
  * - `xxlarge` → 1340 × 620 px
  */
 export type ModalSize = 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';
 
-/** Configuration for a footer action button. */
+/** Footer action button configuration. */
 export interface ModalAction {
-  /** Button label. */
   label: string;
-  /** Optional value emitted on click (falls back to `label`). */
   value?: string;
-  /**
-   * Button style:
-   * - `'primary'` — themed filled button (matches modal theme colour).
-   * - `'secondary'` — neutral gray button.
-   */
+  /** `'primary'` gets the filled teal style; `'secondary'` is gray (default). */
   variant?: 'primary' | 'secondary';
+  /** When true the button shows a caret-down icon after the label. */
+  showCaret?: boolean;
+}
+
+/** Floating-toolbar tool item. */
+export interface ModalToolbarItem {
+  id: string;
+  label: string;
+  /** SVG path data (viewBox 0 0 24 24). */
+  iconPath?: string;
+  /** When true, renders as the currently-active item (teal background). */
+  active?: boolean;
+}
+
+/** Patient identifier block in the header. */
+export interface ModalPatientInfo {
+  name: string;
+  demographics?: string;
+  dob?: string;
+  accountNumber?: string;
+}
+
+/** Extra header-right action button (e.g. INFO / HUB). */
+export interface ModalHeaderButton {
+  id: string;
+  label: string;
 }
 
 /**
- * Modal dialog component — themed header, scrollable body, fixed footer.
+ * Modal dialog — rounded container with optional left floating toolbar,
+ * header (heading + optional patient identifiers + close ×), projected
+ * body, and footer with left/right button sections.
  *
- * **5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).
- *
- * **5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).
- *
- * Structure:
- * - **Header** — 36 px, themed background, semibold heading, close ×.
- * - **Body** — flex-1, white, scrollable; project content via `<ng-content>`.
- * - **Footer** — 40 px, white bg, top border; left & right button areas.
- *
- * Shadow: `0 0 6 px rgba(0, 0, 0, 0.3)`.
+ * Matches Figma node 8208:17580.
  */
 @Component({
   selector: 'ds-modal',
@@ -57,44 +68,65 @@ export interface ModalAction {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
-  /** Colour theme applied to the header bar and primary action buttons. */
-  @Input() theme: ModalTheme = 'user';
-
   /** Size variant — controls width and height. */
-  @Input() size: ModalSize = 'medium';
+  @Input() size: ModalSize = 'large';
 
-  /** Heading text displayed in the header bar. */
-  @Input() heading = 'Heading';
+  /** Heading text (14 px Inter Medium). */
+  @Input() heading = 'Modal Title';
 
-  /**
-   * When `true`, shows a yellow "dirty flag" warning indicator in the header,
-   * signalling unsaved changes.
-   */
+  /** Show the "unsaved changes" dirty-flag next to the heading. */
   @Input() showDirtyFlag = false;
 
-  /**
-   * Footer buttons on the **left** side (typically secondary / cancel actions).
-   * Pass an empty array to hide the left section.
-   */
-  @Input() footerLeftActions: ModalAction[] = [{ label: 'Cancel', variant: 'secondary' }];
+  /** Show the left floating toolbar strip. */
+  @Input() showFloatingToolbar = false;
 
-  /**
-   * Footer buttons on the **right** side (typically save / primary actions).
-   * First item with `variant: 'primary'` gets the themed filled style.
-   */
+  /** Items rendered in the floating toolbar. */
+  @Input() toolbarItems: ModalToolbarItem[] = [];
+
+  /** Label for the "More" link at the bottom of the toolbar. */
+  @Input() toolbarMoreLabel = 'More';
+
+  /** Show the "More" link at the bottom of the floating toolbar. */
+  @Input() showToolbarMore = true;
+
+  /** Show the patient identifier block in the header. */
+  @Input() showPatientIdentifier = false;
+
+  /** Patient identifier block data. */
+  @Input() patient: ModalPatientInfo | null = null;
+
+  /** Extra header right-side buttons (before the close ×). */
+  @Input() headerButtons: ModalHeaderButton[] = [];
+
+  /** Footer left-side buttons. */
+  @Input() footerLeftActions: ModalAction[] = [];
+
+  /** Footer right-side buttons. First `variant: 'primary'` becomes the filled teal. */
   @Input() footerRightActions: ModalAction[] = [
     { label: 'Save', variant: 'primary' },
-    { label: 'Close', variant: 'secondary' },
+    { label: 'Cancel', variant: 'secondary' },
   ];
 
-  /** Emits when the header close (×) button is clicked. */
   @Output() closed = new EventEmitter<void>();
-
-  /** Emits the action `value` (or `label`) when a footer button is clicked. */
   @Output() actionClick = new EventEmitter<string>();
+  @Output() toolbarItemClick = new EventEmitter<ModalToolbarItem>();
+  @Output() toolbarMoreClick = new EventEmitter<void>();
+  @Output() headerButtonClick = new EventEmitter<ModalHeaderButton>();
 
   onAction(action: ModalAction): void {
     this.actionClick.emit(action.value ?? action.label);
+  }
+
+  onToolbarItem(item: ModalToolbarItem): void {
+    this.toolbarItemClick.emit(item);
+  }
+
+  onToolbarMore(): void {
+    this.toolbarMoreClick.emit();
+  }
+
+  onHeaderButton(b: ModalHeaderButton): void {
+    this.headerButtonClick.emit(b);
   }
 
   @HostListener('keydown.escape')
@@ -105,8 +137,12 @@ export class ModalComponent {
   get modalClasses(): Record<string, boolean> {
     return {
       'ds-modal': true,
-      [`ds-modal--${this.theme}`]: true,
       [`ds-modal--${this.size}`]: true,
+      'ds-modal--with-toolbar': this.showFloatingToolbar,
     };
   }
+
+  trackToolbar = (_: number, i: ModalToolbarItem) => i.id;
+  trackAction = (_: number, a: ModalAction) => a.value ?? a.label;
+  trackHeaderBtn = (_: number, b: ModalHeaderButton) => b.id;
 }

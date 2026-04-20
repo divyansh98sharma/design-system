@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { ModalComponent } from './modal.component';
 
 const BODY_CONTENT = `
-  <div style="padding:16px;font-family:'Open Sans',system-ui,sans-serif;font-size:12px;line-height:16px;color:#000">
+  <div style="padding:16px;font-family:'Inter',system-ui,sans-serif;font-size:12px;line-height:16px;color:#000">
     <p style="margin:0 0 12px">This is the modal body content area. It is fully scrollable when content exceeds the available height.</p>
     <p style="margin:0 0 12px">Use <code>&lt;ng-content&gt;</code> to project any content — forms, tables, data grids, or rich layouts — into this area.</p>
     <p style="margin:0">Project header action buttons via <code>[header-actions]</code> content slot.</p>
@@ -10,83 +10,35 @@ const BODY_CONTENT = `
 `;
 
 const LONG_BODY = `
-  <div style="padding:16px;font-family:'Open Sans',system-ui,sans-serif;font-size:12px;line-height:16px;color:#000">
+  <div style="padding:16px;font-family:'Inter',system-ui,sans-serif;font-size:12px;line-height:16px;color:#000">
     ${Array(20).fill('<p style="margin:0 0 8px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>').join('')}
   </div>
 `;
 
 const meta: Meta<ModalComponent> = {
-  title: 'Components/Modal',
+  title: 'Design System/Modal',
   component: ModalComponent,
   tags: ['autodocs'],
-  parameters: {
-    layout: 'padded',
-    docs: {
-      description: {
-        component:
-          'Modal dialog shell — themed header, scrollable body, fixed footer.\n\n' +
-          '**5 themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n\n' +
-          '**5 sizes** (width × height):\n' +
-          '- `small` → 420 × 420 px\n' +
-          '- `medium` → 720 × 620 px\n' +
-          '- `large` → 1000 × 620 px\n' +
-          '- `xlarge` → 1240 × 620 px\n' +
-          '- `xxlarge` → 1340 × 620 px\n\n' +
-          '**Content projection:**\n' +
-          '- Default slot → body content.\n' +
-          '- `[header-actions]` → buttons/chips in the header bar (between heading and close).\n\n' +
-          '**Footer** — `footerLeftActions` (secondary/cancel) and `footerRightActions` (save/primary) are ' +
-          'configured via `@Input` arrays of `ModalAction` objects.',
-      },
-    },
-  },
+  parameters: { layout: 'padded' },
   argTypes: {
-    theme: {
-      description: 'Colour theme for the header bar and primary action buttons.',
-      control: 'select',
-      options: ['user', 'admin', 'green', 'sunoh', 'ai'],
-      table: { defaultValue: { summary: 'user' } },
-    },
-    size: {
-      description: 'Width × height size variant.',
-      control: 'select',
-      options: ['small', 'medium', 'large', 'xlarge', 'xxlarge'],
-      table: { defaultValue: { summary: 'medium' } },
-    },
-    heading: {
-      description: 'Heading text in the modal header.',
-      control: 'text',
-      table: { defaultValue: { summary: 'Heading' } },
-    },
-    showDirtyFlag: {
-      description: 'Show a yellow warning icon to indicate unsaved changes.',
-      control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    footerLeftActions: {
-      description: 'Buttons on the left side of the footer (typically Cancel / secondary).',
-    },
-    footerRightActions: {
-      description: 'Buttons on the right side of the footer (typically Save / primary + secondary).',
-    },
-    closed: {
-      description: 'Emits when the header close (×) button is clicked or Escape is pressed.',
-      table: { category: 'Events' },
-    },
-    actionClick: {
-      description: 'Emits the action value (or label) when a footer button is clicked.',
-      table: { category: 'Events' },
-    },
+    size: { control: 'select', options: ['small', 'medium', 'large', 'xlarge', 'xxlarge'] },
+    heading: { control: 'text' },
+    showDirtyFlag: { control: 'boolean' },
+    showFloatingToolbar: { control: 'boolean' },
+    showToolbarMore: { control: 'boolean' },
+    showPatientIdentifier: { control: 'boolean' },
   },
   args: {
-    theme: 'user',
-    size: 'medium',
-    heading: 'Patient Record',
+    size: 'large',
+    heading: 'Modal Title',
     showDirtyFlag: false,
-    footerLeftActions: [{ label: 'Cancel', variant: 'secondary' }],
+    showFloatingToolbar: false,
+    showToolbarMore: true,
+    showPatientIdentifier: false,
+    footerLeftActions: [],
     footerRightActions: [
       { label: 'Save', variant: 'primary' },
-      { label: 'Close', variant: 'secondary' },
+      { label: 'Cancel', variant: 'secondary' },
     ],
   },
 };
@@ -94,21 +46,20 @@ const meta: Meta<ModalComponent> = {
 export default meta;
 type Story = StoryObj<ModalComponent>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
-
 export const Playground: Story = {
-  name: 'Playground',
-  parameters: {
-    docs: { description: { story: 'Configure all props via the Controls panel.' } },
-  },
   render: (args) => ({
     props: { ...args, bodyHtml: BODY_CONTENT },
     template: `
       <ds-modal
-        [theme]="theme"
         [size]="size"
         [heading]="heading"
         [showDirtyFlag]="showDirtyFlag"
+        [showFloatingToolbar]="showFloatingToolbar"
+        [toolbarItems]="toolbarItems"
+        [showToolbarMore]="showToolbarMore"
+        [showPatientIdentifier]="showPatientIdentifier"
+        [patient]="patient"
+        [headerButtons]="headerButtons"
         [footerLeftActions]="footerLeftActions"
         [footerRightActions]="footerRightActions"
       >
@@ -118,95 +69,121 @@ export const Playground: Story = {
   }),
 };
 
-// ─── Themes ───────────────────────────────────────────────────────────────────
+const toolbarItems = [
+  { id: 't1', label: 'Text' },
+  { id: 't2', label: 'Text', active: true },
+  { id: 't3', label: 'Text' },
+  { id: 't4', label: 'Text' },
+  { id: 't5', label: 'Text' },
+];
 
-export const Themes: Story = {
-  name: 'Themes',
-  parameters: {
-    docs: {
-      description: {
-        story: 'All 5 colour themes applied to the modal header and primary footer button.',
-      },
-    },
+const patient = {
+  name: 'TAYLOR, Michael “Mikey”',
+  demographics: '(38 yo M)',
+  dob: '10/01/1987',
+  accountNumber: '123456',
+};
+
+const headerButtons = [
+  { id: 'info', label: 'INFO' },
+  { id: 'hub', label: 'HUB' },
+];
+
+export const WithFloatingToolbar: Story = {
+  name: 'With Floating Toolbar',
+  args: {
+    showFloatingToolbar: true,
+    showPatientIdentifier: true,
+    heading: 'Modal Title',
+    footerLeftActions: [
+      { label: 'Button', variant: 'secondary', showCaret: true },
+      { label: 'Button', variant: 'secondary', showCaret: true },
+      { label: 'Button', variant: 'secondary', showCaret: true },
+      { label: 'Button', variant: 'secondary', showCaret: true },
+    ],
+    footerRightActions: [
+      { label: 'Button', variant: 'primary', showCaret: true },
+      { label: 'Button', variant: 'secondary', showCaret: true },
+    ],
   },
-  render: () => ({
+  render: (args) => ({
     props: {
+      ...args,
       bodyHtml: BODY_CONTENT,
-      leftActions: [{ label: 'Cancel', variant: 'secondary' }],
-      rightActions: [{ label: 'Save', variant: 'primary' }, { label: 'Close', variant: 'secondary' }],
+      toolbarItems,
+      patient,
+      headerButtons,
     },
     template: `
-      <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start">
-        <ds-modal theme="user"  size="small" heading="User Theme"  [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-        <ds-modal theme="admin" size="small" heading="Admin Theme" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-        <ds-modal theme="green" size="small" heading="Green Theme" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-        <ds-modal theme="sunoh" size="small" heading="Sunoh Theme" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-        <ds-modal theme="ai"    size="small" heading="AI Theme"    [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-      </div>
+      <ds-modal
+        [size]="size"
+        [heading]="heading"
+        [showFloatingToolbar]="showFloatingToolbar"
+        [toolbarItems]="toolbarItems"
+        [showPatientIdentifier]="showPatientIdentifier"
+        [patient]="patient"
+        [headerButtons]="headerButtons"
+        [footerLeftActions]="footerLeftActions"
+        [footerRightActions]="footerRightActions"
+      >
+        <div [innerHTML]="bodyHtml"></div>
+      </ds-modal>
     `,
   }),
 };
 
-// ─── Sizes ────────────────────────────────────────────────────────────────────
+export const Simple: Story = {
+  name: 'Simple (no toolbar / no patient)',
+  args: {
+    heading: 'Simple Modal',
+    footerLeftActions: [{ label: 'Cancel', variant: 'secondary' }],
+    footerRightActions: [{ label: 'Save', variant: 'primary' }],
+  },
+  render: (args) => ({
+    props: { ...args, bodyHtml: BODY_CONTENT },
+    template: `
+      <ds-modal
+        [size]="size"
+        [heading]="heading"
+        [footerLeftActions]="footerLeftActions"
+        [footerRightActions]="footerRightActions"
+      >
+        <div [innerHTML]="bodyHtml"></div>
+      </ds-modal>
+    `,
+  }),
+};
 
 export const Sizes: Story = {
-  name: 'Sizes',
-  parameters: {
-    docs: {
-      description: {
-        story: 'All 5 size variants: small (420×420), medium (720×620), large (1000×620), xlarge (1240×620), xxlarge (1340×620).',
-      },
-    },
-  },
   render: () => ({
     props: {
       bodyHtml: BODY_CONTENT,
-      leftActions: [{ label: 'Cancel', variant: 'secondary' }],
       rightActions: [{ label: 'Save', variant: 'primary' }],
     },
     template: `
       <div style="display:flex;flex-direction:column;gap:24px">
-        <div>
-          <p style="font-size:11px;font-family:'Open Sans',sans-serif;margin:0 0 4px;color:#666">Small — 420 × 420</p>
-          <ds-modal theme="user" size="small" heading="Small Modal" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-            <div [innerHTML]="bodyHtml"></div>
-          </ds-modal>
-        </div>
-        <div>
-          <p style="font-size:11px;font-family:'Open Sans',sans-serif;margin:0 0 4px;color:#666">Medium — 720 × 620</p>
-          <ds-modal theme="user" size="medium" heading="Medium Modal" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-            <div [innerHTML]="bodyHtml"></div>
-          </ds-modal>
-        </div>
+        <ds-modal size="small"  heading="Small"  [footerRightActions]="rightActions"><div [innerHTML]="bodyHtml"></div></ds-modal>
+        <ds-modal size="medium" heading="Medium" [footerRightActions]="rightActions"><div [innerHTML]="bodyHtml"></div></ds-modal>
+        <ds-modal size="large"  heading="Large"  [footerRightActions]="rightActions"><div [innerHTML]="bodyHtml"></div></ds-modal>
       </div>
     `,
   }),
 };
 
-// ─── With Dirty Flag ──────────────────────────────────────────────────────────
+export const ScrollableBody: Story = {
+  name: 'Scrollable Body',
+  args: { heading: 'Long Content' },
+  render: (args) => ({
+    props: { ...args, bodyHtml: LONG_BODY },
+    template: `
+      <ds-modal [size]="size" [heading]="heading"><div [innerHTML]="bodyHtml"></div></ds-modal>
+    `,
+  }),
+};
 
 export const WithDirtyFlag: Story = {
   name: 'With Dirty Flag',
-  parameters: {
-    docs: {
-      description: {
-        story: 'The yellow ⚠ dirty flag icon appears when `showDirtyFlag=true`, indicating unsaved changes.',
-      },
-    },
-  },
   args: {
-    theme: 'user',
-    size: 'medium',
     heading: 'Edit Patient Record',
     showDirtyFlag: true,
     footerLeftActions: [{ label: 'Discard', variant: 'secondary' }],
@@ -219,75 +196,9 @@ export const WithDirtyFlag: Story = {
     props: { ...args, bodyHtml: BODY_CONTENT },
     template: `
       <ds-modal
-        [theme]="theme"
         [size]="size"
         [heading]="heading"
         [showDirtyFlag]="showDirtyFlag"
-        [footerLeftActions]="footerLeftActions"
-        [footerRightActions]="footerRightActions"
-      >
-        <div [innerHTML]="bodyHtml"></div>
-      </ds-modal>
-    `,
-  }),
-};
-
-// ─── Scrollable Body ──────────────────────────────────────────────────────────
-
-export const ScrollableBody: Story = {
-  name: 'Scrollable Body',
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'When body content exceeds the available height, it scrolls independently while the header and footer stay fixed.',
-      },
-    },
-  },
-  render: () => ({
-    props: {
-      bodyHtml: LONG_BODY,
-      leftActions: [{ label: 'Cancel', variant: 'secondary' }],
-      rightActions: [{ label: 'Save', variant: 'primary' }],
-    },
-    template: `
-      <ds-modal
-        theme="user"
-        size="medium"
-        heading="Long Content Modal"
-        [footerLeftActions]="leftActions"
-        [footerRightActions]="rightActions"
-      >
-        <div [innerHTML]="bodyHtml"></div>
-      </ds-modal>
-    `,
-  }),
-};
-
-// ─── Admin theme ──────────────────────────────────────────────────────────────
-
-export const AdminTheme: Story = {
-  name: 'Admin Theme',
-  parameters: {
-    docs: { description: { story: 'Admin theme — orange header and primary button.' } },
-  },
-  args: {
-    theme: 'admin',
-    size: 'medium',
-    heading: 'System Configuration',
-    footerLeftActions: [{ label: 'Cancel', variant: 'secondary' }],
-    footerRightActions: [
-      { label: 'Apply', variant: 'primary' },
-      { label: 'Close', variant: 'secondary' },
-    ],
-  },
-  render: (args) => ({
-    props: { ...args, bodyHtml: BODY_CONTENT },
-    template: `
-      <ds-modal
-        [theme]="theme"
-        [size]="size"
-        [heading]="heading"
         [footerLeftActions]="footerLeftActions"
         [footerRightActions]="footerRightActions"
       >
