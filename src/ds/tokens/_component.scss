@@ -754,6 +754,22 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Label
+  // ----------------------------------------------------------
+  --label-color: #4b586b;
+  --label-font-size: var(--font-size-12);
+  --label-line-height: var(--line-height-16);
+  --label-font-size-large: var(--font-size-14);
+  --label-line-height-large: 20px;
+  --label-font-weight: var(--font-weight-regular);
+  --label-required-color: #d82727;
+  --label-icon-color: #4b586b;
+  --label-icon-color-hover: #0378a7;
+  --label-focus-color: #0378a7;
+  --label-gap: var(--spacing-x-small);
+  --label-fixed-width: 100px;
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;
