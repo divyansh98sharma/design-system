@@ -18,7 +18,9 @@ export type ButtonColor =
   | 'secondary'
   | 'success'
   | 'error'
-  | 'sunoh';
+  | 'warning'
+  | 'sunoh'
+  | 'white';
 export type ButtonSize = 'sm' | 'md' | 'lg';
 export type IconPosition = 'left' | 'right' | 'only';
 
@@ -44,7 +46,23 @@ export class ButtonComponent {
   private sanitizer = inject(DomSanitizer);
   @Input() iconPosition: IconPosition = 'left';
   @Input() disabled = false;
+
+  /** Render a trailing icon-only segment separated by a vertical divider (Figma "divider" mode). */
+  @Input() withDivider = false;
+  /** Inline SVG for the divider icon. Defaults to an open-link glyph when omitted. */
+  @Input() set dividerIcon(svg: string | undefined) {
+    this.safeDividerIcon = svg ? this.sanitizer.bypassSecurityTrustHtml(svg) : undefined;
+  }
+  safeDividerIcon?: SafeHtml;
+
+  /** Optional numeric badge rendered after the label/icons. Pass `null` or `undefined` to hide. */
+  @Input() counter?: number | null;
+
+  /** Show a small red dot at the top-right corner. */
+  @Input() alertIndicator = false;
+
   @Output() buttonClick = new EventEmitter<MouseEvent>();
+  @Output() dividerClick = new EventEmitter<MouseEvent>();
 
   /** Custom icon/image template — use <ng-template #dsIcon> inside <ds-button> */
   @ContentChild('dsIcon') customIconTemplate?: TemplateRef<unknown>;
@@ -57,37 +75,33 @@ export class ButtonComponent {
     return !!(this.safeIcon || this.customIconTemplate);
   }
 
-  /** Structural classes forwarded to the inner <button> via styleClass. */
-  get styleClass(): string {
-    const variantClass =
-      this.variant === 'outlined' ? 'p-button-outlined'
-      : this.variant === 'ghost' ? 'p-button-text'
-      : '';
-
-    const sizeClass =
-      this.size === 'sm' ? 'p-button-sm'
-      : this.size === 'lg' ? 'p-button-lg'
-      : '';
-
-    return [
-      variantClass,
-      `p-button-${this.color}`,
-      sizeClass,
-      this.isIconOnly ? 'p-button-icon-only' : '',
-      this.disabled ? 'p-disabled' : '',
-    ]
-      .filter(Boolean)
-      .join(' ');
+  get hasCounter(): boolean {
+    return this.counter !== null && this.counter !== undefined;
   }
 
-  /** Color theme class applied to the <p-button> host via [ngClass]. */
-  get themeClass(): Record<string, boolean> {
-    return { [`p-button-${this.color}`]: true };
+  /** Host classes applied to the wrapping <span> when divider mode is on, or to the <button> directly. */
+  get rootClasses(): Record<string, boolean> {
+    return {
+      'ds-button': true,
+      [`ds-button--${this.variant}`]: true,
+      [`ds-button--${this.color}`]: true,
+      [`ds-button--${this.size}`]: true,
+      'ds-button--icon-only': this.isIconOnly,
+      'ds-button--with-divider': this.withDivider,
+      'ds-button--disabled': this.disabled,
+    };
   }
 
   onClick(event: MouseEvent): void {
     if (!this.disabled) {
       this.buttonClick.emit(event);
+    }
+  }
+
+  onDividerClick(event: MouseEvent): void {
+    event.stopPropagation();
+    if (!this.disabled) {
+      this.dividerClick.emit(event);
     }
   }
 }

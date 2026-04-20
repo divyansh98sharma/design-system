@@ -39,9 +39,9 @@ const meta: Meta<ButtonComponent> = {
     },
     color: {
       description:
-        'Color theme drawn from the design token palette. `secondary` produces a neutral gray outlined or ghost button.',
+        'Color theme drawn from the design token palette. `secondary` produces a neutral gray; `white` is a pale surface fill; `warning` is the Figma yellow.',
       control: 'select',
-      options: ['user', 'admin', 'secondary', 'success', 'error', 'sunoh'],
+      options: ['user', 'admin', 'secondary', 'success', 'error', 'warning', 'sunoh', 'white'],
       table: { defaultValue: { summary: 'user' } },
     },
     size: {
@@ -67,8 +67,26 @@ const meta: Meta<ButtonComponent> = {
       control: 'boolean',
       table: { defaultValue: { summary: 'false' } },
     },
+    withDivider: {
+      description: 'Render a trailing icon-only segment separated by a vertical divider (Figma "divider" mode).',
+      control: 'boolean',
+      table: { defaultValue: { summary: 'false' } },
+    },
+    counter: {
+      description: 'Optional numeric badge rendered after the label. Pass `null` to hide.',
+      control: 'number',
+    },
+    alertIndicator: {
+      description: 'Show a small red dot at the top-right corner of the button.',
+      control: 'boolean',
+      table: { defaultValue: { summary: 'false' } },
+    },
     buttonClick: {
       description: 'Emits a `MouseEvent` when the button is clicked (not emitted when disabled).',
+      table: { category: 'Events' },
+    },
+    dividerClick: {
+      description: 'Emits a `MouseEvent` when the trailing divider segment is clicked. Only available when `withDivider` is true.',
       table: { category: 'Events' },
     },
   },
@@ -78,7 +96,10 @@ const meta: Meta<ButtonComponent> = {
     color: 'user',
     size: 'md',
     disabled: false,
+    withDivider: false,
+    alertIndicator: false,
     buttonClick: fn(),
+    dividerClick: fn(),
   },
 };
 
@@ -315,6 +336,130 @@ export const DisabledButtonNotClickable: Story = {
     const button = canvas.getByRole('button', { name: /disabled/i });
     await expect(button).toBeDisabled();
   },
+};
+
+// ─── Yellow / Warning ────────────────────────────────────────────────────────
+
+export const Warning: Story = {
+  name: 'Warning (Yellow)',
+  parameters: {
+    docs: { description: { story: 'New `warning` color from the Figma upgrade — yellow fill with dark text.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <ds-button label="Warning"  variant="filled"   color="warning" size="sm"></ds-button>
+        <ds-button label="Outlined" variant="outlined" color="warning" size="sm"></ds-button>
+        <ds-button label="Ghost"    variant="ghost"    color="warning" size="sm"></ds-button>
+      </div>
+    `,
+  }),
+};
+
+// ─── White ───────────────────────────────────────────────────────────────────
+
+export const White: Story = {
+  name: 'White',
+  parameters: {
+    docs: { description: { story: 'New `white` color — pale surface fill with dark text. Hover reveals a subtle border.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:#f0f0f0;padding:16px;border-radius:8px">
+        <ds-button label="White"    variant="filled"   color="white" size="sm"></ds-button>
+        <ds-button label="Outlined" variant="outlined" color="white" size="sm"></ds-button>
+      </div>
+    `,
+  }),
+};
+
+// ─── Counter ─────────────────────────────────────────────────────────────────
+
+export const Counter: Story = {
+  name: 'With counter',
+  parameters: {
+    docs: { description: { story: 'Pass a numeric `counter` to render a small pill badge after the label.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <ds-button label="Inbox"    variant="filled" color="user"      size="sm" [counter]="3"></ds-button>
+        <ds-button label="Pending"  variant="filled" color="warning"   size="sm" [counter]="12"></ds-button>
+        <ds-button label="Errors"   variant="filled" color="error"     size="sm" [counter]="999"></ds-button>
+        <ds-button label="Reviewed" variant="filled" color="white"     size="sm" [counter]="42"></ds-button>
+      </div>
+    `,
+  }),
+};
+
+// ─── Alert Indicator ─────────────────────────────────────────────────────────
+
+export const AlertIndicator: Story = {
+  name: 'With alert indicator',
+  parameters: {
+    docs: { description: { story: 'Set `alertIndicator` to show a red dot at the top-right corner.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;padding:8px">
+        <ds-button label="Notifications" variant="filled"   color="user"  size="sm" [alertIndicator]="true"></ds-button>
+        <ds-button label="Inbox"         variant="outlined" color="white" size="sm" [alertIndicator]="true"></ds-button>
+      </div>
+    `,
+  }),
+};
+
+// ─── With Divider ────────────────────────────────────────────────────────────
+
+export const WithDivider: Story = {
+  name: 'With divider',
+  parameters: {
+    docs: { description: { story: 'Set `withDivider` to render a trailing icon-only segment separated by a vertical divider. Each segment emits its own click event.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <ds-button label="Open"     variant="filled" color="user"      size="sm" [withDivider]="true"></ds-button>
+        <ds-button label="Open"     variant="filled" color="error"     size="sm" [withDivider]="true"></ds-button>
+        <ds-button label="Open"     variant="filled" color="warning"   size="sm" [withDivider]="true"></ds-button>
+        <ds-button label="Open"     variant="filled" color="secondary" size="sm" [withDivider]="true"></ds-button>
+        <ds-button label="Open"     variant="filled" color="white"     size="sm" [withDivider]="true"></ds-button>
+        <ds-button label="Disabled" variant="filled" color="user"      size="sm" [withDivider]="true" [disabled]="true"></ds-button>
+      </div>
+    `,
+  }),
+};
+
+// ─── Figma Spec Sheet ────────────────────────────────────────────────────────
+
+export const FigmaSpec: Story = {
+  name: 'Figma spec sheet',
+  parameters: {
+    docs: { description: { story: 'Mirrors the Figma Buttons frame — every kind, default + divider mode.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:grid;grid-template-columns:repeat(2,max-content);gap:8px 16px;align-items:center">
+        <ds-button label="Button" variant="filled" color="user"      size="sm"></ds-button>
+        <ds-button label="Button" variant="filled" color="user"      size="sm" [withDivider]="true"></ds-button>
+
+        <ds-button label="Button" variant="filled" color="secondary" size="sm"></ds-button>
+        <ds-button label="Button" variant="filled" color="secondary" size="sm" [withDivider]="true"></ds-button>
+
+        <ds-button label="Button" variant="filled" color="white"     size="sm"></ds-button>
+        <ds-button label="Button" variant="filled" color="white"     size="sm" [withDivider]="true"></ds-button>
+
+        <ds-button label="Button" variant="filled" color="error"     size="sm"></ds-button>
+        <ds-button label="Button" variant="filled" color="error"     size="sm" [withDivider]="true"></ds-button>
+
+        <ds-button label="Button" variant="filled" color="warning"   size="sm"></ds-button>
+        <ds-button label="Button" variant="filled" color="warning"   size="sm" [withDivider]="true"></ds-button>
+
+        <ds-button label="Button" variant="filled" color="user"      size="sm" [disabled]="true"></ds-button>
+        <ds-button label="Button" variant="filled" color="user"      size="sm" [withDivider]="true" [disabled]="true"></ds-button>
+      </div>
+    `,
+  }),
 };
 
 // ─── Disabled ────────────────────────────────────────────────────────────────
