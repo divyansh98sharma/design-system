@@ -514,30 +514,65 @@
   // ----------------------------------------------------------
   --chip-radius: var(--radius-pill);
   --chip-padding-x: var(--spacing-small);
-  --chip-padding-y: var(--spacing-x-small);
+  --chip-sm-padding-y: 2px;
+  --chip-lg-padding-y: var(--spacing-x-small);
   --chip-gap: var(--spacing-x-small);
   --chip-font-size: var(--font-size-12);
-  --chip-color: var(--color-text-primary);
-  --chip-transition: 120ms ease;
-  --chip-bg-default: var(--color-secondary-5);
-  --chip-border-default: var(--color-secondary-60);
-  --chip-bg-active: var(--color-green-5);
-  --chip-border-active: var(--color-status-success);
-  --chip-bg-error: var(--color-status-error-subtle);
-  --chip-border-error: var(--color-status-error);
-  --chip-bg-warning: var(--color-status-warning-subtle);
-  --chip-border-warning: var(--color-status-warning);
-  --chip-bg-in-process: var(--color-user-5);
-  --chip-border-in-process: var(--color-user);
-  --chip-bg-ai: var(--color-ai-subtle);
-  --chip-border-ai: var(--color-ai);
-  --chip-badge-size: 16px;
-  --chip-badge-radius: var(--radius-pill);
-  --chip-badge-font-size: var(--font-size-10);
-  --chip-badge-color: var(--color-text-inverse);
+  --chip-line-height: var(--line-height-16);
   --chip-icon-size: 16px;
-  --chip-close-size: 16px;
-  --chip-close-focus-color: var(--color-secondary-70);
+  --chip-transition: 120ms ease;
+
+  // Per-state tokens — bg / border / text
+  --chip-red-bg: #ffefef;
+  --chip-red-border: transparent;
+  --chip-red-text: #901a1a;
+
+  --chip-orange-bg: #fff3ea;
+  --chip-orange-border: transparent;
+  --chip-orange-text: #9b5b2c;
+
+  --chip-yellow-bg: #fff9eb;
+  --chip-yellow-border: transparent;
+  --chip-yellow-text: #7e6715;
+
+  --chip-green-bg: #f1fef8;
+  --chip-green-border: transparent;
+  --chip-green-text: #01562e;
+
+  --chip-blue-bg: #f1fbff;
+  --chip-blue-border: transparent;
+  --chip-blue-text: #02506f;
+
+  --chip-purple-bg: #f7f2ff;
+  --chip-purple-border: transparent;
+  --chip-purple-text: #533b91;
+
+  --chip-white-bg: var(--color-white);
+  --chip-white-border: transparent;
+  --chip-white-text: var(--color-black);
+
+  --chip-gray-bg: #f7f7f7;
+  --chip-gray-border: transparent;
+  --chip-gray-text: #4b4b4b;
+
+  --chip-ai-bg: var(--color-white);
+  --chip-ai-border: #007b95;
+  --chip-ai-text: var(--color-black);
+
+  --chip-action-bg: #f7f7f7;
+  --chip-action-border: #ebebeb;
+  --chip-action-text: var(--color-black);
+
+  --chip-selected-bg: #e6f4f3;
+  --chip-selected-border: #0378a7;
+  --chip-selected-text: var(--color-black);
+
+  // Counter pill
+  --chip-counter-bg: var(--color-white);
+  --chip-counter-border: #ebebeb;
+  --chip-counter-text: var(--color-black);
+  --chip-counter-padding-x: var(--spacing-x-small);
+  --chip-counter-radius: var(--radius-pill);
 
   // ----------------------------------------------------------
   // Modal
