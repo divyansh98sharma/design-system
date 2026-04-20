@@ -1,156 +1,273 @@
-// ─── Host block ───────────────────────────────────────────────────────────────
+// ─── Input Field ──────────────────────────────────────────────────────────
+
 .ds-input-field {
   display: flex;
   flex-direction: column;
   gap: var(--input-field-gap);
-  font-family: inherit;
+  padding: var(--spacing-x-small);
+  font-family: var(--font-family-base);
+  color: var(--input-field-text-color);
 
-  // ── Horizontal layout ───────────────────────────────────────────────────
+  // ─── Horizontal layout ────────────────────────────────────────────────
   &--horizontal {
     flex-direction: row;
     align-items: center;
-    gap: var(--input-field-horizontal-gap);
+    gap: var(--spacing-small);
 
     .ds-input-field__label {
-      white-space: nowrap;
       flex-shrink: 0;
+      white-space: nowrap;
     }
-
-    .ds-input-field__wrapper {
+    .ds-input-field__row {
       flex: 1 1 auto;
     }
   }
 
-  // ── Disabled state ──────────────────────────────────────────────────────
+  // ─── State modifiers ──────────────────────────────────────────────────
   &--disabled {
     pointer-events: none;
 
-    .ds-input-field__wrapper {
-      background-color: var(--input-field-disabled-bg);
-      border-color: var(--input-field-disabled-border);
+    .ds-input-field__row,
+    .ds-input-field__input,
+    .ds-input-field__label {
+      color: var(--input-field-disabled-text);
     }
+    .ds-input-field__row {
+      border-bottom-color: var(--input-field-disabled-border);
+    }
+  }
 
-    .ds-input-field__input {
+  &--error {
+    .ds-input-field__row {
+      border-bottom-color: var(--input-field-error-border);
+    }
+  }
+
+  // ─── Label ────────────────────────────────────────────────────────────
+  &__label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    color: var(--input-field-label-color);
+    cursor: default;
+  }
+
+  &__label-text {
+    white-space: nowrap;
+  }
+
+  &__required {
+    color: var(--input-field-error-color);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__info {
+    display: inline-flex;
+    align-items: center;
+    color: var(--input-field-info-color);
+    cursor: pointer;
+
+    svg { width: var(--icon-size-md); height: var(--icon-size-md); display: block; }
+  }
+
+  // ─── Field row (the underline container) ──────────────────────────────
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    min-height: var(--input-field-height);
+    max-height: var(--input-field-height);
+    padding-bottom: var(--spacing-x-small);
+    border-bottom: var(--input-field-underline-width) solid var(--input-field-border);
+    transition: border-bottom-color 120ms ease;
+    box-sizing: border-box;
+
+    &:focus-within {
+      border-bottom-color: var(--input-field-border-focus);
+    }
+  }
+
+  // ─── Native input ─────────────────────────────────────────────────────
+  &__input {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-16);
+    color: var(--input-field-text-color);
+
+    &::placeholder {
+      color: var(--input-field-placeholder-color);
+    }
+    &:disabled {
       color: var(--input-field-disabled-text);
       cursor: not-allowed;
     }
-  }
-
-  // ── Error state ─────────────────────────────────────────────────────────
-  &--error {
-    .ds-input-field__wrapper {
-      border-color: var(--input-border-error);
+    &[readonly] {
+      cursor: default;
     }
   }
-}
 
-// ─── Label ────────────────────────────────────────────────────────────────────
-.ds-input-field__label {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--input-field-gap);
-  font-size: var(--input-font-size);
-  font-weight: var(--font-weight-semibold);
-  color: var(--input-field-label-color);
-  line-height: 1.4;
-  cursor: default;
-}
+  // ─── Icons & icon buttons ─────────────────────────────────────────────
+  &__icon,
+  &__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    padding: 0;
+    flex-shrink: 0;
+    color: var(--input-field-icon-color);
 
-.ds-input-field__required {
-  color: var(--input-border-error);
-  font-weight: var(--font-weight-bold);
-}
-
-.ds-input-field__info {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-
-  svg { display: block; }
-}
-
-// ─── Input wrapper ────────────────────────────────────────────────────────────
-.ds-input-field__wrapper {
-  display: flex;
-  align-items: center;
-  height: var(--input-field-height);
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  border-radius: var(--input-radius);
-  padding: 0 var(--input-field-wrapper-padding-x);
-  gap: var(--input-field-gap);
-  transition: border-color 0.15s, box-shadow 0.15s;
-  box-sizing: border-box;
-
-  &:focus-within {
-    border-color: var(--input-border-focus);
-    box-shadow: var(--input-field-focus-shadow);
-    outline: none;
-  }
-}
-
-// ─── Icons ────────────────────────────────────────────────────────────────────
-.ds-input-field__search-icon,
-.ds-input-field__chevron {
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  color: var(--input-field-icon-color);
-
-  svg { display: block; }
-}
-
-.ds-input-field__chevron {
-  margin-left: auto;
-}
-
-// ─── Native <input> ───────────────────────────────────────────────────────────
-.ds-input-field__input {
-  flex: 1 1 auto;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: var(--input-font-size);
-  font-style: italic;
-  color: var(--input-field-label-color);
-  padding: 0;
-  line-height: var(--input-field-height);
-
-  &::placeholder {
-    color: var(--input-field-placeholder-color);
-    font-style: italic;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  &:not(:placeholder-shown) {
-    font-style: normal;
-  }
-
-  &:disabled {
+  &__icon-btn {
     background: transparent;
-    color: var(--input-field-disabled-text);
+    border: none;
+    cursor: pointer;
+    transition: color 120ms ease;
+
+    &:hover {
+      color: var(--input-field-icon-color-hover);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--input-field-border-focus);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
   }
-}
 
-// ─── Support text ─────────────────────────────────────────────────────────────
-.ds-input-field__support {
-  font-size: var(--input-font-size);
-  font-style: italic;
-  color: var(--input-field-support-color);
-  line-height: 1.4;
-}
+  &__icon--error {
+    color: var(--input-field-error-color);
+  }
 
-// ─── Error text ───────────────────────────────────────────────────────────────
-.ds-input-field__error {
-  display: flex;
-  align-items: center;
-  gap: var(--input-field-gap);
-  font-size: var(--input-font-size);
-  color: var(--input-field-error-color);
-  line-height: 1.4;
-}
+  // ─── Country code ─────────────────────────────────────────────────────
+  &__country-code {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    height: var(--icon-size-md);
+    padding: 0 var(--spacing-x-small);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--input-field-text-color);
+    font-family: inherit;
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-16);
+    flex-shrink: 0;
+  }
 
-.ds-input-field__error-icon {
-  display: block;
-  flex-shrink: 0;
+  &__country-flag {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    flex-shrink: 0;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  &__chevron-icon {
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    color: var(--input-field-icon-color);
+  }
+
+  &__country-label {
+    color: var(--input-field-text-color);
+  }
+
+  // ─── Inline chips (multi-select pattern) ──────────────────────────────
+  &__chips {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    flex-shrink: 0;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    padding: var(--spacing-xx-small) var(--spacing-small);
+    background: var(--input-field-chip-bg);
+    border-radius: var(--radius-pill);
+    color: var(--input-field-chip-text);
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-16);
+    white-space: nowrap;
+    max-width: 200px;
+  }
+
+  &__chip-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__chip-icon {
+    display: inline-flex;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    flex-shrink: 0;
+
+    svg { width: 100%; height: 100%; }
+  }
+
+  &__chip--overflow {
+    font-weight: var(--font-weight-regular);
+    color: var(--input-field-chip-text);
+  }
+
+  // ─── Assign-to-self "Me" pill ─────────────────────────────────────────
+  &__assign-to-self {
+    display: inline-flex;
+    align-items: center;
+    height: var(--icon-size-md);
+    padding: 0 var(--spacing-x-small);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-standard);
+    cursor: pointer;
+    color: var(--input-field-text-color);
+    font-family: inherit;
+    font-size: var(--font-size-12);
+    font-weight: var(--font-weight-semi-bold);
+    line-height: var(--line-height-16);
+    flex-shrink: 0;
+
+    &:hover {
+      color: var(--input-field-icon-color-hover);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--input-field-border-focus);
+      outline-offset: 2px;
+    }
+  }
+
+  // ─── Support / error text ─────────────────────────────────────────────
+  &__support {
+    margin: 0;
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-16);
+    color: var(--input-field-support-color);
+  }
+
+  &__error-text {
+    margin: 0;
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-16);
+    color: var(--input-field-error-color);
+  }
 }
