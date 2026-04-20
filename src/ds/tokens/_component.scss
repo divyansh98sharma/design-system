@@ -771,4 +771,81 @@
   --control-height-md: 32px;
   --control-height-lg: 40px;
   --control-height-xl: 48px;
+
+  // ----------------------------------------------------------
+  // Left Panel Queue
+  // ----------------------------------------------------------
+  --lpq-width: 464px;
+  --lpq-bg: #fbfbfb;
+  --lpq-text: #000000;
+  --lpq-label-color: #4b586b;
+  --lpq-accent: #0378a7;
+  --lpq-font-size: var(--font-size-12);
+
+  --lpq-header-gap: 40px;
+  --lpq-header-pad-b: 24px;
+  --lpq-header-border: #e1e1e1;
+  --lpq-title-color: #0378a7;
+  --lpq-title-size: 32px;
+
+  --lpq-list-gap: 12px;
+  --lpq-list-pad-t: 8px;
+  --lpq-list-pad-r: 4px;
+  --lpq-list-pad-b: 4px;
+  --lpq-list-pad-l: 8px;
+
+  --lpq-quick-bg: #f5f0ed;
+  --lpq-quick-radius: 8px;
+  --lpq-quick-pad: 4px;
+  --lpq-quick-gap: 4px;
+  --lpq-quick-max-h: 58px;
+
+  --lpq-chip-bg: #f7f7f7;
+  --lpq-chip-bg-hover: #ebebeb;
+  --lpq-chip-border: #ebebeb;
+  --lpq-chip-text: #000000;
+  --lpq-chip-gap: 4px;
+  --lpq-chip-pad-x: 8px;
+  --lpq-chip-pad-y: 2px;
+  --lpq-chip-counter-bg: #ffffff;
+  --lpq-chip-counter-border: #ebebeb;
+  --lpq-chip-counter-text: #000000;
+  --lpq-chip-counter-pad-x: 4px;
+
+  --lpq-bar-bg: #e6f4f3;
+  --lpq-bar-radius: 8px;
+  --lpq-bar-width: 440px;
+  --lpq-bar-gap: 12px;
+  --lpq-bar-pad-x: 12px;
+  --lpq-bar-pad-y: 8px;
+  --lpq-bar-section-gap: 12px;
+
+  --lpq-check-gap: 4px;
+  --lpq-divider: #d9d9d9;
+
+  --lpq-btn-bg: #fbfbfb;
+  --lpq-btn-bg-hover: #ebebeb;
+  --lpq-btn-gap: 4px;
+  --lpq-btn-pad-x: 4px;
+  --lpq-btn-pad-y: 4px;
+  --lpq-btn-radius: 4px;
+
+  --lpq-search-gap: 4px;
+  --lpq-search-pad: 4px;
+  --lpq-search-border: #4b586b;
+
+  --lpq-queue-height: 626px;
+
+  --lpq-pg-gap: 4px;
+  --lpq-pg-select-bg: #ffffff;
+  --lpq-pg-select-border: #bcbcbc;
+  --lpq-pg-select-pad: 4px;
+  --lpq-pg-radius: 4px;
+  --lpq-pg-btn-bg: #f7f7f7;
+  --lpq-pg-btn-border: #ebebeb;
+  --lpq-pg-btn-alt-bg: #ebebeb;
+  --lpq-pg-btn-alt-border: #e1e1e1;
+
+  --lpq-scrollbar-track: #f0f0f0;
+  --lpq-scroller: #717171;
 }

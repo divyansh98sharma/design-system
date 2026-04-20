@@ -1,0 +1,210 @@
+<div class="ds-lpq">
+  @if (title) {
+    <header class="ds-lpq__header">
+      <h2 class="ds-lpq__title">{{ title }}</h2>
+    </header>
+  }
+
+  <div class="ds-lpq__body">
+    <div class="ds-lpq__list">
+      @if (showQuickSelect && chips.length) {
+        <div class="ds-lpq__quick-select" role="group" aria-label="Quick select">
+          @for (chip of chips; track trackChip($index, chip)) {
+            <button
+              type="button"
+              class="ds-lpq__chip"
+              (click)="onChipClick(chip)"
+            >
+              <span class="ds-lpq__chip-icon" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path [attr.d]="chip.iconPath || 'M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z'" fill="currentColor"/>
+                </svg>
+              </span>
+              <span class="ds-lpq__chip-label">{{ chip.label }}</span>
+              @if (chip.counter !== undefined && chip.counter !== null) {
+                <span class="ds-lpq__chip-counter">{{ chip.counter }}</span>
+              }
+            </button>
+          }
+        </div>
+      }
+
+      @if (showButtonBar) {
+        <div class="ds-lpq__button-bar">
+          <div class="ds-lpq__bar-left">
+            <label class="ds-lpq__check">
+              <input
+                type="checkbox"
+                class="ds-lpq__check-input"
+                [checked]="selectAll"
+                (change)="onSelectAllChange($any($event.target).checked)"
+              />
+              <span class="ds-lpq__check-label">Select All</span>
+            </label>
+            <span class="ds-lpq__divider" aria-hidden="true"></span>
+            @for (btn of buttons; track trackBtn($index, btn)) {
+              <button
+                type="button"
+                class="ds-lpq__bar-btn"
+                (click)="onButtonClick(btn)"
+              >
+                <span>{{ btn.label }}</span>
+                @if (btn.showCaret !== false) {
+                  <svg class="ds-lpq__bar-btn-caret" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                }
+              </button>
+            }
+            <span class="ds-lpq__divider" aria-hidden="true"></span>
+            <button
+              type="button"
+              class="ds-lpq__bar-btn ds-lpq__bar-btn--icon"
+              aria-label="Sort"
+              (click)="onSortClick()"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M3 6h18M6 12h12M10 18h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      }
+
+      @if (showSearch) {
+        <div class="ds-lpq__search">
+          <span class="ds-lpq__search-label">{{ searchLabel }}</span>
+          <div class="ds-lpq__search-input">
+            <svg class="ds-lpq__search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+              <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <input
+              type="text"
+              class="ds-lpq__search-field"
+              [placeholder]="searchPlaceholder"
+              [value]="searchValue"
+              (input)="onSearchInput($any($event.target).value)"
+            />
+            <button
+              type="button"
+              class="ds-lpq__search-btn"
+              aria-label="Saved searches"
+              (click)="onChevronClick()"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="ds-lpq__search-btn"
+              aria-label="Favorite"
+              (click)="onFavoriteClick()"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 17.3l-6.2 3.7 1.6-7-5.4-4.7 7.1-.6L12 2l2.9 6.7 7.1.6-5.4 4.7 1.6 7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      }
+
+      <div class="ds-lpq__queue">
+        <ng-content></ng-content>
+      </div>
+
+      @if (showPagination) {
+        <div class="ds-lpq__pagination">
+          <span class="ds-lpq__pg-text">Show</span>
+          <label class="ds-lpq__pg-select" aria-label="Page size">
+            <select
+              class="ds-lpq__pg-select-input"
+              [ngModel]="pageSize"
+              (ngModelChange)="onPageSizeChange($event)"
+            >
+              @for (n of pageSizeOptions; track n) {
+                <option [ngValue]="n">{{ n }}</option>
+              }
+            </select>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </label>
+          <span class="ds-lpq__pg-text">of {{ totalItems }} cards</span>
+          <button
+            type="button"
+            class="ds-lpq__pg-btn"
+            aria-label="First page"
+            [disabled]="isFirstPage"
+            (click)="goFirst()"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M18 6l-6 6 6 6M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="ds-lpq__pg-btn"
+            aria-label="Previous page"
+            [disabled]="isFirstPage"
+            (click)="goPrev()"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <input
+            type="text"
+            class="ds-lpq__pg-input"
+            aria-label="Current page"
+            [value]="currentPage"
+            (change)="onPageInput($any($event.target).value)"
+          />
+          <span class="ds-lpq__pg-text">of {{ totalPages }}</span>
+          <button
+            type="button"
+            class="ds-lpq__pg-btn ds-lpq__pg-btn--alt"
+            aria-label="Next page"
+            [disabled]="isLastPage"
+            (click)="goNext()"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="ds-lpq__pg-btn ds-lpq__pg-btn--alt"
+            aria-label="Last page"
+            [disabled]="isLastPage"
+            (click)="goLast()"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 6l6 6-6 6M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      }
+    </div>
+
+    @if (showScrollbar) {
+      <div class="ds-lpq__scrollbar" aria-hidden="true">
+        <div class="ds-lpq__scrollbar-inner">
+          <span class="ds-lpq__scroll-arrow">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 15l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="ds-lpq__scroller"></span>
+          <span class="ds-lpq__scroll-spacer"></span>
+          <span class="ds-lpq__scroll-arrow">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+    }
+  </div>
+</div>
