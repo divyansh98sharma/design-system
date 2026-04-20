@@ -754,6 +754,19 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Hyperlink
+  // ----------------------------------------------------------
+  --hyperlink-color: #02506f;
+  --hyperlink-color-hover: #0378a7;
+  --hyperlink-color-active: #013b52;
+  --hyperlink-color-visited: #6a3fa7;
+  --hyperlink-color-disabled: var(--color-text-disabled);
+  --hyperlink-font-size: var(--font-size-12);
+  --hyperlink-font-weight: var(--font-weight-medium);
+  --hyperlink-underline-thickness: 1px;
+  --hyperlink-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;
