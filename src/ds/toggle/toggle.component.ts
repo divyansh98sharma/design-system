@@ -2,8 +2,14 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export type ToggleTheme = 'user' | 'admin' | 'green' | 'sunoh';
-
+/**
+ * On / Off toggle switch — 50 × 24 px pill.
+ *
+ * Three states:
+ * - **Off** — white track, gray `#bcbcbc` border, gray thumb on the left.
+ * - **On**  — teal `#007b95` track and border, white thumb on the right.
+ * - **Disabled** — gray `#e1e1e1` track, gray `#bcbcbc` border + thumb, non-interactive.
+ */
 @Component({
   selector: 'ds-toggle',
   standalone: true,
@@ -16,24 +22,26 @@ export class ToggleComponent {
   /** Whether the toggle is on. */
   @Input() on = false;
 
-  /** Colour theme. */
-  @Input() theme: ToggleTheme = 'user';
-
   /** Prevents user interaction. */
   @Input() disabled = false;
 
-  /** Emits the new on/off state. */
+  /** Optional accessible label for screen readers. */
+  @Input() ariaLabel = 'Toggle';
+
+  /** Emits the new on/off state when toggled. */
   @Output() onToggle = new EventEmitter<boolean>();
 
-  handleChange(event: { checked: boolean }): void {
-    this.on = event.checked;
-    this.onToggle.emit(event.checked);
+  handleClick(): void {
+    if (this.disabled) return;
+    this.on = !this.on;
+    this.onToggle.emit(this.on);
   }
 
   get hostClasses(): Record<string, boolean> {
     return {
       'ds-toggle': true,
-      [`ds-toggle--${this.theme}`]: true,
+      'ds-toggle--on': this.on && !this.disabled,
+      'ds-toggle--off': !this.on && !this.disabled,
       'ds-toggle--disabled': this.disabled,
     };
   }
