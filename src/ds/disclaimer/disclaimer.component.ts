@@ -7,22 +7,15 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type DisclaimerVariant = 'disclaimer' | 'ai-disclaimer';
-export type DisclaimerLabelPosition = 'left' | 'top';
+export type DisclaimerType = 'note' | 'disclaimer';
 
 /**
- * Disclaimer banner component.
+ * Single-line warning strip — yellow background `#fff9eb`, border `#fbce2a`.
  *
- * Yellow warning strip — background `#fff9eb`, border `#fbce2a`.
+ * Anatomy: `[bold prefix] [body text] [× close]`
  *
- * **Three layouts:**
- * - `disclaimer` + `labelPosition: 'left'` — "Disclaimer:" label inline with body text and close button.
- * - `disclaimer` + `labelPosition: 'top'` — "Disclaimer:" label on its own row, italic body text below and close button.
- * - `ai-disclaimer` — AI-specific text block + "Acknowledge for AI Assistant" secondary button.
- *
- * Typography:
- * - "Disclaimer:" label: **bold + italic**.
- * - Body text (`text`): italic for `disclaimer` · regular for `ai-disclaimer`.
+ * Set `type` to switch the prefix between "Note" and "Disclaimer", or pass
+ * a custom `label` to override.
  */
 @Component({
   selector: 'ds-disclaimer',
@@ -33,34 +26,23 @@ export type DisclaimerLabelPosition = 'left' | 'top';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DisclaimerComponent {
-  /** Layout variant. */
-  @Input() variant: DisclaimerVariant = 'disclaimer';
+  /** Prefix style — `note` shows "Note", `disclaimer` shows "Disclaimer". */
+  @Input() type: DisclaimerType = 'note';
 
-  /**
-   * Position of the "Disclaimer:" label — `'left'` (inline) or `'top'` (own row).
-   * Only relevant when `variant === 'disclaimer'`.
-   */
-  @Input() labelPosition: DisclaimerLabelPosition = 'left';
+  /** Custom prefix label. Falls back to the capitalised `type`. */
+  @Input() label: string | null = null;
 
-  /** Primary body text. */
-  @Input() text = 'This content is for informational purposes only.';
+  /** Body text. */
+  @Input() text = 'Body text';
 
-  /** Optional second line of body text (shown below the first line). */
-  @Input() line2 = '';
-
-  /** Main text for the AI disclaimer (supports longer paragraphs). */
-  @Input() aiText =
-    'This feature uses artificial intelligence. AI-generated results may contain errors or inaccuracies.';
-
-  /** Additional bolded note appended after the AI body text. */
-  @Input() aiNote = 'Always verify AI-generated content with a qualified professional.';
-
-  /** Label on the acknowledge button (AI variant). */
-  @Input() acknowledgeLabel = 'Acknowledge for AI Assistant';
+  /** Show the trailing close × button. */
+  @Input() showClose = true;
 
   /** Emits when the close button is clicked. */
   @Output() closed = new EventEmitter<void>();
 
-  /** Emits when the acknowledge button is clicked (AI variant). */
-  @Output() acknowledge = new EventEmitter<void>();
+  get resolvedLabel(): string {
+    if (this.label !== null) return this.label;
+    return this.type === 'disclaimer' ? 'Disclaimer' : 'Note';
+  }
 }
