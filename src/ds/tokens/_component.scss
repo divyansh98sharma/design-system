@@ -697,6 +697,28 @@
   --disclaimer-ack-bg-hover: var(--color-secondary-60);
 
   // ----------------------------------------------------------
+  // Floating Toolbar
+  // ----------------------------------------------------------
+  --floating-toolbar-width: 52px;
+  --floating-toolbar-min-height: 200px;
+  --floating-toolbar-bg: #e6f4f3;
+  --floating-toolbar-radius: var(--radius-8);
+  --floating-toolbar-shadow: -4px 0 8px 0 rgba(0, 0, 0, 0.08);
+  --floating-toolbar-gap: var(--spacing-small);
+
+  --floating-toolbar-item-padding-top: var(--spacing-x-small);
+  --floating-toolbar-item-gap: var(--spacing-x-small);
+  --floating-toolbar-item-icon-size: 24px;
+  --floating-toolbar-item-font-size: var(--font-size-12);
+  --floating-toolbar-item-line-height: var(--line-height-16);
+  --floating-toolbar-item-text-color: var(--color-black);
+  --floating-toolbar-item-active-bg: #007b95;
+  --floating-toolbar-item-active-text-color: var(--color-white);
+
+  --floating-toolbar-more-padding-y: var(--spacing-x-small);
+  --floating-toolbar-more-link-color: #02506f;
+
+  // ----------------------------------------------------------
   // Scrollbar
   // ----------------------------------------------------------
   --scrollbar-width: 12px;
