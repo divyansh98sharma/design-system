@@ -771,4 +771,60 @@
   --control-height-md: 32px;
   --control-height-lg: 40px;
   --control-height-xl: 48px;
+
+  // ----------------------------------------------------------
+  // Calendar
+  // ----------------------------------------------------------
+  --calendar-trigger-width: 270px;
+  --calendar-trigger-height: var(--control-height-sm);
+  --calendar-trigger-padding: var(--spacing-x-small);
+  --calendar-trigger-radius: var(--radius-4);
+  --calendar-trigger-gap: var(--spacing-x-small);
+  --calendar-trigger-border: var(--color-border-strong);
+  --calendar-trigger-bg: var(--color-surface);
+  --calendar-trigger-text: var(--color-text-primary);
+  --calendar-trigger-placeholder: var(--color-text-secondary);
+  --calendar-trigger-icon-color: var(--color-icon-secondary);
+  --calendar-trigger-icon-size: var(--icon-size-md);
+
+  --calendar-label-color: var(--color-text-secondary);
+  --calendar-label-font-size: var(--font-size-12);
+  --calendar-label-line-height: var(--line-height-16);
+
+  --calendar-popover-bg: var(--color-surface);
+  --calendar-popover-border: var(--color-user);
+  --calendar-popover-radius: 8px;
+  --calendar-popover-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --calendar-popover-width: 270px;
+
+  --calendar-header-padding-x: 12px;
+  --calendar-header-padding-y: 12px;
+  --calendar-header-text: var(--color-text-secondary);
+
+  --calendar-weekday-color: #797979;
+  --calendar-weekday-font-size: var(--font-size-12);
+
+  --calendar-day-size: 32px;
+  --calendar-day-radius: var(--radius-pill);
+  --calendar-day-text: var(--color-text-primary);
+  --calendar-day-text-muted: #717171;
+  --calendar-day-bg-hover: var(--color-surface-subtle);
+  --calendar-day-bg-selected: var(--color-user);
+  --calendar-day-text-selected: var(--color-text-inverse);
+  --calendar-day-bg-in-range: var(--color-user-10);
+
+  --calendar-footer-border: var(--color-border-default);
+  --calendar-footer-padding-x: 12px;
+  --calendar-footer-padding-y: 8px;
+
+  --calendar-range-button-bg: #fbfbfb;
+  --calendar-range-button-text: var(--color-text-secondary);
+  --calendar-range-button-radius: var(--radius-4);
+  --calendar-range-button-padding: 4px;
+  --calendar-range-button-bg-hover: var(--color-surface-subtle);
+
+  --calendar-shortcut-width: 200px;
+  --calendar-shortcut-bg: var(--color-surface);
+  --calendar-shortcut-border: var(--color-border-default);
+  --calendar-shortcut-padding: 8px;
 }
