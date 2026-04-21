@@ -754,6 +754,18 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Panel
+  // ----------------------------------------------------------
+  --panel-bg: #ffffff;
+  --panel-padding-x: 12px;
+  --panel-padding-y: 12px;
+  --panel-width: 154px;
+  --panel-width-filters: 300px;
+  --panel-content-gap: 8px;
+  --panel-shadow-right: 4px 0 8px 0 rgba(0, 0, 0, 0.08);
+  --panel-shadow-left: -4px 0 8px 0 rgba(0, 0, 0, 0.08);
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;
