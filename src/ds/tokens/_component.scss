@@ -754,6 +754,32 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Button Bar
+  // ----------------------------------------------------------
+  --button-bar-bg: #e6f4f3;
+  --button-bar-radius: var(--radius-standard);
+  --button-bar-padding-x: var(--spacing-medium);
+  --button-bar-padding-y: var(--spacing-x-small);
+  --button-bar-gap: var(--spacing-medium);
+  --button-bar-section-gap: var(--spacing-x-small);
+  --button-bar-divider-color: var(--color-border-strong);
+  --button-bar-divider-width: 1px;
+  --button-bar-divider-height: 24px;
+
+  --button-bar-action-bg: var(--color-surface);
+  --button-bar-action-color: var(--color-text-primary);
+  --button-bar-action-bg-hover: var(--color-surface-subtle);
+  --button-bar-action-radius: 4px;
+  --button-bar-action-height: var(--control-height-sm);
+  --button-bar-action-padding: var(--spacing-xx-small);
+  --button-bar-action-gap: var(--spacing-xx-small);
+  --button-bar-action-font-size: var(--font-size-12);
+  --button-bar-action-font-weight: var(--font-weight-regular);
+  --button-bar-action-line-height: var(--line-height-16);
+  --button-bar-action-icon-size: 12px;
+  --button-bar-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;

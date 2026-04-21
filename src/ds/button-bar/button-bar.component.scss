@@ -1,0 +1,78 @@
+// ─── Button Bar ──────────────────────────────────────────────────────────────
+
+.ds-button-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--button-bar-gap);
+  padding: var(--button-bar-padding-y) var(--button-bar-padding-x);
+  background: var(--button-bar-bg);
+  border-radius: var(--button-bar-radius);
+  font-family: var(--font-family-base);
+
+  &__section {
+    display: flex;
+    align-items: center;
+    gap: var(--button-bar-section-gap);
+
+    &--right {
+      margin-left: auto;
+    }
+  }
+
+  &__divider {
+    display: inline-block;
+    width: var(--button-bar-divider-width);
+    height: var(--button-bar-divider-height);
+    background: var(--button-bar-divider-color);
+    flex-shrink: 0;
+  }
+
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--button-bar-action-gap);
+    height: var(--button-bar-action-height);
+    padding: var(--button-bar-action-padding);
+    background: var(--button-bar-action-bg);
+    color: var(--button-bar-action-color);
+    border: none;
+    border-radius: var(--button-bar-action-radius);
+    font-family: inherit;
+    font-size: var(--button-bar-action-font-size);
+    font-weight: var(--button-bar-action-font-weight);
+    line-height: var(--button-bar-action-line-height);
+    cursor: pointer;
+    transition: background 120ms ease;
+
+    &:hover:not(:disabled) {
+      background: var(--button-bar-action-bg-hover);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--button-bar-focus-color);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--icon-only {
+      width: var(--button-bar-action-height);
+      padding: 0;
+    }
+  }
+
+  &__action-icon {
+    width: var(--button-bar-action-icon-size);
+    height: var(--button-bar-action-icon-size);
+    flex-shrink: 0;
+    color: currentColor;
+  }
+
+  &__action-label {
+    white-space: nowrap;
+  }
+}
