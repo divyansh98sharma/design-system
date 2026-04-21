@@ -1,0 +1,32 @@
+:host { display: inline-block; }
+
+.ds-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel-bg);
+  padding: var(--panel-padding-y) var(--panel-padding-x);
+  overflow: clip;
+  box-sizing: border-box;
+
+  &--left {
+    width: var(--panel-width);
+    box-shadow: var(--panel-shadow-right);
+  }
+
+  &--right {
+    width: var(--panel-width);
+    box-shadow: var(--panel-shadow-left);
+  }
+
+  &--filters {
+    width: var(--panel-width-filters);
+    box-shadow: var(--panel-shadow-right);
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--panel-content-gap);
+    width: 100%;
+  }
+}
