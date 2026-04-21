@@ -1,0 +1,128 @@
+<div class="ds-cal" [class.ds-cal--label-left]="labelPosition === 'left'" [class.ds-cal--range]="mode === 'range'">
+
+  @if (mode === 'single') {
+    <ng-container *ngTemplateOutlet="trigger; context: { $implicit: 'start', label: label, date: value }"></ng-container>
+  } @else {
+    <ng-container *ngTemplateOutlet="trigger; context: { $implicit: 'start', label: startLabel, date: rangeValue.start }"></ng-container>
+    <ng-container *ngTemplateOutlet="trigger; context: { $implicit: 'end',   label: endLabel,   date: rangeValue.end }"></ng-container>
+  }
+
+  @if (open) {
+    <div class="ds-cal__popover" (click)="$event.stopPropagation()">
+
+      <!-- Date selection panel -->
+      <div class="ds-cal__panel">
+        <div class="ds-cal__header">
+          <div class="ds-cal__nav">
+            <select class="ds-cal__select" [ngModel]="viewMonth" (ngModelChange)="onMonthChange($event)" aria-label="Month">
+              @for (m of months; track m; let i = $index) {
+                <option [ngValue]="i">{{ m }}</option>
+              }
+            </select>
+            <select class="ds-cal__select" [ngModel]="viewYear" (ngModelChange)="onYearChange($event)" aria-label="Year">
+              @for (y of yearOptions; track y) {
+                <option [ngValue]="y">{{ y }}</option>
+              }
+            </select>
+          </div>
+          @if (mode === 'range') {
+            <span class="ds-cal__header-label">
+              {{ activeRangeField === 'start' ? 'Start Date' : 'End Date' }}
+            </span>
+          }
+        </div>
+
+        <div class="ds-cal__weekdays">
+          @for (w of weekdays; track w) {
+            <span class="ds-cal__weekday">{{ w }}</span>
+          }
+        </div>
+
+        <div class="ds-cal__divider"></div>
+
+        <div class="ds-cal__grid">
+          @for (row of rows; track $index) {
+            <div class="ds-cal__row">
+              @for (cell of row; track cell.date.getTime()) {
+                <button
+                  type="button"
+                  class="ds-cal__day"
+                  [class.is-muted]="!cell.inCurrentMonth"
+                  [class.is-today]="cell.isToday"
+                  [class.is-selected]="cell.isSelected"
+                  [class.is-in-range]="cell.inRange"
+                  [class.is-range-start]="cell.isRangeStart"
+                  [class.is-range-end]="cell.isRangeEnd"
+                  (click)="selectDay(cell)"
+                >
+                  {{ cell.day }}
+                </button>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="ds-cal__footer">
+          <button type="button" class="ds-cal__btn ds-cal__btn--ghost" (click)="clear()">Clear</button>
+          <button type="button" class="ds-cal__btn ds-cal__btn--primary" (click)="goToday()">Today</button>
+        </div>
+      </div>
+
+      <!-- Jump-to-date shortcut panel -->
+      @if (withJumpToDate) {
+        <div class="ds-cal__shortcut">
+          <div class="ds-cal__shortcut-header">
+            <span class="ds-cal__shortcut-title">Jump to date</span>
+            <div class="ds-cal__shortcut-toggle" role="tablist">
+              <button
+                type="button"
+                role="tab"
+                class="ds-cal__toggle-pill"
+                [class.is-active]="shortcutDirection === 'past'"
+                (click)="setShortcutDirection('past')"
+              >Past</button>
+              <button
+                type="button"
+                role="tab"
+                class="ds-cal__toggle-pill"
+                [class.is-active]="shortcutDirection === 'future'"
+                (click)="setShortcutDirection('future')"
+              >Future</button>
+            </div>
+          </div>
+
+          <div class="ds-cal__shortcut-body">
+            @for (s of activeShortcuts; track s.label) {
+              <button type="button" class="ds-cal__range-btn" (click)="applyShortcut(s)">
+                {{ s.label }}
+              </button>
+            }
+          </div>
+
+          <div class="ds-cal__footer">
+            <button type="button" class="ds-cal__btn ds-cal__btn--ghost" (click)="goToday()">Today</button>
+            <div class="ds-cal__footer-actions">
+              <button type="button" class="ds-cal__btn ds-cal__btn--primary" (click)="save()">Save</button>
+              <button type="button" class="ds-cal__btn ds-cal__btn--ghost" (click)="clear()">Clear</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<ng-template #trigger let-field let-tLabel="label" let-date="date">
+  <div class="ds-cal__field">
+    <label class="ds-cal__label">{{ tLabel }}</label>
+    <button
+      type="button"
+      class="ds-cal__trigger"
+      [class.is-empty]="!date"
+      (click)="openPopover(field, $event)"
+    >
+      <span class="ds-cal__trigger-text">{{ formatDate(date) }}</span>
+      <img class="ds-cal__trigger-icon" src="/icons/calendar-month.svg" alt="" aria-hidden="true" />
+    </button>
+  </div>
+</ng-template>
