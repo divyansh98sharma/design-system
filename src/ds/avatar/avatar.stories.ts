@@ -102,7 +102,7 @@ export const Overview: Story = {
 export const Text: Story = {
   name: 'Text (Initials)',
   parameters: {
-    docs: { description: { story: 'Displays user initials on a light gray background. Text color uses the `user` brand token.' } },
+    docs: { description: { story: 'Displays user initials on a coral fill (`--avatar-text-bg: #ba654e`) with white type. Small uses 16 px / bold; large uses 26 px / semibold.' } },
   },
   render: () => ({
     template: `
