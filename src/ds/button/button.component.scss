@@ -1,9 +1,10 @@
 // ─── Base ────────────────────────────────────────────────────────────────────
 
-.p-button {
+.ds-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   gap: var(--button-md-gap);
   border: 1px solid transparent;
   border-radius: var(--button-radius);
@@ -16,14 +17,13 @@
   text-decoration: none;
   outline-offset: 2px;
 
-  // Medium size (default)
   height: var(--button-md-height);
   padding: 0 var(--button-md-padding-x);
   font-size: var(--button-font-size);
 
-  .p-button-icon { font-size: var(--button-md-icon-size); }
+  .ds-button__icon { font-size: var(--button-md-icon-size); }
 
-  &.p-button-icon-only {
+  &--icon-only {
     width: var(--button-md-height);
     padding: 0;
   }
@@ -34,7 +34,7 @@
   }
 }
 
-.p-button-icon {
+.ds-button__icon {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
@@ -48,6 +48,12 @@
     height: 1em;
   }
 
+  & > svg {
+    display: block;
+    width: 1em;
+    height: 1em;
+  }
+
   img {
     display: block;
     width: 1em;
@@ -56,35 +62,71 @@
   }
 }
 
-.p-button-label {
+.ds-button__label {
   display: inline-block;
+}
+
+// ─── Counter pill ────────────────────────────────────────────────────────────
+
+.ds-button__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--button-counter-padding-x);
+  background: var(--button-counter-bg);
+  border: 1px solid var(--button-counter-border);
+  border-radius: var(--button-counter-radius);
+  font-family: var(--font-family-base);
+  font-size: var(--button-counter-font-size);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+  color: var(--button-counter-color);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// ─── Alert indicator dot ─────────────────────────────────────────────────────
+
+.ds-button__alert {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: var(--button-alert-size);
+  height: var(--button-alert-size);
+  background: var(--button-alert-bg);
+  border-radius: var(--button-alert-radius);
+  pointer-events: none;
 }
 
 // ─── Sizes ───────────────────────────────────────────────────────────────────
 
-.p-button-sm {
+.ds-button--sm {
   height: var(--button-sm-height);
   padding: 0 var(--button-sm-padding-x);
   font-size: var(--button-sm-font-size);
   gap: var(--button-sm-gap);
 
-  .p-button-icon { font-size: var(--button-sm-icon-size); }
+  .ds-button__icon { font-size: var(--button-sm-icon-size); }
 
-  &.p-button-icon-only {
+  &.ds-button--icon-only {
     width: var(--button-sm-height);
     padding: 0;
   }
 }
 
-.p-button-lg {
+.ds-button--md {
+  // defaults already set above
+}
+
+.ds-button--lg {
   height: var(--button-lg-height);
   padding: 0 var(--button-lg-padding-x);
   font-size: var(--button-lg-font-size);
   gap: var(--button-lg-gap);
 
-  .p-button-icon { font-size: var(--button-md-icon-size); }
+  .ds-button__icon { font-size: var(--button-md-icon-size); }
 
-  &.p-button-icon-only {
+  &.ds-button--icon-only {
     width: var(--button-lg-height);
     padding: 0;
   }
@@ -92,15 +134,17 @@
 
 // ─── Disabled (shared) ───────────────────────────────────────────────────────
 
-.p-disabled,
-.p-button:disabled {
+.ds-button--disabled,
+.ds-button:disabled,
+.ds-button__main:disabled,
+.ds-button__divider:disabled {
   cursor: not-allowed;
   pointer-events: none;
   background: transparent;
   border-color: var(--button-disabled-border);
   color: var(--button-disabled-color);
 
-  .p-button-icon { opacity: 0.4; }
+  .ds-button__icon { opacity: 0.4; }
 }
 
 // ─── Filled variants ─────────────────────────────────────────────────────────
@@ -110,36 +154,61 @@
   border-color: transparent;
   color: var(--color-text-inverse);
 
-  &:hover:not(:disabled):not(.p-disabled) {
+  &:hover:not(:disabled):not(.ds-button--disabled) {
     background: var(#{$hover});
   }
 
-  &:active:not(:disabled):not(.p-disabled) {
+  &:active:not(:disabled):not(.ds-button--disabled) {
     background: var(#{$active});
   }
 }
 
-.p-button:not(.p-button-outlined):not(.p-button-text) {
-  &.p-button-user    { @include filled-color(--button-user-bg,    --button-user-hover,    --button-user-active); }
-  &.p-button-admin   { @include filled-color(--button-admin-bg,   --button-admin-hover,   --button-admin-active); }
-  &.p-button-success { @include filled-color(--button-success-bg, --button-success-hover, --button-success-active); }
-  &.p-button-error   { @include filled-color(--button-error-bg,   --button-error-hover,   --button-error-active); }
-  &.p-button-sunoh   { @include filled-color(--button-sunoh-bg,   --button-sunoh-hover,   --button-sunoh-active); }
+.ds-button--filled {
+  &.ds-button--user    { @include filled-color(--button-user-bg,    --button-user-hover,    --button-user-active); }
+  &.ds-button--admin   { @include filled-color(--button-admin-bg,   --button-admin-hover,   --button-admin-active); }
+  &.ds-button--success { @include filled-color(--button-success-bg, --button-success-hover, --button-success-active); }
+  &.ds-button--error   { @include filled-color(--button-error-bg,   --button-error-hover,   --button-error-active); }
+  &.ds-button--sunoh   { @include filled-color(--button-sunoh-bg,   --button-sunoh-hover,   --button-sunoh-active); }
+
+  // Warning (yellow) — dark text
+  &.ds-button--warning {
+    background: var(--button-warning-bg);
+    border-color: transparent;
+    color: var(--button-warning-color);
+    font-weight: var(--font-weight-regular);
+
+    &:hover:not(:disabled):not(.ds-button--disabled) { background: var(--button-warning-hover); }
+    &:active:not(:disabled):not(.ds-button--disabled) { background: var(--button-warning-active); }
+  }
 
   // Secondary filled (neutral gray)
-  &.p-button-secondary {
+  &.ds-button--secondary {
     background: var(--button-secondary-filled-bg);
     border-color: transparent;
     color: var(--button-secondary-filled-text);
+    font-weight: var(--font-weight-regular);
 
-    &:hover:not(:disabled):not(.p-disabled) {
+    &:hover:not(:disabled):not(.ds-button--disabled) {
       background: var(--button-secondary-filled-hover);
       color: var(--color-text-inverse);
     }
 
-    &:active:not(:disabled):not(.p-disabled) {
+    &:active:not(:disabled):not(.ds-button--disabled) {
       background: var(--button-secondary-filled-active);
       color: var(--color-text-inverse);
+    }
+  }
+
+  // White — surface fill, dark text
+  &.ds-button--white {
+    background: var(--button-white-bg);
+    border-color: transparent;
+    color: var(--button-white-color);
+    font-weight: var(--font-weight-regular);
+
+    &:hover:not(:disabled):not(.ds-button--disabled) {
+      background: var(--button-white-hover-bg);
+      border-color: var(--button-white-hover-border);
     }
   }
 }
@@ -151,22 +220,36 @@
   border-color: var(#{$border});
   color: var(#{$text});
 
-  &:hover:not(:disabled):not(.p-disabled) {
+  &:hover:not(:disabled):not(.ds-button--disabled) {
     background: var(#{$hover-bg});
   }
 
-  &:active:not(:disabled):not(.p-disabled) {
+  &:active:not(:disabled):not(.ds-button--disabled) {
     background: var(#{$active-bg});
   }
 }
 
-.p-button-outlined {
-  &.p-button-user       { @include outlined-color(--button-user-bg,    --button-user-bg,    --button-user-outlined-hover,      --button-user-outlined-active); }
-  &.p-button-secondary  { @include outlined-color(--button-secondary-filled-bg, --button-secondary-outlined-text, --button-secondary-outlined-hover, --button-secondary-outlined-active); }
-  &.p-button-success    { @include outlined-color(--button-success-bg, --button-success-bg, --button-success-outlined-hover,   --button-success-outlined-active); }
-  &.p-button-error      { @include outlined-color(--button-error-bg,   --button-error-bg,   --button-error-outlined-hover,     --button-error-outlined-active); }
-  &.p-button-admin      { @include outlined-color(--button-admin-bg,   --button-admin-bg,   --button-admin-outlined-hover,     --button-admin-outlined-active); }
-  &.p-button-sunoh      { @include outlined-color(--button-sunoh-bg,   --button-sunoh-bg,   --button-sunoh-outlined-hover,     --button-sunoh-outlined-active); }
+.ds-button--outlined {
+  &.ds-button--user       { @include outlined-color(--button-user-bg,    --button-user-bg,    --button-user-outlined-hover,      --button-user-outlined-active); }
+  &.ds-button--secondary  { @include outlined-color(--button-secondary-filled-bg, --button-secondary-outlined-text, --button-secondary-outlined-hover, --button-secondary-outlined-active); }
+  &.ds-button--success    { @include outlined-color(--button-success-bg, --button-success-bg, --button-success-outlined-hover,   --button-success-outlined-active); }
+  &.ds-button--error      { @include outlined-color(--button-error-bg,   --button-error-bg,   --button-error-outlined-hover,     --button-error-outlined-active); }
+  &.ds-button--admin      { @include outlined-color(--button-admin-bg,   --button-admin-bg,   --button-admin-outlined-hover,     --button-admin-outlined-active); }
+  &.ds-button--sunoh      { @include outlined-color(--button-sunoh-bg,   --button-sunoh-bg,   --button-sunoh-outlined-hover,     --button-sunoh-outlined-active); }
+  &.ds-button--warning    {
+    background: var(--color-surface);
+    border-color: var(--button-warning-divider-border);
+    color: var(--button-warning-color);
+
+    &:hover:not(:disabled):not(.ds-button--disabled) { background: var(--button-warning-bg); }
+  }
+  &.ds-button--white {
+    background: var(--color-surface);
+    border-color: var(--button-white-hover-border);
+    color: var(--button-white-color);
+
+    &:hover:not(:disabled):not(.ds-button--disabled) { background: var(--button-white-bg); }
+  }
 }
 
 // ─── Ghost (text-only) variants ──────────────────────────────────────────────
@@ -176,20 +259,165 @@
   border-color: transparent;
   color: var(#{$text});
 
-  &:hover:not(:disabled):not(.p-disabled) {
+  &:hover:not(:disabled):not(.ds-button--disabled) {
     background: var(#{$hover-bg});
   }
 
-  &:active:not(:disabled):not(.p-disabled) {
+  &:active:not(:disabled):not(.ds-button--disabled) {
     background: var(#{$active-bg});
   }
 }
 
-.p-button-text {
-  &.p-button-user       { @include ghost-color(--button-user-bg,              --button-user-ghost-hover,      --button-user-ghost-active); }
-  &.p-button-admin      { @include ghost-color(--button-admin-bg,             --button-admin-ghost-hover,     --button-admin-ghost-active); }
-  &.p-button-secondary  { @include ghost-color(--button-secondary-ghost-text, --button-secondary-ghost-hover, --button-secondary-ghost-active); }
-  &.p-button-success    { @include ghost-color(--button-success-bg,           --button-success-ghost-hover,   --button-success-ghost-active); }
-  &.p-button-error      { @include ghost-color(--button-error-bg,             --button-error-ghost-hover,     --button-error-ghost-active); }
-  &.p-button-sunoh      { @include ghost-color(--button-sunoh-bg,             --button-sunoh-ghost-hover,     --button-sunoh-ghost-active); }
+.ds-button--ghost {
+  &.ds-button--user       { @include ghost-color(--button-user-bg,              --button-user-ghost-hover,      --button-user-ghost-active); }
+  &.ds-button--admin      { @include ghost-color(--button-admin-bg,             --button-admin-ghost-hover,     --button-admin-ghost-active); }
+  &.ds-button--secondary  { @include ghost-color(--button-secondary-ghost-text, --button-secondary-ghost-hover, --button-secondary-ghost-active); }
+  &.ds-button--success    { @include ghost-color(--button-success-bg,           --button-success-ghost-hover,   --button-success-ghost-active); }
+  &.ds-button--error      { @include ghost-color(--button-error-bg,             --button-error-ghost-hover,     --button-error-ghost-active); }
+  &.ds-button--sunoh      { @include ghost-color(--button-sunoh-bg,             --button-sunoh-ghost-hover,     --button-sunoh-ghost-active); }
+  &.ds-button--warning    { @include ghost-color(--button-warning-color,        --button-warning-bg,            --button-warning-hover); }
+  &.ds-button--white      { @include ghost-color(--button-white-color,          --button-white-bg,              --button-white-bg); }
+}
+
+// ─── Divider mode wrapper ────────────────────────────────────────────────────
+// Renders the main button + a separated trailing icon-only segment.
+
+.ds-button--with-divider {
+  display: inline-flex;
+  align-items: stretch;
+  position: relative;
+  border-radius: var(--button-radius);
+  overflow: visible;
+
+  // Reset wrapper-as-button styles when used as <span>
+  background: transparent;
+  border: none;
+  padding: 0;
+  height: auto;
+  cursor: default;
+
+  .ds-button__main,
+  .ds-button__divider {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+    height: var(--button-md-height);
+    font-size: var(--button-font-size);
+
+    &:focus-visible {
+      outline: 2px solid var(--button-focus-color);
+      outline-offset: 2px;
+      z-index: 1;
+    }
+  }
+
+  .ds-button__main {
+    gap: var(--button-md-gap);
+    padding: 0 var(--button-md-padding-x);
+    border-top-left-radius: var(--button-radius);
+    border-bottom-left-radius: var(--button-radius);
+    border-right: none;
+  }
+
+  .ds-button__divider {
+    width: var(--button-divider-size);
+    padding: 0;
+    border-top-right-radius: var(--button-radius);
+    border-bottom-right-radius: var(--button-radius);
+    border-left-style: solid;
+
+    .ds-button__icon { font-size: var(--button-divider-icon-size); }
+  }
+
+  // Size overrides for divider mode
+  &.ds-button--sm {
+    .ds-button__main,
+    .ds-button__divider {
+      height: var(--button-sm-height);
+      font-size: var(--button-sm-font-size);
+    }
+    .ds-button__main {
+      gap: var(--button-sm-gap);
+      padding: 0 var(--button-sm-padding-x);
+    }
+    .ds-button__divider {
+      width: var(--button-sm-height);
+      .ds-button__icon { font-size: var(--button-sm-icon-size); }
+    }
+  }
+
+  &.ds-button--lg {
+    .ds-button__main,
+    .ds-button__divider {
+      height: var(--button-lg-height);
+      font-size: var(--button-lg-font-size);
+    }
+    .ds-button__main {
+      gap: var(--button-lg-gap);
+      padding: 0 var(--button-lg-padding-x);
+    }
+    .ds-button__divider { width: var(--button-lg-height); }
+  }
+
+  // Color theming for both segments
+  @mixin divider-pair($main-bg, $main-hover, $main-color, $divider-border) {
+    .ds-button__main {
+      background: var(#{$main-bg});
+      color: var(#{$main-color});
+
+      &:hover:not(:disabled) { background: var(#{$main-hover}); }
+    }
+    .ds-button__divider {
+      background: var(#{$main-bg});
+      color: var(#{$main-color});
+      border-left-color: var(#{$divider-border});
+
+      &:hover:not(:disabled) { background: var(#{$main-hover}); }
+    }
+  }
+
+  &.ds-button--user    { @include divider-pair(--button-user-bg,    --button-user-hover,   --color-text-inverse, --color-surface); }
+  &.ds-button--admin   { @include divider-pair(--button-admin-bg,   --button-admin-hover,  --color-text-inverse, --color-surface); }
+  &.ds-button--success { @include divider-pair(--button-success-bg, --button-success-hover, --color-text-inverse, --color-surface); }
+  &.ds-button--error   { @include divider-pair(--button-error-bg,   --button-error-hover,  --color-text-inverse, --color-surface); }
+  &.ds-button--sunoh   { @include divider-pair(--button-sunoh-bg,   --button-sunoh-hover,  --color-text-inverse, --color-surface); }
+  &.ds-button--warning {
+    @include divider-pair(--button-warning-bg, --button-warning-hover, --button-warning-color, --button-warning-divider-border);
+    .ds-button__main { font-weight: var(--font-weight-regular); }
+  }
+  &.ds-button--secondary {
+    @include divider-pair(--button-secondary-filled-bg, --button-secondary-filled-hover, --button-secondary-filled-text, --color-secondary-30);
+    .ds-button__main { font-weight: var(--font-weight-regular); }
+  }
+  &.ds-button--white {
+    .ds-button__main,
+    .ds-button__divider {
+      background: var(--button-white-bg);
+      color: var(--button-white-color);
+      font-weight: var(--font-weight-regular);
+
+      &:hover:not(:disabled) { border-color: var(--button-white-hover-border); }
+    }
+    .ds-button__divider { border-left-color: var(--button-white-hover-border); }
+  }
+
+  // Disabled style for the wrapper applies to both segments
+  &.ds-button--disabled {
+    .ds-button__main,
+    .ds-button__divider {
+      cursor: not-allowed;
+      pointer-events: none;
+      background: var(--color-surface-disabled);
+      border-color: var(--button-disabled-border);
+      color: var(--button-disabled-color);
+
+      .ds-button__icon { opacity: 0.4; }
+    }
+  }
 }

@@ -106,10 +106,10 @@
   --button-disabled-color: var(--color-secondary-60);
 
   --button-sm-height: 24px;
-  --button-sm-padding-x: var(--spacing-small);
-  --button-sm-font-size: 11px;
-  --button-sm-gap: var(--spacing-x-small);
-  --button-sm-icon-size: 14px;
+  --button-sm-padding-x: var(--spacing-xx-small);
+  --button-sm-font-size: var(--font-size-12);
+  --button-sm-gap: var(--spacing-xx-small);
+  --button-sm-icon-size: 16px;
 
   --button-md-height: 32px;
   --button-md-padding-x: var(--spacing-medium);
@@ -171,6 +171,37 @@
   --button-error-ghost-active: var(--color-error-10);
   --button-sunoh-ghost-hover: var(--color-sunoh-5);
   --button-sunoh-ghost-active: var(--color-sunoh-10);
+
+  // Button — white kind (Figma: #fbfbfb fill, #ebebeb hover border)
+  --button-white-bg: #fbfbfb;
+  --button-white-hover-bg: #fbfbfb;
+  --button-white-hover-border: #ebebeb;
+  --button-white-color: var(--color-text-primary);
+
+  // Button — warning (yellow) kind
+  --button-warning-bg: #fcde71;
+  --button-warning-hover: #ffd84b;
+  --button-warning-active: #f0c733;
+  --button-warning-color: var(--color-text-primary);
+  --button-warning-divider-border: #a7891c;
+
+  // Button — divider (trailing icon-only segment)
+  --button-divider-size: 24px;
+  --button-divider-icon-size: 16px;
+  --button-divider-color: var(--color-text-inverse);
+
+  // Button — counter pill
+  --button-counter-bg: var(--color-surface);
+  --button-counter-border: #ebebeb;
+  --button-counter-color: var(--color-text-primary);
+  --button-counter-radius: var(--radius-pill);
+  --button-counter-padding-x: var(--spacing-xx-small);
+  --button-counter-font-size: var(--font-size-12);
+
+  // Button — alert indicator dot
+  --button-alert-bg: var(--color-status-error);
+  --button-alert-size: 8px;
+  --button-alert-radius: 50%;
 
   // ----------------------------------------------------------
   // Input / Form
