@@ -1,0 +1,26 @@
+@if (href) {
+  <a
+    class="ds-hyperlink"
+    [class.ds-hyperlink--md]="size === 'md'"
+    [class.ds-hyperlink--disabled]="disabled"
+    [attr.href]="disabled ? null : href"
+    [attr.target]="target"
+    [attr.rel]="resolvedRel"
+    [attr.aria-disabled]="disabled ? true : null"
+    [attr.tabindex]="disabled ? -1 : null"
+    (click)="onClick($event)"
+  >
+    <ng-content>{{ label }}</ng-content>
+  </a>
+} @else {
+  <button
+    type="button"
+    class="ds-hyperlink ds-hyperlink--button"
+    [class.ds-hyperlink--md]="size === 'md'"
+    [class.ds-hyperlink--disabled]="disabled"
+    [disabled]="disabled"
+    (click)="onClick($event)"
+  >
+    <ng-content>{{ label }}</ng-content>
+  </button>
+}

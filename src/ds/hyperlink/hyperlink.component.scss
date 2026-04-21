@@ -1,0 +1,55 @@
+// ─── Hyperlink ────────────────────────────────────────────────────────────
+
+.ds-hyperlink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  font-family: var(--font-family-base);
+  font-size: var(--hyperlink-font-size);
+  font-weight: var(--hyperlink-font-weight);
+  line-height: var(--line-height-16);
+  color: var(--hyperlink-color);
+  text-decoration: underline;
+  text-decoration-thickness: var(--hyperlink-underline-thickness);
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition: color 120ms ease;
+
+  &:hover {
+    color: var(--hyperlink-color-hover);
+  }
+
+  &:active {
+    color: var(--hyperlink-color-active);
+  }
+
+  &:visited {
+    color: var(--hyperlink-color-visited);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--hyperlink-focus-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  &--md {
+    font-size: var(--font-size-14);
+    line-height: var(--line-height-20, 20px);
+  }
+
+  &--button {
+    font-family: inherit;
+  }
+
+  &--disabled,
+  &[disabled] {
+    color: var(--hyperlink-color-disabled);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
