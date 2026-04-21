@@ -754,6 +754,32 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Pagination
+  // ----------------------------------------------------------
+  --pagination-gap: 4px;
+  --pagination-font-size: var(--font-size-12);
+  --pagination-line-height: 16px;
+  --pagination-text-color: #000000;
+
+  --pagination-control-size: 24px;
+  --pagination-control-radius: 4px;
+  --pagination-control-padding-x: 4px;
+  --pagination-icon-size: 16px;
+
+  --pagination-select-bg: #ffffff;
+  --pagination-select-border: #bcbcbc;
+  --pagination-input-bg: #ffffff;
+  --pagination-input-border: #bcbcbc;
+
+  --pagination-btn-bg: #ebebeb;
+  --pagination-btn-bg-hover: #e1e1e1;
+  --pagination-btn-border: #e1e1e1;
+
+  --pagination-btn-bg-disabled: #f7f7f7;
+  --pagination-btn-border-disabled: #ebebeb;
+  --pagination-btn-color-disabled: #969696;
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;
