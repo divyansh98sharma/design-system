@@ -1,0 +1,191 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/AI Panel/Usage" />
+
+# AI Panel
+
+The **AI Panel** is the surface for AI-generated insights about the current
+record (patient, encounter, claim, etc.). It is the right-rail companion to
+the primary work area: collapsible sections, structured tiles, and a footer
+toolbar of jump-to actions.
+
+The panel is composed from three building blocks:
+
+- `<ds-ai-panel>` — the shell (gradient header, scrollable body, footer).
+- `<ds-ai-panel-section>` — a collapsible group inside the body.
+- `<ds-ai-panel-tile>` — a bordered card inside a section (default + placeholder).
+
+---
+
+## When to use
+
+- Surface AI-generated **suggestions, summaries, or risk scores** alongside a
+  primary view.
+- Group **multiple categories of insight** that the user can collapse to focus
+  on what matters now.
+- Provide a stable **footer toolbar** for switching context (patient, list,
+  call, expand to full view, sync, etc.).
+
+## When not to use
+
+- For a **disclosure-only** message about AI use, prefer
+  [`<ds-disclaimer variant="ai-disclaimer">`](?path=/docs/components-disclaimer--docs).
+- For a **single AI result inline** in a form, prefer the AI bubble chip set
+  ([`<ds-ai-bubbles>`](?path=/docs/components-ai-bubbles--docs)).
+- For a **modal-style result** that demands the user's full attention, use a
+  modal — not the rail.
+
+---
+
+## Anatomy
+
+| Region        | Purpose                                                                 |
+|---------------|-------------------------------------------------------------------------|
+| Header        | Sparkles icon + gradient title + right-aligned 24×24 icon buttons.       |
+| Body          | Scrollable container. Project sections, tiles, or arbitrary markup.     |
+| Section       | Collapsible header (chevron + title + inline actions) with content slot.|
+| Tile          | Bordered card. `default` for content, `placeholder` for empty/loading.  |
+| Footer        | Justified row of 24×24 icon buttons. Hide with `[footerActions]="[]"`.  |
+
+---
+
+## Composition
+
+```html
+<ds-ai-panel>
+  <ds-ai-panel-section title="Care Gaps">
+    <ds-ai-panel-tile title="Annual Wellness Visit">
+      Last completed 14 months ago.
+    </ds-ai-panel-tile>
+  </ds-ai-panel-section>
+
+  <ds-ai-panel-section title="Suggested Orders">
+    <ds-ai-panel-tile variant="placeholder" placeholderText="No suggestions yet"/>
+  </ds-ai-panel-section>
+</ds-ai-panel>
+```
+
+Inline section / tile actions accept three shapes via the discriminated union
+`AiPanelInlineAction`:
+
+- `{ kind: 'icon', iconPath, label }` — square 24×24 icon button.
+- `{ kind: 'text', label }` — plain text link, no border.
+- `{ kind: 'button', label, iconPath?, iconPosition? }` — labelled button with
+  optional leading or trailing icon.
+
+```ts
+section.actions = [
+  { kind: 'icon', iconPath: AI_PANEL_ICONS.openInNew, label: 'Open' },
+];
+tile.actions = [
+  { kind: 'button', label: 'Refill', iconPath: AI_PANEL_ICONS.arrowForward, iconPosition: 'trailing' },
+];
+```
+
+---
+
+## Do / Don't
+
+**Do**
+
+- Keep section titles short (≤ 22 chars) so the gradient header stays balanced.
+- Use the `placeholder` tile variant for **empty / pending** states — it
+  signals "AI is thinking" or "no result yet" without breaking the layout.
+- Emit toggle / action events to your container so collapsed-state can be
+  persisted across visits.
+
+**Don't**
+
+- Don't put the panel inside another panel — the gradient header should
+  appear at most once per surface.
+- Don't override the gradient title with a custom colour — the gradient
+  identity is part of how users recognise an AI surface.
+- Don't pack icon-only footer buttons without a `label` — accessibility
+  relies on it for `aria-label` and tooltip.
+
+---
+
+## Tokens
+
+All visual properties go through component tokens under `--ai-panel-*` (see
+`src/ds/tokens/_component.scss`). Override at the section root to theme a
+single instance, or in `_component.scss` to retheme globally.
+
+### Shell
+
+| Token                              | Default                                           |
+|------------------------------------|---------------------------------------------------|
+| `--ai-panel-width`                 | `433px`                                           |
+| `--ai-panel-radius`                | `var(--radius-4)`                                 |
+| `--ai-panel-shadow`                | `0 8px 16px 0 rgba(0,0,0,0.16)`                   |
+
+### Header
+
+| Token                              | Default                                           |
+|------------------------------------|---------------------------------------------------|
+| `--ai-panel-header-height`         | `36px`                                            |
+| `--ai-panel-header-bg`             | `var(--color-surface)`                            |
+| `--ai-panel-header-border`         | `var(--color-secondary-base)`                     |
+| `--ai-panel-title-font-size`       | `var(--font-size-14)`                             |
+| `--ai-panel-title-gradient`        | `linear-gradient(90deg, #007B95, #006B6B, #BA654E)` |
+| `--ai-panel-ai-icon-size`          | `20px`                                            |
+
+### Icon buttons (header / inline)
+
+| Token                                  | Default                       |
+|----------------------------------------|-------------------------------|
+| `--ai-panel-icon-button-size`          | `24px`                        |
+| `--ai-panel-icon-button-bg`            | `var(--color-secondary-5)`    |
+| `--ai-panel-icon-button-bg-hover`      | `var(--color-secondary-20)`   |
+| `--ai-panel-icon-button-focus-color`   | `var(--color-border-focus)`   |
+
+### Section
+
+| Token                                  | Default                       |
+|----------------------------------------|-------------------------------|
+| `--ai-panel-section-gap`               | `var(--spacing-x-small)`      |
+| `--ai-panel-section-header-gap`        | `var(--spacing-small)`        |
+| `--ai-panel-section-title-font-size`   | `var(--font-size-12)`         |
+| `--ai-panel-section-chevron-size`      | `16px`                        |
+
+### Tile
+
+| Token                                       | Default                          |
+|---------------------------------------------|----------------------------------|
+| `--ai-panel-tile-bg`                        | `var(--color-surface)`           |
+| `--ai-panel-tile-border`                    | `var(--color-secondary-40)`      |
+| `--ai-panel-tile-radius`                    | `var(--radius-4)`                |
+| `--ai-panel-tile-padding-x`                 | `var(--spacing-small)`           |
+| `--ai-panel-tile-placeholder-border`        | `var(--color-secondary-base)`    |
+| `--ai-panel-tile-placeholder-text-color`    | `var(--color-secondary-80)`      |
+
+### Footer
+
+| Token                                  | Default                          |
+|----------------------------------------|----------------------------------|
+| `--ai-panel-footer-bg`                 | `var(--color-surface)`           |
+| `--ai-panel-footer-border`             | `var(--color-secondary-30)`      |
+| `--ai-panel-footer-button-size`        | `24px`                           |
+| `--ai-panel-footer-button-bg`          | `var(--color-secondary-40)`      |
+| `--ai-panel-footer-button-bg-hover`    | `var(--color-secondary-50)`      |
+
+> **Token guidance.** Components reference only **semantic** (`--color-*`,
+> `--spacing-*`, `--font-size-*`) and **component** (`--ai-panel-*`) tokens —
+> never primitives (`--prim-*`). Adjust the component-level token first; only
+> drop down to semantic if a brand colour itself needs to change.
+
+---
+
+## Accessibility
+
+- The section header is rendered as a `<button>` with `aria-expanded`, so it
+  is reachable via Tab and toggles with **Enter / Space**.
+- Inline-action clicks call `stopPropagation()` so action buttons inside a
+  section header do not also toggle the section.
+- Every header / footer / inline icon button carries `aria-label` (mirrored
+  to the `title` tooltip) — passing one is required by the `AiPanelAction`
+  type.
+- Focus rings use `--ai-panel-icon-button-focus-color` (semantic
+  `--color-border-focus`), satisfying **WCAG 2.1 SC 2.4.7 Focus Visible**.
+- The gradient title sets `color: transparent` with `background-clip: text`.
+  Underlying text remains in the accessibility tree for screen readers.

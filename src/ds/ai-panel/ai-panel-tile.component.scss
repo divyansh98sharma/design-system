@@ -1,0 +1,113 @@
+// ─── AI Panel Tile ────────────────────────────────────────────────────────────
+
+.ds-ai-panel-tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-panel-tile-gap);
+  padding: var(--ai-panel-tile-padding-y) var(--ai-panel-tile-padding-x);
+  background: var(--ai-panel-tile-bg);
+  border: 1px solid var(--ai-panel-tile-border);
+  border-radius: var(--ai-panel-tile-radius);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--ai-panel-section-header-gap);
+  }
+
+  &__title {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: var(--ai-panel-tile-title-font-size);
+    line-height: var(--ai-panel-tile-title-line-height);
+    font-weight: var(--ai-panel-section-title-font-weight);
+    color: var(--ai-panel-tile-title-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ai-panel-section-actions-gap);
+    flex-shrink: 0;
+  }
+
+  &__text-action {
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--color-user);
+    font: inherit;
+    font-size: var(--ai-panel-tile-title-font-size);
+    line-height: var(--ai-panel-tile-title-line-height);
+    cursor: pointer;
+
+    &:hover { text-decoration: underline; }
+
+    &:focus-visible {
+      outline: 2px solid var(--ai-panel-icon-button-focus-color);
+      outline-offset: 2px;
+      border-radius: var(--ai-panel-icon-button-radius);
+    }
+  }
+
+  &__button-action {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-x-small);
+    height: var(--control-height-sm);
+    padding: 0 var(--spacing-small);
+    background: var(--ai-panel-icon-button-bg);
+    border: 1px solid var(--color-secondary-base);
+    border-radius: var(--ai-panel-icon-button-radius);
+    color: var(--ai-panel-icon-button-color);
+    font: inherit;
+    font-size: var(--ai-panel-tile-title-font-size);
+    line-height: var(--ai-panel-tile-title-line-height);
+    cursor: pointer;
+    transition: background 120ms ease;
+
+    &:hover { background: var(--ai-panel-icon-button-bg-hover); }
+
+    &:focus-visible {
+      outline: 2px solid var(--ai-panel-icon-button-focus-color);
+      outline-offset: 1px;
+    }
+  }
+
+  &__button-icon {
+    display: block;
+    width: var(--ai-panel-icon-button-icon-size);
+    height: var(--ai-panel-icon-button-icon-size);
+    flex-shrink: 0;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-panel-tile-gap);
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-16);
+    color: var(--color-text-primary);
+  }
+
+  // ─── Placeholder variant ────────────────────────────────────────────────
+  &--placeholder {
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    padding: var(--ai-panel-tile-placeholder-padding);
+    border-style: dashed;
+    border-color: var(--ai-panel-tile-placeholder-border);
+  }
+
+  &__placeholder-text {
+    font-size: var(--font-size-12);
+    line-height: var(--line-height-16);
+    color: var(--ai-panel-tile-placeholder-text-color);
+    text-align: center;
+  }
+}
