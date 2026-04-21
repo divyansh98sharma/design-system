@@ -754,6 +754,54 @@
   --toggle-btn-lg-icon-size: var(--font-size-16);
 
   // ----------------------------------------------------------
+  // Page Header
+  // ----------------------------------------------------------
+  --page-header-height: 40px;
+  --page-header-padding-x: 12px;
+  --page-header-padding-y: 4px;
+  --page-header-gap: 12px;
+  --page-header-bg: #ffffff;
+  --page-header-border: #007b95;
+
+  --page-header-filter-size: 24px;
+  --page-header-filter-padding: 4px;
+  --page-header-filter-radius: 4px;
+  --page-header-filter-bg: #ebebeb;
+  --page-header-filter-bg-hover: #e1e1e1;
+  --page-header-filter-border: #e1e1e1;
+  --page-header-filter-color: #4b4b4b;
+  --page-header-filter-icon-size: 16px;
+  --page-header-dot-size: 8px;
+  --page-header-dot-color: #d82727;
+
+  --page-header-title-color: #4b4b4b;
+  --page-header-title-size: var(--font-size-16);
+  --page-header-title-weight: 700;
+  --page-header-title-line-height: 20px;
+  --page-header-chevron-size: 24px;
+
+  --page-header-action-height: 24px;
+  --page-header-action-padding-x: 8px;
+  --page-header-action-padding-y: 4px;
+  --page-header-action-radius: 4px;
+  --page-header-action-bg: #007b95;
+  --page-header-action-bg-hover: #006a80;
+  --page-header-action-color: #ffffff;
+  --page-header-action-font-size: var(--font-size-12);
+  --page-header-action-font-weight: 600;
+  --page-header-action-line-height: 16px;
+
+  --page-header-tab-padding: 4px 8px;
+  --page-header-tab-border-width: 2px;
+  --page-header-tab-border: #f0f0f0;
+  --page-header-tab-active-border: #006b6b;
+  --page-header-tab-color: #000000;
+  --page-header-tab-font-size: var(--font-size-12);
+  --page-header-tab-font-weight: 400;
+  --page-header-tab-active-font-weight: 600;
+  --page-header-tab-line-height: 16px;
+
+  // ----------------------------------------------------------
   // Global — Icon sizes
   // ----------------------------------------------------------
   --icon-size-xs: 12px;
