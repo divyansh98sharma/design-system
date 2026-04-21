@@ -1,0 +1,28 @@
+<aside class="ds-floating-toolbar" role="toolbar" aria-orientation="vertical">
+  <div class="ds-floating-toolbar__list">
+    @for (item of items; track item.id) {
+      <button
+        type="button"
+        class="ds-floating-toolbar__item"
+        [class.ds-floating-toolbar__item--active]="isActive(item.id)"
+        [attr.aria-pressed]="isActive(item.id)"
+        (click)="onItemClick(item.id)"
+      >
+        @if (item.icon) {
+          <span class="ds-floating-toolbar__icon" [innerHTML]="trustIcon(item.icon)" aria-hidden="true"></span>
+        }
+        <span class="ds-floating-toolbar__label">{{ item.label }}</span>
+      </button>
+    }
+  </div>
+
+  @if (showMore) {
+    <div class="ds-floating-toolbar__more">
+      <a
+        class="ds-floating-toolbar__more-link"
+        href="#"
+        (click)="$event.preventDefault(); moreClick.emit()"
+      >{{ moreLabel }}</a>
+    </div>
+  }
+</aside>

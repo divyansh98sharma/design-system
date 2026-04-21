@@ -1,0 +1,95 @@
+// ─── Floating Toolbar ─────────────────────────────────────────────────────────
+
+.ds-floating-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--floating-toolbar-width);
+  min-height: var(--floating-toolbar-min-height);
+  gap: var(--floating-toolbar-gap);
+  background: var(--floating-toolbar-bg);
+  border-radius: var(--floating-toolbar-radius) 0 0 var(--floating-toolbar-radius);
+  box-shadow: var(--floating-toolbar-shadow);
+  font-family: var(--font-family-base);
+
+  &__list {
+    display: flex;
+    flex: 1 0 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--floating-toolbar-gap);
+    width: 100%;
+    min-height: 0;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: var(--floating-toolbar-item-padding-top) 0 0 0;
+    gap: var(--floating-toolbar-item-gap);
+    background: transparent;
+    border: none;
+    color: var(--floating-toolbar-item-text-color);
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease;
+
+    &:hover  { background: rgba(0, 123, 149, 0.08); }
+    &:focus-visible {
+      outline: 2px solid var(--floating-toolbar-item-active-bg);
+      outline-offset: -2px;
+    }
+
+    &--active,
+    &--active:hover {
+      background: var(--floating-toolbar-item-active-bg);
+      color: var(--floating-toolbar-item-active-text-color);
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--floating-toolbar-item-icon-size);
+    height: var(--floating-toolbar-item-icon-size);
+
+    /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+    ::ng-deep svg {
+      display: block;
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  &__label {
+    width: 100%;
+    font-size: var(--floating-toolbar-item-font-size);
+    line-height: var(--floating-toolbar-item-line-height);
+    font-weight: var(--font-weight-regular);
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-block: var(--floating-toolbar-more-padding-y);
+  }
+
+  &__more-link {
+    color: var(--floating-toolbar-more-link-color);
+    font-size: var(--floating-toolbar-item-font-size);
+    line-height: var(--floating-toolbar-item-line-height);
+    font-weight: var(--font-weight-medium);
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover { opacity: 0.85; }
+  }
+}
