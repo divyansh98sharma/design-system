@@ -1,0 +1,76 @@
+// ─── Label ────────────────────────────────────────────────────────────────
+
+.ds-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--label-gap);
+  font-family: var(--font-family-base);
+  font-size: var(--label-font-size);
+  font-weight: var(--label-font-weight);
+  line-height: var(--label-line-height);
+  color: var(--label-color);
+  cursor: default;
+
+  &--large {
+    font-size: var(--label-font-size-large);
+    line-height: var(--label-line-height-large);
+  }
+
+  // Filter label — 100 px fixed width, truncates to 2 lines
+  &--fixed {
+    align-items: flex-start;
+
+    .ds-label__text {
+      width: var(--label-fixed-width);
+      max-width: var(--label-fixed-width);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+      word-break: break-word;
+    }
+  }
+
+  &__text {
+    white-space: nowrap;
+  }
+
+  &__required {
+    color: var(--label-required-color);
+    font-weight: var(--font-weight-regular);
+    flex-shrink: 0;
+  }
+
+  &__info-btn,
+  &__caret-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size-md);
+    height: var(--icon-size-md);
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: var(--label-icon-color);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: color 120ms ease;
+
+    &:hover {
+      color: var(--label-icon-color-hover);
+    }
+    &:focus-visible {
+      outline: 2px solid var(--label-focus-color);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  &__icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+}
