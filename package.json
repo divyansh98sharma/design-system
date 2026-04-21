@@ -38,7 +38,7 @@
     "@storybook/addon-a11y": "^10.2.16",
     "@storybook/addon-docs": "^10.2.16",
     "@storybook/addon-onboarding": "^10.2.16",
-    "@storybook/angular": "^10.2.16",
+    "@storybook/angular": "^10.3.5",
     "@storybook/test-runner": "^0.24.2",
     "chromatic": "^15.2.0",
     "http-server": "^14.1.1",
