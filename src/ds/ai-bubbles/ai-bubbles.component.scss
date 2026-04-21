@@ -1,0 +1,65 @@
+// ─── AI Bubbles ───────────────────────────────────────────────────────────────
+
+.ds-ai-bubbles {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ai-bubbles-gap);
+
+  // ─── Leading icon ───────────────────────────────────────────────────────
+
+  &__leading-icon {
+    display: block;
+    flex-shrink: 0;
+    width: var(--ai-bubbles-leading-icon-size);
+    height: var(--ai-bubbles-leading-icon-size);
+    color: var(--ai-bubbles-leading-icon-color);
+  }
+
+  // ─── Chip ───────────────────────────────────────────────────────────────
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ai-bubbles-chip-gap);
+    flex-shrink: 0;
+    min-height: var(--ai-bubbles-chip-height);
+    max-height: var(--ai-bubbles-chip-height);
+    padding: var(--ai-bubbles-chip-padding-y) var(--ai-bubbles-chip-padding-x);
+    // Gradient border via dual background-clip — works with border-radius.
+    background:
+      linear-gradient(var(--ai-bubbles-chip-bg), var(--ai-bubbles-chip-bg)) padding-box,
+      var(--ai-bubbles-chip-border-gradient) border-box;
+    border: 1px solid transparent;
+    border-radius: var(--ai-bubbles-chip-radius);
+    color: var(--ai-bubbles-chip-text);
+    font-family: var(--font-family-base);
+    font-size: var(--ai-bubbles-chip-font-size);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--ai-bubbles-chip-line-height);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background var(--ai-bubbles-chip-transition);
+
+    &:hover {
+      background:
+        linear-gradient(var(--ai-bubbles-chip-bg-hover), var(--ai-bubbles-chip-bg-hover)) padding-box,
+        var(--ai-bubbles-chip-border-gradient) border-box;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--ai-bubbles-chip-focus-color);
+      outline-offset: 2px;
+    }
+  }
+
+  &__chip-icon {
+    display: block;
+    flex-shrink: 0;
+    width: var(--ai-bubbles-chip-icon-size);
+    height: var(--ai-bubbles-chip-icon-size);
+  }
+
+  &__chip-label {
+    font-weight: var(--font-weight-regular);
+  }
+}
