@@ -1,0 +1,170 @@
+<div class="ds-feedback-loop">
+  <!-- ─── Trigger icon button ───────────────────────────────────────────── -->
+  <button
+    #triggerRef
+    type="button"
+    class="ds-feedback-loop__trigger"
+    [class.ds-feedback-loop__trigger--active]="open"
+    [attr.aria-label]="triggerAriaLabel"
+    [attr.aria-expanded]="open"
+    (click)="toggleOpen()"
+  >
+    <svg class="ds-feedback-loop__trigger-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v8a1.5 1.5 0 0 1-1.5 1.5H5.8L3 14.8v-2.8H2.5A1.5 1.5 0 0 1 1 10.5v-8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- ─── Popover ──────────────────────────────────────────────────────── -->
+  @if (open) {
+    <div
+      #popoverRef
+      class="ds-feedback-loop__popover"
+      role="dialog"
+      aria-modal="false"
+      [attr.aria-label]="title"
+    >
+      <!-- caret pointing to the trigger -->
+      <span class="ds-feedback-loop__caret" aria-hidden="true"></span>
+
+      <!-- Header -->
+      <div class="ds-feedback-loop__header">
+        <div class="ds-feedback-loop__header-text">
+          <p class="ds-feedback-loop__title">{{ title }}</p>
+          <p class="ds-feedback-loop__description">{{ description }}</p>
+        </div>
+        <button
+          type="button"
+          class="ds-feedback-loop__close"
+          aria-label="Close feedback"
+          (click)="closePopover()"
+        >
+          <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12.59 3.41L11.17 2 8 5.17 4.83 2 3.41 3.41 6.59 6.59 3.41 9.76 4.83 11.17 8 7.99l3.17 3.18 1.42-1.41L9.41 6.59z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Content -->
+      <div class="ds-feedback-loop__content">
+        <!-- Tag chips -->
+        @if (tags.length) {
+          <div class="ds-feedback-loop__tags" role="group" aria-label="Feedback tags">
+            @for (tag of tags; track tag.id) {
+              <button
+                type="button"
+                class="ds-feedback-loop__chip"
+                [class.ds-feedback-loop__chip--selected]="isTagSelected(tag.id)"
+                [attr.aria-pressed]="isTagSelected(tag.id)"
+                (click)="toggleTag(tag.id)"
+              >
+                @if (isTagSelected(tag.id)) {
+                  <svg class="ds-feedback-loop__chip-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M13.3 4.3L6 11.6 2.7 8.3l1.1-1.1L6 9.4l6.2-6.2 1.1 1.1Z" fill="currentColor"/>
+                  </svg>
+                }
+                <span class="ds-feedback-loop__chip-label">{{ tag.label }}</span>
+              </button>
+            }
+          </div>
+        }
+
+        <!-- Textarea block -->
+        <div class="ds-feedback-loop__textarea-block">
+          <div class="ds-feedback-loop__textarea-header">
+            <div class="ds-feedback-loop__textarea-label">
+              <span>{{ textareaLabel }}</span>
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="ds-feedback-loop__info-icon">
+                <path d="M8 1.33A6.67 6.67 0 1 0 8 14.67 6.67 6.67 0 0 0 8 1.33Zm0 12A5.33 5.33 0 1 1 8 2.67a5.33 5.33 0 0 1 0 10.66ZM7.33 7.33h1.33V11.33H7.33V7.33Zm0-2.66h1.33v1.33H7.33V4.67Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="ds-feedback-loop__format-buttons">
+              <button type="button" class="ds-feedback-loop__fmt-btn" aria-label="Bold">
+                <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M4.5 2h3.8c1.7 0 3 1 3 2.6 0 1-.5 1.7-1.3 2.1 1.1.3 1.9 1.2 1.9 2.5 0 1.7-1.4 2.8-3.3 2.8H4.5V2Zm3.6 4c.9 0 1.5-.4 1.5-1.2S9 3.6 8.1 3.6H6.3v2.4h1.8Zm.2 4.4c1 0 1.7-.5 1.7-1.4 0-.9-.7-1.4-1.7-1.4H6.3v2.8h2Z"/></svg>
+              </button>
+              <button type="button" class="ds-feedback-loop__fmt-btn" aria-label="Italic">
+                <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 2h6v1.5H9.7L7.4 10.5H10V12H4v-1.5h2.3L8.6 3.5H6V2Z"/></svg>
+              </button>
+              <button type="button" class="ds-feedback-loop__fmt-btn" aria-label="Attach">
+                <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M11.3 6.5 6.8 11c-1 1-2.5 1-3.5 0s-1-2.5 0-3.5L8 2.8c.6-.6 1.5-.6 2.1 0s.6 1.5 0 2.1l-4.6 4.6c-.2.2-.6.2-.8 0s-.2-.6 0-.8l4.1-4.1-.7-.7-4.1 4.1c-.6.6-.6 1.5 0 2.1s1.5.6 2.1 0L10.7 5.6c1-1 1-2.5 0-3.5s-2.5-1-3.5 0L2.6 7c-1.2 1.2-1.2 3.2 0 4.5s3.2 1.2 4.5 0L12 7l-.7-.5Z"/></svg>
+              </button>
+              <button type="button" class="ds-feedback-loop__fmt-btn" aria-label="More">
+                <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="3.5" cy="8" r="1.25"/><circle cx="8" cy="8" r="1.25"/><circle cx="12.5" cy="8" r="1.25"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="ds-feedback-loop__textarea-wrap">
+            <textarea
+              class="ds-feedback-loop__textarea"
+              [placeholder]="placeholder"
+              [value]="text"
+              (input)="onTextInput($any($event.target).value)"
+            ></textarea>
+            <div class="ds-feedback-loop__char-count">
+              <span class="ds-feedback-loop__char-label">Min character</span>
+              <span
+                class="ds-feedback-loop__char-ring"
+                [attr.aria-label]="charRemaining + ' characters remaining'"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" class="ds-feedback-loop__char-ring-track" />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    class="ds-feedback-loop__char-ring-progress"
+                    [attr.stroke-dashoffset]="charDashOffset"
+                  />
+                </svg>
+                <span class="ds-feedback-loop__char-value">{{ minCharacters }}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHI note -->
+        <p class="ds-feedback-loop__phi-note">{{ phiNote }}</p>
+
+        <!-- Divider -->
+        <div class="ds-feedback-loop__divider"></div>
+
+        <!-- Footer -->
+        <div class="ds-feedback-loop__footer">
+          <label class="ds-feedback-loop__contact">
+            <input
+              type="checkbox"
+              class="ds-feedback-loop__contact-input"
+              [checked]="contactOptIn"
+              (change)="onContactOptInToggle()"
+            />
+            <span
+              class="ds-feedback-loop__contact-box"
+              [class.ds-feedback-loop__contact-box--checked]="contactOptIn"
+              aria-hidden="true"
+            >
+              @if (contactOptIn) {
+                <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M13.3 4.3L6 11.6 2.7 8.3l1.1-1.1L6 9.4l6.2-6.2 1.1 1.1Z" fill="currentColor"/>
+                </svg>
+              }
+            </span>
+            <span class="ds-feedback-loop__contact-label">{{ contactCheckboxLabel }}</span>
+          </label>
+
+          <div class="ds-feedback-loop__actions">
+            <button
+              type="button"
+              class="ds-feedback-loop__submit"
+              (click)="submit()"
+            >{{ submitLabel }}</button>
+            <button
+              type="button"
+              class="ds-feedback-loop__cancel"
+              (click)="cancel()"
+            >{{ cancelLabel }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
