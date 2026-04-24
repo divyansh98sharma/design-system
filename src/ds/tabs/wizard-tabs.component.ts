@@ -14,8 +14,8 @@ import { WizardStep, WizardTabTheme } from './tabs.types';
  * Each step is an arrow-shaped tile.  The active step is highlighted with
  * the theme colour; all others show a neutral grey background.
  *
- * - **User theme**: active bg `#0378a7`, white text; step badge border `#023c54`.
- * - **Admin theme**: active bg `#e88842`, black text; step badge border `#744421`.
+ * - **Primary theme**: active bg teal-650, white text; step badge border teal-800.
+ * - **Secondary theme**: active bg orange-200, black text; step badge border orange-900.
  *
  * The arrow shape is achieved with CSS `clip-path` so no image assets are
  * needed.  An optional `required` flag on each step shows a red asterisk.
@@ -41,28 +41,35 @@ export class WizardTabsComponent {
   /** Key of the currently active step. */
   @Input() activeStep: string = 'step1';
 
-  /** Visual theme: `user` (blue) or `admin` (orange). */
-  @Input() theme: WizardTabTheme = 'user';
+  /** Visual theme: `primary` (teal) or `secondary` (orange). */
+  @Input() theme: WizardTabTheme = 'primary';
 
   /** Emits the clicked step's key. */
   @Output() stepChange = new EventEmitter<string>();
 
-  readonly themes = {
-    user : {
-      activeBg         : '#0378a7',
-      activeBadgeBorder: '#023c54',
-      activeBadgeText  : '#023c54',
-      activeText       : '#ffffff',
-      containerBg      : '#f5f5f5',
-      containerBorder  : '#e6e6e6',
+  readonly themes: Record<WizardTabTheme, {
+    activeBg: string;
+    activeBadgeBorder: string;
+    activeBadgeText: string;
+    activeText: string;
+    containerBg: string;
+    containerBorder: string;
+  }> = {
+    primary: {
+      activeBg         : 'var(--prim-teal-650)',
+      activeBadgeBorder: 'var(--prim-teal-800)',
+      activeBadgeText  : 'var(--prim-teal-800)',
+      activeText       : 'var(--prim-color-white)',
+      containerBg      : 'var(--prim-neutral-250)',
+      containerBorder  : 'var(--prim-neutral-300)',
     },
-    admin: {
-      activeBg         : '#e88842',
-      activeBadgeBorder: '#744421',
-      activeBadgeText  : '#744421',
-      activeText       : '#000000',
-      containerBg      : '#f9f9f9',
-      containerBorder  : '#dbdbdb',
+    secondary: {
+      activeBg         : 'var(--prim-orange-200)',
+      activeBadgeBorder: 'var(--prim-orange-900)',
+      activeBadgeText  : 'var(--prim-orange-900)',
+      activeText       : 'var(--prim-color-black)',
+      containerBg      : 'var(--prim-neutral-250)',
+      containerBorder  : 'var(--prim-neutral-300)',
     },
   };
 

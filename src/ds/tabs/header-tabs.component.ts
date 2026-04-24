@@ -47,7 +47,7 @@ export class HeaderTabsComponent {
   @Input() activeTab: string = 'tab1';
 
   /** Colour theme. */
-  @Input() theme: TabTheme = 'user';
+  @Input() theme: TabTheme = 'primary';
 
   /** Emits the clicked tab's key. */
   @Output() tabChange = new EventEmitter<string>();

@@ -1,12 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
-import { CommonModule } from '@angular/common';
 
 import { StandardTabsComponent } from './standard-tabs.component';
-import { FloatingTabsComponent }  from './floating-tabs.component';
-import { HeaderTabsComponent }    from './header-tabs.component';
-import { WizardTabsComponent }    from './wizard-tabs.component';
-import { TabTheme, WizardTabTheme } from './tabs.types';
+import { TabTheme } from './tabs.types';
 
 // ─── Sample data ─────────────────────────────────────────────────────────────
 const SAMPLE_TABS = [
@@ -24,19 +19,10 @@ const SAMPLE_TABS_WITH_COUNTS = [
   { key: 'tab4', label: 'History' },
 ];
 
-const SAMPLE_WIZARD_STEPS = [
-  { key: 'step1', label: 'Patient Info',    required: true  },
-  { key: 'step2', label: 'Insurance',       required: false },
-  { key: 'step3', label: 'Clinical Notes',  required: true  },
-  { key: 'step4', label: 'Billing',         required: false },
-  { key: 'step5', label: 'Review',          required: false },
-];
-
-const THEMES: TabTheme[]       = ['user', 'admin', 'green', 'sunoh'];
-const WIZARD_THEMES: WizardTabTheme[] = ['user', 'admin'];
+const THEMES: TabTheme[] = ['primary', 'secondary'];
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  1. Standard Tabs
+//  Standard Tabs
 // ─────────────────────────────────────────────────────────────────────────────
 const standardMeta: Meta<StandardTabsComponent> = {
   title    : 'Design System/Tabs/Standard Tabs',
@@ -58,38 +44,20 @@ export default standardMeta;
 type StandardStory = StoryObj<StandardTabsComponent>;
 
 export const StandardDefault: StandardStory = {
-  name: 'Standard — User Theme',
+  name: 'Standard — Primary Theme',
   args: {
     tabs     : SAMPLE_TABS,
     activeTab: 'medical',
-    theme    : 'user',
+    theme    : 'primary',
   },
 };
 
-export const StandardAdmin: StandardStory = {
-  name: 'Standard — Admin Theme',
+export const StandardSecondary: StandardStory = {
+  name: 'Standard — Secondary Theme',
   args: {
     tabs     : SAMPLE_TABS,
     activeTab: 'medical',
-    theme    : 'admin',
-  },
-};
-
-export const StandardGreen: StandardStory = {
-  name: 'Standard — Green Theme',
-  args: {
-    tabs     : SAMPLE_TABS,
-    activeTab: 'medical',
-    theme    : 'green',
-  },
-};
-
-export const StandardSunoh: StandardStory = {
-  name: 'Standard — Sunoh Theme',
-  args: {
-    tabs     : SAMPLE_TABS,
-    activeTab: 'medical',
-    theme    : 'sunoh',
+    theme    : 'secondary',
   },
 };
 
@@ -98,7 +66,7 @@ export const StandardWithCounts: StandardStory = {
   args: {
     tabs     : SAMPLE_TABS_WITH_COUNTS,
     activeTab: 'tab1',
-    theme    : 'user',
+    theme    : 'primary',
   },
 };
 
@@ -108,10 +76,8 @@ export const StandardAllThemes: StandardStory = {
     props   : {},
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;">
-        <ds-standard-tabs [tabs]="[{key:'a',label:'Tab A'},{key:'b',label:'Tab B'},{key:'c',label:'Tab C'}]" activeTab="a" theme="user"></ds-standard-tabs>
-        <ds-standard-tabs [tabs]="[{key:'a',label:'Tab A'},{key:'b',label:'Tab B'},{key:'c',label:'Tab C'}]" activeTab="a" theme="admin"></ds-standard-tabs>
-        <ds-standard-tabs [tabs]="[{key:'a',label:'Tab A'},{key:'b',label:'Tab B'},{key:'c',label:'Tab C'}]" activeTab="a" theme="green"></ds-standard-tabs>
-        <ds-standard-tabs [tabs]="[{key:'a',label:'Tab A'},{key:'b',label:'Tab B'},{key:'c',label:'Tab C'}]" activeTab="a" theme="sunoh"></ds-standard-tabs>
+        <ds-standard-tabs [tabs]="[{key:'a',label:'Tab A'},{key:'b',label:'Tab B'},{key:'c',label:'Tab C'}]" activeTab="a" theme="primary"></ds-standard-tabs>
+        <ds-standard-tabs [tabs]="[{key:'a',label:'Tab A'},{key:'b',label:'Tab B'},{key:'c',label:'Tab C'}]" activeTab="a" theme="secondary"></ds-standard-tabs>
       </div>
     `,
   }),

@@ -9,7 +9,7 @@ const SAMPLE_TABS = [
   { key: 'history',  label: 'History'  },
 ];
 
-const THEMES: TabTheme[] = ['user', 'admin', 'green', 'sunoh'];
+const THEMES: TabTheme[] = ['primary', 'secondary'];
 
 const meta: Meta<FloatingTabsComponent> = {
   title    : 'Design System/Tabs/Floating Tabs',
@@ -31,38 +31,20 @@ export default meta;
 type Story = StoryObj<FloatingTabsComponent>;
 
 export const Default: Story = {
-  name: 'Floating — User Theme',
+  name: 'Floating — Primary Theme',
   args: {
     tabs     : SAMPLE_TABS,
     activeTab: 'overview',
-    theme    : 'user',
+    theme    : 'primary',
   },
 };
 
-export const AdminTheme: Story = {
-  name: 'Floating — Admin Theme',
+export const SecondaryTheme: Story = {
+  name: 'Floating — Secondary Theme',
   args: {
     tabs     : SAMPLE_TABS,
     activeTab: 'overview',
-    theme    : 'admin',
-  },
-};
-
-export const GreenTheme: Story = {
-  name: 'Floating — Green Theme',
-  args: {
-    tabs     : SAMPLE_TABS,
-    activeTab: 'overview',
-    theme    : 'green',
-  },
-};
-
-export const SunohTheme: Story = {
-  name: 'Floating — Sunoh Theme',
-  args: {
-    tabs     : SAMPLE_TABS,
-    activeTab: 'overview',
-    theme    : 'sunoh',
+    theme    : 'secondary',
   },
 };
 
@@ -71,10 +53,8 @@ export const AllThemes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;">
-        <ds-floating-tabs [tabs]="[{key:'a',label:'Label'},{key:'b',label:'Label'}]" activeTab="a" theme="user"></ds-floating-tabs>
-        <ds-floating-tabs [tabs]="[{key:'a',label:'Label'},{key:'b',label:'Label'}]" activeTab="a" theme="admin"></ds-floating-tabs>
-        <ds-floating-tabs [tabs]="[{key:'a',label:'Label'},{key:'b',label:'Label'}]" activeTab="a" theme="green"></ds-floating-tabs>
-        <ds-floating-tabs [tabs]="[{key:'a',label:'Label'},{key:'b',label:'Label'}]" activeTab="a" theme="sunoh"></ds-floating-tabs>
+        <ds-floating-tabs [tabs]="[{key:'a',label:'Label'},{key:'b',label:'Label'}]" activeTab="a" theme="primary"></ds-floating-tabs>
+        <ds-floating-tabs [tabs]="[{key:'a',label:'Label'},{key:'b',label:'Label'}]" activeTab="a" theme="secondary"></ds-floating-tabs>
       </div>
     `,
   }),

@@ -39,7 +39,7 @@ export class StandardTabsComponent {
   @Input() activeTab: string = 'tab1';
 
   /** Colour theme for borders and underlines. */
-  @Input() theme: TabTheme = 'user';
+  @Input() theme: TabTheme = 'primary';
 
   /** Emits the clicked tab's key. */
   @Output() tabChange = new EventEmitter<string>();

@@ -2,9 +2,9 @@
 :host {
   display: block;
 
-  --theme-base  : var(--tab-user-color);
-  --theme-base5 : var(--tab-user-bg);
-  --theme-base30: var(--tab-user-border);
+  --theme-base  : var(--prim-teal-650);
+  --theme-base5 : var(--prim-teal-50);
+  --theme-base30: var(--prim-teal-700);
 }
 
 // ─── Container ───────────────────────────────────────────────────────────────

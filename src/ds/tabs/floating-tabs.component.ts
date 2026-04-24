@@ -39,7 +39,7 @@ export class FloatingTabsComponent {
   @Input() activeTab: string = 'tab1';
 
   /** Colour theme for the active underline. */
-  @Input() theme: TabTheme = 'user';
+  @Input() theme: TabTheme = 'primary';
 
   /** Emits the clicked tab's key. */
   @Output() tabChange = new EventEmitter<string>();
