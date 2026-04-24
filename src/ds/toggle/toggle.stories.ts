@@ -10,7 +10,7 @@ const meta: Meta<ToggleComponent> = {
     docs: {
       description: {
         component:
-          'On/Off toggle switch with four **colour themes**: `user` (blue), `admin` (orange), `green`, and `sunoh` (pink).\n\n' +
+          'On/Off toggle switch with two **colour themes**: `primary` (teal) and `secondary` (orange).\n\n' +
           '- **On**: pill fills with the theme colour; thumb is white with a coloured checkmark.\n' +
           '- **Off**: pill is white with a gray border; thumb is gray with an × icon.\n\n' +
           'Implements `ControlValueAccessor` for use with Angular reactive and template-driven forms.',
@@ -26,8 +26,8 @@ const meta: Meta<ToggleComponent> = {
     theme: {
       description: 'Colour theme applied to the ON state.',
       control: 'select',
-      options: ['user', 'admin', 'green', 'sunoh'],
-      table: { defaultValue: { summary: 'user' } },
+      options: ['primary', 'secondary'],
+      table: { defaultValue: { summary: 'primary' } },
     },
     disabled: {
       description: 'Prevents interaction.',
@@ -41,7 +41,7 @@ const meta: Meta<ToggleComponent> = {
   },
   args: {
     on: false,
-    theme: 'user',
+    theme: 'primary',
     disabled: false,
   },
 };
@@ -63,7 +63,7 @@ export const Playground: Story = {
 export const Overview: Story = {
   name: 'Overview',
   parameters: {
-    docs: { description: { story: 'All four themes in both ON and OFF states.' } },
+    docs: { description: { story: 'Both themes in ON and OFF states.' } },
   },
   render: () => ({
     template: `
@@ -72,21 +72,13 @@ export const Overview: Story = {
         <span style="font-weight:600;color:#969696;text-transform:uppercase;letter-spacing:.5px">Off</span>
         <span style="font-weight:600;color:#969696;text-transform:uppercase;letter-spacing:.5px">On</span>
 
-        <span>User</span>
-        <ds-toggle theme="user"  [on]="false"></ds-toggle>
-        <ds-toggle theme="user"  [on]="true"></ds-toggle>
+        <span>Primary</span>
+        <ds-toggle theme="primary"   [on]="false"></ds-toggle>
+        <ds-toggle theme="primary"   [on]="true"></ds-toggle>
 
-        <span>Admin</span>
-        <ds-toggle theme="admin" [on]="false"></ds-toggle>
-        <ds-toggle theme="admin" [on]="true"></ds-toggle>
-
-        <span>Green</span>
-        <ds-toggle theme="green" [on]="false"></ds-toggle>
-        <ds-toggle theme="green" [on]="true"></ds-toggle>
-
-        <span>Sunoh</span>
-        <ds-toggle theme="sunoh" [on]="false"></ds-toggle>
-        <ds-toggle theme="sunoh" [on]="true"></ds-toggle>
+        <span>Secondary</span>
+        <ds-toggle theme="secondary" [on]="false"></ds-toggle>
+        <ds-toggle theme="secondary" [on]="true"></ds-toggle>
       </div>
     `,
   }),
@@ -97,7 +89,7 @@ export const Overview: Story = {
 export const Off: Story = {
   name: 'Off state',
   parameters: { docs: { description: { story: 'White pill · gray border · gray × icon on thumb.' } } },
-  args: { on: false, theme: 'user' },
+  args: { on: false, theme: 'primary' },
 };
 
 // ─── On ───────────────────────────────────────────────────────────────────────
@@ -105,7 +97,7 @@ export const Off: Story = {
 export const On: Story = {
   name: 'On state',
   parameters: { docs: { description: { story: 'Filled pill · white thumb with coloured checkmark.' } } },
-  args: { on: true, theme: 'user' },
+  args: { on: true, theme: 'primary' },
 };
 
 // ─── Themes ───────────────────────────────────────────────────────────────────
@@ -113,15 +105,13 @@ export const On: Story = {
 export const Themes: Story = {
   name: 'Themes (ON)',
   parameters: {
-    docs: { description: { story: 'All four colour themes in the ON state.' } },
+    docs: { description: { story: 'Both colour themes in the ON state.' } },
   },
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:center">
-        <ds-toggle theme="user"  [on]="true"></ds-toggle>
-        <ds-toggle theme="admin" [on]="true"></ds-toggle>
-        <ds-toggle theme="green" [on]="true"></ds-toggle>
-        <ds-toggle theme="sunoh" [on]="true"></ds-toggle>
+        <ds-toggle theme="primary"   [on]="true"></ds-toggle>
+        <ds-toggle theme="secondary" [on]="true"></ds-toggle>
       </div>
     `,
   }),
@@ -135,8 +125,8 @@ export const Disabled: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:center">
-        <ds-toggle theme="user" [on]="false" [disabled]="true"></ds-toggle>
-        <ds-toggle theme="user" [on]="true"  [disabled]="true"></ds-toggle>
+        <ds-toggle theme="primary" [on]="false" [disabled]="true"></ds-toggle>
+        <ds-toggle theme="primary" [on]="true"  [disabled]="true"></ds-toggle>
       </div>
     `,
   }),
