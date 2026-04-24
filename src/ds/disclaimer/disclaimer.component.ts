@@ -7,22 +7,21 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type DisclaimerVariant = 'disclaimer' | 'ai-disclaimer';
+export type DisclaimerVariant = 'disclaimer';
 export type DisclaimerLabelPosition = 'left' | 'top';
 
 /**
  * Disclaimer banner component.
  *
- * Yellow warning strip — background `#fff9eb`, border `#fbce2a`.
+ * Yellow warning strip — uses warning palette tokens.
  *
- * **Three layouts:**
- * - `disclaimer` + `labelPosition: 'left'` — "Disclaimer:" label inline with body text and close button.
- * - `disclaimer` + `labelPosition: 'top'` — "Disclaimer:" label on its own row, italic body text below and close button.
- * - `ai-disclaimer` — AI-specific text block + "Acknowledge for AI Assistant" secondary button.
+ * **Two layouts:**
+ * - `labelPosition: 'left'` — "Disclaimer:" label inline with body text and close button.
+ * - `labelPosition: 'top'` — "Disclaimer:" label on its own row, italic body text below and close button.
  *
  * Typography:
  * - "Disclaimer:" label: **bold + italic**.
- * - Body text (`text`): italic for `disclaimer` · regular for `ai-disclaimer`.
+ * - Body text (`text`): italic.
  */
 @Component({
   selector: 'ds-disclaimer',
@@ -36,10 +35,7 @@ export class DisclaimerComponent {
   /** Layout variant. */
   @Input() variant: DisclaimerVariant = 'disclaimer';
 
-  /**
-   * Position of the "Disclaimer:" label — `'left'` (inline) or `'top'` (own row).
-   * Only relevant when `variant === 'disclaimer'`.
-   */
+  /** Position of the "Disclaimer:" label — `'left'` (inline) or `'top'` (own row). */
   @Input() labelPosition: DisclaimerLabelPosition = 'left';
 
   /** Primary body text. */
@@ -48,19 +44,6 @@ export class DisclaimerComponent {
   /** Optional second line of body text (shown below the first line). */
   @Input() line2 = '';
 
-  /** Main text for the AI disclaimer (supports longer paragraphs). */
-  @Input() aiText =
-    'This feature uses artificial intelligence. AI-generated results may contain errors or inaccuracies.';
-
-  /** Additional bolded note appended after the AI body text. */
-  @Input() aiNote = 'Always verify AI-generated content with a qualified professional.';
-
-  /** Label on the acknowledge button (AI variant). */
-  @Input() acknowledgeLabel = 'Acknowledge for AI Assistant';
-
   /** Emits when the close button is clicked. */
   @Output() closed = new EventEmitter<void>();
-
-  /** Emits when the acknowledge button is clicked (AI variant). */
-  @Output() acknowledge = new EventEmitter<void>();
 }
