@@ -30,17 +30,15 @@
     &--3 { animation-delay: var(--loader-dot-delay-3); }
   }
 
-  &__dots--user   .ds-loader__dot { background: var(--loader-color-user); }
-  &__dots--admin  .ds-loader__dot { background: var(--loader-color-admin); }
-  &__dots--green  .ds-loader__dot { background: var(--loader-color-green); }
-  &__dots--sunoh  .ds-loader__dot { background: var(--loader-color-sunoh); }
+  &__dots--primary   .ds-loader__dot { background: var(--prim-teal-650); }
+  &__dots--secondary .ds-loader__dot { background: var(--prim-orange-200); }
 
   &__label {
     font-family: var(--font-family-base);
     font-size: var(--loader-label-font-size);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-20);
-    color: var(--loader-label-color);
+    color: var(--color-text-secondary);
     white-space: nowrap;
   }
 }

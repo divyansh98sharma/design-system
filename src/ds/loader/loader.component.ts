@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type LoaderTheme = 'user' | 'admin' | 'green' | 'sunoh';
+export type LoaderTheme = 'primary' | 'secondary';
 
 @Component({
   selector: 'ds-loader',
@@ -12,7 +12,7 @@ export type LoaderTheme = 'user' | 'admin' | 'green' | 'sunoh';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoaderComponent {
-  @Input() theme: LoaderTheme = 'user';
+  @Input() theme: LoaderTheme = 'primary';
   @Input() showLabel = false;
   @Input() label = 'Loading…';
 
