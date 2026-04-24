@@ -23,7 +23,7 @@ const meta: Meta<ToggleButtonGroupComponent> = {
       description: {
         component:
           'A connected group of toggle buttons — similar to a segmented control or radio group. ' +
-          'Supports **6 color themes**, **3 sizes**, **single and multiple selection** modes, ' +
+          'Supports **3 color themes**, **3 sizes**, **single and multiple selection** modes, ' +
           'count badges, user-supplied icons, and disabled states. ' +
           'The selected button automatically shows a checkmark icon (label buttons) or a filled background (icon-only buttons).',
       },
@@ -38,11 +38,11 @@ const meta: Meta<ToggleButtonGroupComponent> = {
     },
     color: {
       description:
-        'Color theme for the group border and selected-state fill. Matches the design token palette: ' +
-        '`user` (blue), `admin` (orange), `secondary` (gray), `success` (green), `error` (red), `sunoh` (purple).',
+        'Color theme for the group border and selected-state fill: ' +
+        '`primary` (teal), `secondary` (orange), `error` (red).',
       control: 'select',
-      options: ['user', 'admin', 'secondary', 'success', 'error', 'sunoh'],
-      table: { defaultValue: { summary: 'user' } },
+      options: ['primary', 'secondary', 'error'],
+      table: { defaultValue: { summary: 'primary' } },
     },
     size: {
       description: '**sm** — 24 px height · **md** — 32 px (default) · **lg** — 40 px.',
@@ -80,7 +80,7 @@ const meta: Meta<ToggleButtonGroupComponent> = {
       { value: 'b', label: 'Week' },
       { value: 'c', label: 'Month' },
     ],
-    color: 'user',
+    color: 'primary',
     size: 'md',
     multiple: false,
     disabled: false,
@@ -110,18 +110,14 @@ export const Overview: Story = {
     docs: {
       description: {
         story:
-          'All 6 color themes shown in their default `md` size with one item pre-selected.',
+          'All 3 color themes shown in their default `md` size with one item pre-selected.',
       },
     },
   },
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;padding:16px;border:1px solid #e1e1e1;border-radius:8px;">
-        <ds-toggle-button-group color="user"      size="md" value="b"
-          [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
-        </ds-toggle-button-group>
-
-        <ds-toggle-button-group color="admin"     size="md" value="b"
+        <ds-toggle-button-group color="primary"   size="md" value="b"
           [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
 
@@ -129,15 +125,7 @@ export const Overview: Story = {
           [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="success"   size="md" value="b"
-          [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
-        </ds-toggle-button-group>
-
         <ds-toggle-button-group color="error"     size="md" value="b"
-          [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
-        </ds-toggle-button-group>
-
-        <ds-toggle-button-group color="sunoh"     size="md" value="b"
           [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
       </div>
@@ -157,15 +145,15 @@ export const Sizes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-        <ds-toggle-button-group color="user" size="sm" value="b"
+        <ds-toggle-button-group color="primary" size="sm" value="b"
           [options]="[{value:'a',label:'Small'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="user" size="md" value="b"
+        <ds-toggle-button-group color="primary" size="md" value="b"
           [options]="[{value:'a',label:'Medium'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="user" size="lg" value="b"
+        <ds-toggle-button-group color="primary" size="lg" value="b"
           [options]="[{value:'a',label:'Large'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
       </div>
@@ -187,7 +175,7 @@ export const WithCountBadges: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-        <ds-toggle-button-group color="user" size="md" value="all"
+        <ds-toggle-button-group color="primary" size="md" value="all"
           [options]="[
             {value:'all',   label:'All',     count:99},
             {value:'unread',label:'Unread',  count:12},
@@ -195,7 +183,7 @@ export const WithCountBadges: Story = {
           ]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="admin" size="md" value="unread"
+        <ds-toggle-button-group color="secondary" size="md" value="unread"
           [options]="[
             {value:'all',   label:'All',     count:99},
             {value:'unread',label:'Unread',  count:12},
@@ -225,14 +213,14 @@ export const WithIcons: Story = {
     },
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-        <ds-toggle-button-group color="user" size="md" value="list"
+        <ds-toggle-button-group color="primary" size="md" value="list"
           [options]="[
             {value:'list',    label:'List',    icon: iconList},
             {value:'grid',    label:'Grid',    icon: iconGrid}
           ]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="admin" size="md" value="list"
+        <ds-toggle-button-group color="secondary" size="md" value="list"
           [options]="[
             {value:'list',    label:'List',    icon: iconList},
             {value:'grid',    label:'Grid',    icon: iconGrid}
@@ -264,29 +252,25 @@ export const IconOnly: Story = {
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
         <div style="display:flex;gap:16px;align-items:center">
-          <ds-toggle-button-group color="user" size="sm" value="list"
+          <ds-toggle-button-group color="primary" size="sm" value="list"
             [options]="[{value:'list',icon:iconList},{value:'grid',icon:iconGrid}]">
           </ds-toggle-button-group>
 
-          <ds-toggle-button-group color="user" size="md" value="list"
+          <ds-toggle-button-group color="primary" size="md" value="list"
             [options]="[{value:'list',icon:iconList},{value:'grid',icon:iconGrid}]">
           </ds-toggle-button-group>
 
-          <ds-toggle-button-group color="user" size="lg" value="list"
+          <ds-toggle-button-group color="primary" size="lg" value="list"
             [options]="[{value:'list',icon:iconList},{value:'grid',icon:iconGrid}]">
           </ds-toggle-button-group>
         </div>
 
         <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-          <ds-toggle-button-group color="user"      size="md" value="list"
+          <ds-toggle-button-group color="primary"   size="md" value="list"
             [options]="[{value:'list',icon:iconList},{value:'grid',icon:iconGrid},{value:'cols',icon:iconColumns},{value:'rows',icon:iconRows}]">
           </ds-toggle-button-group>
 
-          <ds-toggle-button-group color="admin"     size="md" value="grid"
-            [options]="[{value:'list',icon:iconList},{value:'grid',icon:iconGrid},{value:'cols',icon:iconColumns},{value:'rows',icon:iconRows}]">
-          </ds-toggle-button-group>
-
-          <ds-toggle-button-group color="success"   size="md" value="cols"
+          <ds-toggle-button-group color="secondary" size="md" value="grid"
             [options]="[{value:'list',icon:iconList},{value:'grid',icon:iconGrid},{value:'cols',icon:iconColumns},{value:'rows',icon:iconRows}]">
           </ds-toggle-button-group>
 
@@ -315,7 +299,7 @@ export const MultipleSelection: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-        <ds-toggle-button-group color="user" size="md" [multiple]="true" [value]="['b','d']"
+        <ds-toggle-button-group color="primary" size="md" [multiple]="true" [value]="['b','d']"
           [options]="[
             {value:'a',label:'Mon'},
             {value:'b',label:'Tue'},
@@ -325,7 +309,7 @@ export const MultipleSelection: Story = {
           ]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="success" size="md" [multiple]="true" [value]="['b','d']"
+        <ds-toggle-button-group color="secondary" size="md" [multiple]="true" [value]="['b','d']"
           [options]="[
             {value:'a',label:'Mon'},
             {value:'b',label:'Tue'},
@@ -353,15 +337,15 @@ export const GroupSizes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-        <ds-toggle-button-group color="user" size="md" value="b"
+        <ds-toggle-button-group color="primary" size="md" value="b"
           [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'}]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="user" size="md" value="b"
+        <ds-toggle-button-group color="primary" size="md" value="b"
           [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
 
-        <ds-toggle-button-group color="user" size="md" value="c"
+        <ds-toggle-button-group color="primary" size="md" value="c"
           [options]="[
             {value:'a',label:'Day'},
             {value:'b',label:'Week'},
@@ -390,13 +374,11 @@ export const Disabled: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-        <!-- Whole group disabled -->
-        <ds-toggle-button-group color="user" size="md" value="b" [disabled]="true"
+        <ds-toggle-button-group color="primary" size="md" value="b" [disabled]="true"
           [options]="[{value:'a',label:'Day'},{value:'b',label:'Week'},{value:'c',label:'Month'}]">
         </ds-toggle-button-group>
 
-        <!-- Individual item disabled -->
-        <ds-toggle-button-group color="admin" size="md" value="a"
+        <ds-toggle-button-group color="secondary" size="md" value="a"
           [options]="[
             {value:'a',label:'Day'},
             {value:'b',label:'Week',  disabled:true},
@@ -416,7 +398,7 @@ export const ColorSizeMatrix: Story = {
     docs: {
       description: {
         story:
-          'Full cross-product of all 6 color themes and 3 sizes, with one button pre-selected in each group.',
+          'Full cross-product of all 3 color themes and 3 sizes, with one button pre-selected in each group.',
       },
     },
   },
@@ -432,7 +414,7 @@ export const ColorSizeMatrix: Story = {
           </tr>
         </thead>
         <tbody>
-          @for (color of ['user','admin','secondary','success','error','sunoh']; track color) {
+          @for (color of ['primary','secondary','error']; track color) {
             <tr>
               <td style="font-family:sans-serif;font-size:12px;color:#444;padding-right:8px">{{color}}</td>
               @for (size of ['sm','md','lg']; track size) {

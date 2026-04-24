@@ -24,12 +24,9 @@ export interface ToggleButtonItem {
 }
 
 export type ToggleColor =
-  | 'user'
-  | 'admin'
+  | 'primary'
   | 'secondary'
-  | 'success'
-  | 'error'
-  | 'sunoh';
+  | 'error';
 
 export type ToggleSize = 'sm' | 'md' | 'lg';
 
@@ -49,7 +46,7 @@ export class ToggleButtonGroupComponent {
   @Input() options: ToggleButtonItem[] = [];
 
   /** Color theme applied to the selected button and group border. */
-  @Input() color: ToggleColor = 'user';
+  @Input() color: ToggleColor = 'primary';
 
   /** Height / padding scale: `sm` = 24 px, `md` = 32 px, `lg` = 40 px. */
   @Input() size: ToggleSize = 'md';
