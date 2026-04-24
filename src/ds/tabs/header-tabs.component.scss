@@ -1,8 +1,8 @@
-// ─── CSS custom property defaults ────────────────────────────────────────────
+// ─── CSS custom property defaults (overridden via inline style binding) ─────
 :host {
   display: block;
-  --theme-base  : var(--tab-user-color);
-  --theme-base80: var(--color-user-80);
+  --theme-base  : var(--prim-teal-650);
+  --theme-base80: var(--prim-teal-800);
   --theme-text  : var(--color-text-inverse);
 }
 

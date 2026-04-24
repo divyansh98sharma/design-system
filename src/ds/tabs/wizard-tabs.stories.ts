@@ -16,7 +16,7 @@ const FIVE_STEPS = [
   { key: 'step5', label: 'Review',         required: false },
 ];
 
-const THEMES: WizardTabTheme[] = ['user', 'admin'];
+const THEMES: WizardTabTheme[] = ['primary', 'secondary'];
 
 const meta: Meta<WizardTabsComponent> = {
   title    : 'Design System/Tabs/Wizard Tabs',
@@ -26,7 +26,7 @@ const meta: Meta<WizardTabsComponent> = {
     theme: {
       control : 'select',
       options : THEMES,
-      description: 'Colour theme: user (blue) or admin (orange).',
+      description: 'Colour theme: primary (teal) or secondary (orange).',
     },
     activeStep : { control: 'text' },
     stepChange : { action: 'stepChange' },
@@ -40,48 +40,48 @@ const meta: Meta<WizardTabsComponent> = {
 export default meta;
 type Story = StoryObj<WizardTabsComponent>;
 
-export const UserTheme: Story = {
-  name: 'Wizard — User Theme (10 steps)',
+export const PrimaryTheme: Story = {
+  name: 'Wizard — Primary Theme (10 steps)',
   args: {
     steps     : TEN_STEPS,
     activeStep: 'step1',
-    theme     : 'user',
+    theme     : 'primary',
   },
 };
 
-export const AdminTheme: Story = {
-  name: 'Wizard — Admin Theme (10 steps)',
+export const SecondaryTheme: Story = {
+  name: 'Wizard — Secondary Theme (10 steps)',
   args: {
     steps     : TEN_STEPS,
     activeStep: 'step1',
-    theme     : 'admin',
+    theme     : 'secondary',
   },
 };
 
-export const UserFiveSteps: Story = {
-  name: 'Wizard — User (5 steps, with required)',
+export const PrimaryFiveSteps: Story = {
+  name: 'Wizard — Primary (5 steps, with required)',
   args: {
     steps     : FIVE_STEPS,
     activeStep: 'step1',
-    theme     : 'user',
+    theme     : 'primary',
   },
 };
 
-export const AdminFiveSteps: Story = {
-  name: 'Wizard — Admin (5 steps)',
+export const SecondaryFiveSteps: Story = {
+  name: 'Wizard — Secondary (5 steps)',
   args: {
     steps     : FIVE_STEPS,
     activeStep: 'step1',
-    theme     : 'admin',
+    theme     : 'secondary',
   },
 };
 
 export const MiddleStepActive: Story = {
-  name: 'Wizard — User (middle step active)',
+  name: 'Wizard — Primary (middle step active)',
   args: {
     steps     : FIVE_STEPS,
     activeStep: 'step3',
-    theme     : 'user',
+    theme     : 'primary',
   },
 };
 
@@ -90,8 +90,8 @@ export const BothThemes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:12px;">
-        <ds-wizard-tabs [steps]="steps" activeStep="step1" theme="user"></ds-wizard-tabs>
-        <ds-wizard-tabs [steps]="steps" activeStep="step1" theme="admin"></ds-wizard-tabs>
+        <ds-wizard-tabs [steps]="steps" activeStep="step1" theme="primary"></ds-wizard-tabs>
+        <ds-wizard-tabs [steps]="steps" activeStep="step1" theme="secondary"></ds-wizard-tabs>
       </div>
     `,
     props: { steps: FIVE_STEPS },

@@ -3,10 +3,10 @@
  */
 
 /** Colour theme that controls the active-indicator and header colours. */
-export type TabTheme = 'user' | 'admin' | 'green' | 'sunoh';
+export type TabTheme = 'primary' | 'secondary';
 
 /** Variant for wizard tabs (fewer themes needed). */
-export type WizardTabTheme = 'user' | 'admin';
+export type WizardTabTheme = 'primary' | 'secondary';
 
 /** A single tab / step definition. */
 export interface TabItem {
@@ -32,42 +32,30 @@ export interface WizardStep {
 }
 
 // ─── Theme colour maps ────────────────────────────────────────────────────────
+// Values point at design-token CSS variables. Components can either read these
+// keys for inline styles or just consume the var() strings directly in SCSS.
 export const TAB_THEME_COLORS: Record<
   TabTheme,
   {
-    base     : string; // active border / underline / header bg
-    base5    : string; // unselected tab bg (standard tabs)
-    base30   : string; // unselected tab border (standard tabs)
-    base80   : string; // header active tab bg
-    text     : string; // text color on colored header backgrounds
+    base   : string; // active border / underline / header bg
+    base5  : string; // unselected tab bg (standard tabs)
+    base30 : string; // unselected tab border (standard tabs)
+    base80 : string; // header active tab bg
+    text   : string; // text color on colored header backgrounds
   }
 > = {
-  user : {
-    base  : '#0378a7',
-    base5 : '#f1fbff',
-    base30: '#81bbd3',
-    base80: '#023c54',
-    text  : '#ffffff',
+  primary: {
+    base  : 'var(--prim-teal-650)',
+    base5 : 'var(--prim-teal-50)',
+    base30: 'var(--prim-teal-650)',
+    base80: 'var(--prim-teal-800)',
+    text  : 'var(--prim-color-white)',
   },
-  admin: {
-    base  : '#e88842',
-    base5 : '#fff8f2',
-    base30: '#f1b984',
-    base80: '#c17137',
-    text  : '#000000',
-  },
-  green: {
-    base  : '#018145',
-    base5 : '#f1fff5',
-    base30: '#7bc49a',
-    base80: '#014123',
-    text  : '#ffffff',
-  },
-  sunoh: {
-    base  : '#fb2b66',
-    base5 : '#fff0f4',
-    base30: '#fd9bb7',
-    base80: '#7e1633',
-    text  : '#ffffff',
+  secondary: {
+    base  : 'var(--prim-orange-200)',
+    base5 : 'var(--prim-orange-75)',
+    base30: 'var(--prim-orange-200)',
+    base80: 'var(--prim-orange-900)',
+    text  : 'var(--prim-color-black)',
   },
 };

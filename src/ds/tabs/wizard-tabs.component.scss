@@ -1,9 +1,9 @@
-// ─── CSS custom property defaults ────────────────────────────────────────────
+// ─── CSS custom property defaults (overridden via inline style binding) ─────
 :host {
   display: block;
-  --active-bg          : var(--color-user-base);
-  --active-badge-border: var(--color-user-80);
-  --active-badge-text  : var(--color-user-80);
+  --active-bg          : var(--prim-teal-650);
+  --active-badge-border: var(--prim-teal-800);
+  --active-badge-text  : var(--prim-teal-800);
   --active-text        : var(--color-text-inverse);
 }
 
