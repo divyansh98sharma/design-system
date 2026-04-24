@@ -15,7 +15,7 @@ const meta: Meta<NotificationComponent> = {
         component:
           'Notification banner — **540 px wide**, height is responsive to content (up to ~12 lines).\n\n' +
           '**4 types**: `communication` · `confirmation` · `warning` · `error` — each has a distinct sidebar icon.\n\n' +
-          '**3 colour themes**: `user` (blue) · `admin` (orange) · `green` — applied to the sidebar and action buttons.\n\n' +
+          '**2 colour themes**: `primary` (teal) · `secondary` (orange) — applied to the sidebar and action buttons.\n\n' +
           '**Usage notes from design spec:**\n' +
           '- Bold keywords: names, actions the user can take, names of elements.\n' +
           '- Italicise element names within action phrases (e.g. click *Save*).\n' +
@@ -34,8 +34,8 @@ const meta: Meta<NotificationComponent> = {
     theme: {
       description: 'Colour theme for the sidebar and action buttons.',
       control: 'select',
-      options: ['user', 'admin', 'green'],
-      table: { defaultValue: { summary: 'user' } },
+      options: ['primary', 'secondary'],
+      table: { defaultValue: { summary: 'primary' } },
     },
     windowName: {
       description: 'Window / screen name in the heading (bold).',
@@ -78,7 +78,7 @@ const meta: Meta<NotificationComponent> = {
   },
   args: {
     type: 'communication',
-    theme: 'user',
+    theme: 'primary',
     windowName: 'Dashboard',
     description: 'New message received',
     bodyText: BODY,
@@ -116,10 +116,10 @@ export const Types: Story = {
     props: { body: BODY, actions: [{ label: 'OK' }] },
     template: `
       <div style="display:flex;flex-direction:column;gap:16px">
-        <ds-notification type="communication" theme="user" windowName="Inbox" description="New message" [bodyText]="body" [actions]="actions"></ds-notification>
-        <ds-notification type="confirmation"  theme="user" windowName="Save"  description="Changes saved" [bodyText]="body" [actions]="actions"></ds-notification>
-        <ds-notification type="warning"       theme="user" windowName="Quota" description="Storage limit" [bodyText]="body" [actions]="actions"></ds-notification>
-        <ds-notification type="error"         theme="user" windowName="Upload" description="File rejected" [bodyText]="body" [actions]="actions"></ds-notification>
+        <ds-notification type="communication" theme="primary" windowName="Inbox" description="New message" [bodyText]="body" [actions]="actions"></ds-notification>
+        <ds-notification type="confirmation"  theme="primary" windowName="Save"  description="Changes saved" [bodyText]="body" [actions]="actions"></ds-notification>
+        <ds-notification type="warning"       theme="primary" windowName="Quota" description="Storage limit" [bodyText]="body" [actions]="actions"></ds-notification>
+        <ds-notification type="error"         theme="primary" windowName="Upload" description="File rejected" [bodyText]="body" [actions]="actions"></ds-notification>
       </div>
     `,
   }),
@@ -130,15 +130,14 @@ export const Types: Story = {
 export const Themes: Story = {
   name: 'Themes',
   parameters: {
-    docs: { description: { story: 'All 3 colour themes. Communication type shown.' } },
+    docs: { description: { story: 'Both colour themes. Communication type shown.' } },
   },
   render: () => ({
     props: { body: BODY, actions: [{ label: 'Label' }] },
     template: `
       <div style="display:flex;flex-direction:column;gap:16px">
-        <ds-notification type="communication" theme="user"  windowName="Dashboard" description="New message" [bodyText]="body" [actions]="actions"></ds-notification>
-        <ds-notification type="communication" theme="admin" windowName="Dashboard" description="New message" [bodyText]="body" [actions]="actions"></ds-notification>
-        <ds-notification type="communication" theme="green" windowName="Dashboard" description="New message" [bodyText]="body" [actions]="actions"></ds-notification>
+        <ds-notification type="communication" theme="primary"   windowName="Dashboard" description="New message" [bodyText]="body" [actions]="actions"></ds-notification>
+        <ds-notification type="communication" theme="secondary" windowName="Dashboard" description="New message" [bodyText]="body" [actions]="actions"></ds-notification>
       </div>
     `,
   }),
@@ -157,7 +156,7 @@ export const WithCheckbox: Story = {
   },
   args: {
     type: 'warning',
-    theme: 'user',
+    theme: 'primary',
     windowName: 'Maintenance',
     description: 'Scheduled downtime',
     bodyText: 'The system will be unavailable on Sunday 02:00–04:00 UTC for planned maintenance.',
@@ -182,9 +181,9 @@ export const WithBadge: Story = {
     props: { body: BODY, actions: [{ label: 'View' }] },
     template: `
       <div style="display:flex;flex-direction:column;gap:24px">
-        <ds-notification type="communication" theme="user" windowName="Inbox" description="Unread message" [bodyText]="body" [actions]="actions" badgePosition="top-right"></ds-notification>
-        <ds-notification type="communication" theme="user" windowName="Inbox" description="Unread message" [bodyText]="body" [actions]="actions" badgePosition="top-left"></ds-notification>
-        <ds-notification type="communication" theme="user" windowName="Inbox" description="Unread message" [bodyText]="body" [actions]="actions" badgePosition="right-top"></ds-notification>
+        <ds-notification type="communication" theme="primary" windowName="Inbox" description="Unread message" [bodyText]="body" [actions]="actions" badgePosition="top-right"></ds-notification>
+        <ds-notification type="communication" theme="primary" windowName="Inbox" description="Unread message" [bodyText]="body" [actions]="actions" badgePosition="top-left"></ds-notification>
+        <ds-notification type="communication" theme="primary" windowName="Inbox" description="Unread message" [bodyText]="body" [actions]="actions" badgePosition="right-top"></ds-notification>
       </div>
     `,
   }),
@@ -199,7 +198,7 @@ export const LongBody: Story = {
   },
   args: {
     type: 'communication',
-    theme: 'user',
+    theme: 'primary',
     windowName: 'Report',
     description: 'Export complete',
     bodyText: LONG_BODY,
@@ -211,10 +210,10 @@ export const LongBody: Story = {
 
 export const ErrorNotification: Story = {
   name: 'Error',
-  parameters: { docs: { description: { story: 'Error notification — red-bordered icon, user theme button.' } } },
+  parameters: { docs: { description: { story: 'Error notification — red-bordered icon, primary theme button.' } } },
   args: {
     type: 'error',
-    theme: 'user',
+    theme: 'primary',
     windowName: 'Upload',
     description: 'File type not allowed',
     bodyText: 'The file you uploaded is not supported. Only PDF, PNG, and JPG files are accepted. Please try again with a supported file type.',
