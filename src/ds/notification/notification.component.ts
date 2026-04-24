@@ -8,7 +8,7 @@ import {
 import { CommonModule } from '@angular/common';
 
 export type NotificationType = 'communication' | 'confirmation' | 'warning' | 'error';
-export type NotificationTheme = 'user' | 'admin' | 'green';
+export type NotificationTheme = 'primary' | 'secondary';
 
 /**
  * A notification action button configuration.
@@ -26,7 +26,7 @@ export interface NotificationAction {
  * Fixed width: **540 px** · Variable height (responsive to content, up to ~12 lines).
  *
  * Four types: `communication` · `confirmation` · `warning` · `error`
- * Three colour themes: `user` (blue) · `admin` (orange) · `green`
+ * Two colour themes: `primary` (teal) · `secondary` (orange)
  *
  * - **Bold** keywords: names, actions, element names (e.g. Click **Save**).
  * - Optional **suppress checkbox** (suppresses the alert for 180 days when checked).
@@ -45,7 +45,7 @@ export class NotificationComponent {
   @Input() type: NotificationType = 'communication';
 
   /** Colour theme — applies to the sidebar and action buttons. */
-  @Input() theme: NotificationTheme = 'user';
+  @Input() theme: NotificationTheme = 'primary';
 
   /** Window / screen name shown in the heading. */
   @Input() windowName = '{Window Name}';
