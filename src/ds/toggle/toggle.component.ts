@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from 
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export type ToggleTheme = 'user' | 'admin' | 'green' | 'sunoh';
+export type ToggleTheme = 'primary' | 'secondary';
 
 @Component({
   selector: 'ds-toggle',
@@ -17,7 +17,7 @@ export class ToggleComponent {
   @Input() on = false;
 
   /** Colour theme. */
-  @Input() theme: ToggleTheme = 'user';
+  @Input() theme: ToggleTheme = 'primary';
 
   /** Prevents user interaction. */
   @Input() disabled = false;
