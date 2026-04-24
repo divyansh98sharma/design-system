@@ -11,11 +11,10 @@ const meta: Meta<DisclaimerComponent> = {
       description: {
         component:
           'Yellow warning strip — background `#fff9eb`, border `#fbce2a`, radius 4 px.\n\n' +
-          '**3 layouts:**\n' +
-          '- `disclaimer` + `labelPosition: "left"` — *Disclaimer:* inline with text, close ×.\n' +
-          '- `disclaimer` + `labelPosition: "top"` — *Disclaimer:* on its own row, italic text below, close ×.\n' +
-          '- `ai-disclaimer` — AI warning text + **Acknowledge for AI Assistant** button (no close).\n\n' +
-          '**Typography:** "Disclaimer:" label is **bold italic** · body text is *italic* · AI text is regular.',
+          '**2 layouts:**\n' +
+          '- `labelPosition: "left"` — *Disclaimer:* inline with text, close ×.\n' +
+          '- `labelPosition: "top"` — *Disclaimer:* on its own row, italic text below, close ×.\n\n' +
+          '**Typography:** "Disclaimer:" label is **bold italic** · body text is *italic*.',
       },
     },
   },
@@ -23,11 +22,11 @@ const meta: Meta<DisclaimerComponent> = {
     variant: {
       description: 'Layout variant.',
       control: 'select',
-      options: ['disclaimer', 'ai-disclaimer'],
+      options: ['disclaimer'],
       table: { defaultValue: { summary: 'disclaimer' } },
     },
     labelPosition: {
-      description: 'Position of the "Disclaimer:" label (disclaimer variant only).',
+      description: 'Position of the "Disclaimer:" label.',
       control: 'select',
       options: ['left', 'top'],
       table: { defaultValue: { summary: 'left' } },
@@ -41,25 +40,8 @@ const meta: Meta<DisclaimerComponent> = {
       control: 'text',
       table: { defaultValue: { summary: '' } },
     },
-    aiText: {
-      description: 'Main body for the AI disclaimer variant.',
-      control: 'text',
-    },
-    aiNote: {
-      description: 'Bold note appended after aiText (AI variant).',
-      control: 'text',
-    },
-    acknowledgeLabel: {
-      description: 'Label on the acknowledge button (AI variant).',
-      control: 'text',
-      table: { defaultValue: { summary: 'Acknowledge for AI Assistant' } },
-    },
     closed: {
       description: 'Emits when the close button is clicked.',
-      table: { category: 'Events' },
-    },
-    acknowledge: {
-      description: 'Emits when the acknowledge button is clicked (AI variant).',
       table: { category: 'Events' },
     },
   },
@@ -68,10 +50,6 @@ const meta: Meta<DisclaimerComponent> = {
     labelPosition: 'left',
     text: 'This content is for informational purposes only and does not constitute medical advice.',
     line2: '',
-    aiText:
-      'This feature uses artificial intelligence. AI-generated results may contain errors or inaccuracies.',
-    aiNote: 'Always verify AI-generated content with a qualified professional.',
-    acknowledgeLabel: 'Acknowledge for AI Assistant',
   },
 };
 
@@ -94,34 +72,24 @@ export const AllVariants: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All three disclaimer layouts: label-left, label-top, and AI disclaimer.',
+        story: 'Both disclaimer layouts: label-left and label-top.',
       },
     },
   },
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-        <!-- Label Left -->
         <ds-disclaimer
           variant="disclaimer"
           labelPosition="left"
           text="This content is for informational purposes only and does not constitute medical advice."
         ></ds-disclaimer>
 
-        <!-- Label Top -->
         <ds-disclaimer
           variant="disclaimer"
           labelPosition="top"
           text="Changing this setting will affect all users in your organisation."
           line2="Please review the change log before proceeding."
-        ></ds-disclaimer>
-
-        <!-- AI Disclaimer -->
-        <ds-disclaimer
-          variant="ai-disclaimer"
-          aiText="This feature uses artificial intelligence. AI-generated results may contain errors or inaccuracies."
-          aiNote="Always verify AI-generated content with a qualified professional."
-          acknowledgeLabel="Acknowledge for AI Assistant"
         ></ds-disclaimer>
       </div>
     `,
@@ -158,26 +126,5 @@ export const LabelTop: Story = {
     labelPosition: 'top',
     text: 'The following information is subject to change without notice.',
     line2: 'Please consult your administrator for the most up-to-date guidance.',
-  },
-};
-
-// ─── AI Disclaimer ────────────────────────────────────────────────────────────
-
-export const AiDisclaimer: Story = {
-  name: 'AI Disclaimer',
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'AI variant — full-width text block with a bold closing note and an "Acknowledge" secondary button.',
-      },
-    },
-  },
-  args: {
-    variant: 'ai-disclaimer',
-    aiText:
-      'This feature uses artificial intelligence to assist with clinical decision support. Results are suggestions only and should not replace professional clinical judgment.',
-    aiNote: 'Always verify AI-generated content with a qualified professional.',
-    acknowledgeLabel: 'Acknowledge for AI Assistant',
   },
 };

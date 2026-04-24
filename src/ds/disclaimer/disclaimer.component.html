@@ -1,24 +1,5 @@
-<!-- ─── AI Disclaimer ────────────────────────────────────────────────────── -->
-@if (variant === 'ai-disclaimer') {
-  <div class="ds-disclaimer ds-disclaimer--ai">
-    <div class="ds-disclaimer__ai-body">
-      <span class="ds-disclaimer__ai-text">{{ aiText }}</span>
-      @if (aiNote) {
-        <span class="ds-disclaimer__ai-note"> {{ aiNote }}</span>
-      }
-    </div>
-    <div class="ds-disclaimer__ai-actions">
-      <button
-        class="ds-disclaimer__ack-btn"
-        type="button"
-        (click)="acknowledge.emit()"
-      >{{ acknowledgeLabel }}</button>
-    </div>
-  </div>
-}
-
 <!-- ─── Standard Disclaimer — label TOP ─────────────────────────────────── -->
-@if (variant === 'disclaimer' && labelPosition === 'top') {
+@if (labelPosition === 'top') {
   <div class="ds-disclaimer ds-disclaimer--top">
     <!-- Header row: label + close -->
     <div class="ds-disclaimer__header">
@@ -45,7 +26,7 @@
 }
 
 <!-- ─── Standard Disclaimer — label LEFT ────────────────────────────────── -->
-@if (variant === 'disclaimer' && labelPosition === 'left') {
+@if (labelPosition === 'left') {
   <div class="ds-disclaimer ds-disclaimer--left">
     <!-- Label + text on one row, close at the right -->
     <div class="ds-disclaimer__row">

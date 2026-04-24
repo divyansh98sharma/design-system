@@ -1,16 +1,15 @@
 // ─── Disclaimer Banner ────────────────────────────────────────────────────────
 
 .ds-disclaimer {
-  background: var(--disclaimer-bg);                // var(--warning/base-5)
-  border: 1px solid var(--disclaimer-border);          // var(--color-warning-base)
-  border-radius: var(--disclaimer-radius);     // 4px
-  padding: var(--spacing-small);      // 8px
+  background: var(--color-bg-jellybean-yellow);
+  border: 1px solid var(--color-border-warning-button-default);
+  border-radius: var(--radius-4);
+  padding: var(--spacing-small);
   font-family: var(--font-family-base);
   font-size: var(--font-size-12);
   line-height: var(--line-height-16);
-  color: var(--disclaimer-text-color);
-
-  // ─── Label ──────────────────────────────────────────────────────────────
+  color: var(--color-text-jellybean-yellow);
+  width: 540px;
 
   &__label {
     font-weight: var(--font-weight-bold);
@@ -18,32 +17,28 @@
     flex-shrink: 0;
   }
 
-  // ─── Body text ──────────────────────────────────────────────────────────
-
   &__text {
     font-weight: var(--font-weight-regular);
     font-style: italic;
   }
 
-  // ─── Close button ───────────────────────────────────────────────────────
-
   &__close-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: var(--disclaimer-close-size);
-    height: var(--disclaimer-close-size);
+    width: 16px;
+    height: 16px;
     padding: 0;
     background: none;
     border: none;
     cursor: pointer;
     flex-shrink: 0;
-    color: var(--disclaimer-text-color);
+    color: var(--color-text-jellybean-yellow);
     transition: opacity 120ms ease;
 
-    &:hover        { opacity: 0.65; }
+    &:hover { opacity: 0.65; }
     &:focus-visible {
-      outline: 2px solid var(--disclaimer-border);
+      outline: 2px solid var(--color-border-warning-button-default);
       outline-offset: 2px;
     }
   }
@@ -54,15 +49,11 @@
     height: 100%;
   }
 
-  // ─── Variant: LEFT ──────────────────────────────────────────────────────
-
   &--left {
-    width: var(--disclaimer-width);
-
     .ds-disclaimer__row {
       display: flex;
       align-items: flex-start;
-      gap: var(--spacing-small); // 8px
+      gap: var(--spacing-small);
     }
 
     .ds-disclaimer__inline-content {
@@ -71,13 +62,10 @@
     }
   }
 
-  // ─── Variant: TOP ───────────────────────────────────────────────────────
-
   &--top {
-    width: var(--disclaimer-width);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-x-small); // 4px
+    gap: var(--spacing-x-small);
 
     .ds-disclaimer__header {
       display: flex;
@@ -89,57 +77,6 @@
       display: flex;
       flex-direction: column;
       gap: var(--spacing-xx-small);
-    }
-  }
-
-  // ─── Variant: AI ────────────────────────────────────────────────────────
-
-  &--ai {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-medium); // 12px
-
-    .ds-disclaimer__ai-body {
-      flex: 1 0 0;
-      min-width: 0;
-    }
-
-    .ds-disclaimer__ai-text {
-      font-weight: var(--font-weight-regular);
-    }
-
-    .ds-disclaimer__ai-note {
-      font-weight: var(--font-weight-bold);
-    }
-
-    .ds-disclaimer__ai-actions {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  // ─── Acknowledge button ─────────────────────────────────────────────────
-
-  &__ack-btn {
-    height: var(--disclaimer-ack-height);
-    padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
-    background: var(--disclaimer-ack-bg);
-    border: 1px solid var(--disclaimer-ack-border);
-    border-radius: var(--disclaimer-radius);
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-16);
-    color: var(--disclaimer-text-color);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 120ms ease, border-color 120ms ease;
-
-    &:hover        { background: var(--disclaimer-ack-bg-hover); }
-    &:focus-visible {
-      outline: 2px solid var(--disclaimer-border);
-      outline-offset: 2px;
     }
   }
 }
