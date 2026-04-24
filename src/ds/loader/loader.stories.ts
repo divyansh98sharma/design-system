@@ -13,7 +13,7 @@ const meta: Meta<LoaderComponent> = {
           'Three-dot loading indicator. ' +
           'Display this any time the system is delayed or processing a request.\n\n' +
           '> **Note:** For bulk file uploads or long operations with measurable progress, use a **Progress Bar** instead.\n\n' +
-          'Four colour themes match the design system: `user` (blue), `admin` (orange), `green`, and `sunoh` (pink). ' +
+          'Two colour themes: `primary` (teal) and `secondary` (orange). ' +
           'The optional `Loading...` label can be hidden for compact contexts.',
       },
     },
@@ -22,8 +22,8 @@ const meta: Meta<LoaderComponent> = {
     theme: {
       description: 'Colour of the animated dots.',
       control: 'select',
-      options: ['user', 'admin', 'green', 'sunoh'],
-      table: { defaultValue: { summary: 'user' } },
+      options: ['primary', 'secondary'],
+      table: { defaultValue: { summary: 'primary' } },
     },
     showLabel: {
       description: 'Whether to render the label text below the dots.',
@@ -37,7 +37,7 @@ const meta: Meta<LoaderComponent> = {
     },
   },
   args: {
-    theme: 'user',
+    theme: 'primary',
     showLabel: true,
     label: 'Loading...',
   },
@@ -60,26 +60,18 @@ export const Playground: Story = {
 export const Overview: Story = {
   name: 'Overview',
   parameters: {
-    docs: { description: { story: 'All four colour themes with and without the label.' } },
+    docs: { description: { story: 'Both colour themes with and without the label.' } },
   },
   render: () => ({
     template: `
-      <div style="display:grid;grid-template-columns:repeat(4,100px);gap:32px;padding:16px">
+      <div style="display:grid;grid-template-columns:repeat(2,100px);gap:32px;padding:16px">
         <div style="display:flex;flex-direction:column;align-items:center;gap:24px">
-          <ds-loader theme="user"  [showLabel]="true"></ds-loader>
-          <ds-loader theme="user"  [showLabel]="false"></ds-loader>
+          <ds-loader theme="primary"   [showLabel]="true"></ds-loader>
+          <ds-loader theme="primary"   [showLabel]="false"></ds-loader>
         </div>
         <div style="display:flex;flex-direction:column;align-items:center;gap:24px">
-          <ds-loader theme="admin" [showLabel]="true"></ds-loader>
-          <ds-loader theme="admin" [showLabel]="false"></ds-loader>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:24px">
-          <ds-loader theme="green" [showLabel]="true"></ds-loader>
-          <ds-loader theme="green" [showLabel]="false"></ds-loader>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:center;gap:24px">
-          <ds-loader theme="sunoh" [showLabel]="true"></ds-loader>
-          <ds-loader theme="sunoh" [showLabel]="false"></ds-loader>
+          <ds-loader theme="secondary" [showLabel]="true"></ds-loader>
+          <ds-loader theme="secondary" [showLabel]="false"></ds-loader>
         </div>
       </div>
     `,
@@ -93,10 +85,8 @@ export const Themes: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:32px;align-items:flex-start">
-        <ds-loader theme="user"></ds-loader>
-        <ds-loader theme="admin"></ds-loader>
-        <ds-loader theme="green"></ds-loader>
-        <ds-loader theme="sunoh"></ds-loader>
+        <ds-loader theme="primary"></ds-loader>
+        <ds-loader theme="secondary"></ds-loader>
       </div>
     `,
   }),
@@ -120,9 +110,8 @@ export const CustomLabel: Story = {
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:24px">
-        <ds-loader theme="user" label="Uploading file…"></ds-loader>
-        <ds-loader theme="admin" label="Processing request…"></ds-loader>
-        <ds-loader theme="green" label="Saving changes…"></ds-loader>
+        <ds-loader theme="primary"   label="Uploading file…"></ds-loader>
+        <ds-loader theme="secondary" label="Processing request…"></ds-loader>
       </div>
     `,
   }),
