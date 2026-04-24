@@ -25,7 +25,7 @@ const meta: Meta<ModalComponent> = {
       description: {
         component:
           'Modal dialog shell — themed header, scrollable body, fixed footer.\n\n' +
-          '**5 themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).\n\n' +
+          '**2 themes:** `primary` (teal) · `secondary` (orange).\n\n' +
           '**5 sizes** (width × height):\n' +
           '- `small` → 420 × 420 px\n' +
           '- `medium` → 720 × 620 px\n' +
@@ -44,8 +44,8 @@ const meta: Meta<ModalComponent> = {
     theme: {
       description: 'Colour theme for the header bar and primary action buttons.',
       control: 'select',
-      options: ['user', 'admin', 'green', 'sunoh', 'ai'],
-      table: { defaultValue: { summary: 'user' } },
+      options: ['primary', 'secondary'],
+      table: { defaultValue: { summary: 'primary' } },
     },
     size: {
       description: 'Width × height size variant.',
@@ -79,7 +79,7 @@ const meta: Meta<ModalComponent> = {
     },
   },
   args: {
-    theme: 'user',
+    theme: 'primary',
     size: 'medium',
     heading: 'Patient Record',
     showDirtyFlag: false,
@@ -125,7 +125,7 @@ export const Themes: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All 5 colour themes applied to the modal header and primary footer button.',
+        story: 'Both colour themes applied to the modal header and primary footer button.',
       },
     },
   },
@@ -137,19 +137,10 @@ export const Themes: Story = {
     },
     template: `
       <div style="display:flex;flex-direction:column;gap:24px;align-items:flex-start">
-        <ds-modal theme="user"  size="small" heading="User Theme"  [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
+        <ds-modal theme="primary"   size="small" heading="Primary Theme"   [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
           <div [innerHTML]="bodyHtml"></div>
         </ds-modal>
-        <ds-modal theme="admin" size="small" heading="Admin Theme" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-        <ds-modal theme="green" size="small" heading="Green Theme" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-        <ds-modal theme="sunoh" size="small" heading="Sunoh Theme" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
-          <div [innerHTML]="bodyHtml"></div>
-        </ds-modal>
-        <ds-modal theme="ai"    size="small" heading="AI Theme"    [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
+        <ds-modal theme="secondary" size="small" heading="Secondary Theme" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
           <div [innerHTML]="bodyHtml"></div>
         </ds-modal>
       </div>
@@ -178,13 +169,13 @@ export const Sizes: Story = {
       <div style="display:flex;flex-direction:column;gap:24px">
         <div>
           <p style="font-size:11px;font-family:'Open Sans',sans-serif;margin:0 0 4px;color:#666">Small — 420 × 420</p>
-          <ds-modal theme="user" size="small" heading="Small Modal" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
+          <ds-modal theme="primary" size="small" heading="Small Modal" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
             <div [innerHTML]="bodyHtml"></div>
           </ds-modal>
         </div>
         <div>
           <p style="font-size:11px;font-family:'Open Sans',sans-serif;margin:0 0 4px;color:#666">Medium — 720 × 620</p>
-          <ds-modal theme="user" size="medium" heading="Medium Modal" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
+          <ds-modal theme="primary" size="medium" heading="Medium Modal" [footerLeftActions]="leftActions" [footerRightActions]="rightActions">
             <div [innerHTML]="bodyHtml"></div>
           </ds-modal>
         </div>
@@ -205,7 +196,7 @@ export const WithDirtyFlag: Story = {
     },
   },
   args: {
-    theme: 'user',
+    theme: 'primary',
     size: 'medium',
     heading: 'Edit Patient Record',
     showDirtyFlag: true,
@@ -252,7 +243,7 @@ export const ScrollableBody: Story = {
     },
     template: `
       <ds-modal
-        theme="user"
+        theme="primary"
         size="medium"
         heading="Long Content Modal"
         [footerLeftActions]="leftActions"
@@ -264,15 +255,15 @@ export const ScrollableBody: Story = {
   }),
 };
 
-// ─── Admin theme ──────────────────────────────────────────────────────────────
+// ─── Secondary theme ──────────────────────────────────────────────────────────
 
-export const AdminTheme: Story = {
-  name: 'Admin Theme',
+export const SecondaryTheme: Story = {
+  name: 'Secondary Theme',
   parameters: {
-    docs: { description: { story: 'Admin theme — orange header and primary button.' } },
+    docs: { description: { story: 'Secondary theme — orange header and primary button.' } },
   },
   args: {
-    theme: 'admin',
+    theme: 'secondary',
     size: 'medium',
     heading: 'System Configuration',
     footerLeftActions: [{ label: 'Cancel', variant: 'secondary' }],
