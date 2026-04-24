@@ -10,22 +10,18 @@ import { CommonModule } from '@angular/common';
 /**
  * Chip / tag state — controls background colour and border colour.
  *
- * | State       | Background | Border    |
- * |-------------|-----------|-----------|
- * | `default`   | `#fbfbfb` | `#bcbcbc` |
- * | `active`    | `#f1fef8` | `#018145` |
- * | `error`     | `#ffefef` | `#d82727` |
- * | `warning`   | `#fff9eb` | `#fbce2a` |
- * | `in-process`| `#f1fbff` | `#0378a7` |
- * | `ai`        | `#f7f2ff` | `#7d58da` |
+ * | State       | Background        | Border             |
+ * |-------------|-------------------|--------------------|
+ * | `default`   | neutral 250       | neutral 400        |
+ * | `active`    | confirmation 900  | confirmation 900   |
+ * | `error`     | error 300         | error 700          |
+ * | `warning`   | warning 200       | warning 400        |
  */
 export type ChipState =
   | 'default'
   | 'active'
   | 'error'
-  | 'warning'
-  | 'in-process'
-  | 'ai';
+  | 'warning';
 
 /**
  * Chip / tag component — pill-shaped label used for status, categories, or
@@ -37,7 +33,7 @@ export type ChipState =
  * - **Badge** — 16 × 16 px filled circle with a single letter (e.g. provider
  *   initial "P").
  * - **Icon** — 16 × 16 px SVG icon; supply a custom `iconPath` or use the
- *   built-in defaults (tag icon for standard states, sparkles for `ai`).
+ *   built-in tag icon default.
  * - **Label** — primary text, 12 px regular.
  * - **Close** — 16 × 16 px × button that emits `closed`.
  */
@@ -91,11 +87,6 @@ export class ChipComponent {
 
   get resolvedIconPath(): string {
     if (this.iconPath) return this.iconPath;
-    if (this.state === 'ai') {
-      // Auto-awesome / sparkles
-      return 'M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5z';
-    }
-    // Label / tag icon
     return 'M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z';
   }
 

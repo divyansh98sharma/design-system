@@ -11,8 +11,8 @@ const meta: Meta<ChipComponent> = {
       description: {
         component:
           'Pill-shaped tag / chip — used for status labels, categories, and filtering.\n\n' +
-          '**6 states** set border + background colour:\n' +
-          '`default` · `active` · `error` · `warning` · `in-process` · `ai`\n\n' +
+          '**4 states** set border + background colour:\n' +
+          '`default` · `active` · `error` · `warning`\n\n' +
           '**Anatomy** (all optional): `[badge] [icon] label [×]`\n\n' +
           '- **Badge** — 16 × 16 filled circle with a single letter (e.g. provider "P").\n' +
           '- **Icon** — 16 × 16 SVG; pass custom `iconPath` or use state defaults.\n' +
@@ -25,7 +25,7 @@ const meta: Meta<ChipComponent> = {
     state: {
       description: 'Colour state.',
       control: 'select',
-      options: ['default', 'active', 'error', 'warning', 'in-process', 'ai'],
+      options: ['default', 'active', 'error', 'warning'],
       table: { defaultValue: { summary: 'default' } },
     },
     label: { description: 'Text label.', control: 'text' },
@@ -64,19 +64,17 @@ export const AllStates: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All 6 chip states: default (gray), active (green), error (red), warning (yellow), in-process (blue), and AI (purple).',
+        story: 'All 4 chip states: default (gray), active (teal), error (red), and warning (yellow).',
       },
     },
   },
   render: () => ({
     template: `
       <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
-        <ds-chip state="default"    label="Label"        [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
-        <ds-chip state="active"     label="Active"       [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
-        <ds-chip state="error"      label="Cancelled"    [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
-        <ds-chip state="warning"    label="Warning"      [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
-        <ds-chip state="in-process" label="Notification" [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
-        <ds-chip state="ai"         label="AI Tag"       [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
+        <ds-chip state="default" label="Label"     [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
+        <ds-chip state="active"  label="Active"    [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
+        <ds-chip state="error"   label="Cancelled" [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
+        <ds-chip state="warning" label="Warning"   [showBadge]="true" [showIcon]="true" [showClose]="true"></ds-chip>
       </div>
     `,
   }),
@@ -133,12 +131,10 @@ export const StatusPalette: Story = {
   render: () => ({
     template: `
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <ds-chip state="active"     label="Confirmed"   [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
-        <ds-chip state="in-process" label="In Progress" [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
-        <ds-chip state="warning"    label="On Hold"     [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
-        <ds-chip state="error"      label="Cancelled"   [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
-        <ds-chip state="default"    label="Inactive"    [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
-        <ds-chip state="ai"         label="AI Reviewed" [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
+        <ds-chip state="active"  label="Confirmed" [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
+        <ds-chip state="warning" label="On Hold"   [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
+        <ds-chip state="error"   label="Cancelled" [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
+        <ds-chip state="default" label="Inactive"  [showBadge]="false" [showIcon]="false" [showClose]="false"></ds-chip>
       </div>
     `,
   }),
@@ -164,14 +160,4 @@ export const Error: Story = {
 export const Warning: Story = {
   name: 'Warning',
   args: { state: 'warning', label: 'Warning' },
-};
-
-export const InProcess: Story = {
-  name: 'In Process',
-  args: { state: 'in-process', label: 'Notification' },
-};
-
-export const Ai: Story = {
-  name: 'AI',
-  args: { state: 'ai', label: 'AI Tag', badgeColor: '#7d58da' },
 };
