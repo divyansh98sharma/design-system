@@ -24,7 +24,7 @@ const meta: Meta<PopoverComponent> = {
     layout: 'centered',
   },
   argTypes: {
-    theme: { control: 'radio', options: ['user', 'admin'] as PopoverTheme[] },
+    theme: { control: 'radio', options: ['primary', 'secondary'] as PopoverTheme[] },
     notch: { control: 'select', options: ALL_NOTCH_POSITIONS },
     title:          { control: 'text' },
     body:           { control: 'text' },
@@ -42,7 +42,7 @@ export const Playground: Story = {
   args: {
     title:         'Popover Title',
     body:          'Use this popover to provide additional context or actions for the selected item.',
-    theme:         'user',
+    theme:         'primary',
     notch:         'bottom-right',
     primaryLabel:  'Confirm',
     secondaryLabel:'Cancel',
@@ -53,13 +53,13 @@ export const Playground: Story = {
   },
 };
 
-// ─── User theme ───────────────────────────────────────────────────────────────
-export const UserTheme: Story = {
-  name: 'User Theme (Blue)',
+// ─── Primary theme ────────────────────────────────────────────────────────────
+export const PrimaryTheme: Story = {
+  name: 'Primary Theme (Teal)',
   args: {
     title:  'Assign Provider',
     body:   'Select the provider to assign to this patient encounter.',
-    theme:  'user',
+    theme:  'primary',
     notch:  'bottom-right',
     fields: [{ label: 'Provider', value: '', placeholder: 'Select…' }],
     primaryLabel:   'Assign',
@@ -67,13 +67,13 @@ export const UserTheme: Story = {
   },
 };
 
-// ─── Admin theme ──────────────────────────────────────────────────────────────
-export const AdminTheme: Story = {
-  name: 'Admin Theme (Orange)',
+// ─── Secondary theme ──────────────────────────────────────────────────────────
+export const SecondaryTheme: Story = {
+  name: 'Secondary Theme (Orange)',
   args: {
     title:  'Configuration',
     body:   'Adjust the admin settings for this module.',
-    theme:  'admin',
+    theme:  'secondary',
     notch:  'bottom-right',
     fields: [
       { label: 'Timeout (s)', value: '30', placeholder: '30' },
@@ -89,7 +89,7 @@ export const WithCheckboxes: Story = {
   args: {
     title:  'Notification Preferences',
     body:   'Choose which notifications to enable.',
-    theme:  'user',
+    theme:  'primary',
     notch:  'bottom-left',
     checkboxes: [
       { key: 'email', label: 'Email notifications', checked: true  },
@@ -105,7 +105,7 @@ export const WithCheckboxes: Story = {
 export const WithRadios: Story = {
   args: {
     title:  'Select Priority',
-    theme:  'user',
+    theme:  'primary',
     notch:  'top-right',
     radios: [
       { key: 'low',    label: 'Low'    },
@@ -123,7 +123,7 @@ export const NoNotch: Story = {
   args: {
     title: 'Plain Card',
     body:  'This popover has no notch arrow.',
-    theme: 'user',
+    theme: 'primary',
     notch: 'none',
     primaryLabel:   'OK',
     secondaryLabel: 'Close',
@@ -131,18 +131,18 @@ export const NoNotch: Story = {
 };
 
 // ─── All notch positions ──────────────────────────────────────────────────────
-export const NotchBottomCenter: Story = { args: { title: 'Tooltip', notch: 'bottom-center', theme: 'user', primaryLabel: 'OK', secondaryLabel: 'Close' } };
-export const NotchTopLeft:      Story = { args: { title: 'Tooltip', notch: 'top-left',      theme: 'user', primaryLabel: 'OK', secondaryLabel: 'Close' } };
-export const NotchTopCenter:    Story = { args: { title: 'Tooltip', notch: 'top-center',    theme: 'user', primaryLabel: 'OK', secondaryLabel: 'Close' } };
-export const NotchRightCenter:  Story = { args: { title: 'Tooltip', notch: 'right-center',  theme: 'user', primaryLabel: 'OK', secondaryLabel: 'Close' } };
-export const NotchLeftCenter:   Story = { args: { title: 'Tooltip', notch: 'left-center',   theme: 'user', primaryLabel: 'OK', secondaryLabel: 'Close' } };
+export const NotchBottomCenter: Story = { args: { title: 'Tooltip', notch: 'bottom-center', theme: 'primary', primaryLabel: 'OK', secondaryLabel: 'Close' } };
+export const NotchTopLeft:      Story = { args: { title: 'Tooltip', notch: 'top-left',      theme: 'primary', primaryLabel: 'OK', secondaryLabel: 'Close' } };
+export const NotchTopCenter:    Story = { args: { title: 'Tooltip', notch: 'top-center',    theme: 'primary', primaryLabel: 'OK', secondaryLabel: 'Close' } };
+export const NotchRightCenter:  Story = { args: { title: 'Tooltip', notch: 'right-center',  theme: 'primary', primaryLabel: 'OK', secondaryLabel: 'Close' } };
+export const NotchLeftCenter:   Story = { args: { title: 'Tooltip', notch: 'left-center',   theme: 'primary', primaryLabel: 'OK', secondaryLabel: 'Close' } };
 
 // ─── Footer disabled ──────────────────────────────────────────────────────────
 export const FooterDisabled: Story = {
   args: {
     title:          'Confirm Action',
     body:           'Buttons are disabled in this state.',
-    theme:          'user',
+    theme:          'primary',
     notch:          'bottom-right',
     footerDisabled: true,
     primaryLabel:   'Submit',
