@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 /** Theme tokens for the popover. */
-export type PopoverTheme = 'user' | 'admin';
+export type PopoverTheme = 'primary' | 'secondary';
 
 /**
  * 13 supported notch (caret) positions.
@@ -48,8 +48,8 @@ export interface PopoverRadio {
  * in one of 13 positions.
  *
  * Themes:
- * - `user`  — `#0378a7` title colour, `#81bbd3` footer border
- * - `admin` — `#e88842` title colour, `#f1b984` footer border
+ * - `primary`   — teal title colour
+ * - `secondary` — orange title colour
  *
  * Notch positions: none | bottom-* | top-* | left-* | right-*
  */
@@ -84,8 +84,8 @@ export class PopoverComponent {
 
   // ─── Appearance ───────────────────────────────────────────────────────────
 
-  /** Colour theme: user (blue) or admin (orange). */
-  @Input() theme: PopoverTheme = 'user';
+  /** Colour theme: primary (teal) or secondary (orange). */
+  @Input() theme: PopoverTheme = 'primary';
 
   /** Notch / caret position. */
   @Input() notch: PopoverNotch = 'bottom-right';
@@ -121,11 +121,11 @@ export class PopoverComponent {
   // ─── Theme helpers ────────────────────────────────────────────────────────
 
   get themeColor(): string {
-    return this.theme === 'admin' ? 'var(--popover-admin-color)' : 'var(--popover-user-color)';
+    return `var(--popover-${this.theme}-color)`;
   }
 
   get footerBorderColor(): string {
-    return this.theme === 'admin' ? 'var(--popover-admin-border)' : 'var(--popover-user-border)';
+    return `var(--popover-${this.theme}-border)`;
   }
 
   // ─── Event handlers ───────────────────────────────────────────────────────
