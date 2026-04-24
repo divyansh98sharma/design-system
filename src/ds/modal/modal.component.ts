@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-export type ModalTheme = 'user' | 'admin' | 'green' | 'sunoh' | 'ai';
+export type ModalTheme = 'primary' | 'secondary';
 
 /**
  * Modal size — maps to recommended width × height from the design spec:
@@ -37,7 +37,7 @@ export interface ModalAction {
 /**
  * Modal dialog component — themed header, scrollable body, fixed footer.
  *
- * **5 colour themes:** `user` (blue) · `admin` (orange) · `green` · `sunoh` (pink) · `ai` (purple).
+ * **2 colour themes:** `primary` (teal) · `secondary` (orange).
  *
  * **5 sizes:** `small` (420×420) · `medium` (720×620) · `large` (1000×620) · `xlarge` (1240×620) · `xxlarge` (1340×620).
  *
@@ -58,7 +58,7 @@ export interface ModalAction {
 })
 export class ModalComponent {
   /** Colour theme applied to the header bar and primary action buttons. */
-  @Input() theme: ModalTheme = 'user';
+  @Input() theme: ModalTheme = 'primary';
 
   /** Size variant — controls width and height. */
   @Input() size: ModalSize = 'medium';
