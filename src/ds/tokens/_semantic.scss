@@ -1,423 +1,72 @@
 // ============================================================
 // SEMANTIC TOKENS
-// Aliases derived from primitives. Components and layouts
-// should reference ONLY these tokens, never primitives directly.
+// Roles confirmed in the Figma CODE-A-TON Library. Components
+// should reference these tokens, not primitives directly.
 // ============================================================
 
 :root {
   // ----------------------------------------------------------
-  // Font Family
-  // ----------------------------------------------------------
-  --font-family-base: var(--prim-font-family-base);
-
-  // ----------------------------------------------------------
-  // Font Size
-  // ----------------------------------------------------------
-  --font-size-10: var(--prim-font-size-10);
-  --font-size-11: var(--prim-font-size-11);
-  --font-size-12: var(--prim-font-size-12);
-  --font-size-13: var(--prim-font-size-13);
-  --font-size-14: var(--prim-font-size-14);
-  --font-size-16: var(--prim-font-size-16);
-  --font-size-26: var(--prim-font-size-26);
-
-  // ----------------------------------------------------------
-  // Line Height
-  // ----------------------------------------------------------
-  --line-height-12: var(--prim-line-height-12);
-  --line-height-16: var(--prim-line-height-16);
-  --line-height-20: var(--prim-line-height-20);
-  --line-height-36: var(--prim-line-height-36);
-
-  // ----------------------------------------------------------
-  // Font Weight
-  // ----------------------------------------------------------
-  --font-weight-regular: var(--prim-font-weight-regular);
-  --font-weight-semibold: var(--prim-font-weight-semibold);
-  --font-weight-bold: var(--prim-font-weight-bold);
-
-  // ----------------------------------------------------------
-  // Spacing
-  // ----------------------------------------------------------
-  --spacing-xx-small: var(--prim-spacing-xx-small);
-  --spacing-x-small: var(--prim-spacing-x-small);
-  --spacing-small: var(--prim-spacing-small);
-  --spacing-medium: var(--prim-spacing-medium);
-  --spacing-large: var(--prim-spacing-large);
-  --spacing-x-large: var(--prim-spacing-x-large);
-  --spacing-xx-large: var(--prim-spacing-xx-large);
-
-  // ----------------------------------------------------------
-  // Border Radius
-  // ----------------------------------------------------------
-  --radius-4: var(--prim-radius-4);
-  --radius-8: var(--prim-radius-8);
-  --radius-12: var(--prim-radius-12);
-  --radius-pill: var(--prim-radius-pill);
-  --radius-standard: var(--radius-4);
-  --radius-large: var(--radius-8);
-  --radius-xl: var(--radius-12);
-
-  // ----------------------------------------------------------
-  // Shadows
-  // ----------------------------------------------------------
-  --shadow-light-50: var(--prim-shadow-light-50);
-  --shadow-light-100: var(--prim-shadow-light-100);
-  --shadow-light-200: var(--prim-shadow-light-200);
-  --shadow-light-300: var(--prim-shadow-light-300);
-  --shadow-sm: var(--shadow-light-50);
-  --shadow-md: var(--shadow-light-100);
-  --shadow-lg: var(--shadow-light-200);
-  --shadow-xl: var(--shadow-light-300);
-
-  // ----------------------------------------------------------
-  // Letter Spacing
-  // ----------------------------------------------------------
-  --letter-spacing-tight: var(--prim-letter-spacing-tight);
-  --letter-spacing-normal: var(--prim-letter-spacing-normal);
-  --letter-spacing-wide: var(--prim-letter-spacing-wide);
-  --letter-spacing-wider: var(--prim-letter-spacing-wider);
-  --letter-spacing-widest: var(--prim-letter-spacing-widest);
-
-  // ----------------------------------------------------------
-  // Border Width
-  // ----------------------------------------------------------
-  --border-width-thin: var(--prim-border-width-thin);
-  --border-width-medium: var(--prim-border-width-medium);
-  --border-width-thick: var(--prim-border-width-thick);
-  --border-width-thicker: var(--prim-border-width-thicker);
-
-  // ----------------------------------------------------------
-  // Opacity
-  // ----------------------------------------------------------
-  --opacity-disabled: var(--prim-opacity-disabled);
-  --opacity-loading: var(--prim-opacity-loading);
-  --opacity-overlay: var(--prim-opacity-overlay);
-  --opacity-hover: var(--prim-opacity-hover);
-  --opacity-focus: var(--prim-opacity-focus);
-  --opacity-pressed: var(--prim-opacity-pressed);
-
-  // ----------------------------------------------------------
-  // Duration
-  // ----------------------------------------------------------
-  --duration-instant: var(--prim-duration-instant);
-  --duration-fast-1: var(--prim-duration-fast-1);
-  --duration-fast-2: var(--prim-duration-fast-2);
-  --duration-moderate-1: var(--prim-duration-moderate-1);
-  --duration-moderate-2: var(--prim-duration-moderate-2);
-  --duration-slow-1: var(--prim-duration-slow-1);
-  --duration-slow-2: var(--prim-duration-slow-2);
-  --duration-slow-3: var(--prim-duration-slow-3);
-
-  // ----------------------------------------------------------
-  // Easing
-  // ----------------------------------------------------------
-  --easing-standard: var(--prim-easing-standard);
-  --easing-decelerate: var(--prim-easing-decelerate);
-  --easing-accelerate: var(--prim-easing-accelerate);
-  --easing-linear: var(--prim-easing-linear);
-  --easing-emphasized: var(--prim-easing-emphasized);
-
-  // ----------------------------------------------------------
-  // Z-Index
-  // ----------------------------------------------------------
-  --z-index-base: var(--prim-z-index-base);
-  --z-index-dropdown: var(--prim-z-index-dropdown);
-  --z-index-sticky: var(--prim-z-index-sticky);
-  --z-index-banner: var(--prim-z-index-banner);
-  --z-index-overlay: var(--prim-z-index-overlay);
-  --z-index-modal: var(--prim-z-index-modal);
-  --z-index-popover: var(--prim-z-index-popover);
-  --z-index-toast: var(--prim-z-index-toast);
-  --z-index-tooltip: var(--prim-z-index-tooltip);
-
-  // ----------------------------------------------------------
-  // Breakpoints
-  // ----------------------------------------------------------
-  --breakpoint-sm: var(--prim-breakpoint-sm);
-  --breakpoint-md: var(--prim-breakpoint-md);
-  --breakpoint-lg: var(--prim-breakpoint-lg);
-  --breakpoint-xl: var(--prim-breakpoint-xl);
-  --breakpoint-xxl: var(--prim-breakpoint-xxl);
-
-  // ----------------------------------------------------------
-  // Blur
-  // ----------------------------------------------------------
-  --blur-none: var(--prim-blur-none);
-  --blur-sm: var(--prim-blur-sm);
-  --blur-md: var(--prim-blur-md);
-  --blur-lg: var(--prim-blur-lg);
-  --blur-xl: var(--prim-blur-xl);
-  --blur-2xl: var(--prim-blur-2xl);
-  --blur-3xl: var(--prim-blur-3xl);
-
-  // ----------------------------------------------------------
-  // Colors — Global
+  // Foundation — black & white passthroughs
   // ----------------------------------------------------------
   --color-white: var(--prim-color-white);
   --color-black: var(--prim-color-black);
-  --color-hover: var(--prim-color-hover);
-  --color-select: var(--prim-color-select);
 
   // ----------------------------------------------------------
-  // Colors — User (Blue) — base + shade aliases
+  // Surfaces (page / card / inputs)
   // ----------------------------------------------------------
-  --color-user-base: var(--prim-color-user-base);
-  --color-user: var(--color-user-base);
-  --color-user-5: var(--prim-color-user-base-5);
-  --color-user-10: var(--prim-color-user-base-10);
-  --color-user-20: var(--prim-color-user-base-20);
-  --color-user-30: var(--prim-color-user-base-30);
-  --color-user-40: var(--prim-color-user-base-40);
-  --color-user-50: var(--prim-color-user-base-50);
-  --color-user-60: var(--prim-color-user-base-60);
-  --color-user-70: var(--prim-color-user-base-70);
-  --color-user-80: var(--prim-color-user-base-80);
-  --color-user-90: var(--prim-color-user-base-90);
-  --color-user-100: var(--prim-color-user-base-100);
-  --color-user-subtle: var(--color-user-5);
-  --color-user-hover: var(--color-user-60);
-  --color-user-text: var(--color-white);
+  --color-surface: var(--prim-color-white);
+  --color-surface-subtle: var(--prim-neutral-250);
 
   // ----------------------------------------------------------
-  // Colors — Admin (Orange) — base + shade aliases
+  // Borders
   // ----------------------------------------------------------
-  --color-admin-base: var(--prim-color-admin-base);
-  --color-admin: var(--color-admin-base);
-  --color-admin-5: var(--prim-color-admin-base-5);
-  --color-admin-10: var(--prim-color-admin-base-10);
-  --color-admin-20: var(--prim-color-admin-base-20);
-  --color-admin-30: var(--prim-color-admin-base-30);
-  --color-admin-40: var(--prim-color-admin-base-40);
-  --color-admin-50: var(--prim-color-admin-base-50);
-  --color-admin-60: var(--prim-color-admin-base-60);
-  --color-admin-70: var(--prim-color-admin-base-70);
-  --color-admin-80: var(--prim-color-admin-base-80);
-  --color-admin-90: var(--prim-color-admin-base-90);
-  --color-admin-100: var(--prim-color-admin-base-100);
-  --color-admin-subtle: var(--color-admin-5);
-  --color-admin-hover: var(--color-admin-60);
-  --color-admin-text: var(--color-white);
+  --color-border-default: var(--prim-neutral-400);
+  --color-border-subtle: var(--prim-neutral-300);
+  --color-border-soft: var(--prim-neutral-250);
+  --color-border-focus: var(--prim-teal-650);
+  --color-border-primary-button-hover: var(--prim-teal-800);
+  --color-border-error-button-default: var(--prim-error-700);
+  --color-border-error-button-hover: var(--prim-error-900);
+  --color-border-warning-button-default: var(--prim-warning-400);
+  --color-border-white-button-hover: var(--prim-neutral-400);
 
   // ----------------------------------------------------------
-  // Colors — Secondary (Gray) — base + shade aliases
+  // Backgrounds (button-specific backgrounds live in _component.scss)
   // ----------------------------------------------------------
-  --color-secondary-base: var(--prim-color-secondary-base);
-  --color-secondary: var(--color-secondary-base);
-  --color-secondary-5: var(--prim-color-secondary-base-5);
-  --color-secondary-10: var(--prim-color-secondary-base-10);
-  --color-secondary-20: var(--prim-color-secondary-base-20);
-  --color-secondary-30: var(--prim-color-secondary-base-30);
-  --color-secondary-40: var(--prim-color-secondary-base-40);
-  --color-secondary-50: var(--prim-color-secondary-base-50);
-  --color-secondary-60: var(--prim-color-secondary-base-60);
-  --color-secondary-70: var(--prim-color-secondary-base-70);
-  --color-secondary-80: var(--prim-color-secondary-base-80);
-  --color-secondary-90: var(--prim-color-secondary-base-90);
-  --color-secondary-100: var(--prim-color-secondary-base-100);
-
-  // ----------------------------------------------------------
-  // Colors — Green (Success) — base + shade aliases
-  // ----------------------------------------------------------
-  --color-green-base: var(--prim-color-green-base);
-  --color-green-5: var(--prim-color-green-base-5);
-  --color-green-10: var(--prim-color-green-base-10);
-  --color-green-20: var(--prim-color-green-base-20);
-  --color-green-30: var(--prim-color-green-base-30);
-  --color-green-40: var(--prim-color-green-base-40);
-  --color-green-50: var(--prim-color-green-base-50);
-  --color-green-60: var(--prim-color-green-base-60);
-  --color-green-70: var(--prim-color-green-base-70);
-  --color-green-80: var(--prim-color-green-base-80);
-  --color-green-90: var(--prim-color-green-base-90);
-  --color-green-100: var(--prim-color-green-base-100);
-
-  // ----------------------------------------------------------
-  // Colors — Warning (Yellow) — base + shade aliases
-  // ----------------------------------------------------------
-  --color-warning-base: var(--prim-color-warning-base);
-  --color-warning-5: var(--prim-color-warning-base-5);
-  --color-warning-10: var(--prim-color-warning-base-10);
-  --color-warning-20: var(--prim-color-warning-base-20);
-  --color-warning-30: var(--prim-color-warning-base-30);
-  --color-warning-40: var(--prim-color-warning-base-40);
-  --color-warning-50: var(--prim-color-warning-base-50);
-  --color-warning-60: var(--prim-color-warning-base-60);
-  --color-warning-70: var(--prim-color-warning-base-70);
-  --color-warning-80: var(--prim-color-warning-base-80);
-  --color-warning-90: var(--prim-color-warning-base-90);
-  --color-warning-100: var(--prim-color-warning-base-100);
-
-  // ----------------------------------------------------------
-  // Colors — Error (Red) — base + shade aliases
-  // ----------------------------------------------------------
-  --color-error-base: var(--prim-color-error-base);
-  --color-error-5: var(--prim-color-error-base-5);
-  --color-error-10: var(--prim-color-error-base-10);
-  --color-error-20: var(--prim-color-error-base-20);
-  --color-error-30: var(--prim-color-error-base-30);
-  --color-error-40: var(--prim-color-error-base-40);
-  --color-error-50: var(--prim-color-error-base-50);
-  --color-error-60: var(--prim-color-error-base-60);
-  --color-error-70: var(--prim-color-error-base-70);
-  --color-error-80: var(--prim-color-error-base-80);
-  --color-error-90: var(--prim-color-error-base-90);
-  --color-error-100: var(--prim-color-error-base-100);
-
-  // ----------------------------------------------------------
-  // Colors — AI (Purple) — base + shade aliases
-  // ----------------------------------------------------------
-  --color-ai-base: var(--prim-color-ai-base);
-  --color-ai: var(--color-ai-base);
-  --color-ai-5: var(--prim-color-ai-base-5);
-  --color-ai-10: var(--prim-color-ai-base-10);
-  --color-ai-20: var(--prim-color-ai-base-20);
-  --color-ai-30: var(--prim-color-ai-base-30);
-  --color-ai-40: var(--prim-color-ai-base-40);
-  --color-ai-50: var(--prim-color-ai-base-50);
-  --color-ai-60: var(--prim-color-ai-base-60);
-  --color-ai-70: var(--prim-color-ai-base-70);
-  --color-ai-80: var(--prim-color-ai-base-80);
-  --color-ai-90: var(--prim-color-ai-base-90);
-  --color-ai-100: var(--prim-color-ai-base-100);
-  --color-ai-subtle: var(--color-ai-5);
-  --color-ai-text: var(--color-ai-60);
-
-  // ----------------------------------------------------------
-  // Colors — Sunoh (Pink) — base + shade aliases
-  // ----------------------------------------------------------
-  --color-sunoh-base: var(--prim-color-sunoh-base);
-  --color-sunoh: var(--color-sunoh-base);
-  --color-sunoh-5: var(--prim-color-sunoh-base-5);
-  --color-sunoh-10: var(--prim-color-sunoh-base-10);
-  --color-sunoh-20: var(--prim-color-sunoh-base-20);
-  --color-sunoh-30: var(--prim-color-sunoh-base-30);
-  --color-sunoh-40: var(--prim-color-sunoh-base-40);
-  --color-sunoh-50: var(--prim-color-sunoh-base-50);
-  --color-sunoh-60: var(--prim-color-sunoh-base-60);
-  --color-sunoh-70: var(--prim-color-sunoh-base-70);
-  --color-sunoh-80: var(--prim-color-sunoh-base-80);
-  --color-sunoh-90: var(--prim-color-sunoh-base-90);
-  --color-sunoh-100: var(--prim-color-sunoh-base-100);
-  --color-sunoh-subtle: var(--color-sunoh-5);
-  --color-sunoh-text: var(--color-sunoh-60);
-
-  // ----------------------------------------------------------
-  // Surface
-  // ----------------------------------------------------------
-  --color-surface: var(--color-white);
-  --color-surface-hover: var(--color-hover);
-  --color-surface-selected: var(--color-select);
-  --color-surface-subtle: var(--color-secondary-10);
-  --color-surface-disabled: var(--color-secondary-20);
+  --color-bg-error-button-default: var(--prim-error-700);
+  --color-bg-error-button-hover: var(--prim-error-800);
+  --color-bg-warning-button-hover: var(--prim-warning-400);
+  --color-bg-jellybean-yellow: var(--prim-warning-300);
 
   // ----------------------------------------------------------
   // Text
   // ----------------------------------------------------------
-  --color-text-primary: var(--color-secondary-100);
-  --color-text-secondary: var(--color-secondary-80);
-  --color-text-disabled: var(--color-secondary-60);
-  --color-text-inverse: var(--color-white);
-  --color-text-link: var(--color-user-base);
-  --color-text-link-hover: var(--color-user-60);
+  --color-text-primary: var(--prim-neutral-700);
+  --color-text-secondary: var(--prim-neutral-600);
+  --color-text-disabled: var(--prim-neutral-500);
+  --color-text-inverse: var(--prim-color-white);
+  --color-text-error-button-default: var(--prim-color-white);
+  --color-text-warning-button-default: var(--prim-warning-900);
+  --color-text-jellybean-yellow: var(--prim-warning-900);
+  --color-text-card-footer-subtle: var(--prim-neutral-600);
 
   // ----------------------------------------------------------
-  // Border
+  // Icons
   // ----------------------------------------------------------
-  --color-border-default: var(--color-secondary-40);
-  --color-border-strong: var(--color-secondary-60);
-  --color-border-focus: var(--color-user-base);
-  --color-border-error: var(--color-error-base);
+  --color-icon-inverse: var(--prim-color-white);
+  --color-icon-error-button-default: var(--prim-color-white);
 
   // ----------------------------------------------------------
-  // Status — Success
+  // Status
   // ----------------------------------------------------------
-  --color-status-success: var(--color-green-base);
-  --color-status-success-subtle: var(--color-green-5);
-  --color-status-success-text: var(--color-green-60);
-
-  // ----------------------------------------------------------
-  // Status — Warning
-  // ----------------------------------------------------------
-  --color-status-warning: var(--color-warning-base);
-  --color-status-warning-subtle: var(--color-warning-5);
-  --color-status-warning-text: var(--color-warning-70);
-
-  // ----------------------------------------------------------
-  // Status — Error
-  // ----------------------------------------------------------
-  --color-status-error: var(--color-error-base);
-  --color-status-error-subtle: var(--color-error-5);
-  --color-status-error-text: var(--color-error-60);
-
-  // ----------------------------------------------------------
-  // Icon colors
-  // ----------------------------------------------------------
-  --color-icon-default: var(--color-secondary-90);
-  --color-icon-secondary: var(--color-secondary-70);
-  --color-icon-disabled: var(--color-secondary-60);
-  --color-icon-inverse: var(--color-white);
-  --color-icon-user: var(--color-user-base);
-  --color-icon-admin: var(--color-admin-base);
-  --color-icon-success: var(--color-green-base);
-  --color-icon-error: var(--color-error-base);
-  --color-icon-warning: var(--color-warning-base);
-  --color-icon-ai: var(--color-ai-base);
-  --color-icon-sunoh: var(--color-sunoh-base);
-
-  // ----------------------------------------------------------
-  // Surface container hierarchy (background layers)
-  // ----------------------------------------------------------
-  --color-surface-container-lowest: var(--color-white);
-  --color-surface-container-low: var(--color-secondary-5);
-  --color-surface-container: var(--color-secondary-10);
-  --color-surface-container-high: var(--color-secondary-20);
-  --color-surface-container-highest: var(--color-secondary-30);
-
-  // ----------------------------------------------------------
-  // Focus ring
-  // ----------------------------------------------------------
-  --focus-ring-width: 2px;
-  --focus-ring-offset: 2px;
-  --focus-ring-color: var(--color-border-focus);
-
-  // ----------------------------------------------------------
-  // Motion — semantic durations
-  // ----------------------------------------------------------
-  --motion-duration-instant: var(--duration-instant);
-  --motion-duration-fast: var(--duration-fast-2);
-  --motion-duration-normal: var(--duration-moderate-2);
-  --motion-duration-slow: var(--duration-slow-1);
-  --motion-duration-slower: var(--duration-slow-2);
-
-  // ----------------------------------------------------------
-  // Motion — semantic easings
-  // ----------------------------------------------------------
-  --motion-easing-standard: var(--easing-standard);
-  --motion-easing-decelerate: var(--easing-decelerate);
-  --motion-easing-accelerate: var(--easing-accelerate);
-  --motion-easing-linear: var(--easing-linear);
-  --motion-easing-emphasized: var(--easing-emphasized);
-
-  // ----------------------------------------------------------
-  // Overlay / Backdrop / Skeleton
-  // ----------------------------------------------------------
-  --color-overlay: rgba(0, 0, 0, 0.5);
-  --color-skeleton: var(--color-secondary-30);
-  --color-skeleton-subtle: var(--color-secondary-20);
-
-  // ----------------------------------------------------------
-  // State layer opacity
-  // ----------------------------------------------------------
-  --state-hover-opacity: var(--opacity-hover);
-  --state-focus-opacity: var(--opacity-focus);
-  --state-pressed-opacity: var(--opacity-pressed);
-  --state-disabled-opacity: var(--opacity-disabled);
-
-  // ----------------------------------------------------------
-  // Content width (readable text)
-  // ----------------------------------------------------------
-  --content-width-narrow: 45ch;
-  --content-width-medium: 60ch;
-  --content-width-wide: 80ch;
+  --color-status-error-bg: var(--prim-error-300);
+  --color-status-error-fg: var(--prim-error-700);
+  --color-status-warning-bg: var(--prim-warning-200);
+  --color-status-warning-fg: var(--prim-warning-900);
+  --color-status-confirmation-bg: var(--prim-confirmation-900);   // Only 900 step confirmed — light bg may need a confirmation/100 added later
+  --color-status-confirmation-fg: var(--prim-confirmation-900);
+  --color-status-dirty-flag-bg: var(--prim-orange-100);
+  --color-status-dirty-flag-fg: var(--prim-orange-900);
+  --color-status-communication-bg: var(--prim-teal-50);
+  --color-status-communication-fg: var(--prim-teal-700);
 }

@@ -1,3 +1,6 @@
+// PROVISIONAL HEX VALUES — derived from old palette hues by visual lightness.
+// Replace with real CODE-A-TON Library values when available.
+
 // ============================================================
 // PRIMITIVE TOKENS
 // Raw design values sourced directly from Figma variables.
@@ -21,7 +24,6 @@
   // ----------------------------------------------------------
   // LINE HEIGHT
   // ----------------------------------------------------------
-  --16: 16px;
   --20: 20px;
 
   // ----------------------------------------------------------
@@ -62,138 +64,59 @@
   // ----------------------------------------------------------
   // COLORS — Global
   // ----------------------------------------------------------
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-hover: #fbf3e6;
-  --color-select: #f7e7ce;
+  --prim-color-white: #ffffff;
+  --prim-color-black: #000000;
 
   // ----------------------------------------------------------
-  // COLORS — User (Blue)
+  // COLORS — Teal
   // ----------------------------------------------------------
-  --color-user-base: #0378a7;
-  --color-user-base-5: #f1fbff;
-  --color-user-base-10: #cde4ed;
-  --color-user-base-20: #abd2e2;
-  --color-user-base-30: #81bbd3;
-  --color-user-base-40: #57a5c4;
-  --color-user-base-50: #2d8eb6;
-  --color-user-base-60: #03648b;
-  --color-user-base-70: #02506f;
-  --color-user-base-80: #023c54;
-  --color-user-base-90: #012837;
-  --color-user-base-100: #011821;
+  --prim-teal-50: #e6f4f8;
+  --prim-teal-650: #03648b;
+  --prim-teal-700: #02506f;
+  --prim-teal-800: #023c54;
 
   // ----------------------------------------------------------
-  // COLORS — Admin (Orange)
+  // COLORS — Orange
   // ----------------------------------------------------------
-  --color-admin-base: #e88842;
-  --color-admin-base-5: #fff3ea;
-  --color-admin-base-10: #fae7d9;
-  --color-admin-base-20: #f7d7c0;
-  --color-admin-base-30: #f3c3a0;
-  --color-admin-base-40: #f0b081;
-  --color-admin-base-50: #ec9c62;
-  --color-admin-base-60: #c17137;
-  --color-admin-base-70: #9b5b2c;
-  --color-admin-base-80: #744421;
-  --color-admin-base-90: #4d2d16;
-  --color-admin-base-100: #2e1b0d;
+  --prim-orange-75: #fff3ea;
+  --prim-orange-100: #fae7d9;
+  --prim-orange-200: #f7d7c0;
+  --prim-orange-900: #4d2d16;
 
   // ----------------------------------------------------------
-  // COLORS — Secondary (Gray)
+  // COLORS — Neutral
   // ----------------------------------------------------------
-  --color-secondary-base: #e1e1e1;
-  --color-secondary-base-5: #fbfbfb;
-  --color-secondary-base-10: #f7f7f7;
-  --color-secondary-base-20: #f5f5f5;
-  --color-secondary-base-30: #f0f0f0;
-  --color-secondary-base-40: #ebebeb;
-  --color-secondary-base-50: #e6e6e6;
-  --color-secondary-base-60: #bcbcbc;
-  --color-secondary-base-70: #969696;
-  --color-secondary-base-80: #717171;
-  --color-secondary-base-90: #4b4b4b;
-  --color-secondary-base-100: #2d2d2d;
+  --prim-neutral-250: #f0f0f0;
+  --prim-neutral-300: #e6e6e6;
+  --prim-neutral-350: #d6d6d6;
+  --prim-neutral-400: #c0c0c0;
+  --prim-neutral-500: #969696;
+  --prim-neutral-600: #717171;
+  --prim-neutral-700: #4b4b4b;
 
   // ----------------------------------------------------------
-  // COLORS — Warning (Yellow)
+  // COLORS — Error
   // ----------------------------------------------------------
-  --color-warning-base: #fbce2a;
-  --color-warning-base-5: #fff9eb;
-  --color-warning-base-10: #fef5d4;
-  --color-warning-base-20: #feefb8;
-  --color-warning-base-30: #fde795;
-  --color-warning-base-40: #fcde71;
-  --color-warning-base-50: #fcd64e;
-  --color-warning-base-60: #d1ac23;
-  --color-warning-base-70: #a7891c;
-  --color-warning-base-80: #7e6715;
-  --color-warning-base-90: #54450e;
-  --color-warning-base-100: #322908;
+  --prim-error-300: #ec9393;
+  --prim-error-700: #901a1a;
+  --prim-error-800: #6c1414;
+  --prim-error-900: #480d0d;
+  --prim-error-1000: #2b0808;
 
   // ----------------------------------------------------------
-  // COLORS — Error (Red)
+  // COLORS — Warning
   // ----------------------------------------------------------
-  --color-error-base: #d82727;
-  --color-error-base-5: #ffefef;
-  --color-error-base-10: #f7d4d4;
-  --color-error-base-20: #f2b7b7;
-  --color-error-base-30: #ec9393;
-  --color-error-base-40: #e56f6f;
-  --color-error-base-50: #df4b4b;
-  --color-error-base-60: #b42121;
-  --color-error-base-70: #901a1a;
-  --color-error-base-80: #6c1414;
-  --color-error-base-90: #480d0d;
-  --color-error-base-100: #2b0808;
+  --prim-warning-200: #feefb8;
+  --prim-warning-300: #fde795;
+  --prim-warning-350: #fde08a;
+  --prim-warning-400: #fcde71;
+  --prim-warning-800: #7e6715;
+  --prim-warning-900: #54450e;
 
   // ----------------------------------------------------------
-  // COLORS — Green (Success)
+  // COLORS — Confirmation
   // ----------------------------------------------------------
-  --color-green-base: #018145;
-  --color-green-base-5: #f1fef8;
-  --color-green-base-10: #cce6da;
-  --color-green-base-20: #aad5c1;
-  --color-green-base-30: #80c0a2;
-  --color-green-base-40: #56ab83;
-  --color-green-base-50: #2b9664;
-  --color-green-base-60: #016c3a;
-  --color-green-base-70: #01562e;
-  --color-green-base-80: #014123;
-  --color-green-base-90: #002b17;
-  --color-green-base-100: #001a0e;
-
-  // ----------------------------------------------------------
-  // COLORS — AI (Purple)
-  // ----------------------------------------------------------
-  --color-ai-base: #7d58da;
-  --color-ai-base-5: #f7f2ff;
-  --color-ai-base-10: #e5def8;
-  --color-ai-base-20: #d4c7f3;
-  --color-ai-base-30: #beabec;
-  --color-ai-base-40: #a890e6;
-  --color-ai-base-50: #9374e0;
-  --color-ai-base-60: #6849b6;
-  --color-ai-base-70: #533b91;
-  --color-ai-base-80: #3f2c6d;
-  --color-ai-base-90: #2a1d49;
-  --color-ai-base-100: #19122c;
-
-  // ----------------------------------------------------------
-  // COLORS — Sunoh (Pink)
-  // ----------------------------------------------------------
-  --color-sunoh-base: #fb2b66;
-  --color-sunoh-base-5: #ffebf0;
-  --color-sunoh-base-10: #fed5e0;
-  --color-sunoh-base-20: #feb8cc;
-  --color-sunoh-base-30: #fd95b3;
-  --color-sunoh-base-40: #fc7299;
-  --color-sunoh-base-50: #fc4e80;
-  --color-sunoh-base-60: #d12455;
-  --color-sunoh-base-70: #a71d44;
-  --color-sunoh-base-80: #7e1633;
-  --color-sunoh-base-90: #540e22;
-  --color-sunoh-base-100: #320914;
+  --prim-confirmation-900: #002b17;
 
   // ----------------------------------------------------------
   // LETTER SPACING
