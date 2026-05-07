@@ -9,6 +9,10 @@ const ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fi
   <rect x="9" y="9" width="5" height="5" rx="1"/>
 </svg>`;
 
+const ARROW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 8h10M9 4l4 4-4 4"/>
+</svg>`;
+
 const meta: Meta<ButtonComponent> = {
   title: 'Components/Button',
   component: ButtonComponent,
@@ -18,287 +22,189 @@ const meta: Meta<ButtonComponent> = {
     docs: {
       description: {
         component:
-          'Core interactive button. Supports **3 variants** (filled, outlined, ghost), ' +
-          '**6 color themes** derived from Figma design tokens, **3 sizes**, ' +
-          'and optional icon placement (left, right, or icon-only).',
+          'Core interactive button driven by Figma CODE-A-TON Library tokens. ' +
+          'Five **types** (primary, secondary, white, error, warning), two **styles** ' +
+          '(default, divided), three **sizes**, plus optional alert indicator and counter chip.',
       },
     },
   },
   argTypes: {
-    label: {
-      description: 'Button label text.',
-      control: 'text',
-      table: { defaultValue: { summary: 'Label' } },
-    },
-    variant: {
-      description:
-        '**filled** — solid background. **outlined** — white background with colored border. **ghost** — transparent with colored text.',
+    label: { control: 'text', table: { defaultValue: { summary: 'Button' } } },
+    type: {
       control: 'select',
-      options: ['filled', 'outlined', 'ghost'],
-      table: { defaultValue: { summary: 'filled' } },
+      options: ['primary', 'secondary', 'white', 'error', 'warning'],
+      table: { defaultValue: { summary: 'primary' } },
     },
-    color: {
-      description:
-        'Color theme drawn from the design token palette. `secondary` produces a neutral gray outlined or ghost button.',
+    btnStyle: {
       control: 'select',
-      options: ['user', 'admin', 'secondary', 'success', 'error', 'sunoh'],
-      table: { defaultValue: { summary: 'user' } },
+      options: ['default', 'divided'],
+      table: { defaultValue: { summary: 'default' } },
     },
     size: {
-      description: '**sm** — 24 px height. **md** — 32 px (default). **lg** — 40 px.',
       control: 'select',
       options: ['sm', 'md', 'lg'],
       table: { defaultValue: { summary: 'md' } },
     },
-    icon: {
-      description: 'Inline SVG string rendered inside the button. Sanitized automatically.',
-      control: 'text',
-      table: { defaultValue: { summary: 'undefined' } },
-    },
-    iconPosition: {
-      description:
-        '**left** — icon precedes label. **right** — icon follows label. **only** — hides label, renders icon only (square button).',
-      control: 'select',
-      options: ['left', 'right', 'only'],
-      table: { defaultValue: { summary: 'left' } },
-    },
-    disabled: {
-      description: 'Disables interaction and applies the disabled visual state.',
-      control: 'boolean',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    buttonClick: {
-      description: 'Emits a `MouseEvent` when the button is clicked (not emitted when disabled).',
-      table: { category: 'Events' },
-    },
+    disabled: { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    iconOnly: { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    alertIndicator: { control: 'boolean', table: { defaultValue: { summary: 'false' } } },
+    counter: { control: 'text' },
+    icon: { control: 'text' },
+    trailingIcon: { control: 'text' },
+    dividerIcon: { control: 'text' },
+    buttonClick: { table: { category: 'Events' } },
+    dividerClick: { table: { category: 'Events' } },
   },
   args: {
-    label: 'Label',
-    variant: 'filled',
-    color: 'user',
+    label: 'Button',
+    type: 'primary',
+    btnStyle: 'default',
     size: 'md',
     disabled: false,
+    iconOnly: false,
+    alertIndicator: false,
+    counter: null,
     buttonClick: fn(),
+    dividerClick: fn(),
   },
 };
 
 export default meta;
 type Story = StoryObj<ButtonComponent>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+export const Playground: Story = { name: 'Playground' };
 
-export const Playground: Story = {
-  name: 'Playground',
+export const Types: Story = {
+  name: 'Types',
   parameters: {
-    docs: { description: { story: 'Use the Controls panel below to interactively configure every prop.' } },
-  },
-};
-
-// ─── Overview (matches Figma top row) ────────────────────────────────────────
-
-export const Overview: Story = {
-  name: 'Overview',
-  parameters: {
-    docs: {
-      description: {
-        story: 'All 10 top-level variants from the Figma Buttons spec sheet.',
-      },
-    },
-  },
-  render: () => ({
-    props: { icon: ICON_SVG },
-    template: `
-      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding:16px;border:1px solid #e1e1e1;border-radius:8px">
-        <ds-button label="Label" variant="filled"   color="user"      size="md"></ds-button>
-        <ds-button label="Label" variant="filled"   color="admin"     size="md"></ds-button>
-        <ds-button label="Label" variant="outlined" color="secondary" size="md"></ds-button>
-        <ds-button label="Label" variant="outlined" color="user"      size="md" [icon]="icon" iconPosition="left"></ds-button>
-        <ds-button label="Label" variant="ghost"    color="secondary" size="md"></ds-button>
-        <ds-button label="Label" variant="filled"   color="success"   size="md"></ds-button>
-        <ds-button label="Label" variant="filled"   color="error"     size="md"></ds-button>
-        <ds-button label="Label" variant="filled"   color="sunoh"     size="md"></ds-button>
-        <ds-button label="Label" variant="ghost"    color="user"      size="md"></ds-button>
-        <ds-button label="Label" variant="ghost"    color="admin"     size="md"></ds-button>
-      </div>
-    `,
-  }),
-};
-
-// ─── Filled ───────────────────────────────────────────────────────────────────
-
-export const Filled: Story = {
-  name: 'Filled',
-  parameters: {
-    docs: { description: { story: 'Solid background. Use for primary actions.' } },
+    docs: { description: { story: 'All five button types in default style.' } },
   },
   render: () => ({
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <ds-button label="User"    variant="filled" color="user"      size="md"></ds-button>
-        <ds-button label="Admin"   variant="filled" color="admin"     size="md"></ds-button>
-        <ds-button label="Success" variant="filled" color="success"   size="md"></ds-button>
-        <ds-button label="Error"   variant="filled" color="error"     size="md"></ds-button>
-        <ds-button label="Sunoh"   variant="filled" color="sunoh"     size="md"></ds-button>
-        <ds-button label="Neutral" variant="filled" color="secondary" size="md"></ds-button>
+        <ds-button label="Primary"   type="primary"></ds-button>
+        <ds-button label="Secondary" type="secondary"></ds-button>
+        <ds-button label="White"     type="white"></ds-button>
+        <ds-button label="Error"     type="error"></ds-button>
+        <ds-button label="Warning"   type="warning"></ds-button>
+        <ds-button label="Disabled"  type="primary" [disabled]="true"></ds-button>
       </div>
     `,
   }),
 };
-
-// ─── Outlined ────────────────────────────────────────────────────────────────
-
-export const Outlined: Story = {
-  name: 'Outlined',
-  parameters: {
-    docs: { description: { story: 'White background with a colored border. Use for secondary actions.' } },
-  },
-  render: () => ({
-    template: `
-      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <ds-button label="User"      variant="outlined" color="user"      size="md"></ds-button>
-        <ds-button label="Secondary" variant="outlined" color="secondary" size="md"></ds-button>
-        <ds-button label="Admin"     variant="outlined" color="admin"     size="md"></ds-button>
-        <ds-button label="Success"   variant="outlined" color="success"   size="md"></ds-button>
-        <ds-button label="Error"     variant="outlined" color="error"     size="md"></ds-button>
-        <ds-button label="Sunoh"     variant="outlined" color="sunoh"     size="md"></ds-button>
-      </div>
-    `,
-  }),
-};
-
-// ─── Ghost ────────────────────────────────────────────────────────────────────
-
-export const Ghost: Story = {
-  name: 'Ghost',
-  parameters: {
-    docs: { description: { story: 'No background or border — colored text only. Use for tertiary/inline actions.' } },
-  },
-  render: () => ({
-    template: `
-      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <ds-button label="User"      variant="ghost" color="user"      size="md"></ds-button>
-        <ds-button label="Admin"     variant="ghost" color="admin"     size="md"></ds-button>
-        <ds-button label="Secondary" variant="ghost" color="secondary" size="md"></ds-button>
-        <ds-button label="Success"   variant="ghost" color="success"   size="md"></ds-button>
-        <ds-button label="Error"     variant="ghost" color="error"     size="md"></ds-button>
-        <ds-button label="Sunoh"     variant="ghost" color="sunoh"     size="md"></ds-button>
-      </div>
-    `,
-  }),
-};
-
-// ─── Sizes ────────────────────────────────────────────────────────────────────
 
 export const Sizes: Story = {
   name: 'Sizes',
-  parameters: {
-    docs: { description: { story: '`sm` = 24 px · `md` = 32 px · `lg` = 40 px.' } },
-  },
   render: () => ({
     template: `
-      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center">
-        <ds-button label="Small"  variant="filled" color="user" size="sm"></ds-button>
-        <ds-button label="Medium" variant="filled" color="user" size="md"></ds-button>
-        <ds-button label="Large"  variant="filled" color="user" size="lg"></ds-button>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <ds-button label="Small"  type="primary" size="sm"></ds-button>
+        <ds-button label="Medium" type="primary" size="md"></ds-button>
+        <ds-button label="Large"  type="primary" size="lg"></ds-button>
       </div>
     `,
   }),
 };
-
-// ─── With Icons ───────────────────────────────────────────────────────────────
 
 export const WithIcons: Story = {
   name: 'With Icons',
-  parameters: {
-    docs: { description: { story: 'Pass an inline SVG to `icon` and set `iconPosition` to `left` or `right`.' } },
-  },
   render: () => ({
-    props: { icon: ICON_SVG },
+    props: { icon: ICON_SVG, trailing: ARROW_SVG },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <ds-button label="Icon Left"  variant="filled"   color="user"      size="md" [icon]="icon" iconPosition="left"></ds-button>
-        <ds-button label="Icon Right" variant="filled"   color="admin"     size="md" [icon]="icon" iconPosition="right"></ds-button>
-        <ds-button label="Outlined"   variant="outlined" color="user"      size="md" [icon]="icon" iconPosition="left"></ds-button>
-        <ds-button label="Ghost"      variant="ghost"    color="user"      size="md" [icon]="icon" iconPosition="left"></ds-button>
+        <ds-button label="Leading"   type="primary"   [icon]="icon"></ds-button>
+        <ds-button label="Trailing"  type="secondary" [trailingIcon]="trailing"></ds-button>
+        <ds-button label="Both"      type="white"     [icon]="icon" [trailingIcon]="trailing"></ds-button>
+        <ds-button label="Error"     type="error"     [icon]="icon"></ds-button>
+        <ds-button label="Warning"   type="warning"   [icon]="icon"></ds-button>
       </div>
     `,
   }),
 };
-
-// ─── Custom Image Template ────────────────────────────────────────────────────
-
-export const CustomImageTemplate: Story = {
-  name: 'Custom Image Template',
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Use `<ng-template #dsIcon>` inside `<ds-button>` to pass a custom image or any element as the icon. ' +
-          'Works with all variants, colors, and `iconPosition` values.',
-      },
-    },
-  },
-  render: () => ({
-    template: `
-      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <ds-button label="Custom Image Left" variant="filled" color="user" size="md" iconPosition="left">
-          <ng-template #dsIcon>
-            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="" style="width:1em;height:1em;object-fit:contain" />
-          </ng-template>
-        </ds-button>
-
-        <ds-button label="Custom Image Right" variant="outlined" color="admin" size="md" iconPosition="right">
-          <ng-template #dsIcon>
-            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="" style="width:1em;height:1em;object-fit:contain" />
-          </ng-template>
-        </ds-button>
-
-        <ds-button variant="filled" color="success" size="lg" iconPosition="only" label="Icon only">
-          <ng-template #dsIcon>
-            <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" alt="" style="width:1em;height:1em;object-fit:contain" />
-          </ng-template>
-        </ds-button>
-      </div>
-    `,
-  }),
-};
-
-// ─── Icon Only ────────────────────────────────────────────────────────────────
 
 export const IconOnly: Story = {
   name: 'Icon Only',
-  parameters: {
-    docs: { description: { story: 'Set `iconPosition="only"` for square icon buttons. Label is used as `aria-label`.' } },
-  },
   render: () => ({
     props: { icon: ICON_SVG },
     template: `
       <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <ds-button variant="filled"   color="user"      size="lg" [icon]="icon" iconPosition="only" label="User"></ds-button>
-        <ds-button variant="filled"   color="admin"     size="lg" [icon]="icon" iconPosition="only" label="Admin"></ds-button>
-        <ds-button variant="outlined" color="secondary" size="lg" [icon]="icon" iconPosition="only" label="Secondary"></ds-button>
-        <ds-button variant="outlined" color="user"      size="lg" [icon]="icon" iconPosition="only" label="User outlined"></ds-button>
-        <ds-button variant="filled"   color="success"   size="lg" [icon]="icon" iconPosition="only" label="Success"></ds-button>
-        <ds-button variant="filled"   color="error"     size="lg" [icon]="icon" iconPosition="only" label="Error"></ds-button>
-        <ds-button variant="filled"   color="sunoh"     size="lg" [icon]="icon" iconPosition="only" label="Sunoh"></ds-button>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:12px">
-        <ds-button variant="filled"   color="user"      size="sm" [icon]="icon" iconPosition="only" label="User sm"></ds-button>
-        <ds-button variant="filled"   color="admin"     size="sm" [icon]="icon" iconPosition="only" label="Admin sm"></ds-button>
-        <ds-button variant="outlined" color="secondary" size="sm" [icon]="icon" iconPosition="only" label="Secondary sm"></ds-button>
-        <ds-button variant="filled"   color="success"   size="sm" [icon]="icon" iconPosition="only" label="Success sm"></ds-button>
-        <ds-button variant="filled"   color="error"     size="sm" [icon]="icon" iconPosition="only" label="Error sm"></ds-button>
-        <ds-button variant="filled"   color="sunoh"     size="sm" [icon]="icon" iconPosition="only" label="Sunoh sm"></ds-button>
+        <ds-button label="Primary"   type="primary"   [icon]="icon" [iconOnly]="true"></ds-button>
+        <ds-button label="Secondary" type="secondary" [icon]="icon" [iconOnly]="true"></ds-button>
+        <ds-button label="White"     type="white"     [icon]="icon" [iconOnly]="true"></ds-button>
+        <ds-button label="Error"     type="error"     [icon]="icon" [iconOnly]="true"></ds-button>
+        <ds-button label="Warning"   type="warning"   [icon]="icon" [iconOnly]="true"></ds-button>
       </div>
     `,
   }),
 };
 
-// ─── Interaction Tests ────────────────────────────────────────────────────────
+export const AlertIndicator: Story = {
+  name: 'Alert Indicator',
+  parameters: {
+    docs: { description: { story: 'Red dot in top-right signals notification or pending action.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;padding:8px">
+        <ds-button label="Primary"   type="primary"   [alertIndicator]="true"></ds-button>
+        <ds-button label="Secondary" type="secondary" [alertIndicator]="true"></ds-button>
+        <ds-button label="Error"     type="error"     [alertIndicator]="true"></ds-button>
+        <ds-button label="Warning"   type="warning"   [alertIndicator]="true"></ds-button>
+      </div>
+    `,
+  }),
+};
+
+export const Counter: Story = {
+  name: 'With Counter',
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <ds-button label="Inbox"   type="primary"   [counter]="3"></ds-button>
+        <ds-button label="Notices" type="secondary" [counter]="999"></ds-button>
+        <ds-button label="Items"   type="white"     [counter]="42"></ds-button>
+      </div>
+    `,
+  }),
+};
+
+export const Divided: Story = {
+  name: 'Divided (Split Button)',
+  parameters: {
+    docs: { description: { story: 'Divided style adds a chevron action segment for menu/split actions. Pass `dividerIcon` to override.' } },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-direction:column;gap:16px;padding:8px">
+        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+          <ds-button label="Primary"   type="primary"   btnStyle="divided"></ds-button>
+          <ds-button label="Secondary" type="secondary" btnStyle="divided"></ds-button>
+          <ds-button label="White"     type="white"     btnStyle="divided"></ds-button>
+          <ds-button label="Error"     type="error"     btnStyle="divided"></ds-button>
+          <ds-button label="Warning"   type="warning"   btnStyle="divided"></ds-button>
+          <ds-button label="Disabled"  type="primary"   btnStyle="divided" [disabled]="true"></ds-button>
+        </div>
+      </div>
+    `,
+  }),
+};
+
+export const Disabled: Story = {
+  name: 'Disabled',
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+        <ds-button label="Primary"   type="primary"   [disabled]="true"></ds-button>
+        <ds-button label="Secondary" type="secondary" [disabled]="true"></ds-button>
+        <ds-button label="Divided"   type="primary"   btnStyle="divided" [disabled]="true"></ds-button>
+      </div>
+    `,
+  }),
+};
 
 export const ClickEmitsEvent: Story = {
   name: 'Interaction: Click emits event',
-  args: { label: 'Click me', variant: 'filled', color: 'user', size: 'md', disabled: false },
+  args: { label: 'Click me', type: 'primary', size: 'md', disabled: false },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: /click me/i });
@@ -307,32 +213,12 @@ export const ClickEmitsEvent: Story = {
   },
 };
 
-export const DisabledButtonNotClickable: Story = {
+export const DisabledNotClickable: Story = {
   name: 'Interaction: Disabled button is not clickable',
-  args: { label: 'Disabled', variant: 'filled', color: 'user', size: 'md', disabled: true },
+  args: { label: 'Disabled', type: 'primary', size: 'md', disabled: true },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const button = canvas.getByRole('button', { name: /disabled/i });
     await expect(button).toBeDisabled();
   },
-};
-
-// ─── Disabled ────────────────────────────────────────────────────────────────
-
-export const Disabled: Story = {
-  name: 'Disabled',
-  parameters: {
-    docs: { description: { story: 'All variants show the same disabled state: muted border and text, no pointer events.' } },
-  },
-  render: () => ({
-    props: { icon: ICON_SVG },
-    template: `
-      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-        <ds-button label="Filled"   variant="filled"   color="user"      size="md" [disabled]="true"></ds-button>
-        <ds-button label="Outlined" variant="outlined" color="secondary" size="md" [disabled]="true"></ds-button>
-        <ds-button label="Ghost"    variant="ghost"    color="user"      size="md" [disabled]="true"></ds-button>
-        <ds-button variant="filled" color="user"       size="md" [icon]="icon" iconPosition="only" label="icon" [disabled]="true"></ds-button>
-      </div>
-    `,
-  }),
 };

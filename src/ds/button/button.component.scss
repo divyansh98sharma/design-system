@@ -1,46 +1,51 @@
 // ─── Base ────────────────────────────────────────────────────────────────────
 
-.p-button {
+:host {
+  display: inline-flex;
+}
+
+.ds-button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--button-md-gap);
+  gap: var(--button-gap);
+  height: var(--button-md-height);
+  min-width: var(--button-min-width);
+  padding: var(--button-padding-y) var(--button-md-padding-x);
   border: 1px solid transparent;
   border-radius: var(--button-radius);
   font-family: var(--font-family-base);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1;
+  font-size: var(--button-md-font-size);
+  font-weight: var(--button-font-weight);
+  line-height: var(--button-line-height);
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
-  text-decoration: none;
-  outline-offset: 2px;
-
-  // Medium size (default)
-  height: var(--button-md-height);
-  padding: 0 var(--button-md-padding-x);
-  font-size: var(--button-font-size);
-
-  .p-button-icon { font-size: var(--button-md-icon-size); }
-
-  &.p-button-icon-only {
-    width: var(--button-md-height);
-    padding: 0;
-  }
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
+  appearance: none;
+  text-align: center;
 
   &:focus-visible {
     outline: 2px solid var(--button-focus-color);
     outline-offset: 2px;
   }
+
+  &--icon-only {
+    width: var(--button-md-height);
+    padding: 0;
+  }
 }
 
-.p-button-icon {
+.ds-button__icon {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
+  font-size: var(--button-md-icon-size);
+  line-height: 0;
 
-  // ::ng-deep needed because SVG is injected via [innerHTML]
-  // and doesn't receive Angular's scoped attribute
   /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
   ::ng-deep svg {
     display: block;
@@ -56,140 +61,312 @@
   }
 }
 
-.p-button-label {
+.ds-button__label {
   display: inline-block;
+}
+
+.ds-button__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--button-counter-padding-x);
+  background: var(--button-counter-bg);
+  border: var(--button-counter-stroke) solid var(--button-counter-border);
+  border-radius: var(--button-counter-radius);
+  color: var(--button-counter-text);
+  font-size: var(--button-md-font-size);
+  line-height: var(--button-line-height);
+}
+
+.ds-button__alert {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: var(--button-alert-size);
+  height: var(--button-alert-size);
+  background: var(--button-alert-bg);
+  border-radius: var(--button-alert-radius);
+  pointer-events: none;
 }
 
 // ─── Sizes ───────────────────────────────────────────────────────────────────
 
-.p-button-sm {
+.ds-button--sm {
   height: var(--button-sm-height);
-  padding: 0 var(--button-sm-padding-x);
   font-size: var(--button-sm-font-size);
   gap: var(--button-sm-gap);
+  padding-left: var(--button-sm-padding-x);
+  padding-right: var(--button-sm-padding-x);
 
-  .p-button-icon { font-size: var(--button-sm-icon-size); }
+  .ds-button__icon { font-size: var(--button-sm-icon-size); }
 
-  &.p-button-icon-only {
-    width: var(--button-sm-height);
-    padding: 0;
+  &.ds-button--icon-only { width: var(--button-sm-height); padding: 0; }
+}
+
+.ds-button--lg {
+  height: var(--button-lg-height);
+  font-size: var(--button-lg-font-size);
+  gap: var(--button-lg-gap);
+  padding-left: var(--button-lg-padding-x);
+  padding-right: var(--button-lg-padding-x);
+
+  .ds-button__icon { font-size: var(--button-lg-icon-size); }
+
+  &.ds-button--icon-only { width: var(--button-lg-height); padding: 0; }
+}
+
+// ─── Type variants (single button — non-divided) ─────────────────────────────
+
+@mixin type-colors($bg, $bg-hover, $border, $border-hover, $text) {
+  background: var($bg);
+  border-color: var($border);
+  color: var($text);
+
+  &:hover:not(:disabled) {
+    background: var($bg-hover);
+    border-color: var($border-hover);
   }
 }
 
-.p-button-lg {
-  height: var(--button-lg-height);
-  padding: 0 var(--button-lg-padding-x);
-  font-size: var(--button-lg-font-size);
-  gap: var(--button-lg-gap);
+.ds-button--default {
+  &.ds-button--primary {
+    background: var(--button-primary-bg);
+    border: 0.5px solid var(--button-primary-outer-border);
+    color: var(--button-primary-text);
+    box-shadow: inset 0 0 0 0.5px var(--button-primary-inner-border);
 
-  .p-button-icon { font-size: var(--button-md-icon-size); }
+    &:hover:not(:disabled) {
+      background: var(--button-primary-bg-hover);
+    }
+  }
 
-  &.p-button-icon-only {
-    width: var(--button-lg-height);
+  &.ds-button--secondary {
+    @include type-colors(
+      --button-secondary-bg,
+      --button-secondary-bg-hover,
+      --button-secondary-border,
+      --button-secondary-border-hover,
+      --button-secondary-text
+    );
+  }
+
+  &.ds-button--white {
+    @include type-colors(
+      --button-white-bg,
+      --button-white-bg-hover,
+      --button-white-border,
+      --button-white-border-hover,
+      --button-white-text
+    );
+  }
+
+  &.ds-button--error {
+    @include type-colors(
+      --button-error-bg,
+      --button-error-bg-hover,
+      --button-error-bg,
+      --button-error-border-hover,
+      --button-error-text
+    );
+  }
+
+  &.ds-button--warning {
+    @include type-colors(
+      --button-warning-bg,
+      --button-warning-bg-hover,
+      --button-warning-bg,
+      --button-warning-border-hover,
+      --button-warning-text
+    );
+  }
+
+  &.ds-button--disabled,
+  &.ds-button--is-disabled {
+    background: var(--button-disabled-bg);
+    border: 1px solid var(--button-disabled-border);
+    color: var(--button-disabled-text);
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}
+
+// ─── Divided wrapper ─────────────────────────────────────────────────────────
+
+.ds-button--divided {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  height: var(--button-md-height);
+  border-radius: var(--button-radius);
+  overflow: visible;
+
+  &.ds-button--sm { height: var(--button-sm-height); }
+  &.ds-button--lg { height: var(--button-lg-height); }
+
+  .ds-button__main,
+  .ds-button__divider {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--button-gap);
+    padding: var(--button-padding-y) var(--button-md-padding-x);
+    font-family: var(--font-family-base);
+    font-size: var(--button-md-font-size);
+    font-weight: var(--button-font-weight);
+    line-height: var(--button-line-height);
+    border: 1px solid transparent;
+    cursor: pointer;
+    appearance: none;
+    transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+    white-space: nowrap;
+
+    &:focus-visible {
+      outline: 2px solid var(--button-focus-color);
+      outline-offset: 2px;
+      z-index: 1;
+    }
+  }
+
+  .ds-button__main {
+    border-top-left-radius: var(--button-radius);
+    border-bottom-left-radius: var(--button-radius);
+    border-right: 0;
+  }
+
+  .ds-button__divider {
+    width: var(--button-md-height);
     padding: 0;
+    border-top-right-radius: var(--button-divider-radius-end);
+    border-bottom-right-radius: var(--button-divider-radius-end);
+
+    .ds-button__icon { font-size: var(--button-md-icon-size); }
+  }
+
+  &.ds-button--sm {
+    .ds-button__main,
+    .ds-button__divider {
+      font-size: var(--button-sm-font-size);
+      padding-left: var(--button-sm-padding-x);
+      padding-right: var(--button-sm-padding-x);
+    }
+    .ds-button__divider {
+      width: var(--button-sm-height);
+      padding: 0;
+      .ds-button__icon { font-size: var(--button-sm-icon-size); }
+    }
+  }
+
+  &.ds-button--lg {
+    .ds-button__main,
+    .ds-button__divider {
+      font-size: var(--button-lg-font-size);
+      padding-left: var(--button-lg-padding-x);
+      padding-right: var(--button-lg-padding-x);
+    }
+    .ds-button__divider {
+      width: var(--button-lg-height);
+      padding: 0;
+      .ds-button__icon { font-size: var(--button-lg-icon-size); }
+    }
+  }
+
+  // Per-type divided styling
+  &.ds-button--primary {
+    .ds-button__main {
+      background: var(--button-primary-bg);
+      border: 0.5px solid var(--button-primary-inner-border);
+      color: var(--button-primary-text);
+      &:hover:not(:disabled) { background: var(--button-primary-bg-hover); }
+    }
+    .ds-button__divider {
+      background: var(--button-primary-divider-bg);
+      border: 0.5px solid var(--button-primary-inner-border);
+      border-left: 0.5px solid var(--button-primary-inner-border);
+      color: var(--button-primary-text);
+      &:hover:not(:disabled) { background: var(--button-primary-bg-hover); }
+    }
+  }
+
+  &.ds-button--secondary {
+    .ds-button__main {
+      background: var(--button-secondary-bg);
+      border: 1px solid var(--button-secondary-border);
+      color: var(--button-secondary-text);
+      &:hover:not(:disabled) { background: var(--button-secondary-bg-hover); border-color: var(--button-secondary-border-hover); }
+    }
+    .ds-button__divider {
+      background: var(--button-secondary-bg);
+      border: 1px solid var(--button-secondary-border);
+      border-left: 1px solid var(--button-secondary-border);
+      color: var(--button-secondary-text);
+      &:hover:not(:disabled) { background: var(--button-secondary-bg-hover); border-color: var(--button-secondary-border-hover); }
+    }
+  }
+
+  &.ds-button--white {
+    .ds-button__main {
+      background: var(--button-white-bg);
+      border: 1px solid var(--button-white-border);
+      color: var(--button-white-text);
+      &:hover:not(:disabled) { background: var(--button-white-bg-hover); border-color: var(--button-white-border-hover); }
+    }
+    .ds-button__divider {
+      background: var(--button-white-bg);
+      border: 1px solid var(--button-white-border);
+      border-left: 1px solid var(--button-white-border);
+      color: var(--button-white-text);
+      &:hover:not(:disabled) { background: var(--button-white-bg-hover); border-color: var(--button-white-border-hover); }
+    }
+  }
+
+  &.ds-button--error {
+    .ds-button__main {
+      background: var(--button-error-bg);
+      border: 1px solid var(--button-error-bg);
+      color: var(--button-error-text);
+      &:hover:not(:disabled) { background: var(--button-error-bg-hover); border-color: var(--button-error-border-hover); }
+    }
+    .ds-button__divider {
+      background: var(--button-error-bg);
+      border: 1px solid var(--button-error-border);
+      border-left: 1px solid var(--button-error-border);
+      color: var(--button-error-text);
+      &:hover:not(:disabled) { background: var(--button-error-bg-hover); border-color: var(--button-error-border-hover); }
+    }
+  }
+
+  &.ds-button--warning {
+    .ds-button__main {
+      background: var(--button-warning-bg);
+      border: 1px solid var(--button-warning-bg);
+      color: var(--button-warning-text);
+      &:hover:not(:disabled) { background: var(--button-warning-bg-hover); border-color: var(--button-warning-border-hover); }
+    }
+    .ds-button__divider {
+      background: var(--button-warning-bg);
+      border: 1px solid var(--button-warning-border);
+      border-left: 1px solid var(--button-warning-border);
+      color: var(--button-warning-text);
+      &:hover:not(:disabled) { background: var(--button-warning-bg-hover); border-color: var(--button-warning-border-hover); }
+    }
+  }
+
+  &.ds-button--disabled,
+  &.ds-button--is-disabled {
+    .ds-button__main,
+    .ds-button__divider {
+      background: var(--button-disabled-bg);
+      border: 1px solid var(--button-disabled-border);
+      color: var(--button-disabled-text);
+      cursor: not-allowed;
+    }
   }
 }
 
 // ─── Disabled (shared) ───────────────────────────────────────────────────────
 
-.p-disabled,
-.p-button:disabled {
+.ds-button:disabled,
+.ds-button--is-disabled {
   cursor: not-allowed;
   pointer-events: none;
-  background: transparent;
-  border-color: var(--button-disabled-border);
-  color: var(--button-disabled-color);
-
-  .p-button-icon { opacity: 0.4; }
-}
-
-// ─── Filled variants ─────────────────────────────────────────────────────────
-
-@mixin filled-color($base, $hover, $active) {
-  background: var(#{$base});
-  border-color: transparent;
-  color: var(--color-text-inverse);
-
-  &:hover:not(:disabled):not(.p-disabled) {
-    background: var(#{$hover});
-  }
-
-  &:active:not(:disabled):not(.p-disabled) {
-    background: var(#{$active});
-  }
-}
-
-.p-button:not(.p-button-outlined):not(.p-button-text) {
-  &.p-button-user    { @include filled-color(--button-user-bg,    --button-user-hover,    --button-user-active); }
-  &.p-button-admin   { @include filled-color(--button-admin-bg,   --button-admin-hover,   --button-admin-active); }
-  &.p-button-success { @include filled-color(--button-success-bg, --button-success-hover, --button-success-active); }
-  &.p-button-error   { @include filled-color(--button-error-bg,   --button-error-hover,   --button-error-active); }
-  &.p-button-sunoh   { @include filled-color(--button-sunoh-bg,   --button-sunoh-hover,   --button-sunoh-active); }
-
-  // Secondary filled (neutral gray)
-  &.p-button-secondary {
-    background: var(--button-secondary-filled-bg);
-    border-color: transparent;
-    color: var(--button-secondary-filled-text);
-
-    &:hover:not(:disabled):not(.p-disabled) {
-      background: var(--button-secondary-filled-hover);
-      color: var(--color-text-inverse);
-    }
-
-    &:active:not(:disabled):not(.p-disabled) {
-      background: var(--button-secondary-filled-active);
-      color: var(--color-text-inverse);
-    }
-  }
-}
-
-// ─── Outlined variants ───────────────────────────────────────────────────────
-
-@mixin outlined-color($border, $text, $hover-bg, $active-bg) {
-  background: var(--color-surface);
-  border-color: var(#{$border});
-  color: var(#{$text});
-
-  &:hover:not(:disabled):not(.p-disabled) {
-    background: var(#{$hover-bg});
-  }
-
-  &:active:not(:disabled):not(.p-disabled) {
-    background: var(#{$active-bg});
-  }
-}
-
-.p-button-outlined {
-  &.p-button-user       { @include outlined-color(--button-user-bg,    --button-user-bg,    --button-user-outlined-hover,      --button-user-outlined-active); }
-  &.p-button-secondary  { @include outlined-color(--button-secondary-filled-bg, --button-secondary-outlined-text, --button-secondary-outlined-hover, --button-secondary-outlined-active); }
-  &.p-button-success    { @include outlined-color(--button-success-bg, --button-success-bg, --button-success-outlined-hover,   --button-success-outlined-active); }
-  &.p-button-error      { @include outlined-color(--button-error-bg,   --button-error-bg,   --button-error-outlined-hover,     --button-error-outlined-active); }
-  &.p-button-admin      { @include outlined-color(--button-admin-bg,   --button-admin-bg,   --button-admin-outlined-hover,     --button-admin-outlined-active); }
-  &.p-button-sunoh      { @include outlined-color(--button-sunoh-bg,   --button-sunoh-bg,   --button-sunoh-outlined-hover,     --button-sunoh-outlined-active); }
-}
-
-// ─── Ghost (text-only) variants ──────────────────────────────────────────────
-
-@mixin ghost-color($text, $hover-bg, $active-bg) {
-  background: transparent;
-  border-color: transparent;
-  color: var(#{$text});
-
-  &:hover:not(:disabled):not(.p-disabled) {
-    background: var(#{$hover-bg});
-  }
-
-  &:active:not(:disabled):not(.p-disabled) {
-    background: var(#{$active-bg});
-  }
-}
-
-.p-button-text {
-  &.p-button-user       { @include ghost-color(--button-user-bg,              --button-user-ghost-hover,      --button-user-ghost-active); }
-  &.p-button-admin      { @include ghost-color(--button-admin-bg,             --button-admin-ghost-hover,     --button-admin-ghost-active); }
-  &.p-button-secondary  { @include ghost-color(--button-secondary-ghost-text, --button-secondary-ghost-hover, --button-secondary-ghost-active); }
-  &.p-button-success    { @include ghost-color(--button-success-bg,           --button-success-ghost-hover,   --button-success-ghost-active); }
-  &.p-button-error      { @include ghost-color(--button-error-bg,             --button-error-ghost-hover,     --button-error-ghost-active); }
-  &.p-button-sunoh      { @include ghost-color(--button-sunoh-bg,             --button-sunoh-ghost-hover,     --button-sunoh-ghost-active); }
 }

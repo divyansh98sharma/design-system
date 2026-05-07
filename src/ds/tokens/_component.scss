@@ -77,100 +77,92 @@
   --toggle-focus-color: var(--color-border-focus);
 
   // ----------------------------------------------------------
-  // Button
+  // Button (CODE-A-TON Library — Figma source of truth)
   // ----------------------------------------------------------
-  --button-radius: var(--radius-standard);
-  --button-padding-x: var(--spacing-medium);
-  --button-padding-y: var(--spacing-x-small);
-  --button-font-size: var(--font-size-12);
-  --button-font-weight: var(--font-weight-semibold);
-  --button-line-height: var(--line-height-16);
+  --button-radius: 4px;
+  --button-padding-x: 4px;
+  --button-padding-y: 4px;
+  --button-gap: 4px;
+  --button-font-size: 12px;
+  --button-line-height: 16px;
+  --button-font-weight: 400;
+  --button-min-width: 24px;
+  --button-divider-radius-end: 4px;
 
-  --button-primary-bg: var(--color-user);
-  --button-primary-color: var(--color-text-inverse);
-  --button-primary-bg-hover: var(--color-user-hover);
+  // Sizes
+  --button-sm-height: 20px;
+  --button-sm-font-size: 11px;
+  --button-sm-icon-size: 12px;
+  --button-sm-gap: 4px;
+  --button-sm-padding-x: 4px;
 
-  --button-secondary-bg: var(--color-surface);
-  --button-secondary-color: var(--color-user);
-  --button-secondary-border: var(--color-user);
+  --button-md-height: 24px;
+  --button-md-font-size: 12px;
+  --button-md-icon-size: 16px;
+  --button-md-gap: 4px;
+  --button-md-padding-x: 4px;
 
-  --button-ghost-bg: transparent;
-  --button-ghost-color: var(--color-user);
+  --button-lg-height: 32px;
+  --button-lg-font-size: 14px;
+  --button-lg-icon-size: 18px;
+  --button-lg-gap: 6px;
+  --button-lg-padding-x: 8px;
 
-  --button-danger-bg: var(--color-status-error);
-  --button-danger-color: var(--color-text-inverse);
-  --button-danger-bg-hover: var(--color-error-60);
+  // Alert indicator
+  --button-alert-bg: #d82727;
+  --button-alert-size: 8px;
+  --button-alert-radius: 8px;
+
+  // Counter chip
+  --button-counter-bg: #ffffff;
+  --button-counter-border: #ebebeb;
+  --button-counter-radius: 999px;
+  --button-counter-padding-x: 4px;
+  --button-counter-text: #000000;
+  --button-counter-stroke: 1px;
+
+  // Primary (mint)
+  --button-primary-bg: #e9f5f3;
+  --button-primary-bg-hover: #d7e5e3;
+  --button-primary-outer-border: #4de0cf;
+  --button-primary-inner-border: #13b8a6;
+  --button-primary-text: #000000;
+  --button-primary-divider-bg: #e9f5f3;
+
+  // Secondary (gray)
+  --button-secondary-bg: #ebebeb;
+  --button-secondary-bg-hover: #e6e6e6;
+  --button-secondary-border: #e1e1e1;
+  --button-secondary-border-hover: #bcbcbc;
+  --button-secondary-text: #000000;
+
+  // White
+  --button-white-bg: #fbfbfb;
+  --button-white-bg-hover: #fbfbfb;
+  --button-white-border: #ebebeb;
+  --button-white-border-hover: #ebebeb;
+  --button-white-text: #000000;
+
+  // Error
+  --button-error-bg: #d82727;
+  --button-error-bg-hover: #b82020;
+  --button-error-border: #b42121;
+  --button-error-border-hover: #350101;
+  --button-error-text: #ffffff;
+
+  // Warning
+  --button-warning-bg: #fcde71;
+  --button-warning-bg-hover: #ffd84b;
+  --button-warning-border: #a7891c;
+  --button-warning-border-hover: #a7891c;
+  --button-warning-text: #000000;
+
+  // Disabled
+  --button-disabled-bg: #f7f7f7;
+  --button-disabled-border: #ebebeb;
+  --button-disabled-text: #717171;
 
   --button-focus-color: var(--color-border-focus);
-  --button-disabled-border: var(--color-secondary-30);
-  --button-disabled-color: var(--color-secondary-60);
-
-  --button-sm-height: 24px;
-  --button-sm-padding-x: var(--spacing-small);
-  --button-sm-font-size: 11px;
-  --button-sm-gap: var(--spacing-x-small);
-  --button-sm-icon-size: 14px;
-
-  --button-md-height: 32px;
-  --button-md-padding-x: var(--spacing-medium);
-  --button-md-gap: 6px;
-  --button-md-icon-size: 16px;
-
-  --button-lg-height: 40px;
-  --button-lg-padding-x: var(--spacing-large);
-  --button-lg-font-size: var(--font-size-13);
-  --button-lg-gap: var(--spacing-small);
-
-  // Button — theme colors (filled)
-  --button-user-bg: var(--color-user-base);
-  --button-user-hover: var(--color-user-70);
-  --button-user-active: var(--color-user-80);
-  --button-admin-bg: var(--color-admin-base);
-  --button-admin-hover: var(--color-admin-70);
-  --button-admin-active: var(--color-admin-80);
-  --button-success-bg: var(--color-green-base);
-  --button-success-hover: var(--color-green-70);
-  --button-success-active: var(--color-green-80);
-  --button-error-bg: var(--color-error-base);
-  --button-error-hover: var(--color-error-70);
-  --button-error-active: var(--color-error-80);
-  --button-sunoh-bg: var(--color-sunoh-base);
-  --button-sunoh-hover: var(--color-sunoh-70);
-  --button-sunoh-active: var(--color-sunoh-80);
-  --button-secondary-filled-bg: var(--color-secondary-base);
-  --button-secondary-filled-hover: var(--color-secondary-60);
-  --button-secondary-filled-active: var(--color-secondary-70);
-  --button-secondary-filled-text: var(--color-secondary-100);
-
-  // Button — theme colors (outlined hover/active backgrounds)
-  --button-user-outlined-hover: var(--color-user-5);
-  --button-user-outlined-active: var(--color-user-10);
-  --button-admin-outlined-hover: var(--color-admin-5);
-  --button-admin-outlined-active: var(--color-admin-10);
-  --button-secondary-outlined-hover: var(--color-secondary-20);
-  --button-secondary-outlined-active: var(--color-secondary-30);
-  --button-secondary-outlined-text: var(--color-secondary-80);
-  --button-success-outlined-hover: var(--color-green-5);
-  --button-success-outlined-active: var(--color-green-10);
-  --button-error-outlined-hover: var(--color-error-5);
-  --button-error-outlined-active: var(--color-error-10);
-  --button-sunoh-outlined-hover: var(--color-sunoh-5);
-  --button-sunoh-outlined-active: var(--color-sunoh-10);
-
-  // Button — theme colors (ghost hover/active backgrounds)
-  --button-user-ghost-hover: var(--color-user-5);
-  --button-user-ghost-active: var(--color-user-10);
-  --button-admin-ghost-hover: var(--color-admin-5);
-  --button-admin-ghost-active: var(--color-admin-10);
-  --button-secondary-ghost-text: var(--color-secondary-80);
-  --button-secondary-ghost-hover: var(--color-secondary-20);
-  --button-secondary-ghost-active: var(--color-secondary-30);
-  --button-success-ghost-hover: var(--color-green-5);
-  --button-success-ghost-active: var(--color-green-10);
-  --button-error-ghost-hover: var(--color-error-5);
-  --button-error-ghost-active: var(--color-error-10);
-  --button-sunoh-ghost-hover: var(--color-sunoh-5);
-  --button-sunoh-ghost-active: var(--color-sunoh-10);
 
   // ----------------------------------------------------------
   // Input / Form

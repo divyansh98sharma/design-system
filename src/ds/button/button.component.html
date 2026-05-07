@@ -1,43 +1,102 @@
-<button
-  type="button"
-  class="p-button"
-  [class]="styleClass"
-  [ngClass]="themeClass"
-  [disabled]="disabled"
-  [attr.aria-disabled]="disabled || null"
-  (click)="onClick($event)"
->
-  @if (hasIcon && iconPosition === 'left') {
-    @if (customIconTemplate) {
-      <span class="p-button-icon p-button-icon-left" aria-hidden="true">
-        <ng-container *ngTemplateOutlet="customIconTemplate"></ng-container>
+@if (!isDivided) {
+  <button
+    type="button"
+    [class]="hostClass"
+    [disabled]="disabled"
+    [attr.aria-disabled]="disabled || null"
+    [attr.aria-label]="iconOnly ? label : null"
+    (click)="onMainClick($event)"
+  >
+    @if (hasLeading) {
+      <span class="ds-button__icon ds-button__icon--leading" aria-hidden="true">
+        @if (leadingIconTemplate) {
+          <ng-container *ngTemplateOutlet="leadingIconTemplate"></ng-container>
+        } @else {
+          <span [innerHTML]="safeIcon"></span>
+        }
       </span>
-    } @else {
-      <span class="p-button-icon p-button-icon-left" [innerHTML]="safeIcon" aria-hidden="true"></span>
     }
-  }
 
-  @if (!isIconOnly) {
-    <span class="p-button-label">{{ label }}</span>
-  }
+    @if (!iconOnly) {
+      <span class="ds-button__label">{{ label }}</span>
+    }
 
-  @if (hasIcon && iconPosition === 'right') {
-    @if (customIconTemplate) {
-      <span class="p-button-icon p-button-icon-right" aria-hidden="true">
-        <ng-container *ngTemplateOutlet="customIconTemplate"></ng-container>
+    @if (hasCounter) {
+      <span class="ds-button__counter">{{ counter }}</span>
+    }
+
+    @if (hasTrailing) {
+      <span class="ds-button__icon ds-button__icon--trailing" aria-hidden="true">
+        @if (trailingIconTemplate) {
+          <ng-container *ngTemplateOutlet="trailingIconTemplate"></ng-container>
+        } @else {
+          <span [innerHTML]="safeTrailingIcon"></span>
+        }
       </span>
-    } @else {
-      <span class="p-button-icon p-button-icon-right" [innerHTML]="safeIcon" aria-hidden="true"></span>
     }
-  }
 
-  @if (hasIcon && isIconOnly) {
-    @if (customIconTemplate) {
-      <span class="p-button-icon" aria-hidden="true">
-        <ng-container *ngTemplateOutlet="customIconTemplate"></ng-container>
-      </span>
-    } @else {
-      <span class="p-button-icon" [innerHTML]="safeIcon" aria-hidden="true"></span>
+    @if (alertIndicator) {
+      <span class="ds-button__alert" aria-hidden="true"></span>
     }
-  }
-</button>
+  </button>
+} @else {
+  <span [class]="hostClass" role="group">
+    <button
+      type="button"
+      class="ds-button__main"
+      [disabled]="disabled"
+      [attr.aria-disabled]="disabled || null"
+      [attr.aria-label]="iconOnly ? label : null"
+      (click)="onMainClick($event)"
+    >
+      @if (hasLeading) {
+        <span class="ds-button__icon ds-button__icon--leading" aria-hidden="true">
+          @if (leadingIconTemplate) {
+            <ng-container *ngTemplateOutlet="leadingIconTemplate"></ng-container>
+          } @else {
+            <span [innerHTML]="safeIcon"></span>
+          }
+        </span>
+      }
+
+      @if (!iconOnly) {
+        <span class="ds-button__label">{{ label }}</span>
+      }
+
+      @if (hasCounter) {
+        <span class="ds-button__counter">{{ counter }}</span>
+      }
+
+      @if (hasTrailing) {
+        <span class="ds-button__icon ds-button__icon--trailing" aria-hidden="true">
+          @if (trailingIconTemplate) {
+            <ng-container *ngTemplateOutlet="trailingIconTemplate"></ng-container>
+          } @else {
+            <span [innerHTML]="safeTrailingIcon"></span>
+          }
+        </span>
+      }
+    </button>
+
+    <button
+      type="button"
+      class="ds-button__divider"
+      [disabled]="disabled"
+      [attr.aria-disabled]="disabled || null"
+      [attr.aria-label]="label + ' menu'"
+      (click)="onDividerClick($event)"
+    >
+      <span class="ds-button__icon" aria-hidden="true">
+        @if (dividerIconTemplate) {
+          <ng-container *ngTemplateOutlet="dividerIconTemplate"></ng-container>
+        } @else {
+          <span [innerHTML]="safeDividerIcon"></span>
+        }
+      </span>
+    </button>
+
+    @if (alertIndicator) {
+      <span class="ds-button__alert" aria-hidden="true"></span>
+    }
+  </span>
+}
