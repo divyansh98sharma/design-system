@@ -1,0 +1,140 @@
+<section class="ds-ai-insights-panel" aria-label="AI insights">
+  <header class="ds-ai-insights-panel__header">
+    <div class="ds-ai-insights-panel__title-group">
+      <span class="ds-ai-insights-panel__title-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 1.5l1.5 3.3 3.3 1.5-3.3 1.5L8 11.1 6.5 7.8 3.2 6.3l3.3-1.5L8 1.5z"/>
+          <path d="M13 11l.7 1.6 1.6.7-1.6.7L13 15.6l-.7-1.6-1.6-.7 1.6-.7L13 11z"/>
+        </svg>
+      </span>
+      <h2 class="ds-ai-insights-panel__title">{{ title }}{{ titleSuffix }}</h2>
+    </div>
+
+    @if (headerActions.length > 0) {
+      <div class="ds-ai-insights-panel__header-actions">
+        @for (action of headerActions; track trackById($index, action)) {
+          <button
+            type="button"
+            class="ds-ai-insights-panel__icon-btn"
+            [attr.aria-label]="action.ariaLabel"
+            [title]="action.ariaLabel"
+            (click)="onHeaderAction(action.id)"
+          >
+            <span aria-hidden="true" [innerHTML]="safeIcon(action.icon)"></span>
+          </button>
+        }
+      </div>
+    }
+  </header>
+
+  <div class="ds-ai-insights-panel__body" role="region" aria-label="Insights body">
+    @for (section of sections; track trackById($index, section)) {
+      <div class="ds-ai-insights-panel__section">
+        <button
+          type="button"
+          class="ds-ai-insights-panel__section-header"
+          [attr.aria-expanded]="section.expanded"
+          (click)="toggleSection(section)"
+        >
+          <span class="ds-ai-insights-panel__chevron" [class.ds-ai-insights-panel__chevron--expanded]="section.expanded" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5.5 4l3.5 4-3.5 4"/>
+            </svg>
+          </span>
+          <span class="ds-ai-insights-panel__section-title">{{ section.title }}</span>
+
+          @if (section.actions?.length) {
+            <span class="ds-ai-insights-panel__actions">
+              @for (action of section.actions; track trackById($index, action)) {
+                <button
+                  type="button"
+                  class="ds-ai-insights-panel__action"
+                  [attr.aria-label]="action.ariaLabel || action.text"
+                  (click)="onSectionAction(section, action.id, $event)"
+                >
+                  @if (action.icon) {
+                    <span class="ds-ai-insights-panel__action-icon" aria-hidden="true" [innerHTML]="safeIcon(action.icon)"></span>
+                  }
+                  @if (action.text) {
+                    <span class="ds-ai-insights-panel__action-text">{{ action.text }}</span>
+                  }
+                </button>
+              }
+            </span>
+          }
+        </button>
+
+        @if (section.expanded && section.tiles?.length) {
+          <div class="ds-ai-insights-panel__tiles">
+            @for (tile of section.tiles; track trackById($index, tile)) {
+              <article class="ds-ai-insights-panel__tile">
+                <header class="ds-ai-insights-panel__tile-header">
+                  <span class="ds-ai-insights-panel__tile-title">{{ tile.title }}</span>
+                  @if (tile.actions?.length) {
+                    <span class="ds-ai-insights-panel__actions">
+                      @for (action of tile.actions; track trackById($index, action)) {
+                        <button
+                          type="button"
+                          class="ds-ai-insights-panel__action"
+                          [attr.aria-label]="action.ariaLabel || action.text"
+                          (click)="onTileAction(section, tile, action.id, 'tile')"
+                        >
+                          @if (action.icon) {
+                            <span class="ds-ai-insights-panel__action-icon" aria-hidden="true" [innerHTML]="safeIcon(action.icon)"></span>
+                          }
+                          @if (action.text) {
+                            <span class="ds-ai-insights-panel__action-text">{{ action.text }}</span>
+                          }
+                        </button>
+                      }
+                    </span>
+                  }
+                </header>
+
+                @if (tile.body) {
+                  <div class="ds-ai-insights-panel__tile-body" [innerHTML]="safeIcon(tile.body)"></div>
+                }
+
+                @if (tile.bottomActions?.length) {
+                  <div class="ds-ai-insights-panel__tile-bottom">
+                    @for (action of tile.bottomActions; track trackById($index, action)) {
+                      <button
+                        type="button"
+                        class="ds-ai-insights-panel__action"
+                        [attr.aria-label]="action.ariaLabel || action.text"
+                        (click)="onTileAction(section, tile, action.id, 'tile-bottom')"
+                      >
+                        @if (action.icon) {
+                          <span class="ds-ai-insights-panel__action-icon" aria-hidden="true" [innerHTML]="safeIcon(action.icon)"></span>
+                        }
+                        @if (action.text) {
+                          <span class="ds-ai-insights-panel__action-text">{{ action.text }}</span>
+                        }
+                      </button>
+                    }
+                  </div>
+                }
+              </article>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  @if (footerActions.length > 0) {
+    <footer class="ds-ai-insights-panel__footer">
+      @for (action of footerActions; track trackById($index, action)) {
+        <button
+          type="button"
+          class="ds-ai-insights-panel__footer-btn"
+          [attr.aria-label]="action.ariaLabel"
+          [title]="action.ariaLabel"
+          (click)="onFooterAction(action.id)"
+        >
+          <span aria-hidden="true" [innerHTML]="safeIcon(action.icon)"></span>
+        </button>
+      }
+    </footer>
+  }
+</section>
