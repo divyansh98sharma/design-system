@@ -1,40 +1,67 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  forwardRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-export type ToggleTheme = 'user' | 'admin' | 'green' | 'sunoh';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'ds-toggle',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './toggle.component.html',
   styleUrl: './toggle.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ToggleComponent),
+      multi: true,
+    },
+  ],
 })
-export class ToggleComponent {
-  /** Whether the toggle is on. */
+export class ToggleComponent implements ControlValueAccessor {
   @Input() on = false;
-
-  /** Colour theme. */
-  @Input() theme: ToggleTheme = 'user';
-
-  /** Prevents user interaction. */
   @Input() disabled = false;
+  @Input() ariaLabel = 'Toggle';
 
-  /** Emits the new on/off state. */
-  @Output() onToggle = new EventEmitter<boolean>();
+  @Output() change = new EventEmitter<boolean>();
 
-  handleChange(event: { checked: boolean }): void {
-    this.on = event.checked;
-    this.onToggle.emit(event.checked);
+  private onChange: (value: boolean) => void = () => undefined;
+  private onTouched: () => void = () => undefined;
+
+  toggle(): void {
+    if (this.disabled) return;
+    this.on = !this.on;
+    this.onChange(this.on);
+    this.onTouched();
+    this.change.emit(this.on);
   }
 
-  get hostClasses(): Record<string, boolean> {
-    return {
-      'ds-toggle': true,
-      [`ds-toggle--${this.theme}`]: true,
-      'ds-toggle--disabled': this.disabled,
-    };
+  onKeydown(event: KeyboardEvent): void {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      this.toggle();
+    }
+  }
+
+  writeValue(value: boolean): void {
+    this.on = !!value;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }
