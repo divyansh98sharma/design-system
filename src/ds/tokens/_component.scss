@@ -209,6 +209,56 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // AI Insights Panel (CODE-A-TON Library — Figma source of truth)
+  // ----------------------------------------------------------
+  --ai-insights-width: 433px;
+  --ai-insights-height: 741px;
+  --ai-insights-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+
+  --ai-insights-header-bg: #ffffff;
+  --ai-insights-header-border: #e1e1e1;
+  --ai-insights-header-padding-x: 8px;
+  --ai-insights-header-padding-y: 8px;
+  --ai-insights-header-height: 36px;
+  --ai-insights-header-radius: 4px;
+  --ai-insights-header-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+  --ai-insights-title-gap: 4px;
+  --ai-insights-title-icon-size: 20px;
+  --ai-insights-title-icon-color: #007b95;
+  --ai-insights-title-font-size: 14px;
+  --ai-insights-title-line-height: 20px;
+  --ai-insights-title-gradient: linear-gradient(90deg, #007b95 0%, #006b6b 50%, #ba654e 100%);
+  --ai-insights-header-actions-gap: 8px;
+
+  --ai-insights-body-bg: #ffffff;
+  --ai-insights-body-padding: 8px;
+  --ai-insights-body-gap: 16px;
+
+  --ai-insights-section-gap: 4px;
+  --ai-insights-section-header-gap: 8px;
+  --ai-insights-section-title-color: #000000;
+  --ai-insights-section-title-size: 12px;
+  --ai-insights-section-title-line: 16px;
+  --ai-insights-actions-gap: 8px;
+  --ai-insights-actions-text-color: #000000;
+
+  --ai-insights-tile-bg: #ffffff;
+  --ai-insights-tile-border: #ebebeb;
+  --ai-insights-tile-radius: 4px;
+  --ai-insights-tile-padding-x: 8px;
+  --ai-insights-tile-padding-y: 8px;
+  --ai-insights-tile-gap: 8px;
+  --ai-insights-tile-title-color: #000000;
+  --ai-insights-tile-image-bg: #f7f7f7;
+  --ai-insights-tile-image-border: #e1e1e1;
+  --ai-insights-tile-image-text: #4b586b;
+
+  --ai-insights-footer-bg: #ffffff;
+  --ai-insights-footer-border: #ededed;
+  --ai-insights-footer-padding-x: 12px;
+  --ai-insights-footer-padding-y: 8px;
+
+  // ----------------------------------------------------------
   // Avatar
   // ----------------------------------------------------------
   --avatar-size-sm: 32px;
