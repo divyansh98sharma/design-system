@@ -209,6 +209,73 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // AI Chatbot (CODE-A-TON Library — Figma source of truth)
+  // ----------------------------------------------------------
+  --ai-chatbot-width: 400px;
+  --ai-chatbot-height: 690px;
+  --ai-chatbot-bg: #ffffff;
+  --ai-chatbot-border: #ededed;
+
+  --ai-chatbot-header-height: 36px;
+  --ai-chatbot-header-bg: #ffffff;
+  --ai-chatbot-header-border: #007b95;
+  --ai-chatbot-header-padding-x: 12px;
+  --ai-chatbot-header-padding-y: 8px;
+  --ai-chatbot-header-gap: 8px;
+  --ai-chatbot-header-radius: 4px;
+  --ai-chatbot-header-title-color: #000000;
+  --ai-chatbot-header-title-size: 14px;
+  --ai-chatbot-header-title-line: 20px;
+  --ai-chatbot-header-actions-gap: 4px;
+  --ai-chatbot-header-icon-color: #007b95;
+
+  --ai-chatbot-action-bg: #f7f7f7;
+  --ai-chatbot-action-border: #e1e1e1;
+  --ai-chatbot-action-padding: 12px;
+  --ai-chatbot-action-gap: 10px;
+  --ai-chatbot-bubble-gap: 8px;
+
+  --ai-chatbot-bubble-user-bg: #ffffff;
+  --ai-chatbot-bubble-user-text: #000000;
+  --ai-chatbot-bubble-user-padding-x: 12px;
+  --ai-chatbot-bubble-user-padding-y: 8px;
+  --ai-chatbot-bubble-user-radius: 8px;
+  --ai-chatbot-bubble-user-pad-left: 32px;
+  --ai-chatbot-bubble-ai-text: #000000;
+  --ai-chatbot-bubble-ai-pad-right: 32px;
+  --ai-chatbot-bubble-font-size: 12px;
+  --ai-chatbot-bubble-line-height: 16px;
+
+  --ai-chatbot-loader-size: 60px;
+  --ai-chatbot-loader-color: #007b95;
+
+  --ai-chatbot-suggestion-gap: 10px;
+  --ai-chatbot-suggestion-bg: #ffffff;
+  --ai-chatbot-suggestion-bg-hover: #f1fbff;
+  --ai-chatbot-suggestion-border: #007b95;
+  --ai-chatbot-suggestion-text: #000000;
+  --ai-chatbot-suggestion-radius: 999px;
+  --ai-chatbot-suggestion-padding-x: 8px;
+  --ai-chatbot-suggestion-padding-y: 4px;
+
+  --ai-chatbot-input-bg: #ffffff;
+  --ai-chatbot-input-border: #e1e1e1;
+  --ai-chatbot-input-radius: 12px;
+  --ai-chatbot-input-padding: 13px;
+  --ai-chatbot-input-gap: 4px;
+  --ai-chatbot-input-text-color: #000000;
+  --ai-chatbot-input-placeholder: #4b586b;
+  --ai-chatbot-input-font-size: 14px;
+  --ai-chatbot-input-line-height: 20px;
+  --ai-chatbot-input-icon-color: #007b95;
+
+  --ai-chatbot-experience-bg: #ffffff;
+  --ai-chatbot-experience-border: #e1e1e1;
+  --ai-chatbot-experience-padding: 12px;
+
+  --ai-chatbot-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Avatar
   // ----------------------------------------------------------
   --avatar-size-sm: 32px;

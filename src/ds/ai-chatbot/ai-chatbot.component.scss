@@ -1,0 +1,290 @@
+// ─── AI Chatbot (CODE-A-TON Library spec) ────────────────────────────────────
+
+:host {
+  display: inline-flex;
+}
+
+.ds-ai-chatbot {
+  display: flex;
+  flex-direction: column;
+  width: var(--ai-chatbot-width);
+  height: var(--ai-chatbot-height);
+  background: var(--ai-chatbot-bg);
+  border-left: 1px solid var(--ai-chatbot-border);
+  font-family: var(--font-family-base);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+// ─── Header ─────────────────────────────────────────────────────────────────
+.ds-ai-chatbot__header {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-chatbot-header-gap);
+  height: var(--ai-chatbot-header-height);
+  padding: var(--ai-chatbot-header-padding-y) var(--ai-chatbot-header-padding-x);
+  background: var(--ai-chatbot-header-bg);
+  border-bottom: 1px solid var(--ai-chatbot-header-border);
+  border-top-left-radius: var(--ai-chatbot-header-radius);
+  border-top-right-radius: var(--ai-chatbot-header-radius);
+  flex-shrink: 0;
+}
+
+.ds-ai-chatbot__header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--ai-chatbot-header-icon-color);
+  flex-shrink: 0;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}
+
+.ds-ai-chatbot__title {
+  flex: 1 0 0;
+  margin: 0;
+  font-size: var(--ai-chatbot-header-title-size);
+  font-weight: 500;
+  line-height: var(--ai-chatbot-header-title-line);
+  color: var(--ai-chatbot-header-title-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-ai-chatbot__header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ai-chatbot-header-actions-gap);
+}
+
+// ─── Buttons ────────────────────────────────────────────────────────────────
+.ds-ai-chatbot__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  min-width: 24px;
+  padding: 4px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ai-chatbot-header-title-color);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--ai-chatbot-focus-color);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &--secondary {
+    padding: 4px 8px;
+    background: #ebebeb;
+    border-color: #e1e1e1;
+
+    &:hover:not(:disabled) {
+      background: #e6e6e6;
+      border-color: #bcbcbc;
+    }
+  }
+
+  &--icon {
+    background: #fbfbfb;
+
+    &:hover:not(:disabled) {
+      background: #ebebeb;
+    }
+  }
+
+  &--send:not(:disabled) {
+    color: var(--ai-chatbot-input-icon-color);
+  }
+}
+
+.ds-ai-chatbot__btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}
+
+// ─── Action panel (messages + suggestions) ──────────────────────────────────
+.ds-ai-chatbot__action {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-height: 0;
+  gap: var(--ai-chatbot-action-gap);
+  padding: var(--ai-chatbot-action-padding);
+  background: var(--ai-chatbot-action-bg);
+  border-left: 1px solid var(--ai-chatbot-action-border);
+  overflow: hidden;
+}
+
+.ds-ai-chatbot__slot {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--ai-chatbot-bubble-gap);
+  min-height: 0;
+  overflow-y: auto;
+}
+
+// ─── Bubbles ─────────────────────────────────────────────────────────────────
+.ds-ai-chatbot__bubble {
+  display: flex;
+  width: 100%;
+  font-size: var(--ai-chatbot-bubble-font-size);
+  line-height: var(--ai-chatbot-bubble-line-height);
+
+  &--user {
+    justify-content: flex-end;
+    padding-left: var(--ai-chatbot-bubble-user-pad-left);
+  }
+
+  &--ai {
+    padding-right: var(--ai-chatbot-bubble-ai-pad-right);
+  }
+}
+
+.ds-ai-chatbot__user-bubble {
+  background: var(--ai-chatbot-bubble-user-bg);
+  color: var(--ai-chatbot-bubble-user-text);
+  padding: var(--ai-chatbot-bubble-user-padding-y) var(--ai-chatbot-bubble-user-padding-x);
+  border-radius: var(--ai-chatbot-bubble-user-radius);
+  max-width: 100%;
+  word-wrap: break-word;
+}
+
+.ds-ai-chatbot__ai-text {
+  margin: 0;
+  color: var(--ai-chatbot-bubble-ai-text);
+  word-wrap: break-word;
+}
+
+// ─── Loader ──────────────────────────────────────────────────────────────────
+.ds-ai-chatbot__loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.ds-ai-chatbot__loader-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--ai-chatbot-loader-color);
+  animation: ds-ai-chatbot-pulse 1.2s infinite ease-in-out;
+
+  &:nth-child(2) { animation-delay: 0.15s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+}
+
+@keyframes ds-ai-chatbot-pulse {
+  0%, 80%, 100% { opacity: 0.3; transform: scale(0.85); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-ai-chatbot__loader-dot { animation: none; opacity: 0.6; }
+}
+
+// ─── Suggestions ─────────────────────────────────────────────────────────────
+.ds-ai-chatbot__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ai-chatbot-suggestion-gap);
+  width: 100%;
+}
+
+.ds-ai-chatbot__suggestion {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ai-chatbot-suggestion-padding-y) var(--ai-chatbot-suggestion-padding-x);
+  background: var(--ai-chatbot-suggestion-bg);
+  border: 1px solid var(--ai-chatbot-suggestion-border);
+  border-radius: var(--ai-chatbot-suggestion-radius);
+  color: var(--ai-chatbot-suggestion-text);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+
+  &:hover { background: var(--ai-chatbot-suggestion-bg-hover); }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--ai-chatbot-focus-color);
+  }
+}
+
+// ─── Chat experience (input field) ───────────────────────────────────────────
+.ds-ai-chatbot__experience {
+  flex-shrink: 0;
+  padding: var(--ai-chatbot-experience-padding);
+  background: var(--ai-chatbot-experience-bg);
+  border-top: 1px solid var(--ai-chatbot-experience-border);
+}
+
+.ds-ai-chatbot__input-field {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--ai-chatbot-input-gap);
+  padding: var(--ai-chatbot-input-padding);
+  background: var(--ai-chatbot-input-bg);
+  border: 1px solid var(--ai-chatbot-input-border);
+  border-radius: var(--ai-chatbot-input-radius);
+
+  &:focus-within {
+    border-color: var(--ai-chatbot-input-icon-color);
+  }
+}
+
+.ds-ai-chatbot__input-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--ai-chatbot-input-icon-color);
+  flex-shrink: 0;
+  padding-bottom: 2px;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}
+
+.ds-ai-chatbot__textarea {
+  flex: 1 0 0;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: var(--ai-chatbot-input-font-size);
+  line-height: var(--ai-chatbot-input-line-height);
+  color: var(--ai-chatbot-input-text-color);
+  resize: none;
+  outline: none;
+
+  &::placeholder { color: var(--ai-chatbot-input-placeholder); }
+}

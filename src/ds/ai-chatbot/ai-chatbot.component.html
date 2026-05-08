@@ -1,0 +1,97 @@
+<section class="ds-ai-chatbot" aria-label="AI chatbot">
+  <header class="ds-ai-chatbot__header">
+    <span class="ds-ai-chatbot__header-icon" aria-hidden="true" [innerHTML]="safeAiIcon"></span>
+    <h2 class="ds-ai-chatbot__title">{{ title }}</h2>
+
+    <div class="ds-ai-chatbot__header-actions">
+      @if (showNewChat) {
+        <button
+          type="button"
+          class="ds-ai-chatbot__btn ds-ai-chatbot__btn--secondary"
+          (click)="onNewChat()"
+        >{{ newChatLabel }}</button>
+      }
+
+      @for (action of headerActions; track trackByIndex($index)) {
+        <button
+          type="button"
+          class="ds-ai-chatbot__btn ds-ai-chatbot__btn--icon"
+          [attr.aria-label]="action.label"
+          [title]="action.label"
+          (click)="onHeaderActionClick(action.id)"
+        >
+          <span class="ds-ai-chatbot__btn-icon" aria-hidden="true" [innerHTML]="safeIcon(action.icon)"></span>
+        </button>
+      }
+    </div>
+  </header>
+
+  <div class="ds-ai-chatbot__action">
+    <div class="ds-ai-chatbot__slot" #slot>
+      @for (msg of messages; track trackByIndex($index)) {
+        @if (msg.role === 'user') {
+          <div class="ds-ai-chatbot__bubble ds-ai-chatbot__bubble--user">
+            <div class="ds-ai-chatbot__user-bubble">{{ msg.text }}</div>
+          </div>
+        } @else {
+          <div class="ds-ai-chatbot__bubble ds-ai-chatbot__bubble--ai">
+            <p class="ds-ai-chatbot__ai-text">{{ msg.text }}</p>
+          </div>
+        }
+      }
+    </div>
+
+    @if (loading) {
+      <div class="ds-ai-chatbot__loader" role="status" aria-live="polite" aria-label="Generating response">
+        <span class="ds-ai-chatbot__loader-dot"></span>
+        <span class="ds-ai-chatbot__loader-dot"></span>
+        <span class="ds-ai-chatbot__loader-dot"></span>
+      </div>
+    }
+
+    @if (suggestions.length > 0) {
+      <div class="ds-ai-chatbot__suggestions" role="group" aria-label="Suggestions">
+        @for (chip of suggestions; track trackByIndex($index); let i = $index) {
+          <button
+            type="button"
+            class="ds-ai-chatbot__suggestion"
+            (click)="onSuggestionClick(chip, i)"
+          >{{ chip.label }}</button>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="ds-ai-chatbot__experience">
+    <form class="ds-ai-chatbot__input-field" (submit)="onSubmit($event)">
+      <span class="ds-ai-chatbot__input-icon" aria-hidden="true" [innerHTML]="safeAiIcon"></span>
+
+      <textarea
+        class="ds-ai-chatbot__textarea"
+        rows="1"
+        [placeholder]="placeholder"
+        [(ngModel)]="draft"
+        name="draft"
+        (keydown)="onInputKeydown($event)"
+      ></textarea>
+
+      <button
+        type="button"
+        class="ds-ai-chatbot__btn ds-ai-chatbot__btn--icon"
+        aria-label="Voice input"
+        (click)="onMicClick()"
+      >
+        <span class="ds-ai-chatbot__btn-icon" aria-hidden="true" [innerHTML]="safeMicIcon"></span>
+      </button>
+
+      <button
+        type="submit"
+        class="ds-ai-chatbot__btn ds-ai-chatbot__btn--icon ds-ai-chatbot__btn--send"
+        [disabled]="sendDisabled"
+        aria-label="Send message"
+      >
+        <span class="ds-ai-chatbot__btn-icon" aria-hidden="true" [innerHTML]="safeSendIcon"></span>
+      </button>
+    </form>
+  </div>
+</section>
