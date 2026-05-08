@@ -4,6 +4,7 @@
 // ============================================================
 
 @use 'primitives';
+@use 'primitives.generated' as primitives-generated;
 @use 'semantic';
 @use 'component';
 @use 'typography';
