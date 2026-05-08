@@ -13,34 +13,27 @@ export type AvatarSize = 'sm' | 'lg';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AvatarComponent {
-  /** Display variant: `text` shows initials, `image` shows a photo, `dummy` shows a placeholder icon. */
   @Input() variant: AvatarVariant = 'text';
-
-  /** Size: `sm` = 32 px, `lg` = 72 px. */
   @Input() size: AvatarSize = 'sm';
-
-  /** Initials to display when variant is `text` (e.g. "MN"). Max 2 chars. */
-  @Input() initials = 'MN';
-
-  /** Image URL to display when variant is `image`. */
+  @Input() initials = 'KR';
   @Input() imageUrl = '';
-
-  /** Alt text for the image. */
   @Input() imageAlt = '';
 
   get isText(): boolean { return this.variant === 'text'; }
   get isImage(): boolean { return this.variant === 'image'; }
   get isDummy(): boolean { return this.variant === 'dummy'; }
-  get isLarge(): boolean { return this.size === 'lg'; }
 
-  get hostClasses(): Record<string, boolean> {
-    return {
-      'ds-avatar': true,
-      'ds-avatar--sm': this.size === 'sm',
-      'ds-avatar--lg': this.size === 'lg',
-      'ds-avatar--text': this.isText,
-      'ds-avatar--image': this.isImage,
-      'ds-avatar--dummy': this.isDummy,
-    };
+  get hostClass(): string {
+    return [
+      'ds-avatar',
+      `ds-avatar--${this.size}`,
+      `ds-avatar--${this.variant}`,
+    ].join(' ');
+  }
+
+  get ariaLabel(): string | null {
+    if (this.isImage) return this.imageAlt || 'User avatar';
+    if (this.isText) return `User avatar, initials ${this.initials}`;
+    return 'User avatar placeholder';
   }
 }
