@@ -1,0 +1,82 @@
+// ─── Card (CODE-A-TON Library spec) ─────────────────────────────────────────
+
+:host {
+  display: block;
+  background: var(--cards-bg);
+  border: 1px solid var(--cards-border);
+  border-radius: var(--cards-radius);
+  padding: var(--cards-padding);
+  font-family: var(--font-family-base);
+  transition: box-shadow 120ms ease, border-color 120ms ease;
+}
+
+:host(.ds-card--interactive) {
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--cards-hover-shadow);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--cards-selected-border);
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--cards-focus-color);
+  }
+}
+
+:host(.ds-card--selected) {
+  border-color: var(--cards-selected-border);
+  box-shadow: var(--cards-selected-shadow);
+}
+
+:host(.ds-card--grouping) {
+  background: var(--cards-bg);
+  border-color: var(--cards-border);
+}
+
+.ds-card__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cards-gap);
+}
+
+// ─── Card subparts (consumer-projected) ─────────────────────────────────────
+:host {
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep [ds-card-header] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cards-header-text);
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep [ds-card-meta] {
+    color: var(--cards-header-meta-text);
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep [ds-card-divider] {
+    height: 1px;
+    background: var(--cards-divider);
+    width: 100%;
+  }
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep [ds-card-footer] {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--cards-footer-text-primary);
+
+    [ds-card-footer-meta] {
+      color: var(--cards-footer-text-meta);
+    }
+  }
+}
