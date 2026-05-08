@@ -42,13 +42,6 @@ export class ToggleComponent implements ControlValueAccessor {
     this.change.emit(this.on);
   }
 
-  onKeydown(event: KeyboardEvent): void {
-    if (event.key === ' ' || event.key === 'Enter') {
-      event.preventDefault();
-      this.toggle();
-    }
-  }
-
   writeValue(value: boolean): void {
     this.on = !!value;
   }

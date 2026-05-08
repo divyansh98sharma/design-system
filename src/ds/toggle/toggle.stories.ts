@@ -103,6 +103,53 @@ export const ClickToggles: Story = {
   },
 };
 
+export const SpaceTogglesViaKeyboard: Story = {
+  name: 'Interaction: Space key toggles',
+  args: { on: false, ariaLabel: 'Space toggle' },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch', { name: /space toggle/i });
+    toggle.focus();
+    await expect(toggle).toHaveFocus();
+    await userEvent.keyboard(' ');
+    await expect(args.change).toHaveBeenCalledWith(true);
+  },
+};
+
+export const EnterTogglesViaKeyboard: Story = {
+  name: 'Interaction: Enter key toggles',
+  args: { on: false, ariaLabel: 'Enter toggle' },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch', { name: /enter toggle/i });
+    toggle.focus();
+    await expect(toggle).toHaveFocus();
+    await userEvent.keyboard('{Enter}');
+    await expect(args.change).toHaveBeenCalledWith(true);
+  },
+};
+
+export const TabOrderSkipsDisabled: Story = {
+  name: 'Interaction: Tab skips disabled toggle',
+  render: () => ({
+    template: `
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="before" type="button">Before</button>
+        <ds-toggle ariaLabel="Skipped" [disabled]="true"></ds-toggle>
+        <button id="after" type="button">After</button>
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const before = canvas.getByRole('button', { name: /before/i });
+    const after = canvas.getByRole('button', { name: /after/i });
+    before.focus();
+    await userEvent.tab();
+    await expect(after).toHaveFocus();
+  },
+};
+
 export const DisabledNotClickable: Story = {
   name: 'Interaction: Disabled does not emit',
   args: { on: false, disabled: true, ariaLabel: 'Disabled toggle' },
