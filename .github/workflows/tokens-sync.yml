@@ -1,0 +1,92 @@
+name: Design Tokens Sync
+
+# Triggers when Gitfig (or anyone) pushes to the long-lived `tokens/sync` branch.
+# Builds Style Dictionary, commits regenerated SCSS, and opens a PR to main.
+
+on:
+  push:
+    branches:
+      - tokens/sync
+    paths:
+      - 'tokens/**/*.json'
+      - 'style-dictionary.config.mjs'
+      - 'package.json'
+      - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: tokens-sync
+  cancel-in-progress: false
+
+jobs:
+  build-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci --legacy-peer-deps
+
+      - name: Build tokens
+        run: npm run tokens:build
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if [[ -n "$(git status --porcelain src/ds/tokens/)" ]]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Stage generated SCSS
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git add src/ds/tokens/_primitives.generated.scss
+
+      - name: Open PR via create-pull-request
+        if: steps.changes.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore(tokens): regenerate primitives from Figma sync'
+          title: 'chore(tokens): regenerate primitives from Figma sync'
+          body: |
+            ## Auto-generated PR
+
+            Style Dictionary regenerated `src/ds/tokens/_primitives.generated.scss`
+            from `tokens/tokens.json` after a Gitfig push to `tokens/sync`.
+
+            **Source of truth:** Figma — CODE-A-TON Library
+            **Triggered by:** ${{ github.event_name }} on ${{ github.ref_name }}
+            **Commit:** ${{ github.sha }}
+
+            ### Review checklist
+
+            - [ ] Visual diff in Storybook looks correct
+            - [ ] No accidental variable removals (rename = remove + add)
+            - [ ] Generated SCSS file is the only token-related change
+          branch: tokens/auto-pr
+          base: main
+          delete-branch: true
+          labels: |
+            design-tokens
+            automated
+
+      - name: No changes
+        if: steps.changes.outputs.changed == 'false'
+        run: echo "No SCSS regeneration needed — tokens.json change was a no-op."
