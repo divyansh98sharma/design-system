@@ -1,0 +1,75 @@
+<form
+  class="ds-ai-chat-field"
+  [class.ds-ai-chat-field--focused]="focused"
+  [class.ds-ai-chat-field--filled]="hasContent && !focused"
+  [class.ds-ai-chat-field--mic]="usingMic"
+  [class.ds-ai-chat-field--with-suggestions]="hasSuggestions"
+  [class.ds-ai-chat-field--disabled]="disabled"
+  (submit)="onSubmit($event)"
+>
+  <div class="ds-ai-chat-field__row">
+    <span class="ds-ai-chat-field__ai-icon" aria-hidden="true" [innerHTML]="safeAiIcon"></span>
+
+    <div class="ds-ai-chat-field__text">
+      @if (usingMic) {
+        <span class="ds-ai-chat-field__listening" role="status" aria-live="polite">{{ listeningText }}</span>
+      } @else {
+        <textarea
+          class="ds-ai-chat-field__textarea"
+          rows="1"
+          [placeholder]="placeholder"
+          [ngModel]="draft"
+          name="draft"
+          [disabled]="disabled"
+          [attr.aria-label]="ariaLabel"
+          (ngModelChange)="onDraftChange($event)"
+          (keydown)="onKeydown($event)"
+          (focus)="onFocus()"
+          (blur)="onBlur()"
+        ></textarea>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="ds-ai-chat-field__btn"
+      [class.ds-ai-chat-field__btn--mic-active]="usingMic"
+      [disabled]="disabled"
+      [attr.aria-label]="usingMic ? 'Stop voice input' : 'Start voice input'"
+      [attr.aria-pressed]="usingMic"
+      (click)="onMicClick()"
+    >
+      <span aria-hidden="true" [innerHTML]="usingMic ? safeMicActiveIcon : safeMicIcon"></span>
+    </button>
+
+    <button
+      type="submit"
+      class="ds-ai-chat-field__btn ds-ai-chat-field__btn--send"
+      [class.ds-ai-chat-field__btn--send-active]="!sendDisabled"
+      [disabled]="sendDisabled"
+      aria-label="Send message"
+    >
+      <span aria-hidden="true" [innerHTML]="safeSendIcon"></span>
+    </button>
+  </div>
+
+  @if (hasSuggestions) {
+    <div class="ds-ai-chat-field__suggestions" role="group" aria-label="Suggestions">
+      <span class="ds-ai-chat-field__hand-icon" aria-hidden="true" [innerHTML]="safeHandIcon"></span>
+      @for (chip of suggestions; track trackByIndex($index); let i = $index) {
+        <button
+          type="button"
+          class="ds-ai-chat-field__chip"
+          (click)="onSuggestionClick(chip, i)"
+        >{{ chip.label }}</button>
+      }
+    </div>
+  }
+
+  @if (usabilityTip) {
+    <div class="ds-ai-chat-field__tip" role="note">
+      <span class="ds-ai-chat-field__tip-icon" aria-hidden="true" [innerHTML]="safeBulbIcon"></span>
+      <span class="ds-ai-chat-field__tip-text">{{ usabilityTip }}</span>
+    </div>
+  }
+</form>
