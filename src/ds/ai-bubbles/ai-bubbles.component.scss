@@ -1,0 +1,82 @@
+// ─── AI Bubbles (CODE-A-TON Library spec) ────────────────────────────────────
+
+:host {
+  display: inline-flex;
+}
+
+.ds-ai-bubbles {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ai-bubbles-gap);
+}
+
+.ds-ai-bubbles__hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ai-bubbles-hint-icon-size);
+  height: var(--ai-bubbles-hint-icon-size);
+  color: var(--ai-bubbles-hint-icon-color);
+  flex-shrink: 0;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.ds-ai-bubbles__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ai-bubbles-chip-gap);
+  height: var(--ai-bubbles-chip-height);
+  padding: var(--ai-bubbles-chip-padding-y) var(--ai-bubbles-chip-padding-x);
+  background: var(--ai-bubbles-chip-bg);
+  border: 1px solid var(--ai-bubbles-chip-border);
+  border-radius: var(--ai-bubbles-chip-radius);
+  color: var(--ai-bubbles-chip-text);
+  font-family: var(--font-family-base);
+  font-size: var(--ai-bubbles-chip-font-size);
+  line-height: var(--ai-bubbles-chip-line-height);
+  font-weight: 400;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+
+  &:hover {
+    background: var(--ai-bubbles-chip-bg-hover);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--ai-bubbles-chip-focus-color);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.ds-ai-bubbles__chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ai-bubbles-chip-icon-size);
+  height: var(--ai-bubbles-chip-icon-size);
+  flex-shrink: 0;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.ds-ai-bubbles__chip-label {
+  display: inline-block;
+}

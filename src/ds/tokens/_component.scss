@@ -209,6 +209,26 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // AI Bubbles (CODE-A-TON Library — Figma source of truth)
+  // ----------------------------------------------------------
+  --ai-bubbles-gap: 8px;
+  --ai-bubbles-hint-icon-size: 16px;
+  --ai-bubbles-hint-icon-color: #007b95;
+  --ai-bubbles-chip-bg: #ffffff;
+  --ai-bubbles-chip-bg-hover: #f1fbff;
+  --ai-bubbles-chip-border: #007b95;
+  --ai-bubbles-chip-text: #000000;
+  --ai-bubbles-chip-radius: 999px;
+  --ai-bubbles-chip-padding-x: 8px;
+  --ai-bubbles-chip-padding-y: 2px;
+  --ai-bubbles-chip-gap: 4px;
+  --ai-bubbles-chip-height: 20px;
+  --ai-bubbles-chip-icon-size: 16px;
+  --ai-bubbles-chip-font-size: 12px;
+  --ai-bubbles-chip-line-height: 16px;
+  --ai-bubbles-chip-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Avatar
   // ----------------------------------------------------------
   --avatar-size-sm: 32px;
