@@ -49,7 +49,7 @@
     "prettier": "^3.8.1",
     "storybook": "^10.2.16",
     "style-dictionary": "^5.4.0",
-    "typescript": "~5.9.2",
+    "typescript": "~6.0.3",
     "vitest": "^4.0.8",
     "wait-on": "^9.0.4"
   }
