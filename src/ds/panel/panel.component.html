@@ -1,0 +1,9 @@
+<section class="ds-panel" [class.ds-panel--bordered]="bordered">
+  @if (title) {
+    <header class="ds-panel__header">
+      <h3 class="ds-panel__title">{{ title }}</h3>
+      <div class="ds-panel__actions"><ng-content select="[ds-panel-actions]"></ng-content></div>
+    </header>
+  }
+  <div class="ds-panel__body"><ng-content></ng-content></div>
+</section>

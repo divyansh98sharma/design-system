@@ -1,0 +1,45 @@
+// ─── Panel (CODE-A-TON Library spec) ────────────────────────────────────────
+
+:host { display: block; }
+
+.ds-panel {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+
+  &--bordered {
+    border: 1px solid #ebebeb;
+  }
+}
+
+.ds-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.ds-panel__title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.ds-panel__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
