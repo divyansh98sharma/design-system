@@ -43,7 +43,7 @@
     "@storybook/addon-onboarding": "^10.3.6",
     "@storybook/angular": "^10.3.6",
     "@storybook/test-runner": "^0.24.2",
-    "chromatic": "^15.2.0",
+    "chromatic": "^16.9.1",
     "http-server": "^14.1.1",
     "jsdom": "^28.0.0",
     "prettier": "^3.8.1",
