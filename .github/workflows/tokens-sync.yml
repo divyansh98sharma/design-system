@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - tokens/sync
+      - tokens-sync
     paths:
       - 'tokens/**/*.json'
       - 'style-dictionary.config.mjs'
