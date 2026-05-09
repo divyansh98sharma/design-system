@@ -1,0 +1,20 @@
+<div class="ds-lookup">
+  <label class="ds-lookup__label">{{ label }}</label>
+  <div class="ds-lookup__field">
+    <input class="ds-lookup__input" type="text" [placeholder]="placeholder" [value]="value" (input)="onInput($any($event.target).value)" (focus)="openChange.emit(true)" />
+  </div>
+  @if (open) {
+    <ul class="ds-lookup__menu" role="listbox">
+      @if (items.length === 0) {
+        <li class="ds-lookup__empty">{{ emptyMessage }}</li>
+      } @else {
+        @for (item of items; track trackById($index, item)) {
+          <li class="ds-lookup__item" [class.ds-lookup__item--selected]="item.id === selectedId" role="option" [attr.aria-selected]="item.id === selectedId" (click)="onPick(item)">
+            <span class="ds-lookup__item-label">{{ item.label }}</span>
+            @if (item.meta) { <span class="ds-lookup__item-meta">{{ item.meta }}</span> }
+          </li>
+        }
+      }
+    </ul>
+  }
+</div>
