@@ -32,20 +32,21 @@
   // ----------------------------------------------------------
   // Radio Button
   // ----------------------------------------------------------
+  // Radio Button — CODE-A-TON Library Figma source of truth
   --radio-size: 16px;
-  --radio-border: var(--color-border-strong);
-  --radio-border-checked: var(--color-user);
-  --radio-border-hover: var(--color-user-hover);
-  --radio-bg: var(--color-surface);
+  --radio-border: #717171;
+  --radio-border-checked: #007b95;
+  --radio-border-hover: #02506f;
+  --radio-bg: #ffffff;
   --radio-dot-size: 8px;
-  --radio-dot-color: var(--color-user);
-  --radio-dot-color-hover: var(--color-user-hover);
-  --radio-bg-disabled: var(--color-surface);
-  --radio-border-disabled: var(--color-border-strong);
-  --radio-label-font-size: var(--font-size-12);
-  --radio-label-color: var(--color-text-primary);
-  --radio-label-color-disabled: var(--color-text-disabled);
-  --radio-gap: var(--spacing-x-small);
+  --radio-dot-color: #007b95;
+  --radio-dot-color-hover: #02506f;
+  --radio-bg-disabled: #ffffff;
+  --radio-border-disabled: #bcbcbc;
+  --radio-label-font-size: 12px;
+  --radio-label-color: #000000;
+  --radio-label-color-disabled: #969696;
+  --radio-gap: 4px;
   --radio-transition: 120ms ease;
   --radio-focus-width: 2px;
   --radio-focus-offset: 2px;
