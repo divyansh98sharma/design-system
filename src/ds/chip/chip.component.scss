@@ -1,88 +1,69 @@
-// ─── Chip / Tag ───────────────────────────────────────────────────────────────
+// ─── Chip (CODE-A-TON Library spec) ─────────────────────────────────────────
+
+:host { display: inline-flex; }
 
 .ds-chip {
   display: inline-flex;
   align-items: center;
   gap: var(--chip-gap);
-  padding: var(--chip-padding-y) var(--chip-padding-x);
+  padding: var(--chip-padding-y-sm) var(--chip-padding-x);
   border: 1px solid transparent;
   border-radius: var(--chip-radius);
   font-family: var(--font-family-base);
   font-size: var(--chip-font-size);
-  line-height: var(--line-height-16);
-  color: var(--chip-color);
-  cursor: pointer;
+  line-height: var(--chip-line-height);
+  white-space: nowrap;
+  cursor: default;
   transition: opacity var(--chip-transition);
   user-select: none;
 
-  &:hover { opacity: 0.85; }
+  &--lg { padding: var(--chip-padding-y-lg) var(--chip-padding-x); }
 
-  // ─── States ─────────────────────────────────────────────────────────────
-
-  &--default    { background: var(--chip-bg-default);    border-color: var(--chip-border-default); }
-  &--active     { background: var(--chip-bg-active);     border-color: var(--chip-border-active); }
-  &--error      { background: var(--chip-bg-error);      border-color: var(--chip-border-error); }
-  &--warning    { background: var(--chip-bg-warning);    border-color: var(--chip-border-warning); }
-  &--in-process { background: var(--chip-bg-in-process); border-color: var(--chip-border-in-process); }
-  &--ai         { background: var(--chip-bg-ai);         border-color: var(--chip-border-ai); }
-
-  // ─── Badge ──────────────────────────────────────────────────────────────
-
-  &__badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: var(--chip-badge-size);
-    height: var(--chip-badge-size);
-    border-radius: var(--chip-badge-radius);
-    color: var(--chip-badge-color);
-    font-family: var(--font-family-base);
-    font-size: var(--chip-badge-font-size);
-    font-weight: var(--font-weight-regular);
-    line-height: 1;
+  // Color variants
+  &--red    { background: var(--chip-red-bg);    color: var(--chip-red-text); }
+  &--orange { background: var(--chip-orange-bg); color: var(--chip-orange-text); }
+  &--yellow { background: var(--chip-yellow-bg); color: var(--chip-yellow-text); }
+  &--green  { background: var(--chip-green-bg);  color: var(--chip-green-text); }
+  &--blue   { background: var(--chip-blue-bg);   color: var(--chip-blue-text); }
+  &--purple { background: var(--chip-purple-bg); color: var(--chip-purple-text); }
+  &--white  { background: var(--chip-white-bg);  color: var(--chip-white-text);  border-color: var(--chip-white-border); }
+  &--gray   { background: var(--chip-gray-bg);   color: var(--chip-gray-text); }
+  &--ai       { background: var(--chip-ai-bg);       color: var(--chip-ai-text);       border-color: var(--chip-ai-border); }
+  &--action   { background: var(--chip-action-bg);   color: var(--chip-action-text);   border-color: var(--chip-action-border); }
+  &--selected { background: var(--chip-selected-bg); color: var(--chip-selected-text); border-color: var(--chip-selected-border); }
+  &--structured {
+    background: var(--chip-structured-bg);
+    color: #000000;
+    border: 0.5px solid var(--chip-structured-inner-border);
+    box-shadow: 0 0 0 0.5px var(--chip-structured-outer-border);
   }
+}
 
-  // ─── Icon ───────────────────────────────────────────────────────────────
+.ds-chip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--chip-icon-size);
+  height: var(--chip-icon-size);
+  flex-shrink: 0;
 
-  &__icon {
-    display: block;
-    flex-shrink: 0;
-    width: var(--chip-icon-size);
-    height: var(--chip-icon-size);
-    color: var(--chip-color);
-  }
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
 
-  // ─── Label ──────────────────────────────────────────────────────────────
+  svg { display: block; width: 100%; height: 100%; }
+}
 
-  &__label {
-    font-weight: var(--font-weight-regular);
-    white-space: nowrap;
-  }
+.ds-chip__label { display: inline-block; }
 
-  // ─── Close button ───────────────────────────────────────────────────────
-
-  &__close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: var(--chip-close-size);
-    height: var(--chip-close-size);
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--chip-color);
-    transition: opacity var(--chip-transition);
-
-    &:hover        { opacity: 0.6; }
-    &:focus-visible { outline: 2px solid var(--chip-close-focus-color); outline-offset: 1px; }
-  }
-
-  &__close-icon {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
+.ds-chip__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--chip-counter-padding-x);
+  background: var(--chip-counter-bg);
+  border: 1px solid var(--chip-counter-border);
+  border-radius: var(--chip-counter-radius);
+  color: var(--chip-counter-text);
+  font-size: var(--chip-font-size);
+  line-height: var(--chip-line-height);
 }
