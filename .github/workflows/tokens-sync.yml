@@ -83,7 +83,7 @@ jobs:
             - [ ] Generated SCSS file is the only token-related change
           branch: tokens/auto-pr
           base: main
-          delete-branch: true
+          delete-branch: false
           labels: |
             design-tokens
             automated
