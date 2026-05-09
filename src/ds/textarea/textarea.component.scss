@@ -1,0 +1,35 @@
+:host { display: block; }
+
+.ds-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  font-family: var(--font-family-base);
+
+  &--error .ds-textarea__input { border-color: #d82727; }
+  &--disabled .ds-textarea__input { background: #f7f7f7; color: #bcbcbc; cursor: not-allowed; }
+}
+
+.ds-textarea__input {
+  width: 100%;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  resize: vertical;
+
+  &:focus { outline: none; border-color: #007b95; }
+  &::placeholder { color: #bcbcbc; }
+}
+
+.ds-textarea__counter {
+  align-self: flex-end;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4b586b;
+}
