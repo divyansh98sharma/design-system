@@ -1,0 +1,19 @@
+@if (href) {
+  <a
+    class="ds-hyperlink"
+    [class.ds-hyperlink--disabled]="disabled"
+    [href]="disabled ? null : href"
+    [target]="target"
+    [attr.rel]="target === '_blank' ? 'noopener noreferrer' : null"
+    [attr.aria-disabled]="disabled || null"
+    (click)="onClick($event)"
+  >{{ label }}</a>
+} @else {
+  <button
+    type="button"
+    class="ds-hyperlink"
+    [class.ds-hyperlink--disabled]="disabled"
+    [disabled]="disabled"
+    (click)="onClick($event)"
+  >{{ label }}</button>
+}
