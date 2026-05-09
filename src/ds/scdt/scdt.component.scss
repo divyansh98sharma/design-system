@@ -1,0 +1,66 @@
+:host { display: block; }
+
+.ds-scdt {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+
+  &--modal {
+    width: 900px;
+    max-width: 100%;
+    box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.16);
+  }
+
+  &--popover {
+    width: 487px;
+    max-width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e1e1e1;
+  }
+}
+
+.ds-scdt__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 16px;
+  background: #007b95;
+  color: #ffffff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.ds-scdt--popover .ds-scdt__header {
+  background: #f1fbff;
+  color: #007b95;
+}
+
+.ds-scdt__title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.ds-scdt__close {
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+
+  svg { display: block; width: 12px; height: 12px; }
+}
+
+.ds-scdt__body {
+  padding: 16px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+
+  p { margin: 0; }
+}
