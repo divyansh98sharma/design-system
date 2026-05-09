@@ -308,10 +308,11 @@
   // ----------------------------------------------------------
   --side-nav-width: 320px;
   --side-nav-max-height: 824px;
-  --side-nav-bg: var(--color-secondary-5);
-  --side-nav-border: var(--color-secondary-50);
+  // Aligned to CODE-A-TON Library Figma palette
+  --side-nav-bg: #fbfbfb;
+  --side-nav-border: #e1e1e1;
   --side-nav-heading-height: 36px;
-  --side-nav-heading-bg: var(--color-secondary-40);
+  --side-nav-heading-bg: #ebebeb;
   --side-nav-btn-hover-bg: rgba(0, 0, 0, 0.08);
   --side-nav-search-height: 24px;
   --side-nav-search-padding-x: 6px;
