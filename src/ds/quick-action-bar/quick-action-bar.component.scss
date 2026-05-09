@@ -1,0 +1,46 @@
+:host { display: inline-flex; }
+
+.ds-quick-action-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 4px 8px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-family-base);
+}
+
+.ds-quick-action-bar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 4px 8px;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: #000000;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+
+  &:hover { background: #f1fbff; }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-border-focus);
+  }
+}
+
+.ds-quick-action-bar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}

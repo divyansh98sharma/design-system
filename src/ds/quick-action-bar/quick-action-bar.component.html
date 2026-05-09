@@ -1,0 +1,15 @@
+<nav class="ds-quick-action-bar" role="toolbar" aria-label="Quick actions">
+  @for (a of actions; track trackById($index, a)) {
+    <button
+      type="button"
+      class="ds-quick-action-bar__btn"
+      [attr.aria-label]="a.ariaLabel || a.label"
+      (click)="actionClick.emit(a.id)"
+    >
+      @if (a.icon) {
+        <span class="ds-quick-action-bar__icon" aria-hidden="true" [innerHTML]="safeIcon(a.icon)"></span>
+      }
+      <span class="ds-quick-action-bar__label">{{ a.label }}</span>
+    </button>
+  }
+</nav>
