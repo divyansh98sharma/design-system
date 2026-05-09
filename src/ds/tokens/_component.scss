@@ -691,12 +691,13 @@
   // ----------------------------------------------------------
   // Scrollbar
   // ----------------------------------------------------------
+  // Scrollbar — CODE-A-TON Library Figma source of truth
   --scrollbar-width: 12px;
   --scrollbar-arrow-size: 10px;
-  --scrollbar-track-bg: var(--color-secondary-40);
-  --scrollbar-thumb-bg: var(--color-secondary-70);
-  --scrollbar-thumb-bg-hover: var(--color-secondary-80);
-  --scrollbar-thumb-bg-active: var(--color-secondary-90);
+  --scrollbar-track-bg: #f0f0f0;
+  --scrollbar-thumb-bg: #717171;
+  --scrollbar-thumb-bg-hover: #4b4b4b;
+  --scrollbar-thumb-bg-active: #2d2d2d;
   --scrollbar-thumb-radius: var(--radius-standard);
   --scrollbar-arrow-bg: var(--color-secondary-40);
   --scrollbar-arrow-stroke: var(--color-secondary-70);
