@@ -1,0 +1,11 @@
+<div class="ds-patient-identifiers" [class.ds-patient-identifiers--colored]="background === 'colored'">
+  <span class="ds-patient-identifiers__name">{{ name }}</span>
+  @if (demographics) {
+    <span class="ds-patient-identifiers__demographics">{{ demographics }}</span>
+  }
+  @for (id of identifiers; track trackByIndex($index)) {
+    <span class="ds-patient-identifiers__divider" aria-hidden="true">·</span>
+    <span class="ds-patient-identifiers__label">{{ id.label }}:</span>
+    <span class="ds-patient-identifiers__value">{{ id.value }}</span>
+  }
+</div>

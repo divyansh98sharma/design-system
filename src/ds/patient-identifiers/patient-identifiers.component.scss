@@ -1,0 +1,30 @@
+// ─── Patient Identifiers (CODE-A-TON Library spec) ──────────────────────────
+
+:host { display: inline-flex; }
+
+.ds-patient-identifiers {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  line-height: 16px;
+  color: #4b586b;
+
+  &--colored {
+    background: #f1fbff;
+    border-radius: 4px;
+  }
+}
+
+.ds-patient-identifiers__name {
+  font-weight: 600;
+  color: #000000;
+}
+
+.ds-patient-identifiers__demographics { color: #4b586b; }
+.ds-patient-identifiers__label { color: #4b586b; }
+.ds-patient-identifiers__value { color: #000000; font-weight: 500; }
+.ds-patient-identifiers__divider { color: #bcbcbc; }
