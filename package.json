@@ -39,7 +39,7 @@
     "@angular/platform-browser-dynamic": "^21.2.1",
     "@compodoc/compodoc": "^1.2.1",
     "@storybook/addon-a11y": "^10.3.6",
-    "@storybook/addon-docs": "^10.2.16",
+    "@storybook/addon-docs": "^10.3.6",
     "@storybook/addon-onboarding": "^10.3.6",
     "@storybook/angular": "^10.3.6",
     "@storybook/test-runner": "^0.24.2",
