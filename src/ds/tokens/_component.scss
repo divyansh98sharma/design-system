@@ -228,12 +228,13 @@
   // ----------------------------------------------------------
   // Tooltip
   // ----------------------------------------------------------
-  --tooltip-bg: var(--color-secondary-90);
-  --tooltip-color: var(--color-text-inverse);
-  --tooltip-radius: var(--radius-4);
-  --tooltip-font-size: var(--font-size-10);
-  --tooltip-padding-x: var(--spacing-small);
-  --tooltip-padding-y: var(--spacing-x-small);
+  // Tooltip — CODE-A-TON Library Figma source of truth
+  --tooltip-bg: #4b586b;
+  --tooltip-color: #ffffff;
+  --tooltip-radius: 4px;
+  --tooltip-font-size: 12px;
+  --tooltip-padding-x: 8px;
+  --tooltip-padding-y: 4px;
 
   // ----------------------------------------------------------
   // Table
