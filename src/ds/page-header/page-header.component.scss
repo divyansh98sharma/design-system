@@ -1,0 +1,47 @@
+// ─── Page Header (CODE-A-TON Library spec) ──────────────────────────────────
+
+:host { display: block; }
+
+.ds-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #e1e1e1;
+  font-family: var(--font-family-base);
+}
+
+.ds-page-header__left {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ds-page-header__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ds-page-header__title {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #0378a7;
+}
+
+.ds-page-header__subtitle {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #4b586b;
+}
+
+.ds-page-header__right {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
