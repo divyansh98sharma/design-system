@@ -25,12 +25,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Approve PR
-        if: steps.meta.outputs.update-type == 'version-update:semver-patch' || steps.meta.outputs.update-type == 'version-update:semver-minor' || steps.meta.outputs.dependency-type == 'direct:production' && steps.meta.outputs.alert-state == 'fixed'
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Approval step removed — branch protection on main does not require PR reviews,
+      # and GITHUB_TOKEN is not permitted to approve PRs (would fail the whole job).
 
       - name: Enable auto-merge for patch/minor + security updates
         if: steps.meta.outputs.update-type == 'version-update:semver-patch' || steps.meta.outputs.update-type == 'version-update:semver-minor'

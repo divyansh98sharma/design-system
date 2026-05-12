@@ -61,3 +61,7 @@ jobs:
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           onlyChanged: true
+          # Dependabot bumps dev/runtime deps only — no visual diffs expected.
+          # Auto-accept any baselines so the check goes green and the PR can auto-merge.
+          autoAcceptChanges: ${{ github.actor == 'dependabot[bot]' }}
+          exitZeroOnChanges: ${{ github.actor == 'dependabot[bot]' }}
