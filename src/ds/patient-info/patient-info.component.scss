@@ -5,7 +5,6 @@
   flex-direction: column;
   background: var(--patient-info-bg);
   border-bottom: 1px solid var(--patient-info-border);
-  font-family: var(--font-family-base);
 
   // ─── Main row ─────────────────────────────────────────────────────────────
 
@@ -84,7 +83,6 @@
     background: var(--patient-info-btn-bg);
     border: 1px solid var(--patient-info-btn-border);
     border-radius: var(--radius-4);
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
@@ -102,7 +100,6 @@
     background: var(--patient-info-secondary-btn-bg);
     border: 1px solid var(--patient-info-secondary-btn-border);
     border-radius: var(--radius-4);
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
@@ -123,7 +120,6 @@
     background: var(--patient-info-healow-btn-bg);
     border: 1px solid var(--patient-info-secondary-btn-hover);
     border-radius: var(--radius-pill);
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
@@ -148,7 +144,6 @@
     height: var(--patient-info-btn-height);
     padding: var(--spacing-x-small) var(--spacing-small);
     border-radius: var(--radius-pill);
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
@@ -261,7 +256,6 @@
   }
 
   &__alert-link {
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
@@ -291,7 +285,6 @@
     border: 1px solid;
     border-radius: var(--radius-4);
     overflow: hidden;
-    font-family: var(--font-family-base);
     font-size: var(--font-size-10);
     line-height: var(--line-height-12);
     color: var(--patient-info-text-color);
@@ -364,7 +357,6 @@
     padding: 0;
     background: none;
     border: none;
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);

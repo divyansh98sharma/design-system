@@ -41,7 +41,6 @@ import { CommonModule } from '@angular/common';
       border         : none;
       background-image: var(--sogi-gradient);
       color      : var(--color-white);
-      font-family: var(--font-family-base);
       font-size  : var(--font-size-12);
       font-weight: var(--font-weight-regular);
       line-height: var(--line-height-16);

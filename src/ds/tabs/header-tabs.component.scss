@@ -31,7 +31,6 @@
 // ─── Heading ─────────────────────────────────────────────────────────────────
 .ds-header-tabs__heading {
   flex: 1 0 0;
-  font-family: var(--font-family-base);
   font-size: var(--tab-font-size);
   font-weight: var(--font-weight-semibold);
   line-height: var(--line-height-16);
@@ -59,7 +58,6 @@
   border: none;
   background: var(--theme-base);
   cursor: pointer;
-  font-family: var(--font-family-base);
   font-size: var(--tab-font-size);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-16);
