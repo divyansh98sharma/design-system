@@ -34,7 +34,7 @@
     "@angular-devkit/build-angular": "^21.2.11",
     "@angular-devkit/core": "^21.2.10",
     "@angular/build": "^21.2.11",
-    "@angular/cli": "^21.2.10",
+    "@angular/cli": "^21.2.11",
     "@angular/compiler-cli": "^21.2.13",
     "@angular/platform-browser-dynamic": "^21.2.13",
     "@compodoc/compodoc": "^1.2.1",
