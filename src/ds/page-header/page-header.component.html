@@ -1,0 +1,63 @@
+<div class="ds-page-header" role="banner">
+  @if (showFilter) {
+    <button
+      type="button"
+      class="ds-page-header__filter"
+      [class.ds-page-header__filter--alert]="filterAlert"
+      aria-label="Filter"
+      (click)="filterClick.emit()"
+    >
+      <svg class="ds-page-header__filter-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M1 2.5A.5.5 0 0 1 1.5 2h13a.5.5 0 0 1 .4.8l-5.4 6.7V13a.5.5 0 0 1-.3.46l-2 .83A.5.5 0 0 1 6.5 13.8V9.5L1.1 2.8A.5.5 0 0 1 1 2.5Z"
+        />
+      </svg>
+      @if (filterAlert) {
+        <span class="ds-page-header__filter-dot" aria-hidden="true"></span>
+      }
+    </button>
+  }
+
+  <button
+    type="button"
+    class="ds-page-header__title-button"
+    [class.ds-page-header__title-button--plain]="!showTitleDropdown"
+    (click)="titleClick.emit()"
+    [attr.aria-haspopup]="showTitleDropdown ? 'menu' : null"
+  >
+    <span class="ds-page-header__title">{{ title }}</span>
+    @if (showTitleDropdown) {
+      <svg class="ds-page-header__chevron" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41Z" />
+      </svg>
+    }
+  </button>
+
+  @if (showCreateNew) {
+    <button
+      type="button"
+      class="ds-page-header__action"
+      (click)="createNew.emit()"
+    >
+      {{ createNewLabel }}
+    </button>
+  }
+
+  @if (tabs.length > 0) {
+    <div class="ds-page-header__tabs" role="tablist">
+      @for (tab of tabs; track tab.key) {
+        <button
+          type="button"
+          role="tab"
+          class="ds-page-header__tab"
+          [class.ds-page-header__tab--active]="activeTab === tab.key"
+          [attr.aria-selected]="activeTab === tab.key"
+          (click)="selectTab(tab.key)"
+        >
+          {{ tab.label }}
+        </button>
+      }
+    </div>
+  }
+</div>

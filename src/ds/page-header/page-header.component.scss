@@ -1,0 +1,144 @@
+:host { display: block; }
+
+.ds-page-header {
+  display: flex;
+  align-items: center;
+  gap: var(--page-header-gap);
+  width: 100%;
+  height: var(--page-header-height);
+  padding: var(--page-header-padding-y) 0 var(--page-header-padding-y) var(--page-header-padding-x);
+  background: var(--page-header-bg);
+  border-bottom: 1px solid var(--page-header-border);
+  box-sizing: border-box;
+
+  &__filter {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--page-header-filter-size);
+    height: var(--page-header-filter-size);
+    padding: var(--page-header-filter-padding);
+    background: var(--page-header-filter-bg);
+    border: 1px solid var(--page-header-filter-border);
+    border-radius: var(--page-header-filter-radius);
+    color: var(--page-header-filter-color);
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover { background: var(--page-header-filter-bg-hover); }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+  }
+
+  &__filter-icon {
+    width: var(--page-header-filter-icon-size);
+    height: var(--page-header-filter-icon-size);
+    display: block;
+  }
+
+  &__filter-dot {
+    position: absolute;
+    top: -3px;
+    right: -4px;
+    width: var(--page-header-dot-size);
+    height: var(--page-header-dot-size);
+    background: var(--page-header-dot-color);
+    border-radius: 50%;
+  }
+
+  &__title-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: var(--page-header-title-color);
+    flex-shrink: 0;
+
+    &--plain { cursor: default; }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  &__title {
+    font-family: var(--font-family-base);
+    font-size: var(--page-header-title-size);
+    font-weight: var(--page-header-title-weight);
+    line-height: var(--page-header-title-line-height);
+    color: var(--page-header-title-color);
+  }
+
+  &__chevron {
+    width: var(--page-header-chevron-size);
+    height: var(--page-header-chevron-size);
+    color: var(--page-header-title-color);
+    display: block;
+  }
+
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--page-header-action-height);
+    padding: var(--page-header-action-padding-y) var(--page-header-action-padding-x);
+    background: var(--page-header-action-bg);
+    color: var(--page-header-action-color);
+    border: 0;
+    border-radius: var(--page-header-action-radius);
+    font-family: var(--font-family-base);
+    font-size: var(--page-header-action-font-size);
+    font-weight: var(--page-header-action-font-weight);
+    line-height: var(--page-header-action-line-height);
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover { background: var(--page-header-action-bg-hover); }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+  }
+
+  &__tabs {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  &__tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--page-header-tab-padding);
+    background: transparent;
+    border: 0;
+    border-bottom: var(--page-header-tab-border-width) solid var(--page-header-tab-border);
+    color: var(--page-header-tab-color);
+    font-family: var(--font-family-base);
+    font-size: var(--page-header-tab-font-size);
+    font-weight: var(--page-header-tab-font-weight);
+    line-height: var(--page-header-tab-line-height);
+    cursor: pointer;
+
+    &--active {
+      border-bottom-color: var(--page-header-tab-active-border);
+      font-weight: var(--page-header-tab-active-font-weight);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 2px;
+    }
+  }
+}
