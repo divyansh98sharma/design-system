@@ -1,69 +1,164 @@
 <div
   class="ds-input-field"
   [class.ds-input-field--horizontal]="alignment === 'horizontal'"
-  [class.ds-input-field--error]="!!errorText"
+  [class.ds-input-field--error]="hasError"
   [class.ds-input-field--disabled]="disabled"
 >
-  <!-- Label row -->
+  <!-- ─── Label ─────────────────────────────────────────────────────────── -->
   @if (showLabel) {
     <label class="ds-input-field__label">
-      {{ label }}
+      <span class="ds-input-field__label-text">{{ label }}</span>
       @if (required) {
         <span class="ds-input-field__required" aria-hidden="true">*</span>
       }
       @if (showInfo) {
         <span class="ds-input-field__info" title="More information" aria-label="More information">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7" cy="7" r="6.5" stroke="#0378a7"/>
-            <text x="7" y="11" text-anchor="middle" font-size="9" fill="#0378a7" font-family="sans-serif" font-style="italic" font-weight="bold">i</text>
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="8" cy="8" r="6.8" stroke="currentColor" stroke-width="1.2"/>
+            <rect x="7.3" y="7" width="1.3" height="4.3" fill="currentColor"/>
+            <circle cx="8" cy="5.3" r="0.8" fill="currentColor"/>
           </svg>
         </span>
       }
     </label>
   }
 
-  <!-- Input wrapper -->
-  <div class="ds-input-field__wrapper">
+  <!-- ─── Field row ─────────────────────────────────────────────────────── -->
+  <div class="ds-input-field__row">
     @if (showSearchIcon) {
-      <span class="ds-input-field__search-icon" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="11" cy="11" r="7" stroke="#969696" stroke-width="2"/>
-          <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="#969696" stroke-width="2" stroke-linecap="round"/>
+      <span class="ds-input-field__icon ds-input-field__icon--leading" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7.3" cy="7.3" r="4.7" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="11" y1="11" x2="13.7" y2="13.7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
       </span>
+    }
+
+    @if (showCountryCode) {
+      <button
+        type="button"
+        class="ds-input-field__country-code"
+        aria-label="Change country code"
+      >
+        <svg class="ds-input-field__country-flag" viewBox="0 0 16 16" aria-hidden="true">
+          <rect width="16" height="16" fill="#F7F7F7"/>
+          <rect y="0" width="16" height="2" fill="#b22234"/>
+          <rect y="4" width="16" height="2" fill="#b22234"/>
+          <rect y="8" width="16" height="2" fill="#b22234"/>
+          <rect y="12" width="16" height="2" fill="#b22234"/>
+          <rect width="7" height="7" fill="#3c3b6e"/>
+        </svg>
+        <svg class="ds-input-field__chevron-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="ds-input-field__country-label">{{ countryCode }}</span>
+      </button>
     }
 
     <input
       class="ds-input-field__input"
-      type="text"
+      [type]="inputType"
       [placeholder]="placeholder"
       [disabled]="disabled"
+      [readOnly]="readonly"
       [value]="value"
       (input)="handleInput($any($event.target).value)"
       (blur)="handleBlur()"
-      [attr.aria-invalid]="!!errorText || null"
+      [attr.aria-invalid]="hasError ? true : null"
     />
 
-    @if (showChevron) {
-      <span class="ds-input-field__chevron" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 9l6 6 6-6" stroke="#4b4b4b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- ─── Trailing adornments ──────────────────────────────────────────── -->
+
+    @if (chips.length) {
+      <div class="ds-input-field__chips" role="list" aria-label="Selected values">
+        @for (chip of visibleChips; track $index) {
+          <span class="ds-input-field__chip" role="listitem">
+            @if (chip.icon) {
+              <span class="ds-input-field__chip-icon" [innerHTML]="chip.icon"></span>
+            }
+            <span class="ds-input-field__chip-label">{{ chip.label }}</span>
+          </span>
+        }
+        @if (overflowChipCount > 0) {
+          <span class="ds-input-field__chip ds-input-field__chip--overflow">+{{ overflowChipCount }}</span>
+        }
+      </div>
+    }
+
+    @if (hasError && showInlineErrorIcon) {
+      <span class="ds-input-field__icon ds-input-field__icon--error" [attr.aria-label]="errorText" [title]="errorText">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 1.5L15 14H1L8 1.5Z" fill="currentColor"/>
+          <rect x="7.3" y="6" width="1.4" height="4.3" fill="#fff"/>
+          <circle cx="8" cy="11.8" r="0.8" fill="#fff"/>
         </svg>
       </span>
     }
+
+    @if (assignToSelf) {
+      <button type="button" class="ds-input-field__assign-to-self" (click)="assignToSelfClick.emit()">
+        {{ assignToSelfLabel }}
+      </button>
+    }
+
+    @if (showFilter) {
+      <button type="button" class="ds-input-field__icon-btn" aria-label="Filter" (click)="filterClick.emit()">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 3h12l-4.5 5v4L6.5 14V8L2 3z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    }
+
+    @if (showCalendar) {
+      <button type="button" class="ds-input-field__icon-btn" aria-label="Open calendar" (click)="calendarClick.emit()">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="2" y="3" width="12" height="11" rx="1.2" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="2" y1="6" x2="14" y2="6" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="5" y1="1.5" x2="5" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          <line x1="11" y1="1.5" x2="11" y2="4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    }
+
+    @if (showFavorite) {
+      <button type="button" class="ds-input-field__icon-btn" aria-label="Favorite" (click)="favoriteClick.emit()">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M8 1.7l1.9 4 4.4.6-3.2 3.1.8 4.4L8 11.6l-3.9 2.1.8-4.4L1.7 6.3l4.4-.6L8 1.7z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    }
+
+    @if (showReferral) {
+      <button type="button" class="ds-input-field__icon-btn" aria-label="Referral" (click)="referralClick.emit()">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 2h6v2H5V2zm-1 3h8l-1 9H5L4 5zm2 2l.5 5M10 7l-.5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    }
+
+    @if (showLookup) {
+      <button type="button" class="ds-input-field__icon-btn" aria-label="Lookup" (click)="lookupClick.emit()">
+        <svg viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="3.5" cy="8" r="1.25"/>
+          <circle cx="8" cy="8" r="1.25"/>
+          <circle cx="12.5" cy="8" r="1.25"/>
+        </svg>
+      </button>
+    }
+
+    @if (showChevron) {
+      <button type="button" class="ds-input-field__icon-btn" aria-label="Open options" (click)="chevronClick.emit()">
+        <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    }
   </div>
 
-  <!-- Support / error text -->
+  <!-- ─── Support / error text ──────────────────────────────────────────── -->
   @if (errorText) {
-    <div class="ds-input-field__error" role="alert">
-      <svg class="ds-input-field__error-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="12" cy="12" r="10" fill="#d93025"/>
-        <line x1="12" y1="7" x2="12" y2="13" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="12" cy="17" r="1" fill="#fff"/>
-      </svg>
-      <span>{{ errorText }}</span>
-    </div>
+    <p class="ds-input-field__error-text" role="alert">{{ errorText }}</p>
   } @else if (supportText) {
-    <div class="ds-input-field__support">{{ supportText }}</div>
+    <p class="ds-input-field__support">{{ supportText }}</p>
   }
 </div>

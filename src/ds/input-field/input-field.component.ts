@@ -1,9 +1,9 @@
 import {
+  ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
-  ChangeDetectionStrategy,
   forwardRef,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,22 +12,21 @@ import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/f
 /** Label layout relative to the field. */
 export type InputFieldAlignment = 'vertical' | 'horizontal';
 
+/** A value chip shown inside the input (multi-select pattern). */
+export interface InputFieldChip {
+  label: string;
+  icon?: string;
+}
+
 /**
- * Input Field — versatile 24 px search/select input matching the design system.
+ * Input Field — 24 px underline-style field matching the Figma spec.
  *
- * Features:
- * - Optional label (vertical or horizontal layout)
- * - Optional required asterisk on the label
- * - Optional info icon on the label
- * - Optional leading search icon
- * - Editable text area with italic placeholder
- * - Optional chevron-down indicator (marks field as a select/dropdown)
- * - Optional support text below the field
- * - Optional error text with inline error icon
- * - Focus ring: `box-shadow 0 0 0 2px #0378a7`
+ * A single border-bottom row containing optional leading adornments
+ * (search icon, country code), an editable input, and any combination of
+ * trailing adornments (chips with overflow counter, inline error, chevron,
+ * calendar, favorite, filter, "Me"/assign-to-self, lookup dots, referral).
  *
- * Implements `ControlValueAccessor` so it can be used with `ngModel` /
- * reactive forms.
+ * Implements `ControlValueAccessor` for use with `ngModel` / reactive forms.
  */
 @Component({
   selector: 'ds-input-field',
@@ -45,46 +44,59 @@ export type InputFieldAlignment = 'vertical' | 'horizontal';
   ],
 })
 export class InputFieldComponent implements ControlValueAccessor {
-  /** Text shown above or to the left of the field. */
+  // ─── Label ──────────────────────────────────────────────────────────────
   @Input() label = 'Label';
-
-  /** Hides the label entirely when false. */
   @Input() showLabel = true;
-
-  /** Shows a red asterisk after the label text. */
   @Input() required = false;
-
-  /** Shows an info icon (ℹ) after the label. */
   @Input() showInfo = false;
-
-  /** Label–field layout direction. */
   @Input() alignment: InputFieldAlignment = 'vertical';
 
-  /** Placeholder shown in the input when empty. */
-  @Input() placeholder = 'Text';
-
-  /** Shows the search (magnifier) icon on the left. */
-  @Input() showSearchIcon = true;
-
-  /** Shows a chevron-down on the right (use for dropdown/select fields). */
-  @Input() showChevron = true;
-
-  /** Support text rendered below the field. */
-  @Input() supportText = '';
-
-  /** Inline error message; when set shows the alert icon + message. */
-  @Input() errorText = '';
-
-  /** Disables the input. */
+  // ─── Input ──────────────────────────────────────────────────────────────
+  @Input() placeholder = 'Search';
   @Input() disabled = false;
+  @Input() readonly = false;
+  @Input() inputType: 'text' | 'email' | 'number' | 'search' | 'tel' | 'url' = 'text';
 
-  /** Emits the current value on every keystroke. */
+  // ─── Leading adornments ────────────────────────────────────────────────
+  @Input() showSearchIcon = true;
+  @Input() showCountryCode = false;
+  @Input() countryCode = '+1';
+
+  // ─── Trailing adornments ───────────────────────────────────────────────
+  @Input() showChevron = false;
+  @Input() showCalendar = false;
+  @Input() showFavorite = false;
+  @Input() showFilter = false;
+  @Input() showReferral = false;
+  @Input() showLookup = false;
+  @Input() assignToSelf = false;
+  @Input() assignToSelfLabel = 'Me';
+
+  /** When > 0 chips.length, shows the chips + a "+N" counter chip for the overflow. */
+  @Input() chips: InputFieldChip[] = [];
+  /** Max number of chips to show before collapsing to "+N". 0 = show all. */
+  @Input() maxVisibleChips = 1;
+
+  // ─── State / feedback ──────────────────────────────────────────────────
+  @Input() supportText = '';
+  @Input() errorText = '';
+  @Input() showInlineErrorIcon = true;
+
+  // ─── Outputs ───────────────────────────────────────────────────────────
   @Output() valueChange = new EventEmitter<string>();
+  @Output() chevronClick = new EventEmitter<void>();
+  @Output() calendarClick = new EventEmitter<void>();
+  @Output() favoriteClick = new EventEmitter<void>();
+  @Output() filterClick = new EventEmitter<void>();
+  @Output() lookupClick = new EventEmitter<void>();
+  @Output() referralClick = new EventEmitter<void>();
+  @Output() assignToSelfClick = new EventEmitter<void>();
+  @Output() chipRemoved = new EventEmitter<number>();
 
-  /** Internal model value. */
+  /** Internal model. */
   value = '';
 
-  // ─── ControlValueAccessor ─────────────────────────────────────────────────
+  // ─── ControlValueAccessor ───────────────────────────────────────────────
   private onChange: (v: string) => void = () => {};
   private onTouched: () => void = () => {};
 
@@ -100,4 +112,18 @@ export class InputFieldComponent implements ControlValueAccessor {
   }
 
   handleBlur(): void { this.onTouched(); }
+
+  get visibleChips(): InputFieldChip[] {
+    if (!this.maxVisibleChips) return this.chips;
+    return this.chips.slice(0, this.maxVisibleChips);
+  }
+
+  get overflowChipCount(): number {
+    if (!this.maxVisibleChips) return 0;
+    return Math.max(0, this.chips.length - this.maxVisibleChips);
+  }
+
+  get hasError(): boolean {
+    return !!this.errorText;
+  }
 }
