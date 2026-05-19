@@ -704,26 +704,32 @@
   // ----------------------------------------------------------
   // Breadcrumb
   // ----------------------------------------------------------
+  // Breadcrumb (CODE-A-TON Library — Figma source of truth)
   --breadcrumb-height: 24px;
   --breadcrumb-item-height: 16px;
   --breadcrumb-item-max-width: 220px;
   --breadcrumb-item-min-width: 42px;
-  --breadcrumb-font-size: var(--font-size-12);
-  --breadcrumb-text-color: var(--color-text-primary);
+  --breadcrumb-font-size: 12px;
+  --breadcrumb-line-height: 16px;
+  --breadcrumb-gap: 4px;
   --breadcrumb-separator-size: 16px;
-  --breadcrumb-radius: var(--radius-standard);
-  --breadcrumb-link-underline: var(--color-text-primary);
+  --breadcrumb-radius: 4px;
+  --breadcrumb-text-default: #000000;
+  --breadcrumb-text-subtle: #4b586b;
   --breadcrumb-link-focus-color: var(--color-border-focus);
-  --breadcrumb-overflow-btn-size: 24px;
-  --breadcrumb-overflow-btn-bg: var(--color-surface);
-  --breadcrumb-overflow-btn-border: var(--color-secondary-base);
-  --breadcrumb-overflow-btn-color: var(--color-text-primary);
-  --breadcrumb-overflow-btn-active-bg: var(--color-user-5);
-  --breadcrumb-overflow-btn-active-border: var(--color-user);
-  --breadcrumb-overflow-btn-active-color: var(--color-user);
-  --breadcrumb-popover-bg: var(--color-surface);
-  --breadcrumb-popover-border: var(--color-secondary-base);
-  --breadcrumb-popover-shadow: var(--shadow-md);
+  --breadcrumb-overflow-icon-size: 24px;
+  --breadcrumb-overflow-btn-bg: #e6f4f3;
+  --breadcrumb-overflow-btn-border: #3ecfbe;
+  --breadcrumb-overflow-btn-color: #000000;
+  --breadcrumb-overflow-btn-active-bg: #d4ecea;
+  --breadcrumb-overflow-btn-active-border: #3ecfbe;
+  --breadcrumb-overflow-btn-active-color: #000000;
+  --breadcrumb-popover-bg: #4b586b;
+  --breadcrumb-popover-text: #ffffff;
+  --breadcrumb-popover-padding-x: 8px;
+  --breadcrumb-popover-padding-y: 8px;
+  --breadcrumb-popover-gap: 4px;
+  --breadcrumb-popover-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.16);
   --breadcrumb-popover-z-index: 100;
 
   // ----------------------------------------------------------
