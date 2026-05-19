@@ -1,0 +1,80 @@
+<nav class="ds-pagination" aria-label="Pagination">
+  @if (showPageSize) {
+    <span class="ds-pagination__label">Show</span>
+    <div class="ds-pagination__select">
+      <select
+        class="ds-pagination__select-native"
+        [ngModel]="pageSize"
+        (ngModelChange)="onPageSizeChange($event)"
+        aria-label="Items per page"
+      >
+        @for (opt of pageSizeOptions; track opt) {
+          <option [ngValue]="opt">{{ opt }}</option>
+        }
+      </select>
+      <svg class="ds-pagination__caret" viewBox="0 0 16 16" aria-hidden="true">
+        <path fill="currentColor" d="M3.2 10.4 8 5.6l4.8 4.8z" />
+      </svg>
+    </div>
+    <span class="ds-pagination__label">of {{ totalItems }} {{ itemLabel }}</span>
+  }
+
+  <button
+    type="button"
+    class="ds-pagination__btn"
+    [disabled]="atFirst"
+    (click)="first()"
+    aria-label="First page"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path fill="currentColor" d="M11.3 12.6 6.7 8l4.6-4.6 1 1L8.7 8l3.6 3.6zM4 3.5h1.2v9H4z" />
+    </svg>
+  </button>
+
+  <button
+    type="button"
+    class="ds-pagination__btn"
+    [disabled]="atFirst"
+    (click)="prev()"
+    aria-label="Previous page"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path fill="currentColor" d="M10.3 12.6 5.7 8l4.6-4.6 1 1L7.7 8l3.6 3.6z" />
+    </svg>
+  </button>
+
+  <input
+    type="text"
+    class="ds-pagination__input"
+    [(ngModel)]="pageInput"
+    (blur)="onPageInputCommit()"
+    (keydown.enter)="onPageInputCommit()"
+    aria-label="Current page"
+  />
+
+  <span class="ds-pagination__label">of {{ totalPages }}</span>
+
+  <button
+    type="button"
+    class="ds-pagination__btn"
+    [disabled]="atLast"
+    (click)="next()"
+    aria-label="Next page"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path fill="currentColor" d="M5.7 3.4 10.3 8l-4.6 4.6-1-1L8.3 8 4.7 4.4z" />
+    </svg>
+  </button>
+
+  <button
+    type="button"
+    class="ds-pagination__btn"
+    [disabled]="atLast"
+    (click)="last()"
+    aria-label="Last page"
+  >
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path fill="currentColor" d="M4.7 3.4 9.3 8l-4.6 4.6-1-1L7.3 8 3.7 4.4zM10.8 3.5H12v9h-1.2z" />
+    </svg>
+  </button>
+</nav>

@@ -1,0 +1,102 @@
+:host { display: inline-block; }
+
+.ds-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pagination-gap);
+  font-family: var(--font-family-base);
+  font-size: var(--pagination-font-size);
+  line-height: var(--pagination-line-height);
+  color: var(--pagination-text-color);
+
+  &__label {
+    color: var(--pagination-text-color);
+    white-space: nowrap;
+  }
+
+  &__select {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__select-native {
+    appearance: none;
+    -webkit-appearance: none;
+    height: var(--pagination-control-size);
+    padding: 0 calc(var(--pagination-icon-size) + 8px) 0 var(--pagination-control-padding-x);
+    background: var(--pagination-select-bg);
+    border: 1px solid var(--pagination-select-border);
+    border-radius: var(--pagination-control-radius);
+    font: inherit;
+    color: var(--pagination-text-color);
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 1px;
+    }
+  }
+
+  &__caret {
+    position: absolute;
+    right: 4px;
+    width: var(--pagination-icon-size);
+    height: var(--pagination-icon-size);
+    pointer-events: none;
+    color: var(--pagination-text-color);
+  }
+
+  &__input {
+    width: var(--pagination-control-size);
+    height: var(--pagination-control-size);
+    padding: 0;
+    text-align: center;
+    background: var(--pagination-input-bg);
+    border: 1px solid var(--pagination-input-border);
+    border-radius: var(--pagination-control-radius);
+    font: inherit;
+    color: var(--pagination-text-color);
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 1px;
+    }
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--pagination-control-size);
+    height: var(--pagination-control-size);
+    padding: 0;
+    background: var(--pagination-btn-bg);
+    border: 1px solid var(--pagination-btn-border);
+    border-radius: var(--pagination-control-radius);
+    color: var(--pagination-text-color);
+    cursor: pointer;
+
+    svg {
+      width: var(--pagination-icon-size);
+      height: var(--pagination-icon-size);
+      display: block;
+    }
+
+    &:hover:not(:disabled) {
+      background: var(--pagination-btn-bg-hover);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-border-focus);
+      outline-offset: 1px;
+    }
+
+    &:disabled {
+      background: var(--pagination-btn-bg-disabled);
+      border-color: var(--pagination-btn-border-disabled);
+      color: var(--pagination-btn-color-disabled);
+      cursor: not-allowed;
+    }
+  }
+}
