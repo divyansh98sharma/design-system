@@ -1,74 +1,57 @@
-// ─── Avatar Base ─────────────────────────────────────────────────────────────
+// ─── Avatar ───────────────────────────────────────────────────────────────────
 
 .ds-avatar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   border-radius: var(--avatar-radius);
   overflow: hidden;
   position: relative;
-  flex-shrink: 0;
+  font-family: var(--avatar-font-family);
 
-  // ─── Sizes ─────────────────────────────────────────────────────────────────
-
+  // ─── Sizes ────────────────────────────────────────────────────────────────
   &--sm {
     width: var(--avatar-size-sm);
     height: var(--avatar-size-sm);
-
-    .p-avatar {
-      font-size: var(--avatar-font-size-sm);
-      line-height: var(--line-height-16);
-    }
-
-    .ds-avatar__dummy-icon {
-      width: var(--avatar-dummy-icon-size-sm);
-      height: var(--avatar-dummy-icon-size-sm);
-    }
   }
 
   &--lg {
     width: var(--avatar-size-lg);
     height: var(--avatar-size-lg);
-
-    .p-avatar {
-      font-size: var(--avatar-font-size-lg);
-      line-height: var(--avatar-line-height-lg);
-    }
-
-    .ds-avatar__dummy-icon {
-      width: var(--avatar-dummy-icon-size-lg);
-      height: var(--avatar-dummy-icon-size-lg);
-    }
   }
 
-  // ─── PrimeNG Avatar base reset ──────────────────────────────────────────────
+  // ─── Text variant ─────────────────────────────────────────────────────────
+  &--text {
+    background-color: var(--avatar-text-bg);
+    color: var(--avatar-text-color);
 
-  .p-avatar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--avatar-radius);
-    font-family: var(--avatar-font-family);
-    font-weight: var(--avatar-font-weight);
-    overflow: hidden;
-  }
+    &.ds-avatar--sm .ds-avatar__text {
+      font-size: var(--avatar-text-font-size-sm);
+      line-height: var(--avatar-text-line-height-sm);
+      font-weight: var(--avatar-text-font-weight-sm);
+    }
 
-  // ─── Text / Dummy — shared background ──────────────────────────────────────
-
-  &--text,
-  &--dummy {
-    .p-avatar {
-      background-color: var(--avatar-bg);
-      color: var(--avatar-color);
+    &.ds-avatar--lg .ds-avatar__text {
+      font-size: var(--avatar-text-font-size-lg);
+      line-height: var(--avatar-text-line-height-lg);
+      font-weight: var(--avatar-text-font-weight-lg);
     }
   }
 
-  // ─── Image ─────────────────────────────────────────────────────────────────
+  &__text {
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 0;
+    white-space: nowrap;
+    user-select: none;
+  }
 
+  // ─── Image variant ────────────────────────────────────────────────────────
   &--image {
-    .p-avatar img {
+    background-color: transparent;
+
+    .ds-avatar__img {
       display: block;
       width: 100%;
       height: 100%;
@@ -77,10 +60,24 @@
     }
   }
 
-  // ─── Dummy icon ────────────────────────────────────────────────────────────
+  // ─── Dummy variant ────────────────────────────────────────────────────────
+  &--dummy {
+    background-color: var(--avatar-dummy-bg);
+    color: var(--avatar-dummy-icon-color);
+
+    &.ds-avatar--sm .ds-avatar__dummy-icon {
+      width: var(--avatar-dummy-icon-size-sm);
+      height: var(--avatar-dummy-icon-size-sm);
+    }
+
+    &.ds-avatar--lg .ds-avatar__dummy-icon {
+      width: var(--avatar-dummy-icon-size-lg);
+      height: var(--avatar-dummy-icon-size-lg);
+    }
+  }
 
   &__dummy-icon {
     display: block;
-    color: var(--avatar-dummy-icon-color);
+    color: inherit;
   }
 }

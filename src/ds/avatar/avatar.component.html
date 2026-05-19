@@ -1,25 +1,15 @@
 <div [ngClass]="hostClasses">
-  <!-- Text variant: initials via p-avatar label -->
   @if (isText) {
-    <div class="p-avatar p-avatar-circle ds-avatar__inner">
-      <span class="p-avatar-text">{{ initials }}</span>
-    </div>
+    <span class="ds-avatar__text">{{ initials }}</span>
   }
 
-  <!-- Image variant: photo via p-avatar image -->
   @if (isImage) {
-    <div class="p-avatar p-avatar-circle ds-avatar__inner" [attr.aria-label]="imageAlt">
-      <img [src]="imageUrl" [alt]="imageAlt">
-    </div>
+    <img class="ds-avatar__img" [src]="imageUrl" [alt]="imageAlt">
   }
 
-  <!-- Dummy variant: placeholder person icon -->
   @if (isDummy) {
-    <div class="p-avatar p-avatar-circle ds-avatar__inner">
-      <svg class="ds-avatar__dummy-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="12" cy="8" r="4" fill="currentColor"/>
-        <path d="M4 20c0-4.418 3.582-8 8-8s8 3.582 8 8" fill="currentColor"/>
-      </svg>
-    </div>
+    <svg class="ds-avatar__dummy-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+    </svg>
   }
 </div>
