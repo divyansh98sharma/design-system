@@ -7,7 +7,19 @@
   cursor: pointer;
   user-select: none;
 
-  .p-checkbox-box {
+  &__native {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  &__box {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -21,24 +33,7 @@
     position: relative;
   }
 
-  .p-checkbox-checked .p-checkbox-box,
-  .p-highlight .p-checkbox-box {
-    background: var(--checkbox-bg-checked);
-    border-color: var(--checkbox-border-checked);
-  }
-
-  .p-indeterminate .p-checkbox-box {
-    background: var(--checkbox-bg-checked);
-    border-color: var(--checkbox-border-checked);
-  }
-
-  .p-disabled .p-checkbox-box {
-    background: var(--checkbox-bg-disabled);
-    border-color: var(--checkbox-border-disabled);
-    cursor: not-allowed;
-  }
-
-  .p-checkbox-icon {
+  &__icon {
     color: var(--checkbox-icon-color);
     font-size: var(--checkbox-icon-size);
     width: var(--checkbox-icon-size);
@@ -54,23 +49,37 @@
     white-space: nowrap;
   }
 
-  &:not(.ds-checkbox--disabled):hover .p-checkbox-box {
+  // ─── States ─────────────────────────────────────────────────────────────
+
+  &--checked &__box,
+  &--indeterminate &__box {
+    background: var(--checkbox-bg-checked);
+    border-color: var(--checkbox-border-checked);
+  }
+
+  &:not(.ds-checkbox--disabled):hover &__box {
     border-color: var(--checkbox-border-hover);
   }
 
-  &:not(.ds-checkbox--disabled):hover .p-highlight .p-checkbox-box,
-  &:not(.ds-checkbox--disabled):hover .p-indeterminate .p-checkbox-box {
+  &:not(.ds-checkbox--disabled):hover.ds-checkbox--checked &__box,
+  &:not(.ds-checkbox--disabled):hover.ds-checkbox--indeterminate &__box {
     background: var(--checkbox-bg-hover);
     border-color: var(--checkbox-bg-hover);
   }
 
-  .p-checkbox:focus-within .p-checkbox-box {
+  &__native:focus-visible + &__box {
     outline: var(--checkbox-focus-width) solid var(--color-border-focus);
     outline-offset: var(--checkbox-focus-offset);
   }
 
   &--disabled {
     cursor: not-allowed;
+
+    .ds-checkbox__box {
+      background: var(--checkbox-bg-disabled);
+      border-color: var(--checkbox-border-disabled);
+      cursor: not-allowed;
+    }
 
     .ds-checkbox__label {
       color: var(--checkbox-label-color-disabled);

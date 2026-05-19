@@ -1,25 +1,29 @@
-<label class="ds-checkbox" [class.ds-checkbox--disabled]="disabled">
-  <div class="p-checkbox" [class.p-checkbox-checked]="checked" [class.p-disabled]="disabled" [class.p-indeterminate]="indeterminate">
-    <div style="border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px;">
-      <input type="checkbox"
-        [(ngModel)]="checked"
-        [disabled]="disabled"
-        [indeterminate]="indeterminate"
-        (ngModelChange)="handleChange({checked: $event})" />
-    </div>
-    <div class="p-checkbox-box">
-      @if (checked && !indeterminate) {
-        <svg class="p-checkbox-icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4.66667 11.0833L1.16667 7.58334L2.33333 6.41668L4.66667 8.75001L11.6667 1.75001L12.8333 2.91668L4.66667 11.0833Z" fill="currentColor"/>
-        </svg>
-      }
-      @if (indeterminate) {
-        <svg class="p-checkbox-icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.91667 6.41666H11.0833V7.58332H2.91667V6.41666Z" fill="currentColor"/>
-        </svg>
-      }
-    </div>
-  </div>
+<label
+  class="ds-checkbox"
+  [class.ds-checkbox--checked]="checked && !indeterminate"
+  [class.ds-checkbox--indeterminate]="indeterminate"
+  [class.ds-checkbox--disabled]="disabled"
+>
+  <input
+    type="checkbox"
+    class="ds-checkbox__native"
+    [checked]="checked"
+    [disabled]="disabled"
+    [indeterminate]="indeterminate"
+    (change)="toggle()"
+  />
+  <span class="ds-checkbox__box" aria-hidden="true">
+    @if (checked && !indeterminate) {
+      <svg class="ds-checkbox__icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.66667 11.0833L1.16667 7.58334L2.33333 6.41668L4.66667 8.75001L11.6667 1.75001L12.8333 2.91668L4.66667 11.0833Z" fill="currentColor"/>
+      </svg>
+    }
+    @if (indeterminate) {
+      <svg class="ds-checkbox__icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.91667 6.41666H11.0833V7.58332H2.91667V6.41666Z" fill="currentColor"/>
+      </svg>
+    }
+  </span>
   @if (hasLabel) {
     <span class="ds-checkbox__label">{{ label }}</span>
   }
