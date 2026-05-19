@@ -209,6 +209,36 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // AI Chat Field (CODE-A-TON Library — Figma source of truth)
+  // ----------------------------------------------------------
+  --ai-chat-field-width: 447px;
+  --ai-chat-field-bg: #ffffff;
+  --ai-chat-field-border: #e1e1e1;
+  --ai-chat-field-border-active: #007b95;
+  --ai-chat-field-radius: 12px;
+  --ai-chat-field-padding: 13px;
+  --ai-chat-field-gap: 4px;
+  --ai-chat-field-text-color: #000000;
+  --ai-chat-field-placeholder: #4b586b;
+  --ai-chat-field-font-size: 14px;
+  --ai-chat-field-line-height: 20px;
+  --ai-chat-field-icon-color: #007b95;
+  --ai-chat-field-icon-size: 16px;
+
+  --ai-chat-field-focused-shadow: 0 4px 4px rgba(62, 207, 190, 0.12);
+  --ai-chat-field-mic-color: #d82727;
+  --ai-chat-field-scroll-max-height: 240px;
+  --ai-chat-field-scroll-text-size: 12px;
+  --ai-chat-field-scroll-text-line: 16px;
+
+  --ai-chat-field-tip-color: #4b586b;
+  --ai-chat-field-tip-icon-size: 16px;
+  --ai-chat-field-tip-padding-y: 4px;
+  --ai-chat-field-tip-gap: 4px;
+
+  --ai-chat-field-focus-ring: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Avatar
   // ----------------------------------------------------------
   --avatar-size-sm: 32px;
