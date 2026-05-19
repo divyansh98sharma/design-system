@@ -1,0 +1,15 @@
+<div class="ds-textarea" [class.ds-textarea--disabled]="disabled" [class.ds-textarea--error]="error">
+  <textarea
+    class="ds-textarea__input"
+    [rows]="rows"
+    [placeholder]="placeholder"
+    [value]="value"
+    [disabled]="disabled"
+    [attr.maxlength]="maxCharacters || null"
+    (input)="onInput($any($event.target).value)"
+    (blur)="onTouched"
+  ></textarea>
+  @if (showCounter && maxCharacters) {
+    <div class="ds-textarea__counter">{{ charCount }} / {{ maxCharacters }}</div>
+  }
+</div>
