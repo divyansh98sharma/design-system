@@ -1,0 +1,67 @@
+<div
+  class="ds-card"
+  [class.ds-card--grouping]="variant === 'grouping'"
+  [class.ds-card--content]="variant === 'content'"
+  [class.ds-card--selected]="state === 'selected'"
+  [class.ds-card--hoverable]="hoverable || selectable"
+  (click)="onClick($event)"
+>
+  @if (variant === 'grouping') {
+    <div class="ds-card__slot">
+      <ng-content></ng-content>
+    </div>
+  } @else {
+    <div class="ds-card__slot">
+      <div class="ds-card__header">
+        <div class="ds-card__header-top">
+          <div class="ds-card__header-text">
+            @if (showCheckbox) {
+              <span
+                class="ds-card__checkbox"
+                [class.is-checked]="checked"
+                (click)="onCheckboxToggle($event)"
+              >
+                @if (checked) {
+                  <img src="/icons/check.svg" alt="" aria-hidden="true" />
+                }
+              </span>
+            }
+            <span class="ds-card__title">{{ title }}</span>
+            @if (subtitle) {
+              <span class="ds-card__subtitle">{{ subtitle }}</span>
+            }
+          </div>
+
+          @if (chipTpl) {
+            <span class="ds-card__chip">
+              <ng-container *ngTemplateOutlet="chipTpl"></ng-container>
+            </span>
+          }
+
+          @if (showChevron) {
+            <img class="ds-card__chevron" src="/icons/chevron-down.svg" alt="" aria-hidden="true" />
+          }
+        </div>
+
+        @if (metaTpl) {
+          <div class="ds-card__meta">
+            <ng-container *ngTemplateOutlet="metaTpl"></ng-container>
+          </div>
+        }
+      </div>
+
+      @if (bodyTpl) {
+        <div class="ds-card__body">
+          <div class="ds-card__divider"></div>
+          <ng-container *ngTemplateOutlet="bodyTpl"></ng-container>
+        </div>
+      }
+
+      @if (footerTpl) {
+        <div class="ds-card__footer">
+          <ng-container *ngTemplateOutlet="footerTpl"></ng-container>
+        </div>
+      }
+    </div>
+  }
+</div>

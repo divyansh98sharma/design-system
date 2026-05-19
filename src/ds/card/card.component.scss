@@ -1,0 +1,152 @@
+.ds-card {
+  display: inline-flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border: var(--card-border-width) solid var(--card-border-default);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding-y) var(--card-padding-x);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  color: var(--color-text-primary);
+  transition: box-shadow 120ms ease, border-color 120ms ease;
+
+  &--content {
+    min-width: var(--card-min-width);
+  }
+
+  &--hoverable {
+    cursor: pointer;
+    &:hover { box-shadow: var(--card-shadow-hover); }
+  }
+
+  &--selected {
+    border-color: var(--card-border-selected);
+    box-shadow: var(--card-shadow-selected);
+  }
+}
+
+// ─── Slot ────────────────────────────────────────────────────────────────────
+
+.ds-card__slot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  padding: var(--card-padding-y);
+}
+
+// ─── Header ─────────────────────────────────────────────────────────────────
+
+.ds-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ds-card__header-top {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-x-small);
+}
+
+.ds-card__header-text {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-x-small);
+  min-width: 0;
+}
+
+.ds-card__title {
+  color: var(--card-header-text);
+  font-weight: var(--card-header-font-weight);
+}
+
+.ds-card__subtitle {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-regular);
+}
+
+.ds-card__checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: 3px;
+  background: var(--color-surface);
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &.is-checked {
+    background: var(--color-user);
+    border-color: var(--color-user);
+  }
+
+  img {
+    width: 10px;
+    height: 10px;
+    filter: brightness(0) invert(1);
+  }
+}
+
+.ds-card__chip {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.ds-card__chevron {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+// ─── Meta ───────────────────────────────────────────────────────────────────
+
+.ds-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-small);
+  color: var(--card-meta-text);
+
+  > * + *::before {
+    content: '';
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    margin-right: var(--spacing-small);
+    background: var(--card-meta-divider);
+    vertical-align: middle;
+  }
+}
+
+// ─── Body ───────────────────────────────────────────────────────────────────
+
+.ds-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.ds-card__divider {
+  height: 1px;
+  background: var(--card-divider);
+  width: 100%;
+}
+
+// ─── Footer ─────────────────────────────────────────────────────────────────
+
+.ds-card__footer {
+  display: flex;
+  gap: var(--spacing-x-small);
+  align-items: end;
+  color: var(--card-footer-value);
+
+  ::ng-deep .ds-card__footer-label {
+    color: var(--card-footer-label);
+  }
+}
