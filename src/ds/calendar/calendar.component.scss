@@ -1,0 +1,314 @@
+// ─── Host ────────────────────────────────────────────────────────────────────
+
+.ds-cal {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--spacing-x-small);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-16);
+  color: var(--color-text-primary);
+
+  &--label-left .ds-cal__field {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-small);
+  }
+
+  &--range {
+    flex-direction: row;
+    gap: var(--spacing-small);
+    align-items: flex-end;
+  }
+}
+
+// ─── Trigger ─────────────────────────────────────────────────────────────────
+
+.ds-cal__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xx-small);
+  width: var(--calendar-trigger-width);
+}
+
+.ds-cal__label {
+  color: var(--calendar-label-color);
+  font-size: var(--calendar-label-font-size);
+  line-height: var(--calendar-label-line-height);
+}
+
+.ds-cal__trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--calendar-trigger-gap);
+  width: 100%;
+  height: var(--calendar-trigger-height);
+  padding: 0 var(--calendar-trigger-padding) 4px;
+  background: var(--calendar-trigger-bg);
+  border: 0;
+  border-bottom: 0.5px solid var(--calendar-trigger-border);
+  border-radius: 0;
+  color: var(--calendar-trigger-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+
+  &.is-empty .ds-cal__trigger-text { color: var(--calendar-trigger-placeholder); }
+  &:focus-visible { outline: 2px solid var(--color-border-focus); outline-offset: 2px; }
+}
+
+.ds-cal__trigger-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-cal__trigger-icon {
+  width: var(--calendar-trigger-icon-size);
+  height: var(--calendar-trigger-icon-size);
+  flex-shrink: 0;
+}
+
+// ─── Popover ─────────────────────────────────────────────────────────────────
+
+.ds-cal__popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  align-items: stretch;
+  background: transparent;
+  box-shadow: var(--calendar-popover-shadow);
+  border-radius: var(--calendar-popover-radius);
+  z-index: 50;
+  isolation: isolate;
+}
+
+// ─── Date selection panel ───────────────────────────────────────────────────
+
+.ds-cal__panel {
+  display: flex;
+  flex-direction: column;
+  width: var(--calendar-popover-width);
+  background: var(--calendar-popover-bg);
+  border: 1px solid var(--calendar-popover-border);
+  border-radius: var(--calendar-popover-radius) 0 0 var(--calendar-popover-radius);
+  overflow: hidden;
+}
+
+.ds-cal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-small);
+  padding: var(--calendar-header-padding-y) var(--calendar-header-padding-x) 0;
+}
+
+.ds-cal__nav {
+  display: flex;
+  gap: var(--spacing-x-small);
+}
+
+.ds-cal__select {
+  appearance: none;
+  background: #fbfbfb;
+  border: 0;
+  border-radius: var(--radius-4);
+  padding: 4px 18px 4px 6px;
+  font: inherit;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%234b586b' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 8px;
+}
+
+.ds-cal__header-label {
+  color: var(--calendar-header-text);
+  font-size: var(--font-size-12);
+  white-space: nowrap;
+}
+
+.ds-cal__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  padding: 12px 12px 0;
+}
+
+.ds-cal__weekday {
+  text-align: center;
+  color: var(--calendar-weekday-color);
+  font-size: var(--calendar-weekday-font-size);
+  padding: 6px 0;
+}
+
+.ds-cal__divider {
+  height: 1px;
+  background: var(--color-border-default);
+  margin: 0 8px 4px;
+}
+
+.ds-cal__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 8px 8px;
+}
+
+.ds-cal__row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.ds-cal__day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--calendar-day-size);
+  height: var(--calendar-day-size);
+  margin: 0 auto;
+  border: 0;
+  border-radius: var(--calendar-day-radius);
+  background: transparent;
+  color: var(--calendar-day-text);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+
+  &.is-muted { color: var(--calendar-day-text-muted); }
+  &:hover:not(.is-selected) { background: var(--calendar-day-bg-hover); }
+  &.is-today:not(.is-selected) { box-shadow: inset 0 0 0 1px var(--color-user); }
+  &.is-in-range { background: var(--calendar-day-bg-in-range); border-radius: 0; }
+  &.is-selected,
+  &.is-range-start,
+  &.is-range-end {
+    background: var(--calendar-day-bg-selected);
+    color: var(--calendar-day-text-selected);
+  }
+}
+
+// ─── Footers ────────────────────────────────────────────────────────────────
+
+.ds-cal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-x-small);
+  padding: var(--calendar-footer-padding-y) var(--calendar-footer-padding-x);
+  border-top: 1px solid var(--calendar-footer-border);
+  background: var(--color-surface);
+}
+
+.ds-cal__footer-actions {
+  display: flex;
+  gap: var(--spacing-x-small);
+}
+
+.ds-cal__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-height-sm);
+  min-width: 24px;
+  padding: 4px 8px;
+  border-radius: var(--radius-4);
+  border: 1px solid transparent;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+
+  &--ghost {
+    background: #ebebeb;
+    border-color: var(--color-border-default);
+    color: var(--color-text-primary);
+    &:hover { background: var(--color-surface-subtle); }
+  }
+
+  &--primary {
+    background: var(--color-user);
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-semibold);
+    &:hover { background: var(--color-user-hover); }
+  }
+}
+
+// ─── Shortcut panel ─────────────────────────────────────────────────────────
+
+.ds-cal__shortcut {
+  display: flex;
+  flex-direction: column;
+  width: var(--calendar-shortcut-width);
+  background: var(--calendar-shortcut-bg);
+  border: 1px solid var(--calendar-shortcut-border);
+  border-left: 0;
+  border-radius: 0 var(--calendar-popover-radius) var(--calendar-popover-radius) 0;
+  overflow: hidden;
+}
+
+.ds-cal__shortcut-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-x-small);
+  padding: var(--calendar-shortcut-padding);
+}
+
+.ds-cal__shortcut-title {
+  color: var(--color-text-primary);
+  font-size: var(--font-size-12);
+}
+
+.ds-cal__shortcut-toggle {
+  display: inline-flex;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-4);
+  overflow: hidden;
+}
+
+.ds-cal__toggle-pill {
+  height: var(--control-height-sm);
+  padding: 4px 8px;
+  background: var(--color-surface);
+  border: 0;
+  font: inherit;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  cursor: pointer;
+
+  &.is-active {
+    background: #f5f0ed;
+    box-shadow: inset 0 0 0 1px #ba654e;
+  }
+}
+
+.ds-cal__shortcut-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px var(--calendar-shortcut-padding);
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.ds-cal__range-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-height-sm);
+  padding: var(--calendar-range-button-padding);
+  background: var(--calendar-range-button-bg);
+  border: 0;
+  border-radius: var(--calendar-range-button-radius);
+  color: var(--calendar-range-button-text);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+
+  &:hover { background: var(--calendar-range-button-bg-hover); }
+}
