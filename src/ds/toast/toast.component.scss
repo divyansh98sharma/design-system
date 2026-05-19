@@ -50,7 +50,6 @@
   &__line1 {
     display: flex;
     align-items: baseline;
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     line-height: var(--line-height-16);
     white-space: nowrap;
@@ -75,7 +74,6 @@
   }
 
   &__line2 {
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);
@@ -93,7 +91,6 @@
     color: var(--toast-text-color);
     border: none;
     border-radius: 2px;
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);

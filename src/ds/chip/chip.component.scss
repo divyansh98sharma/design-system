@@ -7,7 +7,6 @@
   padding: var(--chip-padding-y) var(--chip-padding-x);
   border: 1px solid transparent;
   border-radius: var(--chip-radius);
-  font-family: var(--font-family-base);
   font-size: var(--chip-font-size);
   line-height: var(--line-height-16);
   color: var(--chip-color);
@@ -37,7 +36,6 @@
     height: var(--chip-badge-size);
     border-radius: var(--chip-badge-radius);
     color: var(--chip-badge-color);
-    font-family: var(--font-family-base);
     font-size: var(--chip-badge-font-size);
     font-weight: var(--font-weight-regular);
     line-height: 1;
