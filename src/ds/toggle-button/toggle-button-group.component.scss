@@ -4,9 +4,10 @@
 
 .ds-tgl {
   display: inline-flex;
-  border-radius: var(--radius-4);
-  overflow: hidden;           // Keeps outer radius clean
-  border: 1px solid;          // color set per theme below
+  background: var(--toggle-btn-bg);
+  border: 1px solid var(--toggle-btn-group-border);
+  border-radius: var(--toggle-btn-radius);
+  // No overflow:hidden — selected button has its own accent border that must extend over the group border.
 }
 
 // ─── Individual Button ────────────────────────────────────────────────────────
@@ -16,16 +17,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  background: var(--color-surface);
-  border: none;
-  border-left: 1px solid;     // separator; color set per theme
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--toggle-btn-radius);
   cursor: pointer;
   font-weight: var(--font-weight-regular);
   white-space: nowrap;
-  color: inherit;              // overridden per theme
-  transition: background-color 120ms ease, color 120ms ease;
+  color: var(--toggle-btn-text);
+  transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
   outline: none;
+
+  // Separator between adjacent buttons — matches group border color.
+  & + & {
+    border-left: 1px solid var(--toggle-btn-group-border);
+  }
 
   &:focus-visible {
     outline: 2px solid var(--toggle-btn-focus-color);
@@ -33,15 +38,22 @@
     z-index: 1;
   }
 
-  // First button has no left separator
-  &--first { border-left: none; }
-
-  // Selected state
+  // Selected state — mint bg + cyan border + bold text. Sits "on top" of group border.
   &--selected {
+    background: var(--toggle-btn-selected-bg);
+    border-color: var(--toggle-btn-selected-border);
+    color: var(--toggle-btn-selected-text);
     font-weight: var(--font-weight-semibold);
+    z-index: 1;
+
+    // Selected button's left/right edges replace the inter-button separator.
+    & + .ds-tgl__btn,
+    .ds-tgl__btn--selected + & {
+      border-left-color: transparent;
+    }
   }
 
-  // Disabled state (individual button)
+  // Disabled (individual)
   &--disabled,
   &:disabled {
     cursor: not-allowed;
@@ -54,6 +66,7 @@
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
+    color: var(--toggle-btn-icon);
 
     /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
     ::ng-deep svg {
@@ -63,14 +76,16 @@
     }
   }
 
-  // Count badge
+  &--selected .ds-tgl__icon {
+    color: var(--toggle-btn-selected-icon);
+  }
+
+  // Count badge — "Label (99)" inline, regular weight, same size.
   .ds-tgl__badge {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    font-size: 0.85em;
+    margin-left: var(--toggle-btn-sm-gap);
     font-weight: var(--font-weight-regular);
-    opacity: 0.75;
 
     &::before { content: '('; }
     &::after  { content: ')'; }
@@ -81,8 +96,9 @@
 
 .ds-tgl--sm .ds-tgl__btn {
   height: var(--toggle-btn-sm-height);
-  padding: 0 var(--toggle-btn-sm-padding-x);
+  padding: var(--toggle-btn-sm-padding-y) var(--toggle-btn-sm-padding-x);
   font-size: var(--toggle-btn-sm-font-size);
+  line-height: var(--line-height-16);
   gap: var(--toggle-btn-sm-gap);
 
   .ds-tgl__icon { font-size: var(--toggle-btn-sm-icon-size); }
@@ -120,9 +136,10 @@
 }
 
 // ─── Color Themes ─────────────────────────────────────────────────────────────
+// The `primary` theme matches the Figma spec (mint bg, cyan accent border).
+// Other themes preserve the legacy color-mapped behaviour for callers that
+// still rely on them (selected = full-fill theme color + inverse text).
 
-// $selected-text accepts a CSS-variable name (e.g. --color-text-inverse).
-// Use #{} interpolation; wrap in var() when the value starts with "--".
 @mixin _tgl-color($value) {
   @if string.slice(#{$value}, 1, 2) == '--' {
     color: var(#{$value});
@@ -131,12 +148,15 @@
   }
 }
 
-@mixin toggle-theme($border, $text, $selected-bg, $selected-text, $hover-bg) {
+@mixin toggle-theme($border, $text, $selected-bg, $selected-text, $hover-bg, $selected-border: null) {
   border-color: var(#{$border});
 
   .ds-tgl__btn {
-    border-left-color: var(#{$border});
     color: var(#{$text});
+
+    & + .ds-tgl__btn {
+      border-left-color: var(#{$border});
+    }
 
     &:hover:not(:disabled):not(.ds-tgl__btn--disabled):not(.ds-tgl__btn--selected) {
       background: var(#{$hover-bg});
@@ -145,7 +165,25 @@
     &--selected {
       background: var(#{$selected-bg});
       @include _tgl-color($selected-text);
+      @if $selected-border {
+        border-color: var(#{$selected-border});
+      } @else {
+        border-color: var(#{$border});
+      }
     }
+  }
+}
+
+// Figma-aligned default theme.
+.ds-tgl--primary {
+  border-color: var(--toggle-btn-group-border);
+
+  .ds-tgl__btn + .ds-tgl__btn {
+    border-left-color: var(--toggle-btn-group-border);
+  }
+
+  .ds-tgl__btn:hover:not(:disabled):not(.ds-tgl__btn--disabled):not(.ds-tgl__btn--selected) {
+    background: var(--color-primary-mint-bg-hover);
   }
 }
 

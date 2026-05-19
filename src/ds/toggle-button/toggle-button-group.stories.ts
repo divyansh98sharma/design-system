@@ -38,17 +38,18 @@ const meta: Meta<ToggleButtonGroupComponent> = {
     },
     color: {
       description:
-        'Color theme for the group border and selected-state fill. Matches the design token palette: ' +
-        '`user` (blue), `admin` (orange), `secondary` (gray), `success` (green), `error` (red), `sunoh` (purple).',
+        'Color theme for the group border and selected-state fill. ' +
+        '`primary` (mint — Figma default) · `user` (blue) · `admin` (orange) · `secondary` (gray) · ' +
+        '`success` (green) · `error` (red) · `sunoh` (purple).',
       control: 'select',
-      options: ['user', 'admin', 'secondary', 'success', 'error', 'sunoh'],
-      table: { defaultValue: { summary: 'user' } },
+      options: ['primary', 'user', 'admin', 'secondary', 'success', 'error', 'sunoh'],
+      table: { defaultValue: { summary: 'primary' } },
     },
     size: {
-      description: '**sm** — 24 px height · **md** — 32 px (default) · **lg** — 40 px.',
+      description: '**sm** — 24 px height (Figma default) · **md** — 32 px · **lg** — 40 px.',
       control: 'select',
       options: ['sm', 'md', 'lg'],
-      table: { defaultValue: { summary: 'md' } },
+      table: { defaultValue: { summary: 'sm' } },
     },
     multiple: {
       description:
@@ -80,8 +81,8 @@ const meta: Meta<ToggleButtonGroupComponent> = {
       { value: 'b', label: 'Week' },
       { value: 'c', label: 'Month' },
     ],
-    color: 'user',
-    size: 'md',
+    color: 'primary',
+    size: 'sm',
     multiple: false,
     disabled: false,
     value: 'a',
