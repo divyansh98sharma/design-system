@@ -1,211 +1,162 @@
-// ─── Notification Banner ──────────────────────────────────────────────────────
+// ─── Notification card ───────────────────────────────────────────────────────
 
 .ds-notification {
-  display: flex;
-  align-items: stretch;
-  width: var(--notification-width);
-  box-shadow: var(--notification-shadow); // 0 8px 16px -4px rgba(0,0,0,0.16)
-  position: relative;
-  border-radius: var(--notification-radius);
-  overflow: hidden;
+  display        : flex;
+  align-items    : center;
+  gap            : var(--notif-gap);
+  width          : var(--notif-width);
+  min-width      : var(--notif-width);
+  max-width      : var(--notif-width);
+  padding        : var(--notif-padding);
+  background     : var(--notif-bg);
+  border         : 1px solid var(--notif-border);
+  border-radius  : var(--notif-radius);
+  box-shadow     : var(--notif-shadow);
 
-  // ─── Left sidebar ──────────────────────────────────────────────────────────
-
-  &__sidebar {
-    display: flex;
-    align-items: center;
+  // ── Circular icon badge ───────────────────────────────────────────────────
+  &__icon-badge {
+    display        : flex;
+    align-items    : center;
     justify-content: center;
-    padding: var(--spacing-large); // 16px
-    flex-shrink: 0;
-    min-width: var(--notification-sidebar-min-width);
+    width          : var(--notif-icon-badge-size);
+    height         : var(--notif-icon-badge-size);
+    border-radius  : 50%;
+    flex-shrink    : 0;
   }
 
-  &__icon-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--notification-icon-wrap-size);
-    height: var(--notification-icon-wrap-size);
-    flex-shrink: 0;
-  }
+  &--communication &__icon-badge { background: var(--notif-comm-bg); }
+  &--confirmation  &__icon-badge { background: var(--notif-confirm-bg); }
+  &--warning       &__icon-badge { background: var(--notif-warn-bg); }
+  &--error         &__icon-badge { background: var(--notif-error-bg); }
 
   &__icon {
-    display: block;
-    width: 100%;
-    height: 100%;
-    color: var(--notification-bg);
+    width : var(--notif-icon-size);
+    height: var(--notif-icon-size);
+    fill  : var(--color-text-inverse);
   }
 
-  // ─── Theme colours for sidebar ────────────────────────────────────────────
-
-  &--user    &__sidebar { background: var(--notification-sidebar-user-bg);  }
-  &--admin   &__sidebar { background: var(--notification-sidebar-admin-bg); }
-  &--green   &__sidebar { background: var(--notification-sidebar-green-bg); }
-
-  // ─── Content area ─────────────────────────────────────────────────────────
-
-  &__body {
-    display: flex;
+  // ── Text container ────────────────────────────────────────────────────────
+  &__text {
+    display       : flex;
     flex-direction: column;
-    gap: var(--spacing-x-large); // 20px
-    padding: var(--spacing-large); // 16px
-    background: var(--notification-bg);
-    flex: 1 0 0;
-    min-width: 0;
+    align-items   : flex-start;
+    gap           : var(--notif-text-gap);
+    flex          : 1 0 0;
+    min-width     : 0;
   }
-
-  // ─── Header ───────────────────────────────────────────────────────────────
 
   &__header {
-    display: flex;
+    display       : flex;
     flex-direction: column;
-    gap: var(--spacing-medium); // 12px
+    align-items   : flex-start;
+    gap           : var(--notif-header-gap);
+    width         : 100%;
   }
 
+  // ── Heading (window-name — description) ───────────────────────────────────
   &__heading {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-x-small); // 4px
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
-    font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-16);
-    color: var(--notification-text-color);
-    white-space: nowrap;
-    overflow: hidden;
+    display      : flex;
+    align-items  : center;
+    gap          : var(--notif-heading-gap);
+    width        : 100%;
+    font-family  : var(--font-family-base);
+    font-weight  : var(--font-weight-medium);
+    font-size    : var(--notif-heading-font-size);
+    line-height  : var(--notif-heading-line-height);
+    color        : var(--color-text-primary);
+    white-space  : nowrap;
   }
 
-  &__window-name {
-    flex-shrink: 0;
-  }
-
-  &__sep {
-    flex-shrink: 0;
-  }
+  &__window-name,
+  &__heading-dash { flex-shrink: 0; }
 
   &__description {
-    overflow: hidden;
+    flex        : 1 0 0;
+    min-width   : 0;
+    overflow    : hidden;
     text-overflow: ellipsis;
-    min-width: 0;
   }
 
-  &__text {
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-16);
-    color: var(--notification-text-color);
-    max-height: calc(var(--line-height-16) * 7); // ~7 lines before scroll
-    overflow-y: auto;
+  // ── Body text ─────────────────────────────────────────────────────────────
+  &__body {
+    margin       : 0;
+    width        : 100%;
+    font-family  : var(--font-family-base);
+    font-weight  : var(--font-weight-regular);
+    font-size    : var(--notif-body-font-size);
+    line-height  : var(--notif-body-line-height);
+    color        : var(--color-text-primary);
   }
 
-  // ─── Footer ───────────────────────────────────────────────────────────────
-
+  // ── Footer ────────────────────────────────────────────────────────────────
   &__footer {
-    display: flex;
-    align-items: center;
+    display       : flex;
+    align-items   : center;
     justify-content: flex-end;
-    gap: var(--spacing-small); // 8px
-    min-height: var(--notification-action-height);
-    max-height: var(--notification-action-height);
+    gap           : var(--notif-footer-gap);
+    min-height    : var(--notif-footer-height);
+    max-height    : var(--notif-footer-height);
+    width         : 100%;
   }
 
-  // ─── Suppress checkbox ────────────────────────────────────────────────────
+  &__footer-left  { flex: 1 0 0; min-width: 0; display: flex; align-items: center; }
+  &__footer-right { display: flex; align-items: center; gap: var(--notif-footer-gap); flex-shrink: 0; }
 
-  &__checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-x-small);
-    flex: 1 0 0;
-    cursor: pointer;
-  }
-
+  // ── Suppress checkbox ─────────────────────────────────────────────────────
   &__checkbox {
-    flex-shrink: 0;
-    width: var(--notification-checkbox-size);
-    height: var(--notification-checkbox-size);
-    accent-color: var(--notification-checkbox-accent);
-    cursor: pointer;
-  }
-
-  &__checkbox-text {
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-16);
-    color: var(--notification-text-color);
-    white-space: nowrap;
-  }
-
-  // ─── Action buttons ───────────────────────────────────────────────────────
-
-  &__actions {
-    display: flex;
+    display    : flex;
     align-items: center;
-    gap: var(--spacing-small);
-    flex-shrink: 0;
-  }
+    gap        : var(--notif-checkbox-gap);
+    cursor     : pointer;
 
-  &__action-btn {
-    height: var(--notification-action-height);
-    padding: var(--spacing-x-small) var(--spacing-small); // 4px 8px
-    border: 1px solid transparent;
-    border-radius: var(--notification-radius);
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-12);
-    font-weight: var(--font-weight-regular);
-    line-height: var(--line-height-16);
-    color: var(--notification-bg);
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 120ms ease, border-color 120ms ease;
+    input[type="checkbox"] {
+      width : var(--notif-checkbox-size);
+      height: var(--notif-checkbox-size);
+      margin: 0;
+      flex-shrink: 0;
+      accent-color: var(--notif-action-primary-bg);
+    }
 
-    // Default — user theme button
-    background: var(--notification-action-user-bg);
-    border-color: var(--notification-action-user-border);
-
-    &:hover { background: var(--notification-action-user-hover); }
-    &:focus-visible {
-      outline: 2px solid var(--notification-action-user-bg);
-      outline-offset: 2px;
+    span {
+      font-family: var(--font-family-base);
+      font-weight: var(--font-weight-regular);
+      font-size  : var(--notif-body-font-size);
+      line-height: var(--notif-body-line-height);
+      color      : var(--color-text-primary);
     }
   }
 
-  // Themed action buttons
-  &--admin &__action-btn {
-    background: var(--notification-action-admin-bg);
-    border-color: var(--notification-action-admin-border);
-    &:hover { background: var(--notification-action-admin-hover); }
-    &:focus-visible { outline-color: var(--notification-action-admin-bg); }
+  // ── Action buttons ────────────────────────────────────────────────────────
+  &__action-btn {
+    height       : var(--notif-action-btn-height);
+    min-width    : var(--notif-action-btn-height);
+    padding      : var(--notif-action-btn-padding);
+    border       : 1px solid transparent;
+    border-radius: var(--notif-action-btn-radius);
+    font-family  : var(--font-family-base);
+    font-size    : var(--notif-body-font-size);
+    line-height  : var(--notif-body-line-height);
+    cursor       : pointer;
+    white-space  : nowrap;
+    transition   : background 120ms ease, border-color 120ms ease;
+
+    &--primary {
+      background  : var(--notif-action-primary-bg);
+      color       : var(--color-text-inverse);
+      font-weight : var(--font-weight-semibold);
+
+      &:hover        { background: var(--notif-action-primary-hover); }
+      &:focus-visible { outline: 2px solid var(--notif-action-primary-bg); outline-offset: 2px; }
+    }
+
+    &--secondary {
+      background  : var(--notif-action-secondary-bg);
+      border-color: var(--notif-action-secondary-border);
+      color       : var(--color-text-primary);
+      font-weight : var(--font-weight-regular);
+
+      &:hover        { background: var(--notif-action-secondary-hover); }
+      &:focus-visible { outline: 2px solid var(--notif-action-secondary-border); outline-offset: 2px; }
+    }
   }
-
-  &--green &__action-btn {
-    background: var(--notification-action-green-bg);
-    border-color: var(--notification-action-green-border);
-    &:hover { background: var(--notification-action-green-hover); }
-    &:focus-visible { outline-color: var(--notification-action-green-bg); }
-  }
-
-  // ─── Badge dot (balloon alert) ────────────────────────────────────────────
-  // Positioned at the specified corner of the card.
-
-  &__badge {
-    position: absolute;
-    width: var(--notification-badge-size);
-    height: var(--notification-badge-size);
-    border-radius: var(--radius-pill);
-    background: var(--notification-badge-bg);
-    border: 2px solid var(--notification-bg);
-    z-index: 1;
-  }
-
-  // Badge placement helpers
-  &--badge-top-right    &__badge { top: -4px;  right: -4px; }
-  &--badge-top-left     &__badge { top: -4px;  left: -4px; }
-  &--badge-right-top    &__badge { top: 10px;  right: -4px; }
-  &--badge-right-bottom &__badge { bottom: 10px; right: -4px; }
-  &--badge-bottom-right &__badge { bottom: -4px; right: -4px; }
-  &--badge-bottom-left  &__badge { bottom: -4px; left: -4px; }
-  &--badge-left-top     &__badge { top: 10px;  left: -4px; }
-  &--badge-left-bottom  &__badge { bottom: 10px; left: -4px; }
 }

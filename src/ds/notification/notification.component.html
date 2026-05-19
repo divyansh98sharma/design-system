@@ -1,59 +1,43 @@
 <div [ngClass]="cardClasses">
 
-  <!-- Badge dot (balloon alert indicator) -->
-  @if (badgePosition) {
-    <span class="ds-notification__badge" aria-hidden="true"></span>
-  }
-
-  <!-- Left sidebar — coloured strip with type icon -->
-  <div class="ds-notification__sidebar">
-    <div class="ds-notification__icon-wrap">
-      <svg
-        class="ds-notification__icon"
-        [attr.viewBox]="iconViewBox"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path [attr.d]="iconPath"/>
-      </svg>
-    </div>
+  <!-- ── Circular icon badge ──────────────────────────────────────── -->
+  <div class="ds-notification__icon-badge">
+    <svg class="ds-notification__icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path [attr.d]="iconPath"/>
+    </svg>
   </div>
 
-  <!-- Right content area -->
-  <div class="ds-notification__body">
+  <!-- ── Text container ───────────────────────────────────────────── -->
+  <div class="ds-notification__text">
 
-    <!-- Header -->
     <div class="ds-notification__header">
       <div class="ds-notification__heading">
         <span class="ds-notification__window-name">{{ windowName }}</span>
-        <span class="ds-notification__sep"> - </span>
+        <span class="ds-notification__heading-dash">-</span>
         <span class="ds-notification__description">{{ description }}</span>
       </div>
-      <div class="ds-notification__text">{{ bodyText }}</div>
+      <p class="ds-notification__body" [innerHTML]="bodyText"></p>
     </div>
 
-    <!-- Footer -->
     <div class="ds-notification__footer">
 
-      <!-- Optional suppress checkbox -->
-      @if (showCheckbox) {
-        <label class="ds-notification__checkbox-label">
-          <input
-            type="checkbox"
-            class="ds-notification__checkbox"
-            [checked]="suppressChecked"
-            (change)="onSuppressChange($event)"
-          />
-          <span class="ds-notification__checkbox-text">{{ checkboxLabel }}</span>
-        </label>
-      }
+      <div class="ds-notification__footer-left">
+        @if (showCheckbox) {
+          <label class="ds-notification__checkbox">
+            <input
+              type="checkbox"
+              [checked]="suppressChecked"
+              (change)="onSuppressChange($event)"
+            />
+            <span>{{ checkboxLabel }}</span>
+          </label>
+        }
+      </div>
 
-      <!-- Action buttons -->
-      <div class="ds-notification__actions">
+      <div class="ds-notification__footer-right">
         @for (action of actions; track action.label) {
           <button
-            class="ds-notification__action-btn"
+            [ngClass]="['ds-notification__action-btn', 'ds-notification__action-btn--' + (action.variant ?? 'secondary')]"
             type="button"
             (click)="onAction(action)"
           >{{ action.label }}</button>
@@ -61,6 +45,7 @@
       </div>
 
     </div>
+
   </div>
 
 </div>
