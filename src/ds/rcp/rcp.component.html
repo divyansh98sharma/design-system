@@ -1,0 +1,23 @@
+<aside class="ds-rcp" [class.ds-rcp--collapsed]="collapsed" aria-label="Right Chart Panel">
+  <nav class="ds-rcp__tabs" role="tablist">
+    @for (tab of tabs; track trackById($index, tab)) {
+      <button
+        type="button"
+        role="tab"
+        class="ds-rcp__tab"
+        [class.ds-rcp__tab--active]="activeTab === tab.id && !collapsed"
+        [attr.aria-selected]="activeTab === tab.id && !collapsed"
+        (click)="setTab(tab.id)"
+      >{{ tab.label }}</button>
+    }
+    <button type="button" class="ds-rcp__collapse" [attr.aria-expanded]="!collapsed" (click)="toggle()" aria-label="Toggle panel">
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path [attr.d]="collapsed ? 'M6 4l4 4-4 4z' : 'M10 4l-4 4 4 4z'"/>
+      </svg>
+    </button>
+  </nav>
+
+  @if (!collapsed) {
+    <div class="ds-rcp__content"><ng-content></ng-content></div>
+  }
+</aside>
