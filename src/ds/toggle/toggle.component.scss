@@ -1,68 +1,69 @@
-// ─── Toggle Switch ────────────────────────────────────────────────────────────
+// ─── Toggle (CODE-A-TON Library spec) ────────────────────────────────────────
+
+:host {
+  display: inline-flex;
+}
 
 .ds-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  padding: var(--toggle-padding);
+  border: 1px solid var(--toggle-off-border);
+  border-radius: var(--toggle-radius);
+  background: var(--toggle-off-bg);
+  cursor: pointer;
+  appearance: none;
+  transition:
+    background-color var(--toggle-transition),
+    border-color var(--toggle-transition);
 
-  // ─── PrimeNG ToggleSwitch base ────────────────────────────────────────────
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--toggle-focus-color);
+  }
 
-  .p-toggleswitch {
-    display: inline-flex;
-    align-items: center;
-    width: var(--toggle-width);
-    height: var(--toggle-height);
-    padding: var(--toggle-padding);
-    border: 1px solid var(--toggle-border-off);
-    border-radius: var(--toggle-radius);
-    background: var(--toggle-bg-off);
-    cursor: pointer;
-    transition: background var(--toggle-transition), border-color var(--toggle-transition);
-    position: relative;
-    appearance: none;
-    -webkit-appearance: none;
+  // Honor user-level motion preference
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
 
-    &:focus-visible {
-      outline: 2px solid var(--toggle-focus-color);
-      outline-offset: 2px;
-    }
+    .ds-toggle__handle { transition: none; }
+  }
 
-    &.p-disabled {
-      opacity: var(--toggle-disabled-opacity);
-      cursor: not-allowed;
+  &--on {
+    background: var(--toggle-on-bg);
+    border-color: var(--toggle-on-border);
+    justify-content: flex-end;
+
+    .ds-toggle__handle {
+      background: var(--toggle-on-thumb-bg);
     }
   }
 
-  // ── ON state ──────────────────────────────────────────────────────────────
-
-  &--user .p-toggleswitch-checked     { background: var(--toggle-bg-user); border-color: transparent; }
-  &--admin .p-toggleswitch-checked    { background: var(--toggle-bg-admin); border-color: transparent; }
-  &--green .p-toggleswitch-checked    { background: var(--toggle-bg-green); border-color: transparent; }
-  &--sunoh .p-toggleswitch-checked    { background: var(--toggle-bg-sunoh); border-color: transparent; }
-
-  // ── Hover ON ──────────────────────────────────────────────────────────────
-
-  &--user:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover     { background: var(--toggle-bg-user-hover); }
-  &--admin:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover    { background: var(--toggle-bg-admin-hover); }
-  &--green:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover    { background: var(--toggle-bg-green-hover); }
-  &--sunoh:not(.ds-toggle--disabled) .p-toggleswitch-checked:hover    { background: var(--toggle-bg-sunoh-hover); }
-
-  // ─── Slider (thumb) ───────────────────────────────────────────────────────
-
-  .p-toggleswitch-slider {
-    position: absolute;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--toggle-thumb-size);
-    height: var(--toggle-thumb-size);
-    border-radius: var(--radius-pill);
-    background: var(--toggle-thumb-bg-off);
-    transition: transform var(--toggle-transition), background var(--toggle-transition);
-    left: var(--toggle-padding);
-
-    .p-toggleswitch-checked & {
-      background: var(--toggle-thumb-bg-on);
-      transform: translateX(calc(var(--toggle-width) - var(--toggle-thumb-size) - calc(var(--toggle-padding) * 2)));
+  &--off {
+    .ds-toggle__handle {
+      background: var(--toggle-off-thumb-bg);
     }
   }
+
+  &--disabled {
+    background: var(--toggle-disabled-bg);
+    border-color: var(--toggle-disabled-border);
+    cursor: not-allowed;
+    pointer-events: none;
+
+    .ds-toggle__handle {
+      background: var(--toggle-disabled-thumb-bg);
+    }
+  }
+}
+
+.ds-toggle__handle {
+  width: var(--toggle-thumb-size);
+  height: var(--toggle-thumb-size);
+  border-radius: 999px;
+  flex-shrink: 0;
+  transition: background-color var(--toggle-transition);
 }

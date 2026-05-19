@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/angular';
+import { expect, fn, userEvent, within } from 'storybook/test';
 import { ToggleComponent } from './toggle.component';
 
 const meta: Meta<ToggleComponent> = {
@@ -10,10 +11,11 @@ const meta: Meta<ToggleComponent> = {
     docs: {
       description: {
         component:
-          'On/Off toggle switch with four **colour themes**: `user` (blue), `admin` (orange), `green`, and `sunoh` (pink).\n\n' +
-          '- **On**: pill fills with the theme colour; thumb is white with a coloured checkmark.\n' +
-          '- **Off**: pill is white with a gray border; thumb is gray with an × icon.\n\n' +
-          'Implements `ControlValueAccessor` for use with Angular reactive and template-driven forms.',
+          'On/Off toggle switch matching the CODE-A-TON Library Figma spec.\n\n' +
+          '- **Off**: white pill, gray border, gray handle (left).\n' +
+          '- **On**: teal (#007b95) pill, white handle (right).\n' +
+          '- **Disabled**: gray pill, gray handle, no interaction.\n\n' +
+          'Implements `ControlValueAccessor` for use in reactive and template-driven Angular forms.',
       },
     },
   },
@@ -23,121 +25,138 @@ const meta: Meta<ToggleComponent> = {
       control: 'boolean',
       table: { defaultValue: { summary: 'false' } },
     },
-    theme: {
-      description: 'Colour theme applied to the ON state.',
-      control: 'select',
-      options: ['user', 'admin', 'green', 'sunoh'],
-      table: { defaultValue: { summary: 'user' } },
-    },
     disabled: {
       description: 'Prevents interaction.',
       control: 'boolean',
       table: { defaultValue: { summary: 'false' } },
     },
-    onToggle: {
-      description: 'Emits the new `boolean` state on every toggle.',
+    ariaLabel: {
+      description: 'Accessible label announced to screen readers.',
+      control: 'text',
+      table: { defaultValue: { summary: 'Toggle' } },
+    },
+    change: {
+      description: 'Emits the new boolean state on every toggle.',
       table: { category: 'Events' },
     },
   },
   args: {
     on: false,
-    theme: 'user',
     disabled: false,
+    ariaLabel: 'Toggle',
+    change: fn(),
   },
 };
 
 export default meta;
 type Story = StoryObj<ToggleComponent>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
+export const Playground: Story = { name: 'Playground' };
 
-export const Playground: Story = {
-  name: 'Playground',
+export const States: Story = {
+  name: 'States',
   parameters: {
-    docs: { description: { story: 'Configure all props interactively via the Controls panel.' } },
-  },
-};
-
-// ─── Overview ─────────────────────────────────────────────────────────────────
-
-export const Overview: Story = {
-  name: 'Overview',
-  parameters: {
-    docs: { description: { story: 'All four themes in both ON and OFF states.' } },
+    docs: { description: { story: 'All three Figma states side-by-side.' } },
   },
   render: () => ({
     template: `
-      <div style="display:grid;grid-template-columns:80px 1fr 1fr;gap:12px 24px;align-items:center;padding:16px;border:1px solid #e1e1e1;border-radius:8px;font-size:12px">
-        <span style="font-weight:600;color:#969696;text-transform:uppercase;letter-spacing:.5px">Theme</span>
-        <span style="font-weight:600;color:#969696;text-transform:uppercase;letter-spacing:.5px">Off</span>
-        <span style="font-weight:600;color:#969696;text-transform:uppercase;letter-spacing:.5px">On</span>
-
-        <span>User</span>
-        <ds-toggle theme="user"  [on]="false"></ds-toggle>
-        <ds-toggle theme="user"  [on]="true"></ds-toggle>
-
-        <span>Admin</span>
-        <ds-toggle theme="admin" [on]="false"></ds-toggle>
-        <ds-toggle theme="admin" [on]="true"></ds-toggle>
-
-        <span>Green</span>
-        <ds-toggle theme="green" [on]="false"></ds-toggle>
-        <ds-toggle theme="green" [on]="true"></ds-toggle>
-
-        <span>Sunoh</span>
-        <ds-toggle theme="sunoh" [on]="false"></ds-toggle>
-        <ds-toggle theme="sunoh" [on]="true"></ds-toggle>
+      <div style="display:grid;grid-template-columns:auto 1fr;gap:12px 24px;align-items:center;font-size:12px">
+        <span>Off</span>      <ds-toggle [on]="false"></ds-toggle>
+        <span>On</span>       <ds-toggle [on]="true"></ds-toggle>
+        <span>Disabled</span> <ds-toggle [disabled]="true"></ds-toggle>
       </div>
     `,
   }),
 };
-
-// ─── Off ──────────────────────────────────────────────────────────────────────
 
 export const Off: Story = {
-  name: 'Off state',
-  parameters: { docs: { description: { story: 'White pill · gray border · gray × icon on thumb.' } } },
-  args: { on: false, theme: 'user' },
+  name: 'Off',
+  args: { on: false },
 };
-
-// ─── On ───────────────────────────────────────────────────────────────────────
 
 export const On: Story = {
-  name: 'On state',
-  parameters: { docs: { description: { story: 'Filled pill · white thumb with coloured checkmark.' } } },
-  args: { on: true, theme: 'user' },
+  name: 'On',
+  args: { on: true },
 };
-
-// ─── Themes ───────────────────────────────────────────────────────────────────
-
-export const Themes: Story = {
-  name: 'Themes (ON)',
-  parameters: {
-    docs: { description: { story: 'All four colour themes in the ON state.' } },
-  },
-  render: () => ({
-    template: `
-      <div style="display:flex;gap:16px;align-items:center">
-        <ds-toggle theme="user"  [on]="true"></ds-toggle>
-        <ds-toggle theme="admin" [on]="true"></ds-toggle>
-        <ds-toggle theme="green" [on]="true"></ds-toggle>
-        <ds-toggle theme="sunoh" [on]="true"></ds-toggle>
-      </div>
-    `,
-  }),
-};
-
-// ─── Disabled ─────────────────────────────────────────────────────────────────
 
 export const Disabled: Story = {
   name: 'Disabled',
-  parameters: { docs: { description: { story: 'Toggle is non-interactive. Appearance is faded (45% opacity).' } } },
+  parameters: { docs: { description: { story: 'Disabled state ignores both `on=true` and `on=false`.' } } },
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:center">
-        <ds-toggle theme="user" [on]="false" [disabled]="true"></ds-toggle>
-        <ds-toggle theme="user" [on]="true"  [disabled]="true"></ds-toggle>
+        <ds-toggle [on]="false" [disabled]="true"></ds-toggle>
+        <ds-toggle [on]="true"  [disabled]="true"></ds-toggle>
       </div>
     `,
   }),
+};
+
+export const ClickToggles: Story = {
+  name: 'Interaction: Click toggles state',
+  args: { on: false, ariaLabel: 'Click toggle' },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch', { name: /click toggle/i });
+    await userEvent.click(toggle);
+    await expect(args.change).toHaveBeenCalledWith(true);
+  },
+};
+
+export const SpaceTogglesViaKeyboard: Story = {
+  name: 'Interaction: Space key toggles',
+  args: { on: false, ariaLabel: 'Space toggle' },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch', { name: /space toggle/i });
+    toggle.focus();
+    await expect(toggle).toHaveFocus();
+    await userEvent.keyboard(' ');
+    await expect(args.change).toHaveBeenCalledWith(true);
+  },
+};
+
+export const EnterTogglesViaKeyboard: Story = {
+  name: 'Interaction: Enter key toggles',
+  args: { on: false, ariaLabel: 'Enter toggle' },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch', { name: /enter toggle/i });
+    toggle.focus();
+    await expect(toggle).toHaveFocus();
+    await userEvent.keyboard('{Enter}');
+    await expect(args.change).toHaveBeenCalledWith(true);
+  },
+};
+
+export const TabOrderSkipsDisabled: Story = {
+  name: 'Interaction: Tab skips disabled toggle',
+  render: () => ({
+    template: `
+      <div style="display:flex;gap:12px;align-items:center">
+        <button id="before" type="button">Before</button>
+        <ds-toggle ariaLabel="Skipped" [disabled]="true"></ds-toggle>
+        <button id="after" type="button">After</button>
+      </div>
+    `,
+  }),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const before = canvas.getByRole('button', { name: /before/i });
+    const after = canvas.getByRole('button', { name: /after/i });
+    before.focus();
+    await userEvent.tab();
+    await expect(after).toHaveFocus();
+  },
+};
+
+export const DisabledNotClickable: Story = {
+  name: 'Interaction: Disabled does not emit',
+  args: { on: false, disabled: true, ariaLabel: 'Disabled toggle' },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    const toggle = canvas.getByRole('switch', { name: /disabled toggle/i });
+    await userEvent.click(toggle);
+    await expect(args.change).not.toHaveBeenCalled();
+  },
 };
