@@ -1,0 +1,35 @@
+@if (type === 'empty') {
+  <div class="ds-psac ds-psac--empty" role="status">
+    <p class="ds-psac__empty">No safety alerts.</p>
+  </div>
+} @else {
+  <div
+    class="ds-psac"
+    [class.ds-psac--psac]="type === 'psac'"
+    [class.ds-psac--confidential]="type === 'confidential'"
+    [class.ds-psac--soft]="stopType === 'soft'"
+    [class.ds-psac--hard]="stopType === 'hard'"
+    role="alert"
+  >
+    <div class="ds-psac__icon" aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 1l7 13H1L8 1z"/>
+        <path d="M8 6v3M8 11.5h.01"/>
+      </svg>
+    </div>
+    <div class="ds-psac__body">
+      <p class="ds-psac__title">{{ title }}</p>
+      @if (body && stopType === 'soft') {
+        <p class="ds-psac__text">{{ body }}</p>
+      }
+    </div>
+    @if (stopType === 'soft') {
+      <div class="ds-psac__actions">
+        <button type="button" class="ds-psac__btn ds-psac__btn--primary" (click)="acknowledge.emit()">{{ acknowledgeLabel }}</button>
+        @if (type !== 'confidential') {
+          <button type="button" class="ds-psac__btn ds-psac__btn--secondary" (click)="bypass.emit()">{{ bypassLabel }}</button>
+        }
+      </div>
+    }
+  </div>
+}
