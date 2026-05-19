@@ -1,0 +1,26 @@
+<nav class="ds-floating-toolbar" role="toolbar" aria-orientation="vertical" aria-label="Floating toolbar">
+  <ul class="ds-floating-toolbar__list">
+    @for (item of items; track trackById($index, item)) {
+      <li>
+        <button
+          type="button"
+          class="ds-floating-toolbar__item"
+          [class.ds-floating-toolbar__item--selected]="item.id === selectedId"
+          [attr.aria-pressed]="item.id === selectedId"
+          (click)="itemSelect.emit(item.id)"
+        >
+          <span class="ds-floating-toolbar__icon" aria-hidden="true" [innerHTML]="safeIcon(item.icon)"></span>
+          <span class="ds-floating-toolbar__label">{{ item.label }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+
+  @if (moreLabel) {
+    <button
+      type="button"
+      class="ds-floating-toolbar__more"
+      (click)="moreClick.emit()"
+    >{{ moreLabel }}</button>
+  }
+</nav>
