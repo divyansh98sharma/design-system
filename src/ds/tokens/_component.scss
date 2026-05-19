@@ -51,29 +51,27 @@
   --radio-focus-offset: 2px;
 
   // ----------------------------------------------------------
-  // Toggle Switch
+  // On / Off Toggle (redesigned: single teal colour, no themes)
   // ----------------------------------------------------------
   --toggle-width: 50px;
   --toggle-height: 24px;
-  --toggle-padding: var(--spacing-x-small);
+  --toggle-padding: 4px;
   --toggle-radius: var(--radius-pill);
-  --toggle-bg-off: var(--color-surface);
-  --toggle-border-off: var(--color-secondary-70);
-  --toggle-bg-user: var(--color-user-base);
-  --toggle-bg-user-hover: var(--color-user-70);
-  --toggle-bg-admin: var(--color-admin-base);
-  --toggle-bg-admin-hover: var(--color-admin-60);
-  --toggle-bg-green: var(--color-green-base);
-  --toggle-bg-green-hover: var(--color-green-60);
-  --toggle-bg-sunoh: var(--color-sunoh-base);
-  --toggle-bg-sunoh-hover: var(--color-sunoh-60);
+
+  --toggle-bg-off: #ffffff;
+  --toggle-border-off: #bcbcbc;
+  --toggle-thumb-bg-off: #bcbcbc;
+
+  --toggle-bg-on: #007b95;
+  --toggle-bg-on-hover: #006a80;
+  --toggle-thumb-bg-on: #ffffff;
+
+  --toggle-bg-disabled: #e1e1e1;
+  --toggle-border-disabled: #bcbcbc;
+  --toggle-thumb-bg-disabled: #bcbcbc;
+
   --toggle-thumb-size: 16px;
-  --toggle-thumb-bg-off: var(--color-secondary-50);
-  --toggle-thumb-bg-on: var(--color-text-inverse);
-  --toggle-icon-size: 10px;
-  --toggle-icon-color-off: var(--color-secondary-70);
   --toggle-transition: 200ms ease;
-  --toggle-disabled-opacity: 0.45;
   --toggle-focus-color: var(--color-border-focus);
 
   // ----------------------------------------------------------
