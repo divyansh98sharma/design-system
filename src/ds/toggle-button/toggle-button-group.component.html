@@ -11,11 +11,6 @@
       [disabled]="(item.disabled || disabled) ? true : null"
       (click)="onToggle(item)"
     >
-      <!-- Selected check icon (label-based buttons only) -->
-      @if (isSelected(item.value) && !isIconOnly(item) && !item.icon) {
-        <span class="ds-tgl__icon ds-tgl__icon--check" [innerHTML]="checkIcon"></span>
-      }
-
       <!-- User-supplied icon (icon+label or icon-only buttons) -->
       @if (item.icon) {
         <span class="ds-tgl__icon" [innerHTML]="safeIcon(item.icon)"></span>
