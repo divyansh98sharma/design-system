@@ -1,0 +1,302 @@
+// ─── AI Insights Panel (CODE-A-TON Library spec) ─────────────────────────────
+
+:host { display: inline-flex; }
+
+.ds-ai-insights-panel {
+  display: flex;
+  flex-direction: column;
+  width: var(--ai-insights-width);
+  height: var(--ai-insights-height);
+  background: var(--ai-insights-body-bg);
+  font-family: var(--font-family-base);
+  border-radius: var(--ai-insights-header-radius);
+  box-shadow: var(--ai-insights-shadow);
+  overflow: hidden;
+}
+
+// ─── Header ─────────────────────────────────────────────────────────────────
+.ds-ai-insights-panel__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--ai-insights-header-height);
+  padding: var(--ai-insights-header-padding-y) var(--ai-insights-header-padding-x);
+  background: var(--ai-insights-header-bg);
+  border-bottom: 1px solid var(--ai-insights-header-border);
+  box-shadow: var(--ai-insights-header-shadow);
+  flex-shrink: 0;
+}
+
+.ds-ai-insights-panel__title-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ai-insights-title-gap);
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+.ds-ai-insights-panel__title-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ai-insights-title-icon-size);
+  height: var(--ai-insights-title-icon-size);
+  border-radius: 999px;
+  color: var(--ai-insights-title-icon-color);
+  flex-shrink: 0;
+
+  svg { display: block; width: 16px; height: 16px; }
+}
+
+.ds-ai-insights-panel__title {
+  margin: 0;
+  font-size: var(--ai-insights-title-font-size);
+  font-weight: 500;
+  line-height: var(--ai-insights-title-line-height);
+  background: var(--ai-insights-title-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-ai-insights-panel__header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ai-insights-header-actions-gap);
+  flex-shrink: 0;
+}
+
+// ─── Buttons ────────────────────────────────────────────────────────────────
+.ds-ai-insights-panel__icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  background: #fbfbfb;
+  border: 0;
+  border-radius: 4px;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+
+  &:hover { background: #ebebeb; }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--color-border-focus);
+  }
+
+  span {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}
+
+// ─── Body ───────────────────────────────────────────────────────────────────
+.ds-ai-insights-panel__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 0;
+  min-height: 0;
+  gap: var(--ai-insights-body-gap);
+  padding: var(--ai-insights-body-padding);
+  overflow-y: auto;
+  background: var(--ai-insights-body-bg);
+}
+
+// ─── Section ─────────────────────────────────────────────────────────────────
+.ds-ai-insights-panel__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-insights-section-gap);
+}
+
+.ds-ai-insights-panel__section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--ai-insights-section-header-gap);
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-border-focus);
+    border-radius: 4px;
+  }
+}
+
+.ds-ai-insights-panel__chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: var(--ai-insights-section-title-color);
+  transition: transform 150ms ease;
+  flex-shrink: 0;
+
+  svg { display: block; width: 100%; height: 100%; }
+
+  &--expanded { transform: rotate(90deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-ai-insights-panel__chevron { transition: none; }
+}
+
+.ds-ai-insights-panel__section-title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: var(--ai-insights-section-title-size);
+  font-weight: 600;
+  line-height: var(--ai-insights-section-title-line);
+  color: var(--ai-insights-section-title-color);
+}
+
+.ds-ai-insights-panel__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ai-insights-actions-gap);
+  flex-shrink: 0;
+}
+
+.ds-ai-insights-panel__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  min-width: 24px;
+  padding: 4px;
+  background: #fbfbfb;
+  border: 0;
+  border-radius: 4px;
+  color: var(--ai-insights-actions-text-color);
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+
+  &:hover { background: #ebebeb; }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--color-border-focus);
+  }
+}
+
+.ds-ai-insights-panel__action-icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}
+
+.ds-ai-insights-panel__action-text { font-size: 12px; }
+
+// ─── Tiles ──────────────────────────────────────────────────────────────────
+.ds-ai-insights-panel__tiles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-ai-insights-panel__tile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ai-insights-tile-gap);
+  padding: var(--ai-insights-tile-padding-y) var(--ai-insights-tile-padding-x);
+  background: var(--ai-insights-tile-bg);
+  border: 1px solid var(--ai-insights-tile-border);
+  border-radius: var(--ai-insights-tile-radius);
+}
+
+.ds-ai-insights-panel__tile-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ds-ai-insights-panel__tile-title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--ai-insights-tile-title-color);
+}
+
+.ds-ai-insights-panel__tile-body {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.ds-ai-insights-panel__tile-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ai-insights-actions-gap);
+}
+
+// ─── Footer ──────────────────────────────────────────────────────────────────
+.ds-ai-insights-panel__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ai-insights-footer-padding-y) var(--ai-insights-footer-padding-x);
+  background: var(--ai-insights-footer-bg);
+  border-top: 1px solid var(--ai-insights-footer-border);
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.ds-ai-insights-panel__footer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  background: #ebebeb;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  color: #000000;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 120ms ease, border-color 120ms ease;
+
+  &:hover {
+    background: #e6e6e6;
+    border-color: #bcbcbc;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--color-border-focus);
+  }
+
+  span {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}
