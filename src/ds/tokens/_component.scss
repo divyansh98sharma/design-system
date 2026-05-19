@@ -6,28 +6,32 @@
 
 :root {
   // ----------------------------------------------------------
-  // Checkbox
+  // Checkbox (CODE-A-TON Library — Figma source of truth)
   // ----------------------------------------------------------
   --checkbox-size: 16px;
-  --checkbox-radius: 3px;
-  --checkbox-border-width: 1.5px;
-  --checkbox-border: var(--color-border-strong);
-  --checkbox-border-checked: var(--color-user);
-  --checkbox-border-hover: var(--color-user-hover);
-  --checkbox-bg: var(--color-surface);
-  --checkbox-bg-checked: var(--color-user);
-  --checkbox-bg-hover: var(--color-user-hover);
-  --checkbox-bg-disabled: var(--color-surface-disabled);
-  --checkbox-border-disabled: var(--color-border-strong);
-  --checkbox-icon-color: var(--color-text-inverse);
-  --checkbox-icon-size: 10px;
-  --checkbox-label-font-size: var(--font-size-12);
-  --checkbox-label-color: var(--color-text-primary);
-  --checkbox-label-color-disabled: var(--color-text-disabled);
-  --checkbox-gap: var(--spacing-x-small);
+  --checkbox-radius: 2px;
+  --checkbox-border-width: 1px;
+  --checkbox-bg: #ffffff;
+  --checkbox-border: #717171;
+  --checkbox-bg-hover: #ffffff;
+  --checkbox-border-hover: #717171;
+  --checkbox-bg-checked: #007b95;
+  --checkbox-border-checked: #007b95;
+  --checkbox-bg-checked-hover: #02506f;
+  --checkbox-border-checked-hover: #02506f;
+  --checkbox-bg-disabled: #ffffff;
+  --checkbox-border-disabled: #bcbcbc;
+  --checkbox-bg-checked-disabled: #bcbcbc;
+  --checkbox-border-checked-disabled: #bcbcbc;
+  --checkbox-icon-color: #ffffff;
+  --checkbox-icon-size: 12px;
+  --checkbox-label-font-size: 12px;
+  --checkbox-label-line-height: 16px;
+  --checkbox-label-color: #000000;
+  --checkbox-label-color-disabled: #969696;
+  --checkbox-gap: 4px;
   --checkbox-transition: 120ms ease;
-  --checkbox-focus-width: 2px;
-  --checkbox-focus-offset: 2px;
+  --checkbox-focus-color: var(--color-border-focus);
 
   // ----------------------------------------------------------
   // Radio Button

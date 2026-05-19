@@ -1,37 +1,67 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  forwardRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'ds-checkbox',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CheckboxComponent),
+      multi: true,
+    },
+  ],
 })
-export class CheckboxComponent {
-  /** Whether the checkbox is checked. */
+export class CheckboxComponent implements ControlValueAccessor {
   @Input() checked = false;
-
-  /** Shows a dash instead of a checkmark — used when a group is partially selected. */
   @Input() indeterminate = false;
-
-  /** Prevents user interaction and applies muted styles. */
   @Input() disabled = false;
-
-  /** Label text displayed next to the checkbox. Set to empty string to hide the label. */
   @Input() label = 'Label';
+  @Input() ariaLabel?: string;
 
-  /** Emits the new checked state on every change. */
   @Output() checkedChange = new EventEmitter<boolean>();
+
+  private onChange: (value: boolean) => void = () => undefined;
+  private onTouched: () => void = () => undefined;
 
   get hasLabel(): boolean {
     return this.label !== '';
   }
 
-  handleChange(event: { checked?: boolean }): void {
-    this.checked = !!event.checked;
+  toggle(): void {
+    if (this.disabled) return;
+    this.checked = !this.checked;
+    this.indeterminate = false;
     this.checkedChange.emit(this.checked);
+    this.onChange(this.checked);
+    this.onTouched();
+  }
+
+  writeValue(value: boolean): void {
+    this.checked = !!value;
+  }
+
+  registerOnChange(fn: (value: boolean) => void): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
   }
 }
