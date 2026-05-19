@@ -1,0 +1,59 @@
+<div class="ds-calendar" role="group" [attr.aria-label]="monthLabel">
+  <header class="ds-calendar__header">
+    <button
+      type="button"
+      class="ds-calendar__nav"
+      aria-label="Previous month"
+      (click)="prevMonth()"
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 4l-4 4 4 4"/>
+      </svg>
+    </button>
+
+    <div class="ds-calendar__title" aria-live="polite">{{ monthLabel }}</div>
+
+    <button
+      type="button"
+      class="ds-calendar__nav"
+      aria-label="Next month"
+      (click)="nextMonth()"
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M6 4l4 4-4 4"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="ds-calendar__weekdays" aria-hidden="true">
+    @for (label of weekdays; track label) {
+      <span class="ds-calendar__weekday">{{ label }}</span>
+    }
+  </div>
+
+  <div class="ds-calendar__grid" role="grid">
+    @for (cell of cells; track trackByIso($index, cell)) {
+      <button
+        type="button"
+        role="gridcell"
+        class="ds-calendar__cell"
+        [class.ds-calendar__cell--out]="!cell.inMonth"
+        [class.ds-calendar__cell--today]="cell.isToday"
+        [class.ds-calendar__cell--selected]="cell.isSelected"
+        [class.ds-calendar__cell--in-range]="cell.isInRange"
+        [class.ds-calendar__cell--range-start]="cell.isRangeStart"
+        [class.ds-calendar__cell--range-end]="cell.isRangeEnd"
+        [attr.aria-selected]="cell.isSelected"
+        [attr.aria-label]="cell.iso"
+        (click)="selectCell(cell)"
+      >{{ cell.day }}</button>
+    }
+  </div>
+
+  @if (showFooter) {
+    <footer class="ds-calendar__footer">
+      <button type="button" class="ds-calendar__footer-btn ds-calendar__footer-btn--cancel" (click)="onCancel()">{{ cancelLabel }}</button>
+      <button type="button" class="ds-calendar__footer-btn ds-calendar__footer-btn--apply" (click)="onApply()">{{ applyLabel }}</button>
+    </footer>
+  }
+</div>

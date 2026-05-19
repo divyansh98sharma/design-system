@@ -209,6 +209,43 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // Calendar (CODE-A-TON Library — Figma source of truth)
+  // ----------------------------------------------------------
+  --calendar-bg: #ffffff;
+  --calendar-border: #e1e1e1;
+  --calendar-radius: 8px;
+  --calendar-padding: 12px;
+  --calendar-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --calendar-gap: 12px;
+
+  --calendar-header-color: #000000;
+  --calendar-header-font-size: 14px;
+  --calendar-header-line-height: 20px;
+  --calendar-nav-icon-color: #4b586b;
+  --calendar-divider-color: #e1e1e1;
+
+  --calendar-weekday-color: #797979;
+  --calendar-weekday-font-size: 11px;
+  --calendar-weekday-line-height: 16px;
+
+  --calendar-cell-size: 32px;
+  --calendar-cell-radius: 999px;
+  --calendar-cell-text: #4b586b;
+  --calendar-cell-text-other-month: #bcbcbc;
+  --calendar-cell-text-today: #007b95;
+  --calendar-cell-text-selected: #ffffff;
+  --calendar-cell-bg-selected: #007b95;
+  --calendar-cell-bg-hover: #f1fbff;
+  --calendar-cell-bg-in-range: #e6f4f3;
+
+  --calendar-button-bar-gap: 8px;
+  --calendar-button-bar-border: #e1e1e1;
+  --calendar-button-bar-padding-x: 12px;
+  --calendar-button-bar-padding-y: 8px;
+
+  --calendar-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Avatar
   // ----------------------------------------------------------
   --avatar-size-sm: 32px;
