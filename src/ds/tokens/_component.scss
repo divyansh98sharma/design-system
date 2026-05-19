@@ -345,7 +345,8 @@
   --tab-padding-x: var(--spacing-small);
   --tab-radius: var(--radius-standard);
   --tab-text-color: var(--color-text-primary);
-  --tab-active-bg: var(--color-surface);
+  // Toggle Button group — CODE-A-TON Library Figma source of truth
+  --tab-active-bg: #f5f0ed;
   --tab-border-color: var(--color-secondary-base);
   --tab-transition: 120ms ease;
   --tab-user-color: var(--color-user-base);
@@ -727,15 +728,28 @@
   --breadcrumb-popover-z-index: 100;
 
   // ----------------------------------------------------------
-  // Toggle Button Group
+  // Toggle Button Group  (Figma-aligned)
   // ----------------------------------------------------------
   --toggle-btn-focus-color: var(--color-border-focus);
   --toggle-btn-disabled-opacity: 0.5;
+  --toggle-btn-radius: 4px;
+  --toggle-btn-group-border: var(--color-secondary-base);                  // #e1e1e1
+  --toggle-btn-bg: var(--color-global-white);
+  --toggle-btn-text: var(--color-black);
+  --toggle-btn-icon: var(--color-black);
+  --toggle-btn-selected-bg: var(--color-primary-mint-bg);                  // #e9f5f3
+  --toggle-btn-selected-border: #3ecfbe;                                   // accent on active item
+  --toggle-btn-selected-text: var(--color-black);
+  --toggle-btn-selected-icon: var(--color-black);
+
+  // sm — matches Figma (24px height, 12/16 type, 8/4 padding, 4 gap)
   --toggle-btn-sm-height: 24px;
-  --toggle-btn-sm-padding-x: var(--spacing-small);
-  --toggle-btn-sm-font-size: var(--font-size-11);
-  --toggle-btn-sm-gap: var(--spacing-x-small);
-  --toggle-btn-sm-icon-size: 13px;
+  --toggle-btn-sm-padding-x: 8px;
+  --toggle-btn-sm-padding-y: 4px;
+  --toggle-btn-sm-font-size: var(--font-size-12);
+  --toggle-btn-sm-gap: 4px;
+  --toggle-btn-sm-icon-size: 16px;
+
   --toggle-btn-md-height: 32px;
   --toggle-btn-md-padding-x: var(--spacing-medium);
   --toggle-btn-md-gap: 5px;
