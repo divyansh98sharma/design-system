@@ -3,45 +3,38 @@
 .ds-chip {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--chip-gap);
-  padding: var(--chip-padding-y) var(--chip-padding-x);
+  padding-inline: var(--chip-padding-x);
   border: 1px solid transparent;
   border-radius: var(--chip-radius);
   font-family: var(--font-family-base);
   font-size: var(--chip-font-size);
-  line-height: var(--line-height-16);
-  color: var(--chip-color);
+  line-height: var(--chip-line-height);
   cursor: pointer;
   transition: opacity var(--chip-transition);
   user-select: none;
 
   &:hover { opacity: 0.85; }
 
+  // ─── Sizes ──────────────────────────────────────────────────────────────
+
+  &--sm { padding-block: var(--chip-sm-padding-y); }
+  &--lg { padding-block: var(--chip-lg-padding-y); }
+
   // ─── States ─────────────────────────────────────────────────────────────
 
-  &--default    { background: var(--chip-bg-default);    border-color: var(--chip-border-default); }
-  &--active     { background: var(--chip-bg-active);     border-color: var(--chip-border-active); }
-  &--error      { background: var(--chip-bg-error);      border-color: var(--chip-border-error); }
-  &--warning    { background: var(--chip-bg-warning);    border-color: var(--chip-border-warning); }
-  &--in-process { background: var(--chip-bg-in-process); border-color: var(--chip-border-in-process); }
-  &--ai         { background: var(--chip-bg-ai);         border-color: var(--chip-border-ai); }
-
-  // ─── Badge ──────────────────────────────────────────────────────────────
-
-  &__badge {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    width: var(--chip-badge-size);
-    height: var(--chip-badge-size);
-    border-radius: var(--chip-badge-radius);
-    color: var(--chip-badge-color);
-    font-family: var(--font-family-base);
-    font-size: var(--chip-badge-font-size);
-    font-weight: var(--font-weight-regular);
-    line-height: 1;
-  }
+  &--red      { background: var(--chip-red-bg);      border-color: var(--chip-red-border);      color: var(--chip-red-text); }
+  &--orange   { background: var(--chip-orange-bg);   border-color: var(--chip-orange-border);   color: var(--chip-orange-text); }
+  &--yellow   { background: var(--chip-yellow-bg);   border-color: var(--chip-yellow-border);   color: var(--chip-yellow-text); }
+  &--green    { background: var(--chip-green-bg);    border-color: var(--chip-green-border);    color: var(--chip-green-text); }
+  &--blue     { background: var(--chip-blue-bg);     border-color: var(--chip-blue-border);     color: var(--chip-blue-text); }
+  &--purple   { background: var(--chip-purple-bg);   border-color: var(--chip-purple-border);   color: var(--chip-purple-text); }
+  &--white    { background: var(--chip-white-bg);    border-color: var(--chip-white-border);    color: var(--chip-white-text); }
+  &--gray     { background: var(--chip-gray-bg);     border-color: var(--chip-gray-border);     color: var(--chip-gray-text); }
+  &--ai       { background: var(--chip-ai-bg);       border-color: var(--chip-ai-border);       color: var(--chip-ai-text); }
+  &--action   { background: var(--chip-action-bg);   border-color: var(--chip-action-border);   color: var(--chip-action-text); }
+  &--selected { background: var(--chip-selected-bg); border-color: var(--chip-selected-border); color: var(--chip-selected-text); }
 
   // ─── Icon ───────────────────────────────────────────────────────────────
 
@@ -50,7 +43,7 @@
     flex-shrink: 0;
     width: var(--chip-icon-size);
     height: var(--chip-icon-size);
-    color: var(--chip-color);
+    color: currentColor;
   }
 
   // ─── Label ──────────────────────────────────────────────────────────────
@@ -60,29 +53,20 @@
     white-space: nowrap;
   }
 
-  // ─── Close button ───────────────────────────────────────────────────────
+  // ─── Counter pill ───────────────────────────────────────────────────────
 
-  &__close {
-    display: flex;
+  &__counter {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: var(--chip-close-size);
-    height: var(--chip-close-size);
-    padding: 0;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--chip-color);
-    transition: opacity var(--chip-transition);
-
-    &:hover        { opacity: 0.6; }
-    &:focus-visible { outline: 2px solid var(--chip-close-focus-color); outline-offset: 1px; }
-  }
-
-  &__close-icon {
-    display: block;
-    width: 100%;
-    height: 100%;
+    padding-inline: var(--chip-counter-padding-x);
+    background: var(--chip-counter-bg);
+    border: 1px solid var(--chip-counter-border);
+    border-radius: var(--chip-counter-radius);
+    color: var(--chip-counter-text);
+    font-size: var(--chip-font-size);
+    line-height: var(--chip-line-height);
+    white-space: nowrap;
   }
 }
