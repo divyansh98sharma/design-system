@@ -209,6 +209,27 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // Cards (CODE-A-TON Library — Figma source of truth)
+  // ----------------------------------------------------------
+  --cards-bg: #ffffff;
+  --cards-border: #ebebeb;
+  --cards-radius: 8px;
+  --cards-padding: 8px;
+  --cards-gap: 8px;
+
+  --cards-hover-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --cards-selected-border: #3ecfbe;
+  --cards-selected-shadow: 0 4px 8px rgba(62, 207, 190, 0.12);
+
+  --cards-header-text: #000000;
+  --cards-header-meta-text: #4b586b;
+  --cards-divider: #e6e6e6;
+  --cards-footer-text-primary: #000000;
+  --cards-footer-text-meta: #4b586b;
+
+  --cards-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Avatar
   // ----------------------------------------------------------
   --avatar-size-sm: 32px;
