@@ -1,0 +1,12 @@
+<header class="ds-page-header">
+  <div class="ds-page-header__left">
+    <ng-content select="[ds-page-header-leading]"></ng-content>
+    <div class="ds-page-header__titles">
+      <h1 class="ds-page-header__title">{{ title }}</h1>
+      @if (subtitle) {
+        <p class="ds-page-header__subtitle">{{ subtitle }}</p>
+      }
+    </div>
+  </div>
+  <div class="ds-page-header__right"><ng-content select="[ds-page-header-actions]"></ng-content></div>
+</header>
