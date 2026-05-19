@@ -1,0 +1,170 @@
+// ─── AI Panel ─────────────────────────────────────────────────────────────────
+
+.ds-ai-panel {
+  display: flex;
+  flex-direction: column;
+  width: var(--ai-panel-width);
+  height: 100%;
+  border-radius: var(--ai-panel-radius);
+  background: var(--ai-panel-body-bg);
+  box-shadow: var(--ai-panel-shadow);
+  font-family: var(--font-family-base);
+  overflow: hidden;
+
+  // ─── Header ─────────────────────────────────────────────────────────────
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--ai-panel-header-gap);
+    min-height: var(--ai-panel-header-height);
+    max-height: var(--ai-panel-header-height);
+    padding: var(--ai-panel-header-padding-y) var(--ai-panel-header-padding-x);
+    background: var(--ai-panel-header-bg);
+    border-bottom: 1px solid var(--ai-panel-header-border);
+    border-top-left-radius: var(--ai-panel-radius);
+    border-top-right-radius: var(--ai-panel-radius);
+    box-shadow: var(--ai-panel-header-shadow);
+  }
+
+  &__title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--ai-panel-title-gap);
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  &__ai-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--ai-panel-ai-icon-size);
+    height: var(--ai-panel-ai-icon-size);
+
+    svg {
+      display: block;
+      width: var(--ai-panel-ai-icon-inner-size);
+      height: var(--ai-panel-ai-icon-inner-size);
+      // Use the same gradient as the title for visual cohesion.
+      fill: url(#ds-ai-panel-grad);
+      // Fallback when the gradient can't resolve (rare).
+      color: #007B95;
+    }
+  }
+
+  // SVG fill via gradient relies on the <linearGradient> defined in the
+  // template. To avoid every consumer needing it, paint the icon itself with
+  // the same CSS gradient by using mask. Simpler: just colour the icon with
+  // the first stop and let the title carry the gradient.
+  &__ai-icon svg { fill: #007B95; }
+
+  &__title {
+    margin: 0;
+    font-size: var(--ai-panel-title-font-size);
+    line-height: var(--ai-panel-title-line-height);
+    font-weight: var(--ai-panel-title-font-weight);
+    background: var(--ai-panel-title-gradient);
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ai-panel-header-actions-gap);
+    flex-shrink: 0;
+  }
+
+  // ─── Small icon button (header / inline) ───────────────────────────────
+
+  &__icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--ai-panel-icon-button-size);
+    height: var(--ai-panel-icon-button-size);
+    padding: var(--ai-panel-icon-button-padding);
+    background: var(--ai-panel-icon-button-bg);
+    border: none;
+    border-radius: var(--ai-panel-icon-button-radius);
+    color: var(--ai-panel-icon-button-color);
+    cursor: pointer;
+    transition: background 120ms ease;
+
+    &:hover { background: var(--ai-panel-icon-button-bg-hover); }
+
+    &:focus-visible {
+      outline: 2px solid var(--ai-panel-icon-button-focus-color);
+      outline-offset: 1px;
+    }
+
+    svg {
+      display: block;
+      width: var(--ai-panel-icon-button-icon-size);
+      height: var(--ai-panel-icon-button-icon-size);
+    }
+  }
+
+  // ─── Body ───────────────────────────────────────────────────────────────
+
+  &__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ai-panel-body-gap);
+    padding: var(--ai-panel-body-padding);
+    background: var(--ai-panel-body-bg);
+    overflow-y: auto;
+  }
+
+  // ─── Footer ─────────────────────────────────────────────────────────────
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--ai-panel-footer-padding-y) var(--ai-panel-footer-padding-x);
+    background: var(--ai-panel-footer-bg);
+    border-top: 1px solid var(--ai-panel-footer-border);
+    border-bottom-left-radius: var(--ai-panel-radius);
+    border-bottom-right-radius: var(--ai-panel-radius);
+  }
+
+  &__footer-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: var(--ai-panel-footer-button-size);
+    height: var(--ai-panel-footer-button-size);
+    padding: var(--ai-panel-icon-button-padding);
+    background: var(--ai-panel-footer-button-bg);
+    border: 1px solid var(--ai-panel-footer-button-border);
+    border-radius: var(--ai-panel-footer-button-radius);
+    color: var(--ai-panel-footer-button-color);
+    cursor: pointer;
+    transition: background 120ms ease;
+
+    &:hover { background: var(--ai-panel-footer-button-bg-hover); }
+
+    &:focus-visible {
+      outline: 2px solid var(--ai-panel-footer-button-focus-color);
+      outline-offset: 1px;
+    }
+
+    svg {
+      display: block;
+      width: var(--ai-panel-footer-button-icon-size);
+      height: var(--ai-panel-footer-button-icon-size);
+    }
+  }
+}

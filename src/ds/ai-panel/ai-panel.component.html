@@ -1,0 +1,59 @@
+<div class="ds-ai-panel">
+
+  <!-- ─── Header ───────────────────────────────────────────────── -->
+  <header class="ds-ai-panel__header">
+    <div class="ds-ai-panel__title-group">
+      @if (showAiIcon) {
+        <span class="ds-ai-panel__ai-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path [attr.d]="sparklesPath"/>
+          </svg>
+        </span>
+      }
+      <h2 class="ds-ai-panel__title">{{ title }} {{ titleSuffix }}</h2>
+    </div>
+
+    @if (headerActions.length) {
+      <div class="ds-ai-panel__header-actions">
+        @for (action of headerActions; track trackByIndex($index)) {
+          <button
+            type="button"
+            class="ds-ai-panel__icon-btn"
+            [attr.aria-label]="action.label"
+            [title]="action.label"
+            (click)="headerActionClick.emit({ action, index: $index })"
+          >
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path [attr.d]="action.iconPath"/>
+            </svg>
+          </button>
+        }
+      </div>
+    }
+  </header>
+
+  <!-- ─── Body (slot) ──────────────────────────────────────────── -->
+  <div class="ds-ai-panel__body">
+    <ng-content/>
+  </div>
+
+  <!-- ─── Footer ───────────────────────────────────────────────── -->
+  @if (footerActions.length) {
+    <footer class="ds-ai-panel__footer">
+      @for (action of footerActions; track trackByIndex($index)) {
+        <button
+          type="button"
+          class="ds-ai-panel__footer-btn"
+          [attr.aria-label]="action.label"
+          [title]="action.label"
+          (click)="footerActionClick.emit({ action, index: $index })"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path [attr.d]="action.iconPath"/>
+          </svg>
+        </button>
+      }
+    </footer>
+  }
+
+</div>

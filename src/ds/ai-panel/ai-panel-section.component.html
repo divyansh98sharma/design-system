@@ -1,0 +1,80 @@
+<section class="ds-ai-panel-section" [class.ds-ai-panel-section--collapsed]="!expanded">
+
+  <button
+    type="button"
+    class="ds-ai-panel-section__header"
+    [attr.aria-expanded]="expanded"
+    (click)="onHeaderClick()"
+  >
+    @if (showChevron) {
+      <span class="ds-ai-panel-section__chevron" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path [attr.d]="expanded ? chevronDown : chevronRight"/>
+        </svg>
+      </span>
+    }
+    <h3 class="ds-ai-panel-section__title">{{ title }}</h3>
+
+    @if (actions.length) {
+      <span
+        class="ds-ai-panel-section__actions"
+        (click)="$event.stopPropagation()"
+      >
+        @for (action of actions; track trackByIndex($index)) {
+
+          @if (action.kind === 'icon') {
+            <button
+              type="button"
+              class="ds-ai-panel__icon-btn"
+              [attr.aria-label]="action.label"
+              [title]="action.label"
+              (click)="actionClick.emit({ action, index: $index })"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path [attr.d]="action.iconPath"/>
+              </svg>
+            </button>
+          }
+
+          @if (action.kind === 'text') {
+            <button
+              type="button"
+              class="ds-ai-panel-section__text-action"
+              (click)="actionClick.emit({ action, index: $index })"
+            >
+              {{ action.label }}
+            </button>
+          }
+
+          @if (action.kind === 'button') {
+            <button
+              type="button"
+              class="ds-ai-panel-section__button-action"
+              (click)="actionClick.emit({ action, index: $index })"
+            >
+              @if (action.iconPath && action.iconPosition !== 'trailing') {
+                <svg class="ds-ai-panel-section__button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path [attr.d]="action.iconPath"/>
+                </svg>
+              }
+              <span>{{ action.label }}</span>
+              @if (action.iconPath && action.iconPosition === 'trailing') {
+                <svg class="ds-ai-panel-section__button-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path [attr.d]="action.iconPath"/>
+                </svg>
+              }
+            </button>
+          }
+
+        }
+      </span>
+    }
+  </button>
+
+  @if (expanded) {
+    <div class="ds-ai-panel-section__content">
+      <ng-content/>
+    </div>
+  }
+
+</section>
