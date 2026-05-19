@@ -1,0 +1,73 @@
+// ─── Pagination (CODE-A-TON Library spec) ──────────────────────────────────
+
+:host { display: inline-flex; }
+
+.ds-pagination {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+}
+
+.ds-pagination__label { white-space: nowrap; }
+
+.ds-pagination__select,
+.ds-pagination__input {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  min-width: 24px;
+  padding: 4px;
+  background: #ffffff;
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  text-align: center;
+  outline: none;
+
+  &:focus { border-color: #007b95; box-shadow: 0 0 0 2px rgba(0, 123, 149, 0.15); }
+}
+
+.ds-pagination__input {
+  width: 32px;
+  appearance: textfield;
+
+  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button { appearance: none; margin: 0; }
+}
+
+.ds-pagination__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  background: #ebebeb;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  color: #000000;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  svg { display: block; width: 16px; height: 16px; }
+
+  &:hover:not(:disabled) { background: #e6e6e6; border-color: #bcbcbc; }
+  &:disabled {
+    background: #f7f7f7;
+    border-color: #ebebeb;
+    color: #bcbcbc;
+    cursor: not-allowed;
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--color-border-focus);
+  }
+}
