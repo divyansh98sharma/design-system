@@ -1,0 +1,36 @@
+<div class="ds-ai-bubbles" role="group" [attr.aria-label]="ariaLabel">
+
+  @if (showLeadingIcon) {
+    <svg
+      class="ds-ai-bubbles__leading-icon"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path [attr.d]="resolvedLeadingIcon"/>
+    </svg>
+  }
+
+  @for (chip of chips; track trackByIndex($index)) {
+    <button
+      type="button"
+      class="ds-ai-bubbles__chip"
+      (click)="chipSelected.emit({ chip, index: $index })"
+    >
+      @if (chip.iconPath) {
+        <svg
+          class="ds-ai-bubbles__chip-icon"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path [attr.d]="chip.iconPath"/>
+        </svg>
+      }
+      <span class="ds-ai-bubbles__chip-label">{{ chip.label }}</span>
+    </button>
+  }
+
+</div>
