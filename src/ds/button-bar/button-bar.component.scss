@@ -1,0 +1,96 @@
+// ─── Button Bar (CODE-A-TON Library spec) ────────────────────────────────────
+
+:host { display: inline-flex; }
+
+.ds-button-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--button-bar-gap);
+  padding: var(--button-bar-padding-y) var(--button-bar-padding-x);
+  background: var(--button-bar-bg);
+  border-radius: var(--button-bar-radius);
+  font-family: var(--font-family-base);
+}
+
+.ds-button-bar__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--button-bar-gap);
+
+  &--right { margin-left: auto; }
+}
+
+.ds-button-bar__divider {
+  width: 1px;
+  height: var(--button-bar-divider-height);
+  background: var(--button-bar-divider-color);
+  flex-shrink: 0;
+}
+
+// ─── Select-all checkbox ─────────────────────────────────────────────────────
+.ds-button-bar__select-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  font-size: var(--button-bar-item-font-size);
+  line-height: var(--button-bar-item-line-height);
+  color: var(--button-bar-item-text);
+  user-select: none;
+}
+
+.ds-button-bar__checkbox {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.ds-button-bar__select-all-label { white-space: nowrap; }
+
+// ─── Items ───────────────────────────────────────────────────────────────────
+.ds-button-bar__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-bar-item-gap);
+  height: var(--button-bar-item-height);
+  min-width: var(--button-bar-item-height);
+  padding: var(--button-bar-item-padding-y) var(--button-bar-item-padding-x);
+  background: var(--button-bar-item-bg);
+  border: 0;
+  border-radius: var(--button-bar-item-radius);
+  color: var(--button-bar-item-text);
+  font-family: inherit;
+  font-size: var(--button-bar-item-font-size);
+  line-height: var(--button-bar-item-line-height);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+  flex-shrink: 0;
+
+  &:hover { background: var(--button-bar-item-bg-hover); }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--button-bar-focus-color);
+  }
+}
+
+.ds-button-bar__item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--button-bar-item-icon-size);
+  height: var(--button-bar-item-icon-size);
+  flex-shrink: 0;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+
+  svg { display: block; width: 100%; height: 100%; }
+}
+
+.ds-button-bar__item-label { display: inline-block; }
+
+.ds-button-bar__more { gap: 4px; }

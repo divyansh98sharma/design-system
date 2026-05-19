@@ -209,6 +209,31 @@
   --badge-font-weight: var(--font-weight-semibold);
 
   // ----------------------------------------------------------
+  // Button Bar (CODE-A-TON Library — Figma source of truth)
+  // ----------------------------------------------------------
+  --button-bar-bg: #e6f4f3;
+  --button-bar-radius: 8px;
+  --button-bar-padding-x: 12px;
+  --button-bar-padding-y: 8px;
+  --button-bar-gap: 12px;
+  --button-bar-divider-color: #ffffff;
+  --button-bar-divider-height: 24px;
+
+  --button-bar-item-bg: #fbfbfb;
+  --button-bar-item-bg-hover: #ebebeb;
+  --button-bar-item-text: #000000;
+  --button-bar-item-radius: 4px;
+  --button-bar-item-padding-x: 4px;
+  --button-bar-item-padding-y: 4px;
+  --button-bar-item-gap: 4px;
+  --button-bar-item-height: 24px;
+  --button-bar-item-font-size: 12px;
+  --button-bar-item-line-height: 16px;
+  --button-bar-item-icon-size: 16px;
+
+  --button-bar-focus-color: var(--color-border-focus);
+
+  // ----------------------------------------------------------
   // Avatar
   // ----------------------------------------------------------
   --avatar-size-sm: 32px;
