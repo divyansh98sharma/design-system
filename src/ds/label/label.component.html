@@ -1,0 +1,36 @@
+<label class="ds-label" [class.ds-label--lg]="size === 'large'" [attr.for]="forId">
+  <span class="ds-label__text">{{ label }}</span>
+
+  @if (required) {
+    <span class="ds-label__required" aria-hidden="true">*</span>
+  }
+
+  @if (showInfo) {
+    <button
+      type="button"
+      class="ds-label__icon ds-label__icon--info"
+      [attr.aria-label]="infoTooltip || 'More info'"
+      [title]="infoTooltip || ''"
+      (click)="infoClick.emit()"
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="8" cy="8" r="6"/>
+        <path d="M8 7v4"/>
+        <circle cx="8" cy="5" r="0.5" fill="currentColor"/>
+      </svg>
+    </button>
+  }
+
+  @if (showCaret) {
+    <button
+      type="button"
+      class="ds-label__icon ds-label__icon--caret"
+      aria-label="Toggle"
+      (click)="caretClick.emit()"
+    >
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 6l4 4 4-4"/>
+      </svg>
+    </button>
+  }
+</label>
