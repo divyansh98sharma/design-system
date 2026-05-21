@@ -40,6 +40,8 @@ export class ChipComponent {
   @Input() showIcon = true;
   @Input() showCounter = false;
   @Input() counter: number | string = 999;
+  /** Selected state — applies the active treatment (relevant for `type=ai`: full brand gradient + white medium text). */
+  @Input() selected = false;
 
   @Input() set icon(svg: string | undefined) {
     this.safeIcon = svg ? this.sanitizer.bypassSecurityTrustHtml(svg) : null;
@@ -51,6 +53,7 @@ export class ChipComponent {
   private sanitizer = inject(DomSanitizer);
 
   get hostClass(): string {
-    return `ds-chip ds-chip--${this.type} ds-chip--${this.size}`;
+    const sel = this.selected ? ' ds-chip--is-selected' : '';
+    return `ds-chip ds-chip--${this.type} ds-chip--${this.size}${sel}`;
   }
 }

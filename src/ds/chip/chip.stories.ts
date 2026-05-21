@@ -25,8 +25,9 @@ const meta: Meta<ChipComponent> = {
     showCounter: { control: 'boolean' },
     counter: { control: 'text' },
     icon: { control: 'text' },
+    selected: { control: 'boolean' },
   },
-  args: { type: 'gray', size: 'sm', label: 'Chip Label', showIcon: true },
+  args: { type: 'gray', size: 'sm', label: 'Chip Label', showIcon: true, selected: false },
 };
 
 export default meta;
@@ -71,4 +72,25 @@ export const Sizes: Story = {
 export const WithCounter: Story = {
   name: 'With counter',
   args: { type: 'red', showCounter: true, counter: 999 },
+};
+
+export const AiStates: Story = {
+  name: 'AI chip — states',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'AI-powered chip states from Figma node 15807:11178: default (white bg), hover (subtle brand gradient), selected (full brand gradient + white medium text). Hover by mousing over the middle chip.',
+      },
+    },
+  },
+  render: () => ({
+    template: `
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-start">
+        <ds-chip type="ai" label="Chip Label"></ds-chip>
+        <ds-chip type="ai" label="Chip Label (hover me)"></ds-chip>
+        <ds-chip type="ai" label="Chip Label" [selected]="true"></ds-chip>
+      </div>
+    `,
+  }),
 };

@@ -28,7 +28,23 @@
   &--purple { background: var(--chip-purple-bg); color: var(--chip-purple-text); }
   &--white  { background: var(--chip-white-bg);  color: var(--chip-white-text);  border-color: var(--chip-white-border); }
   &--gray   { background: var(--chip-gray-bg);   color: var(--chip-gray-text); }
-  &--ai       { background: var(--chip-ai-bg);       color: var(--chip-ai-text);       border-color: var(--chip-ai-border); }
+  &--ai {
+    background: var(--chip-ai-bg);
+    color: var(--chip-ai-text);
+    border-color: var(--chip-ai-border);
+    cursor: pointer;
+    transition: background var(--chip-transition), color var(--chip-transition);
+
+    &:hover:not(.ds-chip--is-selected) {
+      background: var(--chip-ai-bg-hover);
+    }
+
+    &.ds-chip--is-selected {
+      background: var(--chip-ai-bg-selected);
+      color: var(--chip-ai-text-selected);
+      font-weight: var(--font-weight-medium);
+    }
+  }
   &--action   { background: var(--chip-action-bg);   color: var(--chip-action-text);   border-color: var(--chip-action-border); }
   &--selected { background: var(--chip-selected-bg); color: var(--chip-selected-text); border-color: var(--chip-selected-border); }
   &--structured {
