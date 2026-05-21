@@ -29,18 +29,26 @@
   &--white  { background: var(--chip-white-bg);  color: var(--chip-white-text);  border-color: var(--chip-white-border); }
   &--gray   { background: var(--chip-gray-bg);   color: var(--chip-gray-text); }
   &--ai {
-    background: var(--chip-ai-bg);
+    // Gradient border via padding-box/border-box trick:
+    // padding-box layer paints the fill, border-box layer paints the border.
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--chip-ai-bg), var(--chip-ai-bg)) padding-box,
+      var(--chip-ai-border-gradient) border-box;
     color: var(--chip-ai-text);
-    border-color: var(--chip-ai-border);
     cursor: pointer;
     transition: background var(--chip-transition), color var(--chip-transition);
 
     &:hover:not(.ds-chip--is-selected) {
-      background: var(--chip-ai-bg-hover);
+      background:
+        var(--chip-ai-bg-hover) padding-box,
+        var(--chip-ai-border-gradient) border-box;
     }
 
     &.ds-chip--is-selected {
-      background: var(--chip-ai-bg-selected);
+      background:
+        var(--chip-ai-bg-selected) padding-box,
+        var(--chip-ai-border-gradient) border-box;
       color: var(--chip-ai-text-selected);
       font-weight: var(--font-weight-medium);
     }
