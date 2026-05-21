@@ -40,8 +40,12 @@
     transition: background var(--chip-transition), color var(--chip-transition);
 
     &:hover:not(.ds-chip--is-selected) {
+      // Layer order (top → bottom): tint → white base → gradient border.
+      // White base is required because --chip-ai-bg-hover is rgba(.1) and
+      // would otherwise composite against the underlying border gradient.
       background:
         var(--chip-ai-bg-hover) padding-box,
+        linear-gradient(var(--chip-ai-bg), var(--chip-ai-bg)) padding-box,
         var(--chip-ai-border-gradient) border-box;
     }
 
