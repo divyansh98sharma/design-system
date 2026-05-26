@@ -13,6 +13,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 export type ButtonVariant = 'filled' | 'outlined' | 'ghost';
 export type ButtonColor =
+  | 'primary'
   | 'user'
   | 'admin'
   | 'secondary'

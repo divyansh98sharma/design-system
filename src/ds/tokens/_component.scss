@@ -86,9 +86,13 @@
   --button-font-weight: var(--font-weight-semibold);
   --button-line-height: var(--line-height-16);
 
-  --button-primary-bg: var(--color-user);
-  --button-primary-color: var(--color-text-inverse);
-  --button-primary-bg-hover: var(--color-user-hover);
+  // Button — primary (Figma: mint/teal, node 13651:36584)
+  --button-primary-bg: #e9f5f3;              // button/container/background/primary/default
+  --button-primary-bg-hover: #d7e5e3;
+  --button-primary-outer-border: #4de0cf;    // button/container/border/primary/strong/default
+  --button-primary-inner-border: #13b8a6;    // button/container/border/primary/default
+  --button-primary-text: #000000;            // button/label/text/primary/default
+  --button-primary-divider-bg: #e9f5f3;
 
   --button-secondary-bg: var(--color-surface);
   --button-secondary-color: var(--color-user);
@@ -190,18 +194,18 @@
   --button-divider-icon-size: 16px;
   --button-divider-color: var(--color-text-inverse);
 
-  // Button — counter pill
-  --button-counter-bg: var(--color-surface);
-  --button-counter-border: #ebebeb;
-  --button-counter-color: var(--color-text-primary);
-  --button-counter-radius: var(--radius-pill);
-  --button-counter-padding-x: var(--spacing-xx-small);
+  // Button — counter pill (Figma: button/counter/*)
+  --button-counter-bg: #ffffff;              // button/counter/container/background/default
+  --button-counter-border: #ebebeb;          // button/counter/container/border/default
+  --button-counter-color: #000000;           // button/counter/label/text/default
+  --button-counter-radius: 999px;            // button/counter/container/radius
+  --button-counter-padding-x: 4px;           // button/counter/container/padding-x
   --button-counter-font-size: var(--font-size-12);
 
-  // Button — alert indicator dot
-  --button-alert-bg: var(--color-status-error);
+  // Button — alert indicator dot (Figma: button/alert-indicator/*)
+  --button-alert-bg: #d82727;               // button/alert-indicator/container/background/default
   --button-alert-size: 8px;
-  --button-alert-radius: 50%;
+  --button-alert-radius: 8px;               // button/alert-indicator/container/radius
 
   // ----------------------------------------------------------
   // Input / Form

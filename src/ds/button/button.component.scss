@@ -164,6 +164,26 @@
 }
 
 .ds-button--filled {
+  // Primary — Figma mint/teal style (node 13651:36584)
+  // Uses double-border: outer solid + inner box-shadow to match Figma's
+  // button/container/border/primary/strong + button/container/border/primary/default
+  &.ds-button--primary {
+    background: var(--button-primary-bg);
+    border: 0.5px solid var(--button-primary-outer-border);
+    box-shadow: inset 0 0 0 0.5px var(--button-primary-inner-border);
+    color: var(--button-primary-text);
+    font-weight: var(--font-weight-regular);
+
+    &:hover:not(:disabled):not(.ds-button--disabled) {
+      background: var(--button-primary-bg-hover);
+    }
+
+    &:active:not(:disabled):not(.ds-button--disabled) {
+      background: var(--button-primary-bg-hover);
+      filter: brightness(0.96);
+    }
+  }
+
   &.ds-button--user    { @include filled-color(--button-user-bg,    --button-user-hover,    --button-user-active); }
   &.ds-button--admin   { @include filled-color(--button-admin-bg,   --button-admin-hover,   --button-admin-active); }
   &.ds-button--success { @include filled-color(--button-success-bg, --button-success-hover, --button-success-active); }
@@ -379,6 +399,26 @@
       border-left-color: var(#{$divider-border});
 
       &:hover:not(:disabled) { background: var(#{$main-hover}); }
+    }
+  }
+
+  &.ds-button--primary {
+    .ds-button__main {
+      background: var(--button-primary-bg);
+      border: 0.5px solid var(--button-primary-outer-border);
+      box-shadow: inset 0 0 0 0.5px var(--button-primary-inner-border);
+      color: var(--button-primary-text);
+      font-weight: var(--font-weight-regular);
+
+      &:hover:not(:disabled) { background: var(--button-primary-bg-hover); }
+    }
+    .ds-button__divider {
+      background: var(--button-primary-divider-bg);
+      border: 0.5px solid var(--button-primary-outer-border);
+      box-shadow: inset 0 0 0 0.5px var(--button-primary-inner-border);
+      color: var(--button-primary-text);
+
+      &:hover:not(:disabled) { background: var(--button-primary-bg-hover); }
     }
   }
 
