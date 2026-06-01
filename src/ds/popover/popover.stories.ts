@@ -10,7 +10,7 @@ const ALL_NOTCH_POSITIONS: PopoverNotch[] = [
 ];
 
 const meta: Meta<PopoverComponent> = {
-  title: 'Components/Molecules/Popover',
+  title: 'Molecules/Popover',
   component: PopoverComponent,
   tags: ['autodocs'],
   decorators: [

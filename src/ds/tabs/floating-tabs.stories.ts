@@ -12,7 +12,7 @@ const SAMPLE_TABS = [
 const THEMES: TabTheme[] = ['user', 'admin', 'green', 'sunoh'];
 
 const meta: Meta<FloatingTabsComponent> = {
-  title    : 'Components/Organisms/Tabs/Floating Tabs',
+  title    : 'Organisms/Tabs/Floating Tabs',
   component: FloatingTabsComponent,
   tags     : ['autodocs'],
   argTypes : {

@@ -7,7 +7,7 @@ const LOREM =
 const LONG_LOREM = LOREM.repeat(6);
 
 const meta: Meta<ScrollbarComponent> = {
-  title: 'Components/Atoms/Scrollbar',
+  title: 'Atoms/Scrollbar',
   component: ScrollbarComponent,
   tags: ['autodocs'],
   parameters: {

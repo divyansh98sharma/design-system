@@ -39,7 +39,7 @@ const WIZARD_THEMES: WizardTabTheme[] = ['user', 'admin'];
 //  1. Standard Tabs
 // ─────────────────────────────────────────────────────────────────────────────
 const standardMeta: Meta<StandardTabsComponent> = {
-  title    : 'Components/Organisms/Tabs/Standard Tabs',
+  title    : 'Organisms/Tabs/Standard Tabs',
   component: StandardTabsComponent,
   tags     : ['autodocs'],
   argTypes : {

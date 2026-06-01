@@ -16,7 +16,7 @@ const LONG_BODY = `
 `;
 
 const meta: Meta<ModalComponent> = {
-  title: 'Components/Organisms/Modal',
+  title: 'Organisms/Modal',
   component: ModalComponent,
   tags: ['autodocs'],
   parameters: {

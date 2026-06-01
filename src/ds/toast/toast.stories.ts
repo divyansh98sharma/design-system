@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { ToastComponent } from './toast.component';
 
 const meta: Meta<ToastComponent> = {
-  title: 'Components/Molecules/Toast',
+  title: 'Molecules/Toast',
   component: ToastComponent,
   tags: ['autodocs'],
   parameters: {

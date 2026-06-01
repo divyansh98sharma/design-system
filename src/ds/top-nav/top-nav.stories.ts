@@ -15,7 +15,7 @@ const DEFAULT_LINKS = [
 ];
 
 const meta: Meta<TopNavComponent> = {
-  title: 'Components/Organisms/Top Nav',
+  title: 'Organisms/Top Nav',
   component: TopNavComponent,
   tags: ['autodocs'],
   parameters: {

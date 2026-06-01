@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { TooltipComponent } from './tooltip.component';
 
 const meta: Meta<TooltipComponent> = {
-  title: 'Components/Atoms/Tooltip',
+  title: 'Atoms/Tooltip',
   component: TooltipComponent,
   tags: ['autodocs'],
   parameters: {
