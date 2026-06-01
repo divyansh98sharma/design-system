@@ -102,7 +102,7 @@ class IconGalleryComponent {
 
 const meta: Meta = {
   title: 'Foundations/Icons',
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'fullscreen',
     docs: {

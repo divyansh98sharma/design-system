@@ -6,7 +6,7 @@ const SAMPLE_IMAGE = 'https://i.pravatar.cc/150?img=47';
 const meta: Meta<AvatarComponent> = {
   title: 'Atoms/Avatar',
   component: AvatarComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

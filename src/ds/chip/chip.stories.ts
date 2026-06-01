@@ -4,7 +4,7 @@ import { ChipComponent } from './chip.component';
 const meta: Meta<ChipComponent> = {
   title: 'Atoms/Chip',
   component: ChipComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v2'],
   parameters: {
     layout: 'padded',
     docs: {

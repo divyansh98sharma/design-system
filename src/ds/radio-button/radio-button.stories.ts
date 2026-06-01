@@ -4,7 +4,7 @@ import { RadioButtonComponent } from './radio-button.component';
 const meta: Meta<RadioButtonComponent> = {
   title: 'Atoms/Radio Button',
   component: RadioButtonComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

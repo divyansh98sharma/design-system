@@ -4,7 +4,7 @@ import { ColorPaletteComponent, ColorGroup } from './color-palette.component';
 const meta: Meta<ColorPaletteComponent> = {
   title: 'Foundations/Color Palette',
   component: ColorPaletteComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

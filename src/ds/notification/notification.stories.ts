@@ -7,7 +7,7 @@ const LONG_BODY = 'This notification includes a longer description that spans mu
 const meta: Meta<NotificationComponent> = {
   title: 'Molecules/Notification',
   component: NotificationComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

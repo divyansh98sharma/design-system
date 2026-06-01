@@ -21,7 +21,7 @@ const ITEMS_L5 = [
 const meta: Meta<BreadcrumbComponent> = {
   title: 'Molecules/Breadcrumb & Navigation',
   component: BreadcrumbComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

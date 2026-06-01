@@ -4,7 +4,7 @@ import { LoaderComponent } from './loader.component';
 const meta: Meta<LoaderComponent> = {
   title: 'Atoms/Loader',
   component: LoaderComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

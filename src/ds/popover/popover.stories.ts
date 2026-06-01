@@ -12,7 +12,7 @@ const ALL_NOTCH_POSITIONS: PopoverNotch[] = [
 const meta: Meta<PopoverComponent> = {
   title: 'Molecules/Popover',
   component: PopoverComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   decorators: [
     // Add padding so notch arrows are visible
     (storyFn) => {

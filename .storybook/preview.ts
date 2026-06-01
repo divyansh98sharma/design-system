@@ -21,6 +21,7 @@ const preview: Preview = {
             'Getting Started',
             'Accessibility',
             'Contributing',
+            'Changelog',
           ],
           // 2. Design primitives
           'Foundations', [
@@ -36,7 +37,7 @@ const preview: Preview = {
             'Checkbox',
             'Radio Button',
             'Toggle',
-            'Chip',
+            'Chip', ['Playground', '*', 'Changelog'],
             'Avatar',
             'Tooltip',
             'Info Tooltip',

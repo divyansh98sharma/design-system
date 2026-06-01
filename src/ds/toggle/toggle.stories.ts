@@ -4,7 +4,7 @@ import { ToggleComponent } from './toggle.component';
 const meta: Meta<ToggleComponent> = {
   title: 'Atoms/Toggle',
   component: ToggleComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {
