@@ -1,0 +1,310 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Philosophy" />
+
+<style>
+{`
+  .ph-header {
+    margin-bottom: 40px;
+  }
+  .ph-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d2b35;
+    margin: 0 0 10px;
+  }
+  .ph-header p.lead {
+    font-size: 17px;
+    color: #4a6370;
+    max-width: 640px;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .ph-principle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+    margin: 32px 0 48px;
+  }
+  .ph-principle {
+    border-left: 4px solid #0378a7;
+    padding: 20px 20px 20px 24px;
+    background: #f7fbfd;
+    border-radius: 0 8px 8px 0;
+  }
+  .ph-principle h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0378a7;
+    margin: 0 0 8px;
+  }
+  .ph-principle p {
+    font-size: 13px;
+    color: #334e59;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .ph-section {
+    margin: 48px 0;
+  }
+  .ph-section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a2e38;
+    border-bottom: 2px solid #e4ecf0;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  .ph-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a2e38;
+    margin: 28px 0 8px;
+  }
+  .ph-section p {
+    font-size: 14px;
+    color: #334e59;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 0 16px;
+  }
+  .ph-callout {
+    background: #fff8e6;
+    border: 1px solid #f0c860;
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 14px;
+    color: #5a4200;
+    line-height: 1.6;
+    margin: 24px 0;
+    max-width: 720px;
+  }
+  .ph-callout strong {
+    color: #3d2d00;
+  }
+  .ph-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 24px 0;
+    max-width: 720px;
+  }
+  .ph-do {
+    background: #f0faf4;
+    border: 1px solid #b3dfc5;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .ph-dont {
+    background: #fff2f2;
+    border: 1px solid #fcc;
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .ph-do-label, .ph-dont-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .ph-do-label { color: #1e7a43; }
+  .ph-dont-label { color: #c0392b; }
+  .ph-do ul, .ph-dont ul {
+    margin: 0;
+    padding-left: 18px;
+    font-size: 13px;
+    color: #334e59;
+    line-height: 1.7;
+  }
+`}
+</style>
+
+<div className="ph-header">
+  <h1>Philosophy</h1>
+  <p className="lead">
+    The eCW Design System exists to make the right choice the easy choice — for
+    designers and engineers alike. These principles guide every decision from
+    token naming to component API design.
+  </p>
+</div>
+
+## Core principles
+
+<div className="ph-principle-grid">
+  <div className="ph-principle">
+    <h3>Consistency over creativity</h3>
+    <p>
+      Shared patterns reduce cognitive load for users navigating a complex clinical
+      workflow. We solve each problem once and apply it everywhere.
+    </p>
+  </div>
+  <div className="ph-principle">
+    <h3>Clarity at every scale</h3>
+    <p>
+      Whether it's a token name or a component prop, every name should be
+      immediately obvious to someone seeing it for the first time.
+    </p>
+  </div>
+  <div className="ph-principle">
+    <h3>Accessibility is not optional</h3>
+    <p>
+      WCAG 2.1 AA compliance is the floor, not the ceiling. Every component is
+      designed and tested for keyboard navigation and screen-reader use.
+    </p>
+  </div>
+  <div className="ph-principle">
+    <h3>Design and code are one source</h3>
+    <p>
+      Figma variables drive CSS custom properties. A token renamed in Figma is
+      renamed in code on the next sync — no drift, no manual reconciliation.
+    </p>
+  </div>
+  <div className="ph-principle">
+    <h3>Components, not pages</h3>
+    <p>
+      We ship composable building blocks. Teams own their layouts; we own the
+      primitives that make those layouts trustworthy.
+    </p>
+  </div>
+  <div className="ph-principle">
+    <h3>Backward-compatible evolution</h3>
+    <p>
+      Tokens and APIs evolve through additive changes. Breaking changes are
+      semver-major, communicated early, and accompanied by a migration guide.
+    </p>
+  </div>
+</div>
+
+<div className="ph-section">
+
+## Why a design system?
+
+<p>
+  eClinicalWorks products span dozens of screens built across multiple teams over many years.
+  Without a shared language, each team inevitably makes slightly different decisions about
+  spacing, colour, interactive states, and motion — and patients and clinicians end up with
+  a fragmented experience.
+</p>
+
+<p>
+  The eCW Design System solves this by providing a <strong>single authoritative library</strong>
+  of primitives that every team can consume. Teams move faster because they're not rebuilding
+  buttons; they're building features.
+</p>
+
+<div className="ph-callout">
+  <strong>The two-hat rule:</strong> Any engineer on the team should be able to put on a
+  designer hat and produce a screen that feels native to the product — and vice versa. The
+  design system is the shared vocabulary that makes this possible.
+</div>
+
+</div>
+
+<div className="ph-section">
+
+## Token-first design
+
+### What are tokens?
+
+<p>
+  Design tokens are named, versioned design decisions — expressed as CSS custom properties.
+  They are the bridge between Figma and code. Instead of hardcoding <code>#0378a7</code>
+  everywhere, teams use <code>--color-user-base</code>, which can be updated in one place
+  and propagated everywhere instantly.
+</p>
+
+### Three layers
+
+<p>
+  Tokens are organised in three layers of abstraction:
+</p>
+
+| Layer | Example | Purpose |
+|-------|---------|---------|
+| **Primitives** | `--color-blue-500` | Raw values — never used in components directly |
+| **Semantic** | `--color-user-base` | Intent-named aliases that reference primitives |
+| **Component** | `--button-primary-bg` | Scoped to a single component; references semantic tokens |
+
+<p>
+  This structure means you can retheme an entire product by changing only the semantic
+  layer — every component updates automatically.
+</p>
+
+</div>
+
+<div className="ph-section">
+
+## API design guidelines
+
+<p>
+  Every component API follows these conventions so the design system stays learnable as it grows.
+</p>
+
+### Inputs follow Figma
+
+<p>
+  If a Figma component has a property called <code>type</code> with options
+  <code>primary | secondary | error</code>, the Angular component has an
+  <code>@Input() type</code> with the same options. Teams reading the Figma spec and the
+  code spec should never have to mentally translate.
+</p>
+
+### Boolean inputs are positive
+
+<div className="ph-two-col">
+  <div className="ph-do">
+    <div className="ph-do-label">✓ Do</div>
+    <ul>
+      <li><code>[disabled]="true"</code></li>
+      <li><code>[iconOnly]="true"</code></li>
+      <li><code>[alertIndicator]="true"</code></li>
+    </ul>
+  </div>
+  <div className="ph-dont">
+    <div className="ph-dont-label">✗ Don't</div>
+    <ul>
+      <li><code>[notEnabled]="true"</code></li>
+      <li><code>[hideLabel]="true"</code></li>
+      <li><code>[noAlert]="false"</code></li>
+    </ul>
+  </div>
+</div>
+
+### Events are past-tense verbs
+
+<p>
+  Output event names describe something that <em>has happened</em>:
+  <code>buttonClick</code>, <code>dividerClick</code>, <code>chipSelected</code>.
+  Consumers subscribe to state changes, not imperative commands.
+</p>
+
+### No layout in components
+
+<p>
+  Components control only their own internal spacing and sizing. They never set
+  <code>margin</code> on <code>:host</code>. Layout is always the consumer's responsibility.
+  This keeps components composable in any grid or flex context.
+</p>
+
+</div>
+
+<div className="ph-section">
+
+## Figma ↔ code parity
+
+<p>
+  Every component in the library maps to a node in the Figma CODE-A-TON Library file.
+  When Figma variables change, a CI job syncs the updated token values into
+  <code>_primitives.scss</code> and <code>_semantic.scss</code>. Component-level tokens
+  in <code>_component.scss</code> are maintained manually to capture Figma-specific overrides
+  (shadow, gradient borders, AI chip gradients, etc.).
+</p>
+
+<div className="ph-callout">
+  <strong>Workflow:</strong> Design changes a token in Figma → CI sync opens a PR →
+  engineers review token drift → merge → Chromatic catches visual regressions.
+  No manual hex hunting required.
+</div>
+
+</div>

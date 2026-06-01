@@ -1,0 +1,204 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction" />
+
+<style>
+{`
+  .ds-doc-hero {
+    background: linear-gradient(135deg, #e9f5f3 0%, #d0ecff 100%);
+    border-radius: 12px;
+    padding: 48px 40px;
+    margin-bottom: 40px;
+  }
+  .ds-doc-hero h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #0d2b35;
+    margin: 0 0 12px;
+    line-height: 1.2;
+  }
+  .ds-doc-hero p {
+    font-size: 17px;
+    color: #334e59;
+    margin: 0;
+    max-width: 640px;
+    line-height: 1.6;
+  }
+  .ds-doc-badge {
+    display: inline-block;
+    background: #0378a7;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  .ds-doc-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 32px 0;
+  }
+  .ds-doc-card {
+    background: #fff;
+    border: 1px solid #e8eaed;
+    border-radius: 10px;
+    padding: 24px;
+    transition: box-shadow 0.15s;
+  }
+  .ds-doc-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .ds-doc-card-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    line-height: 1;
+  }
+  .ds-doc-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a2e38;
+    margin: 0 0 6px;
+  }
+  .ds-doc-card p {
+    font-size: 13px;
+    color: #5c6e77;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .ds-doc-section {
+    margin: 48px 0;
+  }
+  .ds-doc-section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a2e38;
+    border-bottom: 2px solid #e8eaed;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  .ds-doc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .ds-doc-table th {
+    background: #f5f7f8;
+    text-align: left;
+    padding: 10px 14px;
+    color: #334e59;
+    font-weight: 600;
+    border-bottom: 1px solid #e0e4e7;
+  }
+  .ds-doc-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f2f4;
+    color: #1a2e38;
+    vertical-align: top;
+  }
+  .ds-doc-table tr:last-child td {
+    border-bottom: none;
+  }
+  .ds-doc-tag {
+    display: inline-block;
+    background: #eef4f8;
+    color: #0378a7;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+`}
+</style>
+
+<div className="ds-doc-hero">
+  <div className="ds-doc-badge">eCW Design System</div>
+  <h1>Build consistent.<br/>Ship faster.</h1>
+  <p>
+    A comprehensive library of tokens, patterns, and Angular components
+    aligned to the CODE-A-TON Figma Library — so every screen feels like
+    it came from the same place.
+  </p>
+</div>
+
+## What's inside
+
+<div className="ds-doc-cards">
+  <div className="ds-doc-card">
+    <div className="ds-doc-card-icon">🎨</div>
+    <h3>Design Tokens</h3>
+    <p>Primitive and semantic CSS variables that map 1:1 to Figma variables.</p>
+  </div>
+  <div className="ds-doc-card">
+    <div className="ds-doc-card-icon">🧩</div>
+    <h3>Angular Components</h3>
+    <p>Standalone, OnPush components covering every interaction pattern in the product.</p>
+  </div>
+  <div className="ds-doc-card">
+    <div className="ds-doc-card-icon">♿</div>
+    <h3>Accessibility</h3>
+    <p>Every component ships with ARIA roles, keyboard nav, and focus management built in.</p>
+  </div>
+  <div className="ds-doc-card">
+    <div className="ds-doc-card-icon">📐</div>
+    <h3>Figma Parity</h3>
+    <p>Tokens are synced from the Figma CODE-A-TON Library, keeping design and code aligned.</p>
+  </div>
+</div>
+
+<div className="ds-doc-section">
+
+## Component catalogue
+
+<table className="ds-doc-table">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Status</th>
+      <th>Section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Avatar</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Breadcrumb</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Button</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Checkbox</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Chip</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Disclaimer</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Input Field</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Loader</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Modal</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Notification</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Popover</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Radio Button</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Side Navigation</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Table</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Tabs</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Toast</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Toggle</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Tooltip</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
+    <tr><td>Typography</td><td><span className="ds-doc-tag">Stable</span></td><td>Foundations</td></tr>
+    <tr><td>Color Palette</td><td><span className="ds-doc-tag">Stable</span></td><td>Foundations</td></tr>
+    <tr><td>Icons</td><td><span className="ds-doc-tag">Stable</span></td><td>Foundations</td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<div className="ds-doc-section">
+
+## How to navigate
+
+Use the **sidebar** on the left to browse sections:
+
+- **Introduction** — You're here. High-level overview.
+- **Philosophy** — Principles that guide every design and engineering decision.
+- **Getting Started** — Install, configure, and ship your first component.
+- **Accessibility** — Keyboard, ARIA, colour-contrast, and testing guidelines.
+- **Foundations** — Token-level colour, typography, spacing, and icon references.
+- **Components** — Interactive component stories with live controls.
+
+</div>

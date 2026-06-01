@@ -1,0 +1,513 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Accessibility" />
+
+<style>
+{`
+  .a11y-header {
+    margin-bottom: 40px;
+  }
+  .a11y-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d2b35;
+    margin: 0 0 10px;
+  }
+  .a11y-header p.lead {
+    font-size: 17px;
+    color: #4a6370;
+    max-width: 680px;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .a11y-level-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .a11y-level-aa  { background: #d4edda; color: #155724; }
+  .a11y-level-aaa { background: #cce5ff; color: #004085; }
+  .a11y-section {
+    margin: 48px 0;
+  }
+  .a11y-section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a2e38;
+    border-bottom: 2px solid #e4ecf0;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  .a11y-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a2e38;
+    margin: 28px 0 8px;
+  }
+  .a11y-section p {
+    font-size: 14px;
+    color: #334e59;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 0 14px;
+  }
+  .a11y-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+    max-width: 680px;
+  }
+  .a11y-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f3f5;
+    font-size: 14px;
+    color: #334e59;
+    line-height: 1.5;
+  }
+  .a11y-checklist li:last-child { border-bottom: none; }
+  .a11y-check-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #d4edda;
+    color: #155724;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .a11y-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0 32px;
+    max-width: 720px;
+  }
+  .a11y-card {
+    background: #f7f9fb;
+    border: 1px solid #e0e7ec;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .a11y-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a2e38;
+    margin: 0 0 8px;
+  }
+  .a11y-card p {
+    font-size: 13px;
+    color: #4a6370;
+    margin: 0;
+    line-height: 1.6;
+  }
+  .a11y-code {
+    background: #1e2b31;
+    color: #e2eef5;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-family: 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    overflow-x: auto;
+    margin: 12px 0;
+    max-width: 680px;
+  }
+  .a11y-code .comment { color: #5c8a9e; }
+  .a11y-code .attr    { color: #f7c59f; }
+  .a11y-code .string  { color: #a3d9a5; }
+  .a11y-contrast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 16px 0 32px;
+    max-width: 720px;
+  }
+  .a11y-swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .a11y-swatch-color {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .a11y-swatch-info {
+    background: #fff;
+    border: 1px solid #e0e7ec;
+    border-top: none;
+    padding: 8px 10px;
+    color: #334e59;
+  }
+  .a11y-callout {
+    background: #fff8e6;
+    border: 1px solid #f0c860;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #5a4200;
+    line-height: 1.6;
+    margin: 20px 0;
+    max-width: 680px;
+  }
+  .a11y-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    max-width: 720px;
+    margin: 16px 0;
+  }
+  .a11y-table th {
+    background: #f2f6f9;
+    text-align: left;
+    padding: 9px 14px;
+    color: #334e59;
+    font-weight: 600;
+    border-bottom: 1px solid #dde4ea;
+  }
+  .a11y-table td {
+    padding: 9px 14px;
+    border-bottom: 1px solid #edf1f4;
+    color: #1a2e38;
+    vertical-align: top;
+  }
+  .a11y-table tr:last-child td { border-bottom: none; }
+  .a11y-table code {
+    background: #eef2f6;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 12px;
+  }
+`}
+</style>
+
+<div className="a11y-header">
+  <h1>Accessibility</h1>
+  <p className="lead">
+    Accessible design is a clinical necessity — our users include clinicians under time
+    pressure, patients with disabilities, and environments with assistive technology.
+    WCAG 2.1&nbsp;<span className="a11y-level-badge a11y-level-aa">AA</span> is the minimum.
+    We aim higher where it's practical.
+  </p>
+</div>
+
+<div className="a11y-section">
+
+## Our commitment
+
+<p>
+  Every component shipped by the design system must meet these baseline requirements
+  before it reaches <code>main</code>:
+</p>
+
+<ul className="a11y-checklist">
+  <li>
+    <div className="a11y-check-icon">✓</div>
+    All interactive elements are keyboard-navigable with visible focus indicators.
+  </li>
+  <li>
+    <div className="a11y-check-icon">✓</div>
+    All non-decorative images and icons have meaningful <code>aria-label</code> or
+    equivalent text alternatives.
+  </li>
+  <li>
+    <div className="a11y-check-icon">✓</div>
+    Colour is never the sole means of conveying information (error states, statuses, etc.).
+  </li>
+  <li>
+    <div className="a11y-check-icon">✓</div>
+    Text colour meets WCAG 2.1 AA contrast ratio (4.5:1 for normal text, 3:1 for large text).
+  </li>
+  <li>
+    <div className="a11y-check-icon">✓</div>
+    Components pass the automated axe-core scan in Storybook's Accessibility tab.
+  </li>
+  <li>
+    <div className="a11y-check-icon">✓</div>
+    Focus is managed programmatically on modal open/close and route transitions.
+  </li>
+</ul>
+
+</div>
+
+<div className="a11y-section">
+
+## Keyboard navigation
+
+<p>
+  Users navigating with a keyboard must be able to reach and operate every interactive element.
+  The table below shows the expected keyboard behaviour for each component type.
+</p>
+
+<table className="a11y-table">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Key</th>
+      <th>Behaviour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Button</td><td><code>Tab</code></td><td>Move focus to / away from button</td></tr>
+    <tr><td>Button</td><td><code>Enter</code> / <code>Space</code></td><td>Trigger the click action</td></tr>
+    <tr><td>Checkbox</td><td><code>Space</code></td><td>Toggle checked state</td></tr>
+    <tr><td>Radio Button</td><td><code>↑</code> / <code>↓</code></td><td>Move between options in a group</td></tr>
+    <tr><td>Toggle</td><td><code>Space</code></td><td>Toggle on/off</td></tr>
+    <tr><td>Tabs</td><td><code>←</code> / <code>→</code></td><td>Move between tab items</td></tr>
+    <tr><td>Modal</td><td><code>Esc</code></td><td>Close the modal</td></tr>
+    <tr><td>Modal</td><td><code>Tab</code></td><td>Focus trap — cycles within modal</td></tr>
+    <tr><td>Dropdown / Select</td><td><code>↑</code> / <code>↓</code></td><td>Navigate options</td></tr>
+    <tr><td>Dropdown / Select</td><td><code>Enter</code></td><td>Select the focused option</td></tr>
+    <tr><td>Tooltip</td><td><code>Tab</code> (focus trigger)</td><td>Show tooltip; hide on blur</td></tr>
+    <tr><td>Chip</td><td><code>Enter</code> / <code>Space</code></td><td>Toggle selected state</td></tr>
+    <tr><td>Chip (removable)</td><td><code>Delete</code> / <code>Backspace</code></td><td>Remove chip</td></tr>
+  </tbody>
+</table>
+
+### Focus indicators
+
+<p>
+  Every focusable element gets a <code>2px solid var(--button-focus-color)</code> outline
+  with a 2px offset when <code>:focus-visible</code> is active. This uses the CSS
+  <code>:focus-visible</code> pseudo-class so the ring only appears during keyboard
+  navigation, not on mouse click.
+</p>
+
+```scss
+/* Standard focus pattern used across all components */
+&:focus-visible {
+  outline: 2px solid var(--button-focus-color);
+  outline-offset: 2px;
+}
+```
+
+<div className="a11y-callout">
+  <strong>Never remove focus outlines</strong> without a better replacement.
+  <code>outline: none</code> without an alternative is a WCAG 2.4.7 violation.
+</div>
+
+</div>
+
+<div className="a11y-section">
+
+## ARIA patterns
+
+<p>
+  Angular's ARIA bindings should reflect the component's current state dynamically.
+  Static <code>aria-*</code> attributes in templates are not enough when state changes.
+</p>
+
+### Required ARIA on common patterns
+
+<div className="a11y-grid">
+  <div className="a11y-card">
+    <h4>Toggle / Switch</h4>
+    <p>Use <code>role="switch"</code> with <code>aria-checked</code> bound to the toggle state.</p>
+  </div>
+  <div className="a11y-card">
+    <h4>Icon-only buttons</h4>
+    <p>Always provide <code>aria-label</code> describing the action, e.g. <code>"Close dialog"</code>.</p>
+  </div>
+  <div className="a11y-card">
+    <h4>Modals / Dialogs</h4>
+    <p>Use <code>role="dialog"</code>, <code>aria-modal="true"</code>, and <code>aria-labelledby</code> pointing to the title.</p>
+  </div>
+  <div className="a11y-card">
+    <h4>Status messages</h4>
+    <p>Toast / notification updates should use <code>role="status"</code> (polite) or <code>role="alert"</code> (assertive).</p>
+  </div>
+  <div className="a11y-card">
+    <h4>Loading states</h4>
+    <p>Loaders should have <code>role="status"</code> and <code>aria-label="Loading"</code>.</p>
+  </div>
+  <div className="a11y-card">
+    <h4>Expandable sections</h4>
+    <p>The trigger button needs <code>aria-expanded</code> bound to the open/closed state.</p>
+  </div>
+</div>
+
+### Example — icon-only button
+
+```html
+<!-- ✓ Correct: aria-label on icon-only button -->
+<ds-button
+  [icon]="closeSvg"
+  [iconOnly]="true"
+  aria-label="Close dialog"
+></ds-button>
+```
+
+```html
+<!-- ✗ Wrong: no label — screen reader announces nothing useful -->
+<ds-button
+  [icon]="closeSvg"
+  [iconOnly]="true"
+></ds-button>
+```
+
+</div>
+
+<div className="a11y-section">
+
+## Colour contrast
+
+<p>
+  All text in the design system meets WCAG 2.1 AA contrast requirements (4.5:1 for normal
+  text, 3:1 for large text and UI components). The token pairs below are approved for
+  direct use:
+</p>
+
+<div className="a11y-contrast-grid">
+  <div className="a11y-swatch">
+    <div className="a11y-swatch-color" style={{background: '#0378a7', color: '#fff'}}>Aa</div>
+    <div className="a11y-swatch-info">
+      <div><strong>#0378a7</strong> on white</div>
+      <div style={{color: '#1e7a43'}}>≈ 4.6:1 ✓ AA</div>
+    </div>
+  </div>
+  <div className="a11y-swatch">
+    <div className="a11y-swatch-color" style={{background: '#ffffff', color: '#2d2d2d'}}>Aa</div>
+    <div className="a11y-swatch-info">
+      <div><strong>#2d2d2d</strong> on white</div>
+      <div style={{color: '#1e7a43'}}>≈ 12.6:1 ✓ AAA</div>
+    </div>
+  </div>
+  <div className="a11y-swatch">
+    <div className="a11y-swatch-color" style={{background: '#d82727', color: '#fff'}}>Aa</div>
+    <div className="a11y-swatch-info">
+      <div><strong>#ffffff</strong> on error red</div>
+      <div style={{color: '#1e7a43'}}>≈ 5.1:1 ✓ AA</div>
+    </div>
+  </div>
+  <div className="a11y-swatch">
+    <div className="a11y-swatch-color" style={{background: '#1e7a43', color: '#fff'}}>Aa</div>
+    <div className="a11y-swatch-info">
+      <div><strong>#ffffff</strong> on success</div>
+      <div style={{color: '#1e7a43'}}>≈ 5.4:1 ✓ AA</div>
+    </div>
+  </div>
+</div>
+
+<div className="a11y-callout">
+  <strong>Tip:</strong> Use the <em>Accessibility</em> tab in each story to automatically
+  check contrast on the rendered component output. Red flagged items must be fixed before
+  merging.
+</div>
+
+</div>
+
+<div className="a11y-section">
+
+## Testing accessibility
+
+### Automated (Storybook axe-core)
+
+<p>
+  Every story runs axe-core via the <code>@storybook/addon-a11y</code> panel.
+  Open any story → click the <em>Accessibility</em> tab → review violations.
+  CI blocks merge if new critical violations are introduced.
+</p>
+
+### Manual keyboard test
+
+<p>
+  Before shipping a new component, walk through this checklist manually:
+</p>
+
+<ul className="a11y-checklist">
+  <li>
+    <div className="a11y-check-icon">1</div>
+    Open the story in Chrome or Firefox with no mouse, keyboard only.
+  </li>
+  <li>
+    <div className="a11y-check-icon">2</div>
+    Tab to every interactive element — verify visible focus ring on each.
+  </li>
+  <li>
+    <div className="a11y-check-icon">3</div>
+    Activate interactive elements with <code>Enter</code> and <code>Space</code>.
+  </li>
+  <li>
+    <div className="a11y-check-icon">4</div>
+    For modals: verify focus moves into modal on open, trapped inside, returns on close.
+  </li>
+  <li>
+    <div className="a11y-check-icon">5</div>
+    Test with VoiceOver (macOS) or NVDA (Windows) — verify announcements make sense.
+  </li>
+</ul>
+
+### Screen-reader test matrix
+
+<table className="a11y-table">
+  <thead>
+    <tr>
+      <th>Browser</th>
+      <th>Screen Reader</th>
+      <th>OS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Safari</td><td>VoiceOver</td><td>macOS / iOS</td></tr>
+    <tr><td>Chrome</td><td>NVDA</td><td>Windows</td></tr>
+    <tr><td>Edge</td><td>JAWS</td><td>Windows</td></tr>
+    <tr><td>Chrome</td><td>TalkBack</td><td>Android</td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<div className="a11y-section">
+
+## Content and language
+
+<p>
+  Accessibility extends beyond interaction — the words on screen matter too.
+</p>
+
+### Error messages
+
+<p>
+  Error messages must be descriptive enough to act on without support.
+</p>
+
+| ✗ Don't | ✓ Do |
+|---------|------|
+| "Invalid input" | "Date of birth must be in MM/DD/YYYY format" |
+| "Error" | "Password must be at least 8 characters" |
+| "Something went wrong" | "Unable to save. Check your connection and try again." |
+
+### Loading and async states
+
+<p>
+  Always communicate async state to screen readers using live regions:
+</p>
+
+```html
+<!-- Polite: announced when the user is idle -->
+<div role="status" aria-live="polite">
+  Saving changes…
+</div>
+
+<!-- Assertive: interrupts immediately — use sparingly -->
+<div role="alert" aria-live="assertive">
+  Session will expire in 2 minutes.
+</div>
+```
+
+</div>
