@@ -5,7 +5,7 @@ const BODY = 'Description of the notification in plain language with keywords {b
 const LONG_BODY = 'This notification includes a longer description that spans multiple lines. It details the action that was performed, the entity affected, and the next steps the user should take. Keywords such as file names and action labels should be bolded in the actual implementation.';
 
 const meta: Meta<NotificationComponent> = {
-  title: 'Components/Notification',
+  title: 'Components/Molecules/Notification',
   component: NotificationComponent,
   tags: ['autodocs'],
   parameters: {

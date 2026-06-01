@@ -14,7 +14,7 @@ const ICON_ROWS = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" f
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<ToggleButtonGroupComponent> = {
-  title: 'Components/Toggle Button Group',
+  title: 'Components/Molecules/Toggle Button Group',
   component: ToggleButtonGroupComponent,
   tags: ['autodocs'],
   parameters: {

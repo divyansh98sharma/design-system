@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { DisclaimerComponent } from './disclaimer.component';
 
 const meta: Meta<DisclaimerComponent> = {
-  title: 'Components/Disclaimer',
+  title: 'Components/Molecules/Disclaimer',
   component: DisclaimerComponent,
   tags: ['autodocs'],
   parameters: {

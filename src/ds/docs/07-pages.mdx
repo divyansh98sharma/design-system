@@ -1,0 +1,77 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Pages" />
+
+<style>
+{`
+  .pg-header { margin-bottom: 40px; }
+  .pg-header h1 { font-size: 32px; font-weight: 700; color: #0d2b35; margin: 0 0 10px; }
+  .pg-header p.lead { font-size: 17px; color: #4a6370; max-width: 680px; line-height: 1.7; margin: 0; }
+  .pg-placeholder {
+    border: 2px dashed #c5dbe8;
+    border-radius: 12px;
+    padding: 48px;
+    text-align: center;
+    margin: 40px 0;
+    background: #f7fbfd;
+  }
+  .pg-placeholder-icon { font-size: 48px; margin-bottom: 16px; }
+  .pg-placeholder h2 { font-size: 20px; font-weight: 600; color: #334e59; margin: 0 0 8px; }
+  .pg-placeholder p { font-size: 14px; color: #6b8a99; margin: 0; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+  .pg-section { margin: 48px 0; }
+  .pg-section h2 { font-size: 22px; font-weight: 600; color: #1a2e38; border-bottom: 2px solid #e4ecf0; padding-bottom: 8px; margin-bottom: 20px; }
+  .pg-section p { font-size: 14px; color: #334e59; line-height: 1.7; max-width: 720px; margin: 0 0 14px; }
+  .pg-badge {
+    display: inline-block; background: #fff3cd; color: #856404;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 999px; margin-bottom: 16px;
+  }
+  .pg-callout {
+    background: #eef6ff; border: 1px solid #b3d4f5; border-radius: 8px;
+    padding: 16px 20px; font-size: 14px; color: #17446b; line-height: 1.6; margin: 20px 0; max-width: 680px;
+  }
+`}
+</style>
+
+<div className="pg-header">
+  <div className="pg-badge">Coming Soon</div>
+  <h1>Pages</h1>
+  <p className="lead">
+    Pages are Templates filled with representative real-world content. They are the
+    highest fidelity layer of the atomic design hierarchy — what users actually see
+    and interact with in production.
+  </p>
+</div>
+
+<div className="pg-placeholder">
+  <div className="pg-placeholder-icon">📄</div>
+  <h2>Pages are on the roadmap</h2>
+  <p>
+    Full-page compositions with realistic data will be built on top of the Templates layer.
+    They're used for stakeholder demos, usability testing, and as acceptance references
+    during development.
+  </p>
+</div>
+
+<div className="pg-section">
+
+## The difference between Templates and Pages
+
+<div className="pg-callout">
+  <strong>Templates</strong> define the layout and component composition with placeholder
+  content — lorem ipsum, avatar initials, skeleton shapes.
+  <br /><br />
+  <strong>Pages</strong> are instances of templates with real content: actual patient names,
+  realistic encounter data, genuine form fields — making design decisions concrete and testable.
+</div>
+
+## Why document pages in Storybook?
+
+| Use case | Benefit |
+|----------|---------|
+| Stakeholder reviews | Share a Chromatic URL instead of a live environment |
+| Usability testing | Seed stories with task-specific data sets |
+| Regression testing | Catch layout shifts when tokens or organisms change |
+| Onboarding | New engineers see the full system assembled, not just atoms |
+
+</div>

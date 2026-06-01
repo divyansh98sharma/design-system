@@ -4,7 +4,7 @@ import { AvatarComponent } from './avatar.component';
 const SAMPLE_IMAGE = 'https://i.pravatar.cc/150?img=47';
 
 const meta: Meta<AvatarComponent> = {
-  title: 'Components/Avatar',
+  title: 'Components/Atoms/Avatar',
   component: AvatarComponent,
   tags: ['autodocs'],
   parameters: {

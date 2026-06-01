@@ -19,7 +19,7 @@ const ITEMS_L5 = [
 ];
 
 const meta: Meta<BreadcrumbComponent> = {
-  title: 'Components/Breadcrumb & Navigation',
+  title: 'Components/Molecules/Breadcrumb & Navigation',
   component: BreadcrumbComponent,
   tags: ['autodocs'],
   parameters: {

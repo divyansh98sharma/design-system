@@ -1,0 +1,95 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Components/Templates" />
+
+<style>
+{`
+  .tpl-header { margin-bottom: 40px; }
+  .tpl-header h1 { font-size: 32px; font-weight: 700; color: #0d2b35; margin: 0 0 10px; }
+  .tpl-header p.lead { font-size: 17px; color: #4a6370; max-width: 680px; line-height: 1.7; margin: 0; }
+  .tpl-placeholder {
+    border: 2px dashed #c5dbe8;
+    border-radius: 12px;
+    padding: 48px;
+    text-align: center;
+    margin: 40px 0;
+    background: #f7fbfd;
+  }
+  .tpl-placeholder-icon { font-size: 48px; margin-bottom: 16px; }
+  .tpl-placeholder h2 { font-size: 20px; font-weight: 600; color: #334e59; margin: 0 0 8px; }
+  .tpl-placeholder p { font-size: 14px; color: #6b8a99; margin: 0; max-width: 480px; margin: 0 auto; line-height: 1.6; }
+  .tpl-section { margin: 48px 0; }
+  .tpl-section h2 { font-size: 22px; font-weight: 600; color: #1a2e38; border-bottom: 2px solid #e4ecf0; padding-bottom: 8px; margin-bottom: 20px; }
+  .tpl-section p { font-size: 14px; color: #334e59; line-height: 1.7; max-width: 720px; margin: 0 0 14px; }
+  .tpl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin: 24px 0; }
+  .tpl-card { background: #fff; border: 1px solid #e0e7ec; border-radius: 10px; padding: 24px; }
+  .tpl-card h3 { font-size: 14px; font-weight: 600; color: #0d2b35; margin: 0 0 8px; }
+  .tpl-card p { font-size: 13px; color: #5c6e77; margin: 0; line-height: 1.5; }
+  .tpl-badge {
+    display: inline-block; background: #fff3cd; color: #856404;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 999px; margin-bottom: 16px;
+  }
+`}
+</style>
+
+<div className="tpl-header">
+  <div className="tpl-badge">Coming Soon</div>
+  <h1>Templates</h1>
+  <p className="lead">
+    Templates are page-level skeletons built from Organisms, Molecules, and Atoms.
+    They define the layout and component hierarchy without real content — think wireframes
+    brought to life with the design system's building blocks.
+  </p>
+</div>
+
+<div className="tpl-placeholder">
+  <div className="tpl-placeholder-icon">🏗️</div>
+  <h2>Templates are on the roadmap</h2>
+  <p>
+    Common templates (e.g. Dashboard Shell, Patient Summary, Encounter View, Settings Page)
+    will be added here as the design system matures. Each template will be interactive,
+    documented, and reference the organisms it's composed from.
+  </p>
+</div>
+
+<div className="tpl-section">
+
+## What templates will cover
+
+<div className="tpl-grid">
+  <div className="tpl-card">
+    <h3>🏥 Clinical Views</h3>
+    <p>Patient Summary, Encounter, Chart Review — standard clinical page scaffolds.</p>
+  </div>
+  <div className="tpl-card">
+    <h3>📊 Dashboard Shell</h3>
+    <p>Side nav + header + content area, with configurable widget zones.</p>
+  </div>
+  <div className="tpl-card">
+    <h3>⚙️ Settings Page</h3>
+    <p>Two-column settings layout with navigation rail and form sections.</p>
+  </div>
+  <div className="tpl-card">
+    <h3>📋 List / Detail</h3>
+    <p>Master-detail split view for search results, queues, and records.</p>
+  </div>
+</div>
+
+</div>
+
+<div className="tpl-section">
+
+## Atomic design context
+
+In the atomic design hierarchy, **Templates** sit above Organisms:
+
+| Layer | Role |
+|-------|------|
+| Atoms | Indivisible elements (Button, Input, Toggle) |
+| Molecules | Groups of atoms (Disclaimer, Toast, Popover) |
+| Organisms | Complex sections (Table, Modal, Navigation) |
+| **Templates** | **Page skeletons assembled from organisms** |
+| Pages | Templates filled with real content |
+
+</div>
