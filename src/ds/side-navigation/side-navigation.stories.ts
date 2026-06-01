@@ -48,7 +48,7 @@ const DEMO_ITEMS: SideNavItem[] = [
 ];
 
 const meta: Meta<SideNavigationComponent> = {
-  title: 'Design System/Side Navigation',
+  title: 'Organisms/Side Navigation',
   component: SideNavigationComponent,
   tags: ['autodocs'],
   argTypes: {

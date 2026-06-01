@@ -11,6 +11,65 @@ const preview: Preview = {
     docs: {
       theme,
     },
+    options: {
+      storySort: {
+        order: [
+          // 1. Understand the system
+          'Design System', [
+            'Introduction',
+            'Philosophy',
+            'Getting Started',
+            'Accessibility',
+            'Contributing',
+          ],
+          // 2. Design primitives
+          'Foundations', [
+            'Overview',
+            'Color Palette',
+            'Typography',
+            'Icons',
+          ],
+          // 3. Atomic design layers (smallest → largest)
+          'Atoms', [
+            'Button', ['*'],
+            'Input Field',
+            'Checkbox',
+            'Radio Button',
+            'Toggle',
+            'Chip',
+            'Avatar',
+            'Tooltip',
+            'Info Tooltip',
+            'Loader',
+            'Scrollbar',
+            '*',
+          ],
+          'Molecules', [
+            'Disclaimer',
+            'Notification',
+            'Toast',
+            'Popover',
+            'Breadcrumb & Navigation',
+            'Patient Info',
+            'Toggle Button Group',
+            '*',
+          ],
+          'Organisms', [
+            'Top Nav',
+            'Left Nav',
+            'Side Navigation',
+            'Tabs', ['Standard Tabs', 'Floating Tabs', 'Header Tabs', 'Wizard Tabs'],
+            'Table',
+            'Modal',
+            '*',
+          ],
+          // 4. Composition layers
+          'Templates',
+          'Pages',
+          '*',
+        ],
+      },
+    },
     backgrounds: {
       options: {
         white: { name: 'white', value: '#ffffff' },

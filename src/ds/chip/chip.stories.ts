@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { ChipComponent } from './chip.component';
 
 const meta: Meta<ChipComponent> = {
-  title: 'Components/Chip',
+  title: 'Atoms/Chip',
   component: ChipComponent,
   tags: ['autodocs'],
   parameters: {
