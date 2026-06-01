@@ -4,7 +4,7 @@ import { DisclaimerComponent } from './disclaimer.component';
 const meta: Meta<DisclaimerComponent> = {
   title: 'Molecules/Disclaimer',
   component: DisclaimerComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

@@ -4,7 +4,7 @@ import { TypographySpecimenComponent } from './typography-specimen.component';
 const meta: Meta<TypographySpecimenComponent> = {
   title: 'Foundations/Typography',
   component: TypographySpecimenComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'padded',
     docs: {

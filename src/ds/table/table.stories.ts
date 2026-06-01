@@ -52,7 +52,7 @@ class ToolbarComponent {}
 const meta: Meta<TableComponent> = {
   title: 'Organisms/Table',
   component: TableComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   decorators: [
     moduleMetadata({ imports: [ToolbarComponent] }),
   ],

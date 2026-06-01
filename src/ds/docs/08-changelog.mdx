@@ -1,0 +1,356 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System/Changelog" />
+
+<style>
+{`
+  .cl-header { margin-bottom: 40px; }
+  .cl-header h1 { font-size: 32px; font-weight: 700; color: #0d2b35; margin: 0 0 10px; }
+  .cl-header p.lead { font-size: 17px; color: #4a6370; max-width: 680px; line-height: 1.7; margin: 0; }
+  .cl-section { margin: 48px 0; }
+  .cl-section h2 {
+    font-size: 22px; font-weight: 600; color: #1a2e38;
+    border-bottom: 2px solid #e4ecf0; padding-bottom: 8px; margin-bottom: 24px;
+  }
+  .cl-section p { font-size: 14px; color: #334e59; line-height: 1.7; max-width: 720px; margin: 0 0 16px; }
+  .cl-table {
+    width: 100%; border-collapse: collapse; font-size: 13px; max-width: 860px; margin: 0 0 32px;
+  }
+  .cl-table th {
+    background: #f2f6f9; text-align: left; padding: 10px 14px;
+    color: #334e59; font-weight: 600; border-bottom: 2px solid #dde4ea;
+  }
+  .cl-table td {
+    padding: 10px 14px; border-bottom: 1px solid #edf1f4;
+    color: #1a2e38; vertical-align: top; line-height: 1.5;
+  }
+  .cl-table tr:last-child td { border-bottom: none; }
+  .cl-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .cl-badge {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .cl-badge-v1  { background: #e8f4fd; color: #0378a7; }
+  .cl-badge-v11 { background: #e8f4fd; color: #0378a7; }
+  .cl-badge-v2  { background: #eaf6ed; color: #1a7a3a; }
+  .cl-badge-new { background: #fff3cd; color: #856404; }
+  .cl-atom  { color: #0378a7; }
+  .cl-mol   { color: #7c3aed; }
+  .cl-org   { color: #0d7a4e; }
+  .cl-found { color: #b45309; }
+  .cl-label {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.07em;
+    text-transform: uppercase; padding: 2px 6px; border-radius: 4px; margin-right: 4px;
+  }
+  .cl-label-atom  { background: #e8f4fd; color: #0378a7; }
+  .cl-label-mol   { background: #ede9fe; color: #7c3aed; }
+  .cl-label-org   { background: #d1fae5; color: #065f46; }
+  .cl-label-found { background: #fef3c7; color: #92400e; }
+  .cl-entry {
+    border-left: 3px solid #e4ecf0; padding: 16px 0 16px 20px; margin-bottom: 8px;
+  }
+  .cl-entry-v2  { border-left-color: #1a7a3a; }
+  .cl-entry-v11 { border-left-color: #0378a7; }
+  .cl-entry h3  { font-size: 15px; font-weight: 600; color: #1a2e38; margin: 0 0 4px; }
+  .cl-entry-meta { font-size: 12px; color: #6b8a99; margin: 0 0 8px; }
+  .cl-entry ul  { margin: 0; padding-left: 18px; font-size: 13px; color: #334e59; line-height: 1.8; }
+  .cl-callout {
+    background: #eef6ff; border: 1px solid #b3d4f5; border-radius: 8px;
+    padding: 14px 18px; font-size: 13px; color: #17446b; line-height: 1.6;
+    margin: 16px 0; max-width: 720px;
+  }
+`}
+</style>
+
+<div className="cl-header">
+  <h1>Changelog</h1>
+  <p className="lead">
+    Version history for every component in the design system.
+    Each row tracks the current version and what changed.
+    Version badges mirror the <code>v1</code> / <code>v2</code> tags visible in the sidebar.
+  </p>
+</div>
+
+<div className="cl-section">
+
+## Version registry
+
+<table className="cl-table">
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>Layer</th>
+      <th>Current</th>
+      <th>History</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Avatar</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Button</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 primary token fix, color variant per Figma</td>
+    </tr>
+    <tr>
+      <td>Button — SOGI</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Button — Healow Connect</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Checkbox</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Chip</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v2">v2.0</span></td>
+      <td>v1.0 initial · v2.0 full redesign per CODE-A-TON Library — 12 types, 2 sizes, AI gradient chip</td>
+    </tr>
+    <tr>
+      <td>Info Tooltip</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Input Field</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Loader</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Radio Button</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Scrollbar</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Toggle</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Tooltip</td>
+      <td><span className="cl-label cl-label-atom">Atom</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Breadcrumb &amp; Navigation</td>
+      <td><span className="cl-label cl-label-mol">Molecule</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Disclaimer</td>
+      <td><span className="cl-label cl-label-mol">Molecule</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Notification</td>
+      <td><span className="cl-label cl-label-mol">Molecule</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Patient Info</td>
+      <td><span className="cl-label cl-label-mol">Molecule</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Popover</td>
+      <td><span className="cl-label cl-label-mol">Molecule</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Toast</td>
+      <td><span className="cl-label cl-label-mol">Molecule</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Toggle Button Group</td>
+      <td><span className="cl-label cl-label-mol">Molecule</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 active-state token + Figma style alignment</td>
+    </tr>
+    <tr>
+      <td>Left Nav</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Modal</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Side Navigation</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Table</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Tabs — Standard</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Tabs — Floating</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Tabs — Header</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Tabs — Wizard</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.1</span></td>
+      <td>v1.0 initial · v1.1 token alignment to Figma</td>
+    </tr>
+    <tr>
+      <td>Top Nav</td>
+      <td><span className="cl-label cl-label-org">Organism</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Color Palette</td>
+      <td><span className="cl-label cl-label-found">Foundation</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Typography</td>
+      <td><span className="cl-label cl-label-found">Foundation</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+    <tr>
+      <td>Icons</td>
+      <td><span className="cl-label cl-label-found">Foundation</span></td>
+      <td><span className="cl-badge cl-badge-v1">v1.0</span></td>
+      <td>Initial release</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<div className="cl-section">
+
+## Detailed release notes
+
+<div className="cl-entry cl-entry-v2">
+  <h3>Chip — v2.0</h3>
+  <div className="cl-entry-meta">Atoms · Figma node 15807:11178 · feat/chip-figma-update</div>
+  <ul>
+    <li>Full redesign per CODE-A-TON Library Figma spec</li>
+    <li>12 chip types: Default, Filter, Input, Suggestion, Status (Success / Warning / Error / Info / Neutral), AI, Action, Icon-only</li>
+    <li>2 sizes: Large (32px) and Small (24px)</li>
+    <li>AI chip: gradient border across default, hover, and selected states; opaque white base layer under hover tint</li>
+    <li>Hover and selected states added to all chip types</li>
+    <li>All values derived from component tokens — no hardcoded hex or pixel values</li>
+  </ul>
+</div>
+
+<div className="cl-entry cl-entry-v11">
+  <h3>Button — v1.1</h3>
+  <div className="cl-entry-meta">Atoms · Figma node 13651:36584 · fix/button-primary-tokens</div>
+  <ul>
+    <li>Aligned primary button background, border, and text tokens to Figma</li>
+    <li>Added primary color variant per Figma spec</li>
+    <li>No API changes — purely visual token correction</li>
+  </ul>
+</div>
+
+<div className="cl-entry cl-entry-v11">
+  <h3>Toggle Button Group — v1.1</h3>
+  <div className="cl-entry-meta">Molecules · feat/toggle-button-figma</div>
+  <ul>
+    <li>Active-state token corrected to match Figma</li>
+    <li>Full styling pass aligned to Figma spec</li>
+  </ul>
+</div>
+
+<div className="cl-entry cl-entry-v11">
+  <h3>Toast, Popover, Table, Tabs, Scrollbar, Radio Button, Tooltip — v1.1</h3>
+  <div className="cl-entry-meta">Various layers · token alignment pass</div>
+  <ul>
+    <li>Component tokens updated to precisely match Figma variable values</li>
+    <li>No structural or API changes — visual token corrections only</li>
+  </ul>
+</div>
+
+</div>
+
+<div className="cl-section">
+
+## How versions work
+
+<p>
+  Every component in the Storybook sidebar shows its version as a coloured tag
+  (<code>v1</code> in blue, <code>v2</code> in green). The tag is set in the story's
+  <code>tags</code> array and reflects the component's current design generation:
+</p>
+
+| Version | Meaning |
+|---------|---------|
+| **v1.0** | Initial stable release |
+| **v1.x** | Minor update — token or style fix, no API change |
+| **v2.0** | Major update — new Figma spec, visual redesign, or API addition |
+| **v2.x** | Minor update on top of a v2 major |
+
+<div className="cl-callout">
+  <strong>When to bump the version:</strong> increment the minor (v1.0 → v1.1) for token fixes and
+  style-only changes. Increment the major (v1.x → v2.0) when the Figma spec is redesigned, when
+  new <code>@Input</code> properties are added, or when visual changes are large enough to require
+  Chromatic snapshot review.
+</div>
+
+</div>

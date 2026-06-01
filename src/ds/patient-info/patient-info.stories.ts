@@ -4,7 +4,7 @@ import { PatientInfoComponent } from './patient-info.component';
 const meta: Meta<PatientInfoComponent> = {
   title: 'Molecules/Patient Info',
   component: PatientInfoComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'fullscreen',
     docs: {

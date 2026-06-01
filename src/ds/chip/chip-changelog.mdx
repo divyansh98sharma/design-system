@@ -1,0 +1,138 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Chip/Changelog" />
+
+<style>
+{`
+  .chcl-header { margin-bottom: 40px; }
+  .chcl-header h1 { font-size: 32px; font-weight: 700; color: #0d2b35; margin: 0 0 10px; }
+  .chcl-header p.lead { font-size: 17px; color: #4a6370; max-width: 680px; line-height: 1.7; margin: 0; }
+  .chcl-badge {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 999px; margin-bottom: 14px;
+  }
+  .chcl-badge-v2 { background: #eaf6ed; color: #1a7a3a; }
+  .chcl-badge-v1 { background: #e8f4fd; color: #0378a7; }
+  .chcl-version {
+    border: 1px solid #e4ecf0; border-radius: 10px;
+    padding: 28px 32px; margin: 0 0 24px; max-width: 760px;
+  }
+  .chcl-version-v2 { border-left: 4px solid #1a7a3a; }
+  .chcl-version-v1 { border-left: 4px solid #0378a7; }
+  .chcl-version h2 {
+    font-size: 20px; font-weight: 700; color: #0d2b35; margin: 0 0 4px;
+  }
+  .chcl-version-meta {
+    font-size: 12px; color: #6b8a99; margin: 0 0 20px;
+  }
+  .chcl-version-meta code { background: #f0f3f5; border-radius: 4px; padding: 1px 5px; font-size: 11px; }
+  .chcl-section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #6b8a99; margin: 20px 0 8px;
+  }
+  .chcl-list {
+    margin: 0 0 16px; padding-left: 20px; font-size: 13px; color: #334e59; line-height: 1.8;
+  }
+  .chcl-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px; margin: 12px 0;
+  }
+  .chcl-chip-pill {
+    background: #f2f6f9; border: 1px solid #dde6ec; border-radius: 6px;
+    padding: 8px 12px; font-size: 12px; color: #334e59; font-weight: 500;
+  }
+  .chcl-chip-pill span { font-size: 10px; color: #6b8a99; display: block; margin-top: 2px; }
+  .chcl-callout {
+    background: #eef6ff; border: 1px solid #b3d4f5; border-radius: 8px;
+    padding: 14px 18px; font-size: 13px; color: #17446b; line-height: 1.6;
+    margin: 16px 0;
+  }
+  .chcl-ai-pill {
+    background: linear-gradient(90deg, #a78bfa, #60a5fa, #34d399);
+    border-radius: 6px; padding: 2px;
+    display: inline-block; margin: 4px;
+  }
+  .chcl-ai-pill-inner {
+    background: #fff; border-radius: 4px;
+    padding: 6px 12px; font-size: 12px; color: #334e59; font-weight: 500;
+  }
+`}
+</style>
+
+<div className="chcl-header">
+  <h1>Chip — Version History</h1>
+  <p className="lead">
+    Detailed changelog for the Chip component. Chip is the only component currently at
+    v2 — it received a full redesign against the CODE-A-TON Library Figma spec.
+  </p>
+</div>
+
+<div className="chcl-version chcl-version-v2">
+  <div className="chcl-badge chcl-badge-v2">v2.0 — Current</div>
+  <h2>v2.0 — CODE-A-TON Library redesign</h2>
+  <div className="chcl-version-meta">
+    Branch <code>feat/chip-figma-update</code> · Figma node <code>15807:11178</code> · Merged to main
+  </div>
+
+  <div className="chcl-section-label">What changed</div>
+  <ul className="chcl-list">
+    <li>Complete visual redesign aligned to the CODE-A-TON Library Figma spec</li>
+    <li>Chip type list expanded from 4 → <strong>12 types</strong></li>
+    <li>2 explicit sizes added: <strong>Large (32px)</strong> and <strong>Small (24px)</strong></li>
+    <li>AI chip introduced with gradient border on all states</li>
+    <li>Hover and selected states added across all chip types</li>
+    <li>All values from component tokens — zero hardcoded hex or pixel values</li>
+  </ul>
+
+  <div className="chcl-section-label">12 chip types in v2</div>
+  <div className="chcl-grid">
+    <div className="chcl-chip-pill">Default<span>General purpose</span></div>
+    <div className="chcl-chip-pill">Filter<span>Faceted search</span></div>
+    <div className="chcl-chip-pill">Input<span>Tag / token entry</span></div>
+    <div className="chcl-chip-pill">Suggestion<span>Autocomplete hint</span></div>
+    <div className="chcl-chip-pill">Status — Success<span>Green</span></div>
+    <div className="chcl-chip-pill">Status — Warning<span>Amber</span></div>
+    <div className="chcl-chip-pill">Status — Error<span>Red</span></div>
+    <div className="chcl-chip-pill">Status — Info<span>Blue</span></div>
+    <div className="chcl-chip-pill">Status — Neutral<span>Grey</span></div>
+    <div className="chcl-chip-pill">Action<span>Clickable trigger</span></div>
+    <div className="chcl-chip-pill">Icon-only<span>No label</span></div>
+    <div className="chcl-ai-pill"><div className="chcl-ai-pill-inner">AI<span style={{fontSize:'10px',color:'#6b8a99',display:'block'}}>Gradient border</span></div></div>
+  </div>
+
+  <div className="chcl-section-label">AI chip detail</div>
+  <ul className="chcl-list">
+    <li>Gradient border (<code>linear-gradient(90deg, #a78bfa → #60a5fa → #34d399)</code>) rendered via <code>border-image</code> / pseudo-element on default, hover, and selected states</li>
+    <li>Opaque white layer stacked beneath hover gradient tint to prevent colour bleed</li>
+    <li>Figma node <code>15807:11178</code></li>
+  </ul>
+
+  <div className="chcl-callout">
+    <strong>Breaking change?</strong> No. The <code>type</code> input values for existing chip types
+    are unchanged. New types were added additively. The <code>size</code> input is new — it defaults
+    to <code>'large'</code> so existing usages keep their current height.
+  </div>
+</div>
+
+<div className="chcl-version chcl-version-v1">
+  <div className="chcl-badge chcl-badge-v1">v1.0 — Archived</div>
+  <h2>v1.0 — Initial release</h2>
+  <div className="chcl-version-meta">
+    Original implementation · 4 chip types · Single size
+  </div>
+
+  <div className="chcl-section-label">Scope</div>
+  <ul className="chcl-list">
+    <li>4 types: Default, Filter, Input, Suggestion</li>
+    <li>Single implicit size (32px height)</li>
+    <li>No AI chip variant</li>
+    <li>No hover / selected state differentiation beyond cursor change</li>
+    <li>Basic <code>chipSelected</code> output event</li>
+  </ul>
+
+  <div className="chcl-callout">
+    v1 stories are no longer in the sidebar. The current Playground and all variant stories
+    reflect v2. Reference the git tag or branch <code>feat/chip-figma-update</code> base
+    commit for v1 source.
+  </div>
+</div>

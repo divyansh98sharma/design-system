@@ -4,7 +4,7 @@ import { InputFieldComponent } from './input-field.component';
 const meta: Meta<InputFieldComponent> = {
   title: 'Atoms/Input Field',
   component: InputFieldComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   argTypes: {
     alignment: { control: 'radio', options: ['vertical', 'horizontal'] },
     label:       { control: 'text' },

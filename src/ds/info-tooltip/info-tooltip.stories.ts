@@ -4,7 +4,7 @@ import { InfoTooltipComponent } from './info-tooltip.component';
 const meta: Meta<InfoTooltipComponent> = {
   title: 'Atoms/Info Tooltip',
   component: InfoTooltipComponent,
-  tags: ['autodocs'],
+  tags: ['autodocs', 'v1'],
   parameters: {
     layout: 'centered',
     docs: {
