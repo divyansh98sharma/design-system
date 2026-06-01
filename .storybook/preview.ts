@@ -64,8 +64,14 @@ const preview: Preview = {
             '*',
           ],
           // 4. Composition layers
-          'Templates',
-          'Pages',
+          'Templates', [
+            'Overview',
+            '*',
+          ],
+          'Pages', [
+            'Overview',
+            '*',
+          ],
           '*',
         ],
       },
