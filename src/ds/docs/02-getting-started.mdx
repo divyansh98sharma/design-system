@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Getting Started" />
 
@@ -152,13 +152,14 @@ import { Meta } from '@storybook/blocks';
         The design system is a monorepo containing tokens, Angular components, and this
         Storybook documentation. Clone it and install dependencies.
       </p>
-      <div className="gs-code">
-        <span className="comment"># Clone the design system</span>{'\n'}
-        git clone https://github.com/your-org/design-system.git{'\n'}
-        cd design-system{'\n\n'}
-        <span className="comment"># Install dependencies</span>{'\n'}
-        npm install
-      </div>
+```bash
+# Clone the design system
+git clone https://github.com/your-org/design-system.git
+cd design-system
+
+# Install dependencies
+npm install
+```
     </div>
   </div>
 
@@ -171,22 +172,25 @@ import { Meta } from '@storybook/blocks';
         includes primitives, semantic aliases, and component-scoped variables — all as
         CSS custom properties on <code>:root</code>.
       </p>
-      <div className="gs-code">
-        <span className="comment">/* styles.scss */</span>{'\n'}
-        <span className="keyword">@use</span> <span className="string">'path/to/design-system/src/ds/tokens/tokens'</span>;{'\n\n'}
-        <span className="comment">/* or in angular.json styles array */</span>{'\n'}
-        <span className="string">"src/ds/tokens/tokens.scss"</span>
-      </div>
-      <p>
-        Once imported, every CSS custom property is available globally:
-      </p>
-      <div className="gs-code">
-        .my-element {'{'}{'\n'}
-        {'  '}color: <span className="keyword">var</span>(<span className="string">--color-user-base</span>);{'\n'}
-        {'  '}font-size: <span className="keyword">var</span>(<span className="string">--font-size-14</span>);{'\n'}
-        {'  '}border-radius: <span className="keyword">var</span>(<span className="string">--radius-md</span>);{'\n'}
-        {'}'}
-      </div>
+
+```scss
+/* styles.scss */
+@use 'path/to/design-system/src/ds/tokens/tokens';
+
+/* or add to angular.json styles array */
+// "src/ds/tokens/tokens.scss"
+```
+
+      <p>Once imported, every CSS custom property is available globally:</p>
+
+```scss
+.my-element {
+  color: var(--color-user-base);
+  font-size: var(--font-size-14);
+  border-radius: var(--radius-md);
+}
+```
+
     </div>
   </div>
 
@@ -198,18 +202,22 @@ import { Meta } from '@storybook/blocks';
         All components are standalone Angular components. Import them directly into any
         <code>@Component</code> or <code>@NgModule</code> <code>imports</code> array.
       </p>
-      <div className="gs-code">
-        <span className="comment">// my-feature.component.ts</span>{'\n'}
-        <span className="keyword">import</span> {'{ ButtonComponent }'} <span className="keyword">from</span> <span className="string">'@ds/button'</span>;{'\n\n'}
-        @Component({'{'}{'\n'}
-        {'  '}selector: <span className="string">'app-my-feature'</span>,{'\n'}
-        {'  '}standalone: <span className="keyword">true</span>,{'\n'}
-        {'  '}imports: [ButtonComponent],{'\n'}
-        {'  '}template: <span className="string">`</span>{'\n'}
-        {'    '}<span className="tag">{'<ds-button'}</span> label=<span className="string">"Save"</span> type=<span className="string">"primary"</span><span className="tag">{'></ds-button>'}</span>{'\n'}
-        {'  '}<span className="string">`</span>,{'\n'}
-        {'}'})
-      </div>
+
+```typescript
+// my-feature.component.ts
+import { ButtonComponent } from '@ds/button';
+
+@Component({
+  selector: 'app-my-feature',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <ds-button label="Save" type="primary"></ds-button>
+  `,
+})
+export class MyFeatureComponent {}
+```
+
     </div>
   </div>
 
@@ -220,9 +228,9 @@ import { Meta } from '@storybook/blocks';
       <p>
         Browse all components interactively and tweak props via the controls panel.
       </p>
-      <div className="gs-code">
-        npm run storybook
-      </div>
+```bash
+npm run storybook
+```
       <p>
         Opens at <code>http://localhost:6006</code> by default.
       </p>

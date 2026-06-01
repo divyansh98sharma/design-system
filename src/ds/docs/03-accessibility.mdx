@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Accessibility" />
 
@@ -288,13 +288,13 @@ import { Meta } from '@storybook/blocks';
   navigation, not on mouse click.
 </p>
 
-<div className="a11y-code">
-  <span className="comment">/* Standard focus pattern used across all components */</span>{'\n'}
-  &:focus-visible {'{'}{'\n'}
-  {'  '}outline: 2px solid var(<span className="string">--button-focus-color</span>);{'\n'}
-  {'  '}outline-offset: 2px;{'\n'}
-  {'}'}
-</div>
+```scss
+/* Standard focus pattern used across all components */
+&:focus-visible {
+  outline: 2px solid var(--button-focus-color);
+  outline-offset: 2px;
+}
+```
 
 <div className="a11y-callout">
   <strong>Never remove focus outlines</strong> without a better replacement.
@@ -343,22 +343,22 @@ import { Meta } from '@storybook/blocks';
 
 ### Example — icon-only button
 
-<div className="a11y-code">
-  <span className="comment">{`<!-- ✓ Correct: aria-label on icon-only button -->`}</span>{'\n'}
-  <span className="attr">{'<ds-button'}</span>{'\n'}
-  {'  '}<span className="attr">{'[icon]'}</span>=<span className="string">'"close-svg"'</span>{'\n'}
-  {'  '}[iconOnly]=<span className="string">"true"</span>{'\n'}
-  {'  '}aria-label=<span className="string">"Close dialog"</span>{'\n'}
-  {'>'}</span>{'</ds-button>'}
-</div>
+```html
+<!-- ✓ Correct: aria-label on icon-only button -->
+<ds-button
+  [icon]="closeSvg"
+  [iconOnly]="true"
+  aria-label="Close dialog"
+></ds-button>
+```
 
-<div className="a11y-code">
-  <span className="comment">{`<!-- ✗ Wrong: no label — screen reader announces nothing useful -->`}</span>{'\n'}
-  <span className="attr">{'<ds-button'}</span>{'\n'}
-  {'  '}[icon]=<span className="string">"closeSvg"</span>{'\n'}
-  {'  '}[iconOnly]=<span className="string">"true"</span>{'\n'}
-  {'>'}</span>{'</ds-button>'}
-</div>
+```html
+<!-- ✗ Wrong: no label — screen reader announces nothing useful -->
+<ds-button
+  [icon]="closeSvg"
+  [iconOnly]="true"
+></ds-button>
+```
 
 </div>
 
@@ -498,16 +498,16 @@ import { Meta } from '@storybook/blocks';
   Always communicate async state to screen readers using live regions:
 </p>
 
-<div className="a11y-code">
-  <span className="comment">{`<!-- Polite: announced when user is idle -->`}</span>{'\n'}
-  {'<div'} <span className="attr">role</span>=<span className="string">"status"</span> <span className="attr">aria-live</span>=<span className="string">"polite"</span>{'>'}
-  {'\n'}{'  '}Saving changes…{'\n'}
-  {'</div>'}
-  {'\n\n'}
-  <span className="comment">{`<!-- Assertive: interrupts immediately — use sparingly -->`}</span>{'\n'}
-  {'<div'} <span className="attr">role</span>=<span className="string">"alert"</span> <span className="attr">aria-live</span>=<span className="string">"assertive"</span>{'>'}
-  {'\n'}{'  '}Session will expire in 2 minutes.{'\n'}
-  {'</div>'}
+```html
+<!-- Polite: announced when the user is idle -->
+<div role="status" aria-live="polite">
+  Saving changes…
 </div>
+
+<!-- Assertive: interrupts immediately — use sparingly -->
+<div role="alert" aria-live="assertive">
+  Session will expire in 2 minutes.
+</div>
+```
 
 </div>

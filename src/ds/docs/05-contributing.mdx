@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/blocks';
+import { Meta } from '@storybook/addon-docs/blocks';
 
 <Meta title="Contributing" />
 
@@ -203,13 +203,13 @@ import { Meta } from '@storybook/blocks';
   Every component lives in its own directory under <code>src/ds/</code>:
 </p>
 
-<div className="co-code">
-  src/ds/my-component/{'\n'}
-  {'├── '}my-component.component.ts      <span className="comment"># Angular component</span>{'\n'}
-  {'├── '}my-component.component.html    <span className="comment"># Template</span>{'\n'}
-  {'├── '}my-component.component.scss    <span className="comment"># Scoped styles (uses component tokens)</span>{'\n'}
-  {'└── '}my-component.stories.ts        <span className="comment"># Storybook stories</span>
-</div>
+```
+src/ds/my-component/
+├── my-component.component.ts      # Angular component
+├── my-component.component.html    # Template
+├── my-component.component.scss    # Scoped styles (uses component tokens)
+└── my-component.stories.ts        # Storybook stories
+```
 
 ### Story structure
 
@@ -217,18 +217,25 @@ import { Meta } from '@storybook/blocks';
   Stories follow this order:
 </p>
 
-<div className="co-code">
-  <span className="keyword">export const</span> Playground: Story = {'{ name: \'Playground\' }'};{'\n\n'}
-  <span className="comment">// All type/variant stories</span>{'\n'}
-  <span className="keyword">export const</span> Types: Story = {'{ ... }'};{'\n'}
-  <span className="keyword">export const</span> Sizes: Story = {'{ ... }'};{'\n\n'}
-  <span className="comment">// Specific feature stories</span>{'\n'}
-  <span className="keyword">export const</span> WithIcons: Story = {'{ ... }'};{'\n\n'}
-  <span className="comment">// State stories</span>{'\n'}
-  <span className="keyword">export const</span> Disabled: Story = {'{ ... }'};{'\n\n'}
-  <span className="comment">// Interaction tests (play functions)</span>{'\n'}
-  <span className="keyword">export const</span> ClickEmitsEvent: Story = {'{ name: \'Interaction: ...\'  play: async () => {} }'};
-</div>
+```typescript
+export const Playground: Story = { name: 'Playground' };
+
+// All type/variant stories
+export const Types: Story = { ... };
+export const Sizes: Story = { ... };
+
+// Specific feature stories
+export const WithIcons: Story = { ... };
+
+// State stories
+export const Disabled: Story = { ... };
+
+// Interaction tests (play functions)
+export const ClickEmitsEvent: Story = {
+  name: 'Interaction: Click emits event',
+  play: async ({ canvasElement, args }) => { ... },
+};
+```
 
 </div>
 
@@ -238,14 +245,14 @@ import { Meta } from '@storybook/blocks';
 
 ### Naming pattern
 
-<div className="co-code">
-  <span className="comment">/* component-scope — property — variant — state */</span>{'\n'}
-  --button-primary-bg{'\n'}
-  --button-primary-bg-hover{'\n'}
-  --button-primary-border{'\n'}
-  --button-counter-text{'\n'}
-  --chip-ai-border-color
-</div>
+```scss
+/* component-scope — property — variant — state */
+--button-primary-bg
+--button-primary-bg-hover
+--button-primary-border
+--button-counter-text
+--chip-ai-border-color
+```
 
 ### Adding component tokens
 
@@ -255,13 +262,13 @@ import { Meta } from '@storybook/blocks';
   as a component token default — always alias through the semantic layer.
 </p>
 
-<div className="co-code">
-  <span className="comment">// ─── My Component ─────────────────────────────────────────────────────</span>{'\n'}
-  --my-component-bg:           var(<span className="string">--color-surface-default</span>);{'\n'}
-  --my-component-bg-hover:     var(<span className="string">--color-surface-hover</span>);{'\n'}
-  --my-component-border:       var(<span className="string">--color-border-default</span>);{'\n'}
-  --my-component-text:         var(<span className="string">--color-text-primary</span>);
-</div>
+```scss
+// ─── My Component ───────────────────────────────────────────────────────────
+--my-component-bg:        var(--color-surface-default);
+--my-component-bg-hover:  var(--color-surface-hover);
+--my-component-border:    var(--color-border-default);
+--my-component-text:      var(--color-text-primary);
+```
 
 </div>
 
