@@ -1,0 +1,31 @@
+name: AngularJS Mirror Parity
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  parity-check:
+    name: Angular 21 ↔ AngularJS Parity
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      # Node 22 — no npm install needed; check-mirror.mjs uses only built-ins
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Check mirror parity (warn-only coverage)
+        run: node scripts/check-mirror.mjs
+
+      # --strict is intentionally commented out until feat/angularjs-bulk-generate
+      # (Branch 5) lands and all 24 AngularJS counterparts exist.
+      # Uncomment the line below and remove the line above once Branch 5 is merged:
+      #   run: node scripts/check-mirror.mjs --strict
