@@ -1,0 +1,27 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/lib",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "types": []
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "include": [
+    "src/ds/**/*.ts"
+  ],
+  "exclude": [
+    "src/ds/**/*.spec.ts",
+    "src/ds/**/*.stories.ts",
+    "src/ds/**/*.stories.mdx",
+    "src/ds/docs/**/*.ts",
+    "src/ds/color/color-palette.component.ts",
+    "src/ds/typography/typography-specimen.component.ts"
+  ]
+}

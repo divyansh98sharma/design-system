@@ -7,6 +7,26 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+    "ecw-ds": {
+      "projectType": "library",
+      "root": "",
+      "sourceRoot": "src/ds",
+      "prefix": "ds",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "ng-package.json",
+            "tsConfig": "tsconfig.lib.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "tsconfig.lib.json"
+            }
+          }
+        }
+      }
+    },
     "ds-workspace": {
       "projectType": "application",
       "schematics": {
