@@ -1,0 +1,220 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Atoms/Button/Changelog" />
+
+<style>
+{`
+  .bcl-header { margin-bottom: 40px; }
+  .bcl-header h1 { font-size: 28px; font-weight: 700; color: #0d2b35; margin: 0 0 8px; }
+  .bcl-header p  { font-size: 14px; color: #4a6370; margin: 0; }
+  .bcl-version   { margin: 36px 0; }
+  .bcl-version-header {
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 2px solid #e4ecf0; padding-bottom: 8px; margin-bottom: 18px;
+  }
+  .bcl-version-header h2 { font-size: 20px; font-weight: 700; color: #1a2e38; margin: 0; }
+  .bcl-tag {
+    display: inline-flex; align-items: center; padding: 2px 10px;
+    border-radius: 12px; font-size: 11px; font-weight: 700; letter-spacing: .03em;
+  }
+  .bcl-tag-v2  { background: #d1fae5; color: #065f46; }
+  .bcl-tag-v1  { background: #dbeafe; color: #1e40af; }
+  .bcl-tag-latest { background: #fef3c7; color: #92400e; }
+  .bcl-meta { font-size: 12px; color: #6b7280; margin: 0 0 16px; }
+  .bcl-section h3 { font-size: 14px; font-weight: 600; color: #1a2e38; margin: 20px 0 8px; }
+  .bcl-changes {
+    list-style: none; padding: 0; margin: 0 0 16px; max-width: 700px;
+  }
+  .bcl-changes li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 7px 0; border-bottom: 1px solid #f0f3f5;
+    font-size: 13px; color: #334e59; line-height: 1.5;
+  }
+  .bcl-changes li:last-child { border-bottom: none; }
+  .bcl-badge {
+    flex-shrink: 0; padding: 1px 7px; border-radius: 4px;
+    font-size: 10px; font-weight: 700; letter-spacing: .04em; margin-top: 2px;
+  }
+  .bcl-badge-fix   { background: #fee2e2; color: #991b1b; }
+  .bcl-badge-add   { background: #dcfce7; color: #166534; }
+  .bcl-badge-break { background: #fef9c3; color: #854d0e; }
+  .bcl-token-table { width: 100%; max-width: 760px; border-collapse: collapse; font-size: 12.5px; margin: 12px 0; }
+  .bcl-token-table th {
+    text-align: left; padding: 8px 10px; background: #f0f4f6;
+    color: #1a2e38; font-weight: 600; border-bottom: 2px solid #d8e4ea;
+  }
+  .bcl-token-table td {
+    padding: 7px 10px; border-bottom: 1px solid #eef2f4; color: #334e59;
+    vertical-align: top;
+  }
+  .bcl-token-table tr:last-child td { border-bottom: none; }
+  .bcl-token-table code {
+    font-family: 'Courier New', monospace; font-size: 11.5px;
+    background: #f0f4f6; padding: 1px 5px; border-radius: 3px;
+  }
+  .bcl-swatch {
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .bcl-dot {
+    display: inline-block; width: 12px; height: 12px;
+    border-radius: 50%; border: 1px solid rgba(0,0,0,.1); flex-shrink: 0;
+  }
+  .bcl-callout {
+    background: #eef6ff; border: 1px solid #b3d4f5; border-radius: 8px;
+    padding: 14px 18px; font-size: 13px; color: #17446b; line-height: 1.6;
+    margin: 16px 0; max-width: 700px;
+  }
+  .bcl-figma-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; color: #0378a7; text-decoration: none; font-weight: 500;
+  }
+`}
+</style>
+
+<div className="bcl-header">
+  <h1>Button — Changelog</h1>
+  <p>Component-level version history. See <a href="?path=/docs/design-system-changelog--docs">Design System / Changelog</a> for the full release registry.</p>
+</div>
+
+---
+
+<div className="bcl-version">
+  <div className="bcl-version-header">
+    <h2>v2.0</h2>
+    <span className="bcl-tag bcl-tag-v2">v2</span>
+    <span className="bcl-tag bcl-tag-latest">latest</span>
+  </div>
+  <p className="bcl-meta">Released · Figma node 13651:36583 · Branch <code>fix/button-tokens-figma-update</code></p>
+
+  <div className="bcl-callout">
+    <strong>Figma sync:</strong> Token values and naming updated to match the CODE-A-TON Library redesign.
+    The Figma file now uses a hierarchical slash-based naming convention (e.g.
+    <code>--button/container/background/primary/default</code>) — our SCSS preserves the existing
+    dash-based names for compatibility but comments document the Figma mapping on every token.
+  </div>
+
+  <div className="bcl-section">
+    <h3>Token changes</h3>
+
+    <table className="bcl-token-table">
+      <thead>
+        <tr>
+          <th>Token</th>
+          <th>Before (v1.x)</th>
+          <th>After (v2.0)</th>
+          <th>Reason</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>--button-error-bg-hover</code></td>
+          <td>
+            <div className="bcl-swatch">
+              <span className="bcl-dot" style={{background:'#b82020'}}></span>
+              <code>#b82020</code>
+            </div>
+          </td>
+          <td>
+            <div className="bcl-swatch">
+              <span className="bcl-dot" style={{background:'#d82727'}}></span>
+              <code>#d82727</code>
+            </div>
+          </td>
+          <td>Figma: error hover bg is the same as default — no background change on hover, only border changes</td>
+        </tr>
+        <tr>
+          <td><code>--button-white-border</code></td>
+          <td><code>#ebebeb</code></td>
+          <td><code>transparent</code></td>
+          <td>Figma: white button has no visible border in default state; border only appears on hover</td>
+        </tr>
+        <tr>
+          <td><code>--button-stroke-width</code></td>
+          <td>— (new token)</td>
+          <td><code>1px</code></td>
+          <td>Figma: <code>--button/container/stroke-width: 1px</code>. Primary button borders now use this token instead of hardcoded <code>0.5px</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>New tokens added</h3>
+    <ul className="bcl-changes">
+      <li>
+        <span className="bcl-badge bcl-badge-add">ADD</span>
+        <span><code>--button-stroke-width</code> — central control for all button border widths (primary outer + inner ring); defaults to <code>1px</code> matching Figma stroke-width token</span>
+      </li>
+      <li>
+        <span className="bcl-badge bcl-badge-add">ADD</span>
+        <span><code>--button-primary-divider-border</code> — explicit border token for the primary divided button's chevron pane (<code>#13b8a6</code>); previously shared <code>--button-primary-inner-border</code></span>
+      </li>
+      <li>
+        <span className="bcl-badge bcl-badge-add">ADD</span>
+        <span><code>--button-secondary-divider-border</code>, <code>--button-white-divider-border</code> — divider-specific border tokens to match Figma's <code>--button/divider/container/border/…</code> structure</span>
+      </li>
+    </ul>
+
+    <h3>Breaking changes</h3>
+    <ul className="bcl-changes">
+      <li>
+        <span className="bcl-badge bcl-badge-break">BREAK</span>
+        <span>Primary button border-width changed from <code>0.5px</code> to <code>var(--button-stroke-width, 1px)</code>. If you were overriding the primary button border-width via CSS, update to target <code>--button-stroke-width</code> instead.</span>
+      </li>
+    </ul>
+
+    <h3>Behaviour changes</h3>
+    <ul className="bcl-changes">
+      <li>
+        <span className="bcl-badge bcl-badge-fix">FIX</span>
+        <span>Error button no longer darkens on hover (background stays <code>#d82727</code>). The hover state is indicated by the dark border (<code>#350101</code>) appearing — matching Figma design intent.</span>
+      </li>
+      <li>
+        <span className="bcl-badge bcl-badge-fix">FIX</span>
+        <span>White button default state now renders without a visible border, matching Figma (border was previously <code>#ebebeb</code>; it now correctly appears only on hover).</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+---
+
+<div className="bcl-version">
+  <div className="bcl-version-header">
+    <h2>v1.1</h2>
+    <span className="bcl-tag bcl-tag-v1">v1</span>
+  </div>
+  <p className="bcl-meta">Released · Branch <code>feat/button-figma-update</code></p>
+
+  <div className="bcl-section">
+    <ul className="bcl-changes">
+      <li>
+        <span className="bcl-badge bcl-badge-fix">FIX</span>
+        <span>Aligned all button token values to CODE-A-TON Library Figma spec — primary became mint teal (<code>#e9f5f3</code> bg), counter chip tokens added, alert indicator radius corrected</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div className="bcl-version">
+  <div className="bcl-version-header">
+    <h2>v1.0</h2>
+    <span className="bcl-tag bcl-tag-v1">v1</span>
+  </div>
+  <p className="bcl-meta">Initial release</p>
+
+  <div className="bcl-section">
+    <ul className="bcl-changes">
+      <li>
+        <span className="bcl-badge bcl-badge-add">ADD</span>
+        <span>Angular standalone component with 5 types (primary, secondary, white, error, warning), 2 styles (default, divided), 3 sizes (sm, md, lg)</span>
+      </li>
+      <li>
+        <span className="bcl-badge bcl-badge-add">ADD</span>
+        <span>Optional counter chip, alert indicator, leading/trailing icon slots</span>
+      </li>
+      <li>
+        <span className="bcl-badge bcl-badge-add">ADD</span>
+        <span>Full component token coverage via <code>--button-*</code> CSS custom properties in <code>_component.scss</code></span>
+      </li>
+    </ul>
+  </div>
+</div>

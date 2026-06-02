@@ -77,9 +77,15 @@
   --toggle-focus-color: var(--color-border-focus);
 
   // ----------------------------------------------------------
-  // Button (CODE-A-TON Library — Figma source of truth)
+  // Button (CODE-A-TON Library — Figma node 13651:36583)
+  // Figma token names use slash notation, e.g.:
+  //   --button/container/background/primary/default  → --button-primary-bg
+  //   --button/container/border/primary/strong/default → --button-primary-outer-border
+  //   --button/container/border/primary/default       → --button-primary-inner-border
+  //   --button/container/stroke-width                 → --button-stroke-width
   // ----------------------------------------------------------
   --button-radius: 4px;
+  --button-stroke-width: 1px;       /* Figma: --button/container/stroke-width */
   --button-padding-x: 4px;
   --button-padding-y: 4px;
   --button-gap: 4px;
@@ -109,11 +115,13 @@
   --button-lg-padding-x: 8px;
 
   // Alert indicator
+  // Figma: --button/alert-indicator/container/background/default
   --button-alert-bg: #d82727;
   --button-alert-size: 8px;
-  --button-alert-radius: 8px;
+  --button-alert-radius: 8px;       /* Figma: --button/alert-indicator/container/radius */
 
   // Counter chip
+  // Figma: --button/counter/container/…  --button/counter/label/…
   --button-counter-bg: #ffffff;
   --button-counter-border: #ebebeb;
   --button-counter-radius: 999px;
@@ -122,42 +130,60 @@
   --button-counter-stroke: 1px;
 
   // Primary (mint)
+  // Figma: --button/container/background/primary/default|hover
+  //        --button/container/border/primary/strong/default (outer glow)
+  //        --button/container/border/primary/default|hover  (inner ring)
   --button-primary-bg: #e9f5f3;
   --button-primary-bg-hover: #d7e5e3;
-  --button-primary-outer-border: #4de0cf;
-  --button-primary-inner-border: #13b8a6;
+  --button-primary-outer-border: #4de0cf;   /* strong / outer glow */
+  --button-primary-inner-border: #13b8a6;   /* default / inner ring */
   --button-primary-text: #000000;
   --button-primary-divider-bg: #e9f5f3;
+  --button-primary-divider-border: #13b8a6; /* Figma: --button/divider/container/border/primary/default */
 
   // Secondary (gray)
+  // Figma: --button/container/background/secondary/default|hover
+  //        --button/container/border/secondary/default|hover
   --button-secondary-bg: #ebebeb;
   --button-secondary-bg-hover: #e6e6e6;
   --button-secondary-border: #e1e1e1;
   --button-secondary-border-hover: #bcbcbc;
   --button-secondary-text: #000000;
+  --button-secondary-divider-border: #e1e1e1; /* Figma: --button/divider/container/border/secondary/default */
 
   // White
+  // Figma: --button/container/background/white/default|hover
+  //        --button/container/border/white/hover (no border in default state)
   --button-white-bg: #fbfbfb;
   --button-white-bg-hover: #fbfbfb;
-  --button-white-border: #ebebeb;
+  --button-white-border: transparent;       /* no border in default state per Figma */
   --button-white-border-hover: #ebebeb;
   --button-white-text: #000000;
+  --button-white-divider-border: #ebebeb;   /* Figma: --button/divider/container/border/white/default */
 
   // Error
+  // Figma: --button/container/background/error/default|hover (both #d82727)
+  //        --button/container/border/error/hover
+  //        --button/divider/container/border/error/default
   --button-error-bg: #d82727;
-  --button-error-bg-hover: #b82020;
-  --button-error-border: #b42121;
+  --button-error-bg-hover: #d82727;         /* Figma: same colour as default (no bg change on hover) */
+  --button-error-border: #b42121;           /* Figma: --button/divider/container/border/error/default */
   --button-error-border-hover: #350101;
   --button-error-text: #ffffff;
 
   // Warning
+  // Figma: --button/container/background/warning/default|hover
+  //        --button/container/border/warning/hover
+  //        --button/divider/container/border/warning/default
   --button-warning-bg: #fcde71;
   --button-warning-bg-hover: #ffd84b;
-  --button-warning-border: #a7891c;
+  --button-warning-border: #a7891c;         /* Figma: --button/divider/container/border/warning/default */
   --button-warning-border-hover: #a7891c;
   --button-warning-text: #000000;
 
   // Disabled
+  // Figma: --button/container/background/disabled/default
+  //        --button/container/border/disabled/default
   --button-disabled-bg: #f7f7f7;
   --button-disabled-border: #ebebeb;
   --button-disabled-text: #717171;

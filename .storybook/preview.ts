@@ -32,7 +32,7 @@ const preview: Preview = {
           ],
           // 3. Atomic design layers (smallest → largest)
           'Atoms', [
-            'Button', ['*'],
+            'Button', ['Playground', '*', 'Changelog'],
             'Input Field',
             'Checkbox',
             'Radio Button',
