@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "outDir": "./dist/ecw-ds-angularjs",
+    "target": "ES2015",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "rootDir": "src/ds-angularjs",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "sourceMap": true,
+    "lib": ["ES2015", "DOM"],
+    "types": ["angular"]
+  },
+  "include": ["src/ds-angularjs/**/*.ts"],
+  "exclude": ["src/ds-angularjs/**/*.spec.ts"]
+}

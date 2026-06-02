@@ -1,0 +1,29 @@
+{
+  "name": "@divyansh98sharma/design-system-angularjs",
+  "version": "1.0.0",
+  "description": "eCW Design System — AngularJS 1.x directives, exact mirror of @divyansh98sharma/design-system (Angular 21)",
+  "keywords": ["angularjs", "angular1", "design-system", "ecw", "components", "directives"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/divyansh98sharma/design-system.git",
+    "directory": "src/ds-angularjs"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "main": "./index.cjs",
+  "module": "./esm/index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./index.cjs",
+      "types": "./index.d.ts"
+    },
+    "./tokens/*": "./tokens/*"
+  },
+  "peerDependencies": {
+    "angular": ">=1.7.0 <2.0.0"
+  },
+  "sideEffects": false
+}
