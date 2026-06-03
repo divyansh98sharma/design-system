@@ -61,10 +61,7 @@ const preview: Preview = {
           'Design System', [
             'Introduction',
             'Philosophy',
-            'Getting Started',
             'Accessibility',
-            'Contributing',
-            'Deprecation Policy',
             'Changelog',
           ],
           // 2. Design primitives
