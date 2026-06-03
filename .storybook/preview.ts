@@ -5,7 +5,50 @@ import theme from './theme';
 
 setCompodocJson(docJson);
 
+// ─── Deprecation banner ───────────────────────────────────────────────────────
+// Injected into the canvas when a story has the 'deprecated' tag.
+
+const DEPRECATION_BANNER = `
+  <div style="
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    background:#fff8e1;
+    border-left:4px solid #f59e0b;
+    border-radius:0 4px 4px 0;
+    padding:10px 14px;
+    margin-bottom:16px;
+    font-family:sans-serif;
+    font-size:13px;
+    line-height:1.5;
+    color:#78350f;
+  ">
+    <span style="font-size:16px;line-height:1.3">⚠</span>
+    <span>
+      <strong>Deprecated</strong> — this component is scheduled for removal in the
+      next major version. See the component Changelog for the replacement and
+      migration steps.
+    </span>
+  </div>
+`;
+
+// ─── Preview config ───────────────────────────────────────────────────────────
+
 const preview: Preview = {
+  decorators: [
+    (storyFn: any, context: any) => {
+      const story = storyFn();
+      if (!context.tags?.includes('deprecated')) return story;
+
+      // Wrap template-based stories; component-based stories fall through
+      // (the Docs page description handles those — see policy page)
+      if (typeof story.template === 'string') {
+        return { ...story, template: DEPRECATION_BANNER + story.template };
+      }
+      return story;
+    },
+  ],
+
   parameters: {
     layout: 'padded',
     docs: {
@@ -21,6 +64,7 @@ const preview: Preview = {
             'Getting Started',
             'Accessibility',
             'Contributing',
+            'Deprecation Policy',
             'Changelog',
           ],
           // 2. Design primitives
@@ -81,8 +125,8 @@ const preview: Preview = {
       options: {
         white: { name: 'white', value: '#ffffff' },
         subtle: { name: 'subtle', value: '#f7f7f7' },
-        dark: { name: 'dark', value: '#2d2d2d' }
-      }
+        dark: { name: 'dark', value: '#2d2d2d' },
+      },
     },
     controls: {
       matchers: {
@@ -96,9 +140,9 @@ const preview: Preview = {
 
   initialGlobals: {
     backgrounds: {
-      value: 'white'
-    }
-  }
+      value: 'white',
+    },
+  },
 };
 
 export default preview;

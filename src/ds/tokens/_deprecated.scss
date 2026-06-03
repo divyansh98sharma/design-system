@@ -1,0 +1,25 @@
+// ============================================================
+// DEPRECATED TOKENS
+//
+// Each entry keeps the old token name working (so consumers
+// don't break immediately) while redirecting it to the
+// replacement.  Remove entries only in a MAJOR version bump.
+//
+// Format:
+//   --old-token: var(--replacement);  /* @deprecated vX.Y — use --replacement */
+//
+// How to add a deprecation:
+//   1. Copy the old token definition here.
+//   2. Point its value at the new token via var(--new).
+//   3. Add the @deprecated comment with the version it was deprecated in.
+//   4. In _component.scss / _semantic.scss, delete the original definition.
+//   5. Bump the minor version in package.json.
+//   6. Remove the entry here in the next MAJOR version bump.
+// ============================================================
+
+:root {
+  // — no deprecated tokens yet —
+  // Example (copy this pattern when deprecating a token):
+  //
+  // --chip-bg-default: var(--chip-bg-neutral);  /* @deprecated v2.1 — use --chip-bg-neutral */
+}

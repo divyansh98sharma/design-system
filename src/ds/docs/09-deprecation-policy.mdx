@@ -1,0 +1,286 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design System/Deprecation Policy" />
+
+<style>
+{`
+  .dp-header { margin-bottom: 40px; }
+  .dp-header h1 {
+    font-size: 32px; font-weight: 700; color: #0d2b35; margin: 0 0 10px;
+  }
+  .dp-header p.lead {
+    font-size: 17px; color: #4a6370; max-width: 680px; line-height: 1.7; margin: 0;
+  }
+  .dp-section { margin: 48px 0; }
+  .dp-section h2 {
+    font-size: 22px; font-weight: 600; color: #1a2e38;
+    border-bottom: 2px solid #e4ecf0; padding-bottom: 8px; margin-bottom: 20px;
+  }
+  .dp-section h3 {
+    font-size: 16px; font-weight: 600; color: #1a2e38; margin: 28px 0 8px;
+  }
+  .dp-section p {
+    font-size: 14px; color: #334e59; line-height: 1.7; max-width: 720px; margin: 0 0 14px;
+  }
+  .dp-timeline {
+    display: flex; gap: 0; max-width: 640px; margin: 24px 0;
+  }
+  .dp-timeline-step {
+    flex: 1; position: relative; padding: 16px 20px 16px 0;
+  }
+  .dp-timeline-step:not(:last-child)::after {
+    content: '→';
+    position: absolute; right: 4px; top: 18px;
+    color: #9bbdcc; font-size: 16px;
+  }
+  .dp-timeline-badge {
+    display: inline-block;
+    padding: 2px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .dp-badge-minor  { background: #e0f2fe; color: #0369a1; }
+  .dp-badge-major  { background: #fef2f2; color: #b91c1c; }
+  .dp-badge-today  { background: #f0fdf4; color: #15803d; }
+  .dp-timeline-step h4 {
+    font-size: 13px; font-weight: 600; color: #1a2e38; margin: 0 0 4px;
+  }
+  .dp-timeline-step p {
+    font-size: 12px; color: #4a6370; margin: 0; line-height: 1.5;
+  }
+  .dp-code {
+    background: #1e2b31; color: #e2eef5; border-radius: 8px;
+    padding: 14px 18px; font-family: 'Courier New', monospace;
+    font-size: 12.5px; line-height: 1.7; overflow-x: auto; margin: 12px 0; max-width: 680px;
+  }
+  .dp-code .comment { color: #5c8a9e; }
+  .dp-code .keyword { color: #79c0d8; }
+  .dp-code .string  { color: #a3d9a5; }
+  .dp-code .tag     { color: #f97316; }
+  .dp-warning {
+    background: #fff8e1; border-left: 4px solid #f59e0b; border-radius: 0 4px 4px 0;
+    padding: 12px 16px; font-size: 14px; color: #78350f; line-height: 1.6;
+    margin: 20px 0; max-width: 680px;
+  }
+  .dp-callout {
+    background: #eef6ff; border: 1px solid #b3d4f5; border-radius: 8px;
+    padding: 16px 20px; font-size: 14px; color: #17446b;
+    line-height: 1.6; margin: 20px 0; max-width: 680px;
+  }
+  .dp-table {
+    width: 100%; max-width: 720px; border-collapse: collapse;
+    font-size: 14px; margin: 16px 0;
+  }
+  .dp-table th {
+    text-align: left; padding: 10px 14px;
+    background: #f0f5f8; color: #1a2e38; font-weight: 600;
+    border-bottom: 2px solid #d4e4ed;
+  }
+  .dp-table td {
+    padding: 10px 14px; border-bottom: 1px solid #e8eef2; color: #334e59; vertical-align: top;
+  }
+  .dp-table tr:last-child td { border-bottom: none; }
+  .dp-table .mono { font-family: monospace; font-size: 13px; color: #0378a7; }
+  .dp-empty {
+    text-align: center; padding: 32px; color: #7a9aa8; font-size: 14px; font-style: italic;
+  }
+  .dp-tag {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.4px;
+  }
+  .dp-tag-deprecated { background: #fff3e0; color: #c2410c; border: 1px solid #fed7aa; }
+  .dp-tag-v1  { background: #e0f2fe; color: #075985; border: 1px solid #bae6fd; }
+  .dp-tag-v2  { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+`}
+</style>
+
+<div className="dp-header">
+  <h1>Deprecation Policy</h1>
+  <p className="lead">
+    How we signal that a component, token, or API is going away — and what to do about it.
+    Nothing is removed without a warning period.
+  </p>
+</div>
+
+<div className="dp-section">
+
+## Lifecycle
+
+<div className="dp-timeline">
+  <div className="dp-timeline-step">
+    <div className="dp-timeline-badge dp-badge-today">Today</div>
+    <h4>Still works</h4>
+    <p>Current version, fully supported</p>
+  </div>
+  <div className="dp-timeline-step">
+    <div className="dp-timeline-badge dp-badge-minor">Minor bump</div>
+    <h4>Deprecated</h4>
+    <p>Warning added, replacement documented, banner shown in Storybook</p>
+  </div>
+  <div className="dp-timeline-step">
+    <div className="dp-timeline-badge dp-badge-major">Major bump</div>
+    <h4>Removed</h4>
+    <p>Breaking change — consumers must have migrated</p>
+  </div>
+</div>
+
+<p>
+  There is always at least one minor version between deprecation and removal, giving every team
+  time to migrate before a major release breaks them.
+</p>
+
+</div>
+
+<div className="dp-section">
+
+## Deprecating a component
+
+### 1 — JSDoc in the component class
+
+<p>
+  Add <code>@deprecated</code> JSDoc to the component class. This causes IDEs to show a
+  strikethrough and tooltip at every usage site — zero runtime cost.
+</p>
+
+<div className="dp-code">
+{`/**
+ * @deprecated since v2.1 — `}<span className="dp-string">{`use NewButtonComponent`}</span>{` instead.
+ * Will be removed in v3.0.
+ * Migration: replace <ds-old-button> with <ds-button>.
+ */
+@Component({ selector: `}<span className="dp-string">{`'ds-old-button'`}</span>{`, ... })
+export class OldButtonComponent { }`}
+</div>
+
+### 2 — Story tag
+
+<p>
+  Add <code>'deprecated'</code> to the story's <code>tags</code> array.
+  Storybook will show an amber banner on the canvas and a badge in the sidebar.
+</p>
+
+<div className="dp-code">
+{`const meta: Meta<OldButtonComponent> = {
+  title: `}<span className="dp-string">{`'Atoms/Old Button'`}</span>{`,
+  component: OldButtonComponent,
+  tags: [`}<span className="dp-string">{`'autodocs'`}</span>{`, `}<span className="dp-tag">{`'deprecated'`}</span>{`],
+  parameters: {
+    docs: {
+      description: {
+        component: `}<span className="dp-string">{`'**Deprecated since v2.1.** Use [Button](/story/atoms-button--playground) instead.'`}</span>{`,
+      },
+    },
+  },
+};`}
+</div>
+
+### 3 — Changelog entry
+
+<p>
+  Add a row to the component's <code>-changelog.mdx</code> documenting what changed,
+  why it was deprecated, and the migration path.
+</p>
+
+</div>
+
+<div className="dp-section">
+
+## Deprecating a token
+
+### 1 — Move to `_deprecated.scss`
+
+<p>
+  Cut the token from <code>_component.scss</code> or <code>_semantic.scss</code> and paste it
+  into <code>src/ds/tokens/_deprecated.scss</code>. Point its value at the replacement token
+  so existing consumers continue to compile.
+</p>
+
+<div className="dp-code">
+{`/* src/ds/tokens/_deprecated.scss */
+
+:root {
+  `}<span className="dp-comment">{`/* @deprecated v2.1 — use --chip-bg-neutral */`}</span>{`
+  --chip-bg-default: var(--chip-bg-neutral);
+}`}
+</div>
+
+### 2 — Comment at the new token site
+
+<p>
+  Add a note at the new token definition so reviewers know an alias exists:
+</p>
+
+<div className="dp-code">
+{`/* Replaces --chip-bg-default (deprecated v2.1, removed v3.0) */
+--chip-bg-neutral: var(--color-surface-neutral);`}
+</div>
+
+<div className="dp-callout">
+  <strong>Consumers who reference <code>var(--chip-bg-default)</code></strong> will still compile
+  and render correctly until the major version removes the alias. They'll see the new value
+  automatically.
+</div>
+
+</div>
+
+<div className="dp-section">
+
+## Deprecating a prop (`@Input`)
+
+<p>
+  When an input is renamed or replaced, keep the old one working as a pass-through
+  and annotate it clearly:
+</p>
+
+<div className="dp-code">
+{`/** @deprecated since v2.2 — use `}<span className="dp-string">{`btnStyle`}</span>{` */
+@Input() set style(value: string) {
+  this.btnStyle = value as ButtonStyle;
+}`}
+</div>
+
+<p>
+  This lets existing templates keep working without a hard error, while the IDE
+  marks the old property as struck-through.
+</p>
+
+</div>
+
+<div className="dp-section">
+
+## Currently deprecated
+
+<table className="dp-table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Since</th>
+      <th>Replacement</th>
+      <th>Removes in</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colSpan={5} className="dp-empty">No deprecations yet — this table updates when the first item is deprecated.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  When something is deprecated, add a row here alongside the code changes.
+</p>
+
+</div>
+
+<div className="dp-section">
+
+## Quick reference
+
+| What you're deprecating | File to update | Tag / annotation |
+|-------------------------|---------------|-----------------|
+| Whole component | `component.ts` + `stories.ts` | `@deprecated` JSDoc + `'deprecated'` tag |
+| A token | `_deprecated.scss` | `/* @deprecated vX.Y */` comment |
+| A prop (`@Input`) | `component.ts` | `@deprecated` JSDoc on the setter |
+| A story variant | `stories.ts` | `deprecated: true` in `parameters` |
+
+</div>
