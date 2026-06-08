@@ -1,6 +1,7 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './button.stories';
 
-<Meta title="Atoms/Button/Guidelines" />
+<Meta of={ButtonStories} />
 
 <style>
 {`
@@ -49,6 +50,12 @@ import { Meta } from '@storybook/addon-docs/blocks';
 ---
 
 <div className="bg-section">
+
+## Live component
+
+<Canvas of={ButtonStories.Playground} />
+
+---
 
 ## What is it?
 
@@ -200,109 +207,13 @@ The divided style emits two separate events: `buttonClick` (left section) and `d
 
 <div className="bg-section">
 
-## All inputs (props)
+## All inputs & outputs
 
-<table className="bg-table">
-  <thead>
-    <tr><th>Input</th><th>Type</th><th>Default</th><th>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>label</code></td>
-      <td>string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td><code>'Button'</code></td>
-      <td>Visible button text. Required unless <code>iconOnly="true"</code>.</td>
-    </tr>
-    <tr>
-      <td><code>type</code></td>
-      <td>string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td><code>'primary'</code></td>
-      <td>Visual style: <code>'primary'</code> | <code>'secondary'</code> | <code>'white'</code> | <code>'error'</code> | <code>'warning'</code></td>
-    </tr>
-    <tr>
-      <td><code>btnStyle</code></td>
-      <td>string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td><code>'default'</code></td>
-      <td>Shape: <code>'default'</code> | <code>'divided'</code></td>
-    </tr>
-    <tr>
-      <td><code>size</code></td>
-      <td>string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td><code>'md'</code></td>
-      <td>Height: <code>'sm'</code> (20px) | <code>'md'</code> (24px) | <code>'lg'</code> (32px)</td>
-    </tr>
-    <tr>
-      <td><code>disabled</code></td>
-      <td>boolean <span className="bg-tag bg-tag-bool">boolean</span></td>
-      <td><code>false</code></td>
-      <td>Prevents interaction and applies disabled styling. The button is also not clickable (pointer-events: none).</td>
-    </tr>
-    <tr>
-      <td><code>iconOnly</code></td>
-      <td>boolean <span className="bg-tag bg-tag-bool">boolean</span></td>
-      <td><code>false</code></td>
-      <td>Hides the label, forces square shape. <strong>Must</strong> pass <code>icon</code> and an <code>aria-label</code> for accessibility.</td>
-    </tr>
-    <tr>
-      <td><code>icon</code></td>
-      <td>string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td>—</td>
-      <td>SVG string for the leading (left) icon. Pass the raw SVG markup.</td>
-    </tr>
-    <tr>
-      <td><code>trailingIcon</code></td>
-      <td>string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td>—</td>
-      <td>SVG string for the trailing (right) icon.</td>
-    </tr>
-    <tr>
-      <td><code>dividerIcon</code></td>
-      <td>string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td>chevron ↓</td>
-      <td>Override the default chevron icon in the divided segment. Only used when <code>btnStyle="divided"</code>.</td>
-    </tr>
-    <tr>
-      <td><code>alertIndicator</code></td>
-      <td>boolean <span className="bg-tag bg-tag-bool">boolean</span></td>
-      <td><code>false</code></td>
-      <td>Shows a red dot in the top-right corner to signal a pending notification or action.</td>
-    </tr>
-    <tr>
-      <td><code>counter</code></td>
-      <td>number | string <span className="bg-tag bg-tag-opt">optional</span></td>
-      <td>—</td>
-      <td>Appends a pill chip with a count. Common for inbox counts, notification totals. Max display is unrestricted — truncate large numbers in the parent if needed.</td>
-    </tr>
-  </tbody>
-</table>
+<ArgTypes of={ButtonStories} />
 
 </div>
 
 ---
-
-<div className="bg-section">
-
-## Events (outputs)
-
-<table className="bg-table">
-  <thead>
-    <tr><th>Output</th><th>Payload</th><th>When it fires</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>(buttonClick)</code></td>
-      <td><code>MouseEvent</code></td>
-      <td>User clicks the main button area. Does not fire when <code>disabled</code>.</td>
-    </tr>
-    <tr>
-      <td><code>(dividerClick)</code></td>
-      <td><code>MouseEvent</code></td>
-      <td>User clicks the chevron segment. Only relevant when <code>btnStyle="divided"</code>. Does not fire when <code>disabled</code>.</td>
-    </tr>
-  </tbody>
-</table>
-
-</div>
 
 ---
 
