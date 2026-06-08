@@ -131,9 +131,8 @@
 .ds-button--default {
   &.ds-button--primary {
     background: var(--button-primary-bg);
-    border: 0.5px solid var(--button-primary-outer-border);
+    border: 1px solid var(--button-primary-border);
     color: var(--button-primary-text);
-    box-shadow: inset 0 0 0 0.5px var(--button-primary-inner-border);
 
     &:hover:not(:disabled) {
       background: var(--button-primary-bg-hover);
@@ -274,14 +273,13 @@
   &.ds-button--primary {
     .ds-button__main {
       background: var(--button-primary-bg);
-      border: 0.5px solid var(--button-primary-inner-border);
+      border: 1px solid var(--button-primary-border);
       color: var(--button-primary-text);
       &:hover:not(:disabled) { background: var(--button-primary-bg-hover); }
     }
     .ds-button__divider {
       background: var(--button-primary-divider-bg);
-      border: 0.5px solid var(--button-primary-inner-border);
-      border-left: 0.5px solid var(--button-primary-inner-border);
+      border: 1px solid var(--button-primary-border);
       color: var(--button-primary-text);
       &:hover:not(:disabled) { background: var(--button-primary-bg-hover); }
     }
