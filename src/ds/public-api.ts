@@ -19,7 +19,7 @@ export { SogiComponent }            from './button/sogi/sogi.component';
 export { CheckboxComponent }        from './checkbox/checkbox.component';
 
 export { ChipComponent }            from './chip/chip.component';
-export type { ChipState }           from './chip/chip.component';
+export type { ChipType, ChipSize }  from './chip/chip.component';
 
 export { InfoTooltipComponent }     from './info-tooltip/info-tooltip.component';
 
@@ -41,10 +41,10 @@ export type { TooltipPosition }     from './tooltip/tooltip.component';
 
 // ─── Molecules ───────────────────────────────────────────────
 export { BreadcrumbComponent }      from './breadcrumb/breadcrumb.component';
-export type { BreadcrumbItem, BreadcrumbLevel, BreadcrumbType } from './breadcrumb/breadcrumb.component';
+export type { BreadcrumbItem } from './breadcrumb/breadcrumb.component';
 
 export { DisclaimerComponent }      from './disclaimer/disclaimer.component';
-export type { DisclaimerVariant, DisclaimerLabelPosition } from './disclaimer/disclaimer.component';
+export type { DisclaimerType } from './disclaimer/disclaimer.component';
 
 export { NotificationComponent }    from './notification/notification.component';
 export type { NotificationType, NotificationTheme, NotificationAction } from './notification/notification.component';
