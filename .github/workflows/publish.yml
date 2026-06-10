@@ -15,16 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # NOTE: deliberately NO `registry-url` here. When set, setup-node writes an
+      # .npmrc with a placeholder _authToken, which makes npm attempt token auth
+      # (and fail) instead of the OIDC trusted-publishing handshake. The registry
+      # and public access come from package.json `publishConfig` instead.
       - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
-          registry-url: https://registry.npmjs.org
 
-      # Trusted Publishing (OIDC) and provenance require npm >= 11.5.1;
-      # Node 22 ships npm 10, so bump it.
-      - name: Update npm
-        run: npm install -g npm@latest
+      - name: Update npm (Trusted Publishing needs npm >= 11.5.1)
+        run: |
+          npm install -g npm@latest
+          npm --version
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -32,8 +35,7 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
-      # No NODE_AUTH_TOKEN: authentication happens via the OIDC handshake once
-      # this repo + workflow is set as a Trusted Publisher on the npm package.
+      # No NODE_AUTH_TOKEN / .npmrc token: npm authenticates via the OIDC
+      # trusted-publisher rule configured for this repo + workflow on npmjs.com.
       - name: Publish to npm
         run: npm publish ./dist/ecw-ds --provenance
-        working-directory: ${{ github.workspace }}
