@@ -1,4 +1,4 @@
-name: Publish to GitHub Packages
+name: Publish to npm
 
 on:
   release:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      packages: write
+      id-token: write   # required for npm Trusted Publishing (OIDC) — no token needed
 
     steps:
       - uses: actions/checkout@v6
@@ -19,8 +19,12 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          registry-url: https://npm.pkg.github.com
-          scope: '@divyansh98sharma'
+          registry-url: https://registry.npmjs.org
+
+      # Trusted Publishing (OIDC) and provenance require npm >= 11.5.1;
+      # Node 22 ships npm 10, so bump it.
+      - name: Update npm
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -28,7 +32,8 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
-      - name: Publish to GitHub Packages
-        run: npm publish ./dist/ecw-ds
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # No NODE_AUTH_TOKEN: authentication happens via the OIDC handshake once
+      # this repo + workflow is set as a Trusted Publisher on the npm package.
+      - name: Publish to npm
+        run: npm publish ./dist/ecw-ds --provenance
+        working-directory: ${{ github.workspace }}

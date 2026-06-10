@@ -18,6 +18,7 @@
   ],
   "dest": "dist/ecw-ds",
   "assets": [
+    "./LICENSE",
     {
       "input": "src/ds/tokens",
       "output": "tokens",
