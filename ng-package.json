@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "lib": {
+    "entryFile": "src/ds/public-api.ts",
+    "cssUrl": "inline"
+  },
+  "allowedNonPeerDependencies": [
+    "@angular/animations",
+    "@angular/cdk",
+    "@angular/common",
+    "@angular/compiler",
+    "@angular/core",
+    "@angular/forms",
+    "@angular/platform-browser",
+    "@angular/router",
+    "rxjs",
+    "tslib"
+  ],
+  "dest": "dist/ecw-ds",
+  "assets": [
+    {
+      "input": "src/ds/tokens",
+      "output": "tokens",
+      "glob": "**/*.scss"
+    }
+  ]
+}
