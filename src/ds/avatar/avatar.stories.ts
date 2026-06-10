@@ -12,44 +12,33 @@ const meta: Meta<AvatarComponent> = {
     docs: {
       description: {
         component:
-          'User avatar in three variants — **text** (initials), **image** (photo), and **dummy** (placeholder icon). ' +
-          'Available in **sm** (32 px) and **lg** (72 px) sizes.',
+          'User avatar matching the CODE-A-TON Library Figma spec.\n\n' +
+          '- **text** — initials on a terracotta background\n' +
+          '- **image** — circular cropped photo\n' +
+          '- **dummy** — gray placeholder with a generic person icon\n\n' +
+          'Sizes: **sm** (32px) and **lg** (72px).',
       },
     },
   },
   argTypes: {
     variant: {
-      description: '`text` — shows initials · `image` — shows a photo · `dummy` — shows a placeholder person icon.',
       control: 'select',
       options: ['text', 'image', 'dummy'],
       table: { defaultValue: { summary: 'text' } },
     },
     size: {
-      description: '`sm` = 32 px · `lg` = 72 px.',
       control: 'select',
       options: ['sm', 'lg'],
       table: { defaultValue: { summary: 'sm' } },
     },
-    initials: {
-      description: 'Initials displayed when variant is `text`. Keep to 2 characters.',
-      control: 'text',
-      table: { defaultValue: { summary: 'MN' } },
-    },
-    imageUrl: {
-      description: 'Image URL displayed when variant is `image`.',
-      control: 'text',
-      table: { defaultValue: { summary: '' } },
-    },
-    imageAlt: {
-      description: 'Accessible alt text for the avatar image.',
-      control: 'text',
-      table: { defaultValue: { summary: '' } },
-    },
+    initials: { control: 'text', table: { defaultValue: { summary: 'KR' } } },
+    imageUrl: { control: 'text' },
+    imageAlt: { control: 'text' },
   },
   args: {
     variant: 'text',
     size: 'sm',
-    initials: 'MN',
+    initials: 'KR',
     imageUrl: SAMPLE_IMAGE,
     imageAlt: 'User avatar',
   },
@@ -58,69 +47,46 @@ const meta: Meta<AvatarComponent> = {
 export default meta;
 type Story = StoryObj<AvatarComponent>;
 
-// ─── Playground ───────────────────────────────────────────────────────────────
-
-export const Playground: Story = {
-  name: 'Playground',
-  parameters: {
-    docs: { description: { story: 'Use the Controls panel below to configure every prop interactively.' } },
-  },
-};
-
-// ─── Overview ─────────────────────────────────────────────────────────────────
+export const Playground: Story = { name: 'Playground' };
 
 export const Overview: Story = {
   name: 'Overview',
   parameters: {
-    docs: { description: { story: 'All variants and sizes side-by-side.' } },
+    docs: { description: { story: 'All variants × sizes laid out as in Figma.' } },
   },
   render: () => ({
     props: { imageUrl: SAMPLE_IMAGE },
     template: `
-      <div style="display:flex;gap:24px;align-items:flex-end;flex-wrap:wrap;padding:16px;border:1px solid #e1e1e1;border-radius:8px">
-        <!-- Small -->
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-          <ds-avatar variant="text"  size="sm" initials="MN"></ds-avatar>
+      <div style="display:flex;flex-direction:column;gap:24px;padding:16px;border:1px solid #e1e1e1;border-radius:8px">
+        <div style="display:flex;gap:24px;align-items:center">
+          <ds-avatar variant="text"  size="sm" initials="KR"></ds-avatar>
           <ds-avatar variant="image" size="sm" [imageUrl]="imageUrl" imageAlt="User"></ds-avatar>
           <ds-avatar variant="dummy" size="sm"></ds-avatar>
-          <span style="font-size:11px;color:#969696">Small (32px)</span>
         </div>
-        <!-- Large -->
-        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-          <ds-avatar variant="text"  size="lg" initials="MN"></ds-avatar>
+        <div style="display:flex;gap:24px;align-items:center">
+          <ds-avatar variant="text"  size="lg" initials="KR"></ds-avatar>
           <ds-avatar variant="image" size="lg" [imageUrl]="imageUrl" imageAlt="User"></ds-avatar>
           <ds-avatar variant="dummy" size="lg"></ds-avatar>
-          <span style="font-size:11px;color:#969696">Large (72px)</span>
         </div>
       </div>
     `,
   }),
 };
-
-// ─── Text ─────────────────────────────────────────────────────────────────────
 
 export const Text: Story = {
   name: 'Text (Initials)',
-  parameters: {
-    docs: { description: { story: 'Displays user initials on a light gray background. Text color uses the `user` brand token.' } },
-  },
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:center">
-        <ds-avatar variant="text" size="sm" initials="MN"></ds-avatar>
-        <ds-avatar variant="text" size="lg" initials="MN"></ds-avatar>
+        <ds-avatar variant="text" size="sm" initials="KR"></ds-avatar>
+        <ds-avatar variant="text" size="lg" initials="KR"></ds-avatar>
       </div>
     `,
   }),
 };
-
-// ─── Image ────────────────────────────────────────────────────────────────────
 
 export const Image: Story = {
   name: 'Image (Photo)',
-  parameters: {
-    docs: { description: { story: 'Renders a user photo cropped into a circle.' } },
-  },
   render: () => ({
     props: { imageUrl: SAMPLE_IMAGE },
     template: `
@@ -131,50 +97,13 @@ export const Image: Story = {
     `,
   }),
 };
-
-// ─── Dummy ────────────────────────────────────────────────────────────────────
 
 export const Dummy: Story = {
   name: 'Dummy (Placeholder)',
-  parameters: {
-    docs: { description: { story: 'Placeholder shown when no image or initials are available.' } },
-  },
   render: () => ({
     template: `
       <div style="display:flex;gap:16px;align-items:center">
         <ds-avatar variant="dummy" size="sm"></ds-avatar>
-        <ds-avatar variant="dummy" size="lg"></ds-avatar>
-      </div>
-    `,
-  }),
-};
-
-// ─── Small ────────────────────────────────────────────────────────────────────
-
-export const Small: Story = {
-  name: 'Small (32px)',
-  render: () => ({
-    props: { imageUrl: SAMPLE_IMAGE },
-    template: `
-      <div style="display:flex;gap:12px;align-items:center">
-        <ds-avatar variant="text"  size="sm" initials="MN"></ds-avatar>
-        <ds-avatar variant="image" size="sm" [imageUrl]="imageUrl" imageAlt="User"></ds-avatar>
-        <ds-avatar variant="dummy" size="sm"></ds-avatar>
-      </div>
-    `,
-  }),
-};
-
-// ─── Large ────────────────────────────────────────────────────────────────────
-
-export const Large: Story = {
-  name: 'Large (72px)',
-  render: () => ({
-    props: { imageUrl: SAMPLE_IMAGE },
-    template: `
-      <div style="display:flex;gap:16px;align-items:center">
-        <ds-avatar variant="text"  size="lg" initials="MN"></ds-avatar>
-        <ds-avatar variant="image" size="lg" [imageUrl]="imageUrl" imageAlt="User"></ds-avatar>
         <ds-avatar variant="dummy" size="lg"></ds-avatar>
       </div>
     `,
