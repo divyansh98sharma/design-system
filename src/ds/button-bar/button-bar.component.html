@@ -1,0 +1,75 @@
+<div class="ds-button-bar" role="toolbar" aria-label="Button bar">
+  <div class="ds-button-bar__group">
+    @if (showSelectAll) {
+      <label class="ds-button-bar__select-all">
+        <input
+          type="checkbox"
+          class="ds-button-bar__checkbox"
+          [ngModel]="selectAllChecked"
+          (ngModelChange)="onSelectAllChange($event)"
+        />
+        <span class="ds-button-bar__select-all-label">{{ selectAllLabel }}</span>
+      </label>
+      <span class="ds-button-bar__divider" aria-hidden="true"></span>
+    }
+
+    @for (item of leftItems; track trackByIndex($index)) {
+      @if (item.separatorBefore) {
+        <span class="ds-button-bar__divider" aria-hidden="true"></span>
+      }
+      <button
+        type="button"
+        class="ds-button-bar__item"
+        [attr.aria-label]="item.ariaLabel || item.label"
+        (click)="onItemClick(item.id, 'left')"
+      >
+        @if (item.icon) {
+          <span class="ds-button-bar__item-icon" aria-hidden="true" [innerHTML]="safeIcon(item.icon)"></span>
+        }
+        @if (item.label) {
+          <span class="ds-button-bar__item-label">{{ item.label }}</span>
+        }
+      </button>
+    }
+  </div>
+
+  @if (rightItems.length > 0 || showMore) {
+    <div class="ds-button-bar__group ds-button-bar__group--right">
+      @for (item of rightItems; track trackByIndex($index)) {
+        @if (item.separatorBefore) {
+          <span class="ds-button-bar__divider" aria-hidden="true"></span>
+        }
+        <button
+          type="button"
+          class="ds-button-bar__item"
+          [attr.aria-label]="item.ariaLabel || item.label"
+          (click)="onItemClick(item.id, 'right')"
+        >
+          @if (item.icon) {
+            <span class="ds-button-bar__item-icon" aria-hidden="true" [innerHTML]="safeIcon(item.icon)"></span>
+          }
+          @if (item.label) {
+            <span class="ds-button-bar__item-label">{{ item.label }}</span>
+          }
+        </button>
+      }
+
+      @if (showMore) {
+        <span class="ds-button-bar__divider" aria-hidden="true"></span>
+        <button
+          type="button"
+          class="ds-button-bar__item ds-button-bar__more"
+          aria-haspopup="menu"
+          (click)="onMoreClick()"
+        >
+          <span class="ds-button-bar__item-label">{{ moreLabel }}</span>
+          <span class="ds-button-bar__item-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6l4 4 4-4"/>
+            </svg>
+          </span>
+        </button>
+      }
+    </div>
+  }
+</div>
