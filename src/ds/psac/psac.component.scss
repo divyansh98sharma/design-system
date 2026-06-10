@@ -1,0 +1,87 @@
+// ─── PSAC (CODE-A-TON Library spec) ─────────────────────────────────────────
+
+:host { display: block; }
+
+.ds-psac {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  line-height: 16px;
+
+  &--psac {
+    background: #ffefef;
+    border: 1px solid #d82727;
+    color: #6c1414;
+  }
+
+  &--confidential {
+    background: #f7f2ff;
+    border: 1px solid #533b91;
+    color: #2e1b62;
+  }
+
+  &--hard {
+    border-width: 2px;
+  }
+
+  &--empty {
+    background: #f7f7f7;
+    border: 1px solid #ebebeb;
+    color: #4b586b;
+    padding: 8px 12px;
+  }
+}
+
+.ds-psac__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  svg { display: block; width: 100%; height: 100%; }
+}
+
+.ds-psac__body { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.ds-psac__title { margin: 0; font-weight: 600; color: inherit; }
+.ds-psac__text { margin: 0; color: inherit; }
+.ds-psac__empty { margin: 0; color: inherit; }
+
+.ds-psac__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ds-psac__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &--primary {
+    background: #ffffff;
+    border-color: currentColor;
+    color: inherit;
+    font-weight: 600;
+  }
+
+  &--secondary {
+    background: transparent;
+    border-color: currentColor;
+    color: inherit;
+  }
+}
