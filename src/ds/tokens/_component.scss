@@ -265,16 +265,17 @@
   // ----------------------------------------------------------
   // Table
   // ----------------------------------------------------------
-  --table-bg: var(--color-surface);
-  --table-border: var(--color-secondary-50);
-  --table-radius: var(--radius-standard);
+  // Table — CODE-A-TON Library Figma source of truth
+  --table-bg: #ffffff;
+  --table-border: #e1e1e1;
+  --table-radius: 4px;
   --table-inner-radius: 3px;
-  --table-font-size: var(--font-size-12);
+  --table-font-size: 12px;
   --table-small-font-size: 11px;
   --table-header-height: 28px;
-  --table-header-bg: var(--color-secondary-20);
-  --table-header-hover-bg: var(--color-secondary-30);
-  --table-header-text: var(--color-text-primary);
+  --table-header-bg: #f5f5f5;
+  --table-header-hover-bg: #ebebeb;
+  --table-header-text: #000000;
   --table-sorted-bg: var(--color-user-5);
   --table-row-height: 24px;
   --table-row-even-bg: var(--color-surface);
