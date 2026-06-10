@@ -57,7 +57,7 @@
     "@angular/build": "^21.2.13",
     "@angular/cli": "^21.2.13",
     "@angular/compiler-cli": "^21.2.15",
-    "@angular/platform-browser-dynamic": "^21.2.15",
+    "@angular/platform-browser-dynamic": "^22.0.0",
     "@chromatic-com/storybook": "^5.2.1",
     "@compodoc/compodoc": "^1.2.1",
     "@storybook/addon-a11y": "^10.4.3",
