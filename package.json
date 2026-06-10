@@ -1,6 +1,6 @@
 {
   "name": "@sharma-divyansh/eclinicalworks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "eCW Design System — Angular components and CSS tokens",
   "keywords": ["angular", "design-system", "ecw", "components"],
   "license": "MIT",
