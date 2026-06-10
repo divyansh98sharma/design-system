@@ -168,28 +168,29 @@
   // ----------------------------------------------------------
   // Input / Form
   // ----------------------------------------------------------
-  --input-radius: var(--radius-standard);
-  --input-border: var(--color-border-default);
-  --input-border-focus: var(--color-border-focus);
-  --input-border-error: var(--color-border-error);
-  --input-bg: var(--color-surface);
-  --input-padding-x: var(--spacing-small);
-  --input-padding-y: var(--spacing-x-small);
-  --input-font-size: var(--font-size-12);
-  --input-line-height: var(--line-height-16);
+  // Input Field — CODE-A-TON Library Figma source of truth
+  --input-radius: 4px;
+  --input-bg: #ffffff;
+  --input-border: #ebebeb;
+  --input-border-focus: #007b95;
+  --input-border-error: #d82727;
+  --input-padding-x: 4px;
+  --input-padding-y: 4px;
+  --input-font-size: 12px;
+  --input-line-height: 16px;
   --input-field-height: 24px;
-  --input-field-gap: var(--spacing-x-small);
-  --input-field-horizontal-gap: var(--spacing-small);
-  --input-field-wrapper-padding-x: 6px;
-  --input-field-focus-shadow: 0 0 0 2px var(--color-border-focus);
-  --input-field-label-color: var(--color-text-primary);
-  --input-field-placeholder-color: var(--color-secondary-70);
-  --input-field-icon-color: var(--color-secondary-70);
-  --input-field-support-color: var(--color-secondary-90);
-  --input-field-error-color: var(--color-status-error);
-  --input-field-disabled-bg: var(--color-surface-disabled);
-  --input-field-disabled-border: var(--color-secondary-50);
-  --input-field-disabled-text: var(--color-text-disabled);
+  --input-field-gap: 4px;
+  --input-field-horizontal-gap: 8px;
+  --input-field-wrapper-padding-x: 4px;
+  --input-field-focus-shadow: 0 0 0 2px rgba(0, 123, 149, 0.2);
+  --input-field-label-color: #4b586b;
+  --input-field-placeholder-color: #4b586b;
+  --input-field-icon-color: #4b586b;
+  --input-field-support-color: #4b586b;
+  --input-field-error-color: #d82727;
+  --input-field-disabled-bg: #f7f7f7;
+  --input-field-disabled-border: #ebebeb;
+  --input-field-disabled-text: #bcbcbc;
 
   // ----------------------------------------------------------
   // Card / Panel
