@@ -657,11 +657,12 @@
   // ----------------------------------------------------------
   // Notification
   // ----------------------------------------------------------
+  // Aligned to CODE-A-TON Library Figma palette
   --notification-width: 540px;
-  --notification-radius: var(--radius-standard);
-  --notification-shadow: var(--shadow-md);
-  --notification-bg: var(--color-surface);
-  --notification-text-color: var(--color-text-primary);
+  --notification-radius: 8px;
+  --notification-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+  --notification-bg: #ffffff;
+  --notification-text-color: #000000;
   --notification-sidebar-min-width: 62px;
   --notification-icon-wrap-size: 30px;
   --notification-sidebar-user-bg: var(--color-user);
