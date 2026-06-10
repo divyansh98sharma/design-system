@@ -1,14 +1,16 @@
 {
-  "name": "@divyansh98sharma/design-system",
+  "name": "@sharma-divyansh/eclinicalworks",
   "version": "1.0.0",
   "description": "eCW Design System — Angular components and CSS tokens",
   "keywords": ["angular", "design-system", "ecw", "components"],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/divyansh98sharma/design-system.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "scripts": {
     "ng": "ng",
