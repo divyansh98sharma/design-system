@@ -1,0 +1,39 @@
+:host { display: inline-flex; }
+
+.ds-time-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-family-base);
+}
+
+.ds-time-picker__label {
+  font-size: 12px;
+  line-height: 16px;
+  color: #4b586b;
+}
+
+.ds-time-picker__input {
+  height: 32px;
+  padding: 4px 8px;
+  background: #ffffff;
+  border: 1px solid #e1e1e1;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+
+  &:focus { outline: none; border-color: #007b95; }
+}
+
+.ds-time-picker__range {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-time-picker__sep {
+  color: #4b586b;
+  font-size: 12px;
+}
