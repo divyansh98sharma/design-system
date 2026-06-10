@@ -53,27 +53,29 @@
   // ----------------------------------------------------------
   // Toggle Switch
   // ----------------------------------------------------------
+  // Toggle (CODE-A-TON Library — Figma source of truth)
   --toggle-width: 50px;
   --toggle-height: 24px;
-  --toggle-padding: var(--spacing-x-small);
-  --toggle-radius: var(--radius-pill);
-  --toggle-bg-off: var(--color-surface);
-  --toggle-border-off: var(--color-secondary-70);
-  --toggle-bg-user: var(--color-user-base);
-  --toggle-bg-user-hover: var(--color-user-70);
-  --toggle-bg-admin: var(--color-admin-base);
-  --toggle-bg-admin-hover: var(--color-admin-60);
-  --toggle-bg-green: var(--color-green-base);
-  --toggle-bg-green-hover: var(--color-green-60);
-  --toggle-bg-sunoh: var(--color-sunoh-base);
-  --toggle-bg-sunoh-hover: var(--color-sunoh-60);
+  --toggle-padding: 4px;
+  --toggle-radius: 999px;
   --toggle-thumb-size: 16px;
-  --toggle-thumb-bg-off: var(--color-secondary-50);
-  --toggle-thumb-bg-on: var(--color-text-inverse);
-  --toggle-icon-size: 10px;
-  --toggle-icon-color-off: var(--color-secondary-70);
+
+  // Off
+  --toggle-off-bg: #ffffff;
+  --toggle-off-border: #bcbcbc;
+  --toggle-off-thumb-bg: #bcbcbc;
+
+  // On
+  --toggle-on-bg: #007b95;
+  --toggle-on-border: #007b95;
+  --toggle-on-thumb-bg: #ffffff;
+
+  // Disabled
+  --toggle-disabled-bg: #e1e1e1;
+  --toggle-disabled-border: #bcbcbc;
+  --toggle-disabled-thumb-bg: #bcbcbc;
+
   --toggle-transition: 200ms ease;
-  --toggle-disabled-opacity: 0.45;
   --toggle-focus-color: var(--color-border-focus);
 
   // ----------------------------------------------------------
