@@ -1,0 +1,70 @@
+// ─── Stepper (CODE-A-TON Library spec) ──────────────────────────────────────
+
+:host { display: inline-flex; }
+
+.ds-stepper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 24px;
+  min-width: 48px;
+  width: 86px;
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  border-radius: 22px;
+  font-family: var(--font-family-base);
+  overflow: hidden;
+
+  &--disabled { opacity: 0.5; }
+}
+
+.ds-stepper__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  color: #000000;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 120ms ease;
+
+  &:hover:not(:disabled) { background: #f1fbff; }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--color-border-focus);
+  }
+
+  &:disabled { color: #bcbcbc; cursor: not-allowed; }
+
+  svg { display: block; width: 16px; height: 16px; }
+}
+
+.ds-stepper__input {
+  flex: 1 0 0;
+  width: 100%;
+  min-width: 0;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  text-align: center;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  outline: none;
+  appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+}
