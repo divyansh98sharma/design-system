@@ -1,0 +1,35 @@
+// ─── Hyperlink (CODE-A-TON Library spec) ────────────────────────────────────
+
+:host { display: inline-flex; }
+
+.ds-hyperlink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #02506f;
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  cursor: pointer;
+  transition: color 120ms ease;
+
+  &:hover { color: #023c54; }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-focus);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  &--disabled,
+  &:disabled {
+    color: #bcbcbc;
+    cursor: not-allowed;
+    text-decoration: none;
+  }
+}
