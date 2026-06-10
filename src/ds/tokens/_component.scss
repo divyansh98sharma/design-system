@@ -560,23 +560,24 @@
   // ----------------------------------------------------------
   // Modal
   // ----------------------------------------------------------
-  --modal-bg: var(--color-surface);
-  --modal-radius: var(--radius-standard);
-  --modal-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.3);
+  // Modal — CODE-A-TON Library Figma source of truth
+  --modal-bg: #ffffff;
+  --modal-radius: 8px;
+  --modal-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.12);
   --modal-header-height: 36px;
-  --modal-header-text-color: var(--color-text-inverse);
-  --modal-header-user-bg: var(--color-user-base);
-  --modal-header-admin-bg: var(--color-admin-base);
-  --modal-header-green-bg: var(--color-green-base);
-  --modal-header-sunoh-bg: var(--color-sunoh-base);
-  --modal-header-ai-bg: var(--color-ai-base);
+  --modal-header-text-color: #ffffff;
+  --modal-header-user-bg: #007b95;
+  --modal-header-admin-bg: #c17137;
+  --modal-header-green-bg: #018145;
+  --modal-header-sunoh-bg: #ba654e;
+  --modal-header-ai-bg: #533b91;
   --modal-footer-height: 40px;
-  --modal-footer-border: var(--color-border-default);
-  --modal-dirty-flag-color: var(--color-status-warning);
+  --modal-footer-border: #e1e1e1;
+  --modal-dirty-flag-color: #fbce2a;
   --modal-dirty-icon-size: 16px;
   --modal-close-btn-size: 20px;
-  --modal-close-btn-color: var(--color-text-inverse);
-  --modal-close-focus-color: var(--color-text-inverse);
+  --modal-close-btn-color: #ffffff;
+  --modal-close-focus-color: #ffffff;
   --modal-width-small: 420px;
   --modal-width-medium: 720px;
   --modal-width-large: 1000px;
