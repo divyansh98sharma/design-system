@@ -111,6 +111,46 @@ import { Meta } from '@storybook/addon-docs/blocks';
     padding: 2px 8px;
     border-radius: 4px;
   }
+  .ds-doc-tag-v1 {
+    display: inline-block;
+    background: #e8f4fd;
+    color: #0378a7;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .ds-doc-tag-v2 {
+    display: inline-block;
+    background: #eaf6ed;
+    color: #1a7a3a;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+  .ds-doc-tag-deprecated {
+    display: inline-block;
+    background: #fff3cd;
+    color: #856404;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .ds-doc-layer {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .ds-doc-layer-atom  { background: #e8f4fd; color: #0378a7; }
+  .ds-doc-layer-mol   { background: #ede9fe; color: #7c3aed; }
+  .ds-doc-layer-org   { background: #d1fae5; color: #065f46; }
+  .ds-doc-layer-found { background: #fef3c7; color: #92400e; }
 `}
 </style>
 
@@ -157,32 +197,39 @@ import { Meta } from '@storybook/addon-docs/blocks';
   <thead>
     <tr>
       <th>Component</th>
+      <th>Layer</th>
+      <th>Version</th>
       <th>Status</th>
-      <th>Section</th>
     </tr>
   </thead>
   <tbody>
-    <tr><td>Avatar</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Breadcrumb</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Button</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Checkbox</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Chip</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Disclaimer</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Input Field</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Loader</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Modal</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Notification</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Popover</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Radio Button</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Side Navigation</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Table</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Tabs</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Toast</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Toggle</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Tooltip</td><td><span className="ds-doc-tag">Stable</span></td><td>Components</td></tr>
-    <tr><td>Typography</td><td><span className="ds-doc-tag">Stable</span></td><td>Foundations</td></tr>
-    <tr><td>Color Palette</td><td><span className="ds-doc-tag">Stable</span></td><td>Foundations</td></tr>
-    <tr><td>Icons</td><td><span className="ds-doc-tag">Stable</span></td><td>Foundations</td></tr>
+    <tr><td>Avatar</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Button</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Checkbox</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Chip</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v2">v2.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Info Tooltip</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Input Field</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Loader</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Radio Button</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Scrollbar</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Toggle</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Tooltip</td><td><span className="ds-doc-layer ds-doc-layer-atom">Atom</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Breadcrumb &amp; Navigation</td><td><span className="ds-doc-layer ds-doc-layer-mol">Molecule</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Disclaimer</td><td><span className="ds-doc-layer ds-doc-layer-mol">Molecule</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Notification</td><td><span className="ds-doc-layer ds-doc-layer-mol">Molecule</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Patient Info</td><td><span className="ds-doc-layer ds-doc-layer-mol">Molecule</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Popover</td><td><span className="ds-doc-layer ds-doc-layer-mol">Molecule</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Toast</td><td><span className="ds-doc-layer ds-doc-layer-mol">Molecule</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Toggle Button Group</td><td><span className="ds-doc-layer ds-doc-layer-mol">Molecule</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Left Nav</td><td><span className="ds-doc-layer ds-doc-layer-org">Organism</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Modal</td><td><span className="ds-doc-layer ds-doc-layer-org">Organism</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Side Navigation</td><td><span className="ds-doc-layer ds-doc-layer-org">Organism</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Table</td><td><span className="ds-doc-layer ds-doc-layer-org">Organism</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Tabs</td><td><span className="ds-doc-layer ds-doc-layer-org">Organism</span></td><td><span className="ds-doc-tag-v1">v1.1</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Top Nav</td><td><span className="ds-doc-layer ds-doc-layer-org">Organism</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Color Palette</td><td><span className="ds-doc-layer ds-doc-layer-found">Foundation</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Icons</td><td><span className="ds-doc-layer ds-doc-layer-found">Foundation</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
+    <tr><td>Typography</td><td><span className="ds-doc-layer ds-doc-layer-found">Foundation</span></td><td><span className="ds-doc-tag-v1">v1.0</span></td><td><span className="ds-doc-tag">Stable</span></td></tr>
   </tbody>
 </table>
 
@@ -194,11 +241,12 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 Use the **sidebar** on the left to browse sections:
 
-- **Introduction** — You're here. High-level overview.
-- **Philosophy** — Principles that guide every design and engineering decision.
-- **Getting Started** — Install, configure, and ship your first component.
-- **Accessibility** — Keyboard, ARIA, colour-contrast, and testing guidelines.
-- **Foundations** — Token-level colour, typography, spacing, and icon references.
-- **Components** — Interactive component stories with live controls.
+- **Design System** — Introduction (here), Philosophy, Getting Started, Accessibility, Contributing, and Changelog.
+- **Foundations** — Token-level colour palette, typography scale, spacing, and icon reference.
+- **Atoms** — Indivisible UI elements: Button, Input Field, Chip, Toggle, Tooltip, and more.
+- **Molecules** — Composed groups of atoms: Disclaimer, Toast, Popover, Breadcrumb, and more.
+- **Organisms** — Complex, self-contained sections: Tabs, Table, Modal, Top Nav, Side Navigation.
+- **Templates** — Page-level skeletons assembled from organisms *(roadmap)*.
+- **Pages** — Templates filled with representative real-world content *(roadmap)*.
 
 </div>

@@ -73,6 +73,31 @@ import { Meta } from '@storybook/addon-docs/blocks';
     padding: 16px 20px; font-size: 14px; color: #17446b;
     line-height: 1.6; margin: 20px 0; max-width: 680px;
   }
+  .co-callout-warn {
+    background: #fff8e6; border: 1px solid #f0c860; border-radius: 8px;
+    padding: 16px 20px; font-size: 14px; color: #5a4200;
+    line-height: 1.6; margin: 20px 0; max-width: 680px;
+  }
+  .co-dep-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    margin: 20px 0; max-width: 680px;
+  }
+  .co-dep-card {
+    border: 1px solid #e4ecf0; border-radius: 8px; padding: 20px;
+  }
+  .co-dep-card h4 { font-size: 14px; font-weight: 600; color: #1a2e38; margin: 0 0 10px; }
+  .co-dep-card ol { margin: 0; padding-left: 18px; font-size: 13px; color: #334e59; line-height: 1.8; }
+  .co-dep-table {
+    width: 100%; border-collapse: collapse; font-size: 13px; max-width: 680px; margin: 16px 0;
+  }
+  .co-dep-table th {
+    background: #f2f6f9; text-align: left; padding: 9px 14px;
+    color: #334e59; font-weight: 600; border-bottom: 1px solid #dde4ea;
+  }
+  .co-dep-table td {
+    padding: 9px 14px; border-bottom: 1px solid #edf1f4; color: #1a2e38; vertical-align: top;
+  }
+  .co-dep-table tr:last-child td { border-bottom: none; }
 `}
 </style>
 
@@ -288,6 +313,101 @@ export const ClickEmitsEvent: Story = {
   <strong>Figma branch:</strong> When a component is being actively redesigned in Figma,
   open a matching code branch at the same time. Both branches should reference the same
   Figma node ID in commit messages and PR descriptions for traceability.
+</div>
+
+</div>
+
+<div className="co-section">
+
+## Deprecation
+
+<p>
+  Deprecation is a two-phase process: <strong>announce</strong> first, <strong>remove</strong>
+  later. Nothing is removed without at least one full release cycle of warning.
+</p>
+
+### Timeline
+
+<table className="co-dep-table">
+  <thead>
+    <tr><th>Phase</th><th>Action</th><th>Duration</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1 — Announce</strong></td>
+      <td>Add <code>deprecated</code> tag, console warning, and migration guide entry in Changelog</td>
+      <td>Minimum 1 full release cycle</td>
+    </tr>
+    <tr>
+      <td><strong>2 — Remove</strong></td>
+      <td>Delete component / token files, bump semver major, update Changelog to "Removed"</td>
+      <td>After announce phase expires</td>
+    </tr>
+  </tbody>
+</table>
+
+### Deprecating a component
+
+<div className="co-dep-grid">
+  <div className="co-dep-card">
+    <h4>In the story file</h4>
+    <ol>
+      <li>Add <code>'deprecated'</code> to <code>tags</code> array — shows orange badge in sidebar</li>
+      <li>Change status in the component catalogue from <code>Stable</code> → <code>Deprecated</code></li>
+      <li>Update version in the Changelog registry table</li>
+    </ol>
+  </div>
+  <div className="co-dep-card">
+    <h4>In the component class</h4>
+    <ol>
+      <li>Add a <code>console.warn</code> in <code>ngOnInit</code> with the replacement name</li>
+      <li>Keep all <code>@Input()</code> and <code>@Output()</code> intact — no API removals yet</li>
+      <li>Open branch <code>deprecate/component-name</code></li>
+    </ol>
+  </div>
+</div>
+
+```typescript
+// In the component class
+ngOnInit(): void {
+  console.warn(
+    '[eCW DS] MyComponent is deprecated and will be removed in the next major release. ' +
+    'Use NewComponent instead. See the Changelog for migration steps.'
+  );
+}
+```
+
+```typescript
+// In the story file — tags array
+tags: ['autodocs', 'v1', 'deprecated'],
+```
+
+### Deprecating a color token
+
+<p>
+  Never delete a semantic token directly — consumers will break with no warning. Instead:
+</p>
+
+<ol className="co-checklist" style={{listStyle: 'decimal', paddingLeft: '20px', fontSize: '14px', color: '#334e59', lineHeight: '1.8'}}>
+  <li>Introduce the new token with the correct name in <code>_semantic.scss</code></li>
+  <li>Map the old token to the new one so existing code keeps working:</li>
+</ol>
+
+```scss
+// _semantic.scss
+--color-new-name: var(--color-blue-500);   /* ← new canonical token */
+--color-old-name: var(--color-new-name);   /* ← deprecated alias, maps to new */
+```
+
+<ol className="co-checklist" start="3" style={{listStyle: 'decimal', paddingLeft: '20px', fontSize: '14px', color: '#334e59', lineHeight: '1.8'}}>
+  <li>Add a comment above the old token: <code>/* @deprecated — use --color-new-name */</code></li>
+  <li>Document the rename in <code>Design System / Changelog</code></li>
+  <li>After one release cycle, remove the alias and bump semver major</li>
+</ol>
+
+<div className="co-callout-warn">
+  <strong>Never rename a token in place.</strong> Changing <code>--color-old-name</code>'s
+  value directly breaks every consumer silently. Always alias → document → wait → remove.
 </div>
 
 </div>
