@@ -15,7 +15,6 @@
   padding: var(--button-padding-y) var(--button-md-padding-x);
   border: 1px solid transparent;
   border-radius: var(--button-radius);
-  font-family: var(--font-family-base);
   font-size: var(--button-md-font-size);
   font-weight: var(--button-font-weight);
   line-height: var(--button-line-height);
@@ -210,7 +209,6 @@
     justify-content: center;
     gap: var(--button-gap);
     padding: var(--button-padding-y) var(--button-md-padding-x);
-    font-family: var(--font-family-base);
     font-size: var(--button-md-font-size);
     font-weight: var(--button-font-weight);
     line-height: var(--button-line-height);

@@ -5,7 +5,6 @@
   border: 1px solid var(--disclaimer-border);          // var(--color-warning-base)
   border-radius: var(--disclaimer-radius);     // 4px
   padding: var(--spacing-small);      // 8px
-  font-family: var(--font-family-base);
   font-size: var(--font-size-12);
   line-height: var(--line-height-16);
   color: var(--disclaimer-text-color);
@@ -127,7 +126,6 @@
     background: var(--disclaimer-ack-bg);
     border: 1px solid var(--disclaimer-ack-border);
     border-radius: var(--disclaimer-radius);
-    font-family: var(--font-family-base);
     font-size: var(--font-size-12);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-16);

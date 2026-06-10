@@ -3,3 +3,10 @@
 
 // Google Fonts — Open Sans (matches Figma font-family variable)
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap');
+
+// Global font-family — applies to all descendants via CSS inheritance.
+// Components only declare font-size / font-weight; font-family inherited.
+html,
+body {
+  font-family: var(--font-family-base);
+}
