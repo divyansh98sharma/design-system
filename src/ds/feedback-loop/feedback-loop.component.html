@@ -1,0 +1,78 @@
+<section class="ds-feedback-loop" role="dialog" [attr.aria-label]="title">
+  <header class="ds-feedback-loop__header">
+    <div class="ds-feedback-loop__titles">
+      <h3 class="ds-feedback-loop__title">{{ title }}</h3>
+      @if (subtitle) {
+        <p class="ds-feedback-loop__subtitle">{{ subtitle }}</p>
+      }
+    </div>
+    <button
+      type="button"
+      class="ds-feedback-loop__close"
+      aria-label="Dismiss feedback"
+      (click)="onCancel()"
+    >
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path d="M12.59 3.41L11.17 2 8 5.17 4.83 2 3.41 3.41 6.59 6.59 3.41 9.76 4.83 11.17 8 7.99l3.17 3.18 1.42-1.41L9.41 6.59z"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="ds-feedback-loop__body">
+    @if (chips.length > 0) {
+      <div class="ds-feedback-loop__chips" role="group" aria-label="Feedback tags">
+        @for (chip of chips; track trackById($index, chip)) {
+          <button
+            type="button"
+            class="ds-feedback-loop__chip"
+            [class.ds-feedback-loop__chip--selected]="isSelected(chip.id)"
+            [attr.aria-pressed]="isSelected(chip.id)"
+            (click)="onChipClick(chip.id)"
+          >{{ chip.label }}</button>
+        }
+      </div>
+    }
+
+    <div class="ds-feedback-loop__textarea-wrapper">
+      <textarea
+        class="ds-feedback-loop__textarea"
+        rows="4"
+        [placeholder]="textareaPlaceholder"
+        [maxlength]="maxCharacters"
+        [(ngModel)]="textareaValue"
+        (ngModelChange)="onTextChange($event)"
+      ></textarea>
+      <div class="ds-feedback-loop__counter" aria-live="polite">
+        {{ charCount }} / {{ maxCharacters }}
+      </div>
+    </div>
+
+    @if (warningText) {
+      <p class="ds-feedback-loop__warning">{{ warningText }}</p>
+    }
+  </div>
+
+  <footer class="ds-feedback-loop__footer">
+    <label class="ds-feedback-loop__contact">
+      <input
+        type="checkbox"
+        [checked]="contactChecked"
+        (change)="onContactToggle()"
+      />
+      <span>{{ contactLabel }}</span>
+    </label>
+    <div class="ds-feedback-loop__actions">
+      <button
+        type="button"
+        class="ds-feedback-loop__btn ds-feedback-loop__btn--primary"
+        [disabled]="!canSubmit"
+        (click)="onSubmit()"
+      >{{ submitLabel }}</button>
+      <button
+        type="button"
+        class="ds-feedback-loop__btn ds-feedback-loop__btn--secondary"
+        (click)="onCancel()"
+      >{{ cancelLabel }}</button>
+    </div>
+  </footer>
+</section>
