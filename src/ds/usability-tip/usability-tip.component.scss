@@ -1,0 +1,23 @@
+:host { display: inline-flex; }
+
+.ds-usability-tip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  font-family: var(--font-family-base);
+  font-size: 12px;
+  line-height: 15px;
+  color: #4b586b;
+}
+
+.ds-usability-tip__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+
+  svg { display: block; width: 100%; height: 100%; }
+}
