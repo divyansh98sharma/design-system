@@ -16,7 +16,7 @@ const ARROW_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" f
 const meta: Meta<ButtonComponent> = {
   title: 'Atoms/Button',
   component: ButtonComponent,
-  tags: ['autodocs', 'v1'],
+  tags: ['v3'],
   parameters: {
     layout: 'padded',
     docs: {

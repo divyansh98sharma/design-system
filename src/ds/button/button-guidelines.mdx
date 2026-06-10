@@ -1,0 +1,408 @@
+import { Meta, Canvas, ArgTypes } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './button.stories';
+
+<Meta of={ButtonStories} />
+
+<style>
+{`
+  .bg-header { margin-bottom: 40px; }
+  .bg-header h1 { font-size: 32px; font-weight: 700; color: #0d2b35; margin: 0 0 10px; }
+  .bg-header p.lead { font-size: 16px; color: #4a6370; max-width: 680px; line-height: 1.7; margin: 0; }
+  .bg-section { margin: 48px 0; }
+  .bg-section h2 { font-size: 22px; font-weight: 600; color: #1a2e38; border-bottom: 2px solid #e4ecf0; padding-bottom: 8px; margin-bottom: 20px; }
+  .bg-section h3 { font-size: 15px; font-weight: 600; color: #1a2e38; margin: 28px 0 8px; }
+  .bg-section p, .bg-section li { font-size: 14px; color: #334e59; line-height: 1.7; max-width: 720px; }
+  .bg-section ul { padding-left: 20px; margin: 8px 0; }
+  .bg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 20px 0; max-width: 760px; }
+  .bg-card { border: 1px solid #e4ecf0; border-radius: 8px; padding: 16px; background: #fafcfd; }
+  .bg-card .swatch { height: 36px; border-radius: 4px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+  .bg-card h4 { font-size: 13px; font-weight: 700; color: #1a2e38; margin: 0 0 4px; }
+  .bg-card p { font-size: 12px; color: #4a6370; margin: 0; line-height: 1.5; max-width: none; }
+  .bg-table { width: 100%; max-width: 760px; border-collapse: collapse; font-size: 14px; margin: 16px 0; }
+  .bg-table th { text-align: left; padding: 10px 14px; background: #f0f5f8; color: #1a2e38; font-weight: 600; border-bottom: 2px solid #d4e4ed; }
+  .bg-table td { padding: 10px 14px; border-bottom: 1px solid #e8eef2; color: #334e59; vertical-align: top; }
+  .bg-table tr:last-child td { border-bottom: none; }
+  .bg-table code { background: #eef2f6; border-radius: 4px; padding: 1px 5px; font-size: 12px; color: #0378a7; }
+  .bg-do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 760px; margin: 20px 0; }
+  .bg-do { border: 2px solid #22c55e; border-radius: 8px; padding: 16px; background: #f0fdf4; }
+  .bg-dont { border: 2px solid #ef4444; border-radius: 8px; padding: 16px; background: #fef2f2; }
+  .bg-do h4 { color: #15803d; font-size: 13px; font-weight: 700; margin: 0 0 8px; }
+  .bg-dont h4 { color: #b91c1c; font-size: 13px; font-weight: 700; margin: 0 0 8px; }
+  .bg-do p, .bg-dont p { font-size: 13px; line-height: 1.6; margin: 0; color: #334e59; max-width: none; }
+  .bg-callout { background: #eef6ff; border: 1px solid #b3d4f5; border-radius: 8px; padding: 14px 18px; font-size: 14px; color: #17446b; line-height: 1.6; margin: 16px 0; max-width: 720px; }
+  .bg-warn { background: #fff8e1; border-left: 4px solid #f59e0b; border-radius: 0 4px 4px 0; padding: 12px 16px; font-size: 14px; color: #78350f; line-height: 1.6; margin: 16px 0; max-width: 720px; }
+  .bg-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.4px; margin-right: 4px; }
+  .bg-tag-req { background: #fef2f2; color: #b91c1c; border: 1px solid #fca5a5; }
+  .bg-tag-opt { background: #f0fdf4; color: #15803d; border: 1px solid #86efac; }
+  .bg-tag-bool { background: #eff6ff; color: #1d4ed8; border: 1px solid #93c5fd; }
+  .bg-tag-evt { background: #fdf4ff; color: #7e22ce; border: 1px solid #d8b4fe; }
+`}
+</style>
+
+<div className="bg-header">
+  <h1>Button — UI Guidelines</h1>
+  <p className="lead">
+    Complete reference for using the <code>ds-button</code> component correctly.
+    Written for product analysts, developers, QA engineers, and AI agents.
+  </p>
+</div>
+
+---
+
+<div className="bg-section">
+
+## Live component
+
+<Canvas of={ButtonStories.Playground} />
+
+---
+
+## What is it?
+
+A button triggers an action when clicked. It should always be used for **actions** (save, submit, delete, open). Never use a button for navigation — use a link instead.
+
+<div className="bg-do-dont">
+  <div className="bg-do">
+    <h4>✅ Use a button when…</h4>
+    <p>The user is performing an action: Submit form, Save changes, Delete record, Open modal, Download file</p>
+  </div>
+  <div className="bg-dont">
+    <h4>❌ Don't use a button when…</h4>
+    <p>The user is navigating to another page or URL — use an anchor tag or router link instead.</p>
+  </div>
+</div>
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## Types
+
+There are **5 types** of button. Use exactly one type per button instance.
+
+<div className="bg-grid">
+  <div className="bg-card">
+    <div className="bg-swatch" style={{background:'#e9f5f3', border:'1px solid #53cbbd', display:'flex', alignItems:'center', justifyContent:'center', height:'36px', borderRadius:'4px', marginBottom:'12px', fontSize:'12px', fontWeight:'600'}}>Button</div>
+    <h4>Primary</h4>
+    <p>The single most important action on the screen. Use once per view. Mint background, teal border.</p>
+  </div>
+  <div className="bg-card">
+    <div className="bg-swatch" style={{background:'#ebebeb', border:'1px solid #e1e1e1', display:'flex', alignItems:'center', justifyContent:'center', height:'36px', borderRadius:'4px', marginBottom:'12px', fontSize:'12px', fontWeight:'600'}}>Button</div>
+    <h4>Secondary</h4>
+    <p>Supporting actions alongside a primary. Can be used multiple times. Gray background.</p>
+  </div>
+  <div className="bg-card">
+    <div className="bg-swatch" style={{background:'#fbfbfb', border:'1px solid transparent', display:'flex', alignItems:'center', justifyContent:'center', height:'36px', borderRadius:'4px', marginBottom:'12px', fontSize:'12px', fontWeight:'600'}}>Button</div>
+    <h4>White</h4>
+    <p>Used on colored or dark backgrounds. Near-white with a subtle border on hover only.</p>
+  </div>
+  <div className="bg-card">
+    <div className="bg-swatch" style={{background:'#d82727', border:'none', display:'flex', alignItems:'center', justifyContent:'center', height:'36px', borderRadius:'4px', marginBottom:'12px', fontSize:'12px', fontWeight:'600', color:'white'}}>Button</div>
+    <h4>Error</h4>
+    <p>Destructive or irreversible actions (delete, remove, revoke). Requires confirmation pattern.</p>
+  </div>
+  <div className="bg-card">
+    <div className="bg-swatch" style={{background:'#fcde71', border:'none', display:'flex', alignItems:'center', justifyContent:'center', height:'36px', borderRadius:'4px', marginBottom:'12px', fontSize:'12px', fontWeight:'600'}}>Button</div>
+    <h4>Warning</h4>
+    <p>Actions that are risky but reversible. Use to signal the user should pause and confirm.</p>
+  </div>
+</div>
+
+<div className="bg-callout">
+  <strong>One primary per view.</strong> If a screen has two primary buttons, one of them is wrong.
+  Demote the less important action to secondary or white.
+</div>
+
+### Type hierarchy rule
+
+```
+Primary  →  most important action (one only)
+Secondary  →  supporting actions (multiple ok)
+White  →  on coloured backgrounds
+Error  →  permanent / destructive (always with a confirmation)
+Warning  →  risky but reversible
+Disabled  →  action not available (auto-applied via [disabled]="true")
+```
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## Sizes
+
+Three sizes. Match the size to the surrounding UI density.
+
+<table className="bg-table">
+  <thead>
+    <tr><th>Size</th><th>Input value</th><th>Height</th><th>Font</th><th>When to use</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Small</td>
+      <td><code>size="sm"</code></td>
+      <td>20px</td>
+      <td>11px</td>
+      <td>Compact tables, dense toolbars, inline edits</td>
+    </tr>
+    <tr>
+      <td>Medium (default)</td>
+      <td><code>size="md"</code></td>
+      <td>24px</td>
+      <td>12px</td>
+      <td>Standard forms and panels — use this when in doubt</td>
+    </tr>
+    <tr>
+      <td>Large</td>
+      <td><code>size="lg"</code></td>
+      <td>32px</td>
+      <td>14px</td>
+      <td>Primary actions on login/onboarding screens</td>
+    </tr>
+  </tbody>
+</table>
+
+<div className="bg-warn">
+  Don't mix sizes in the same button group. All buttons in a row should be the same size.
+</div>
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## Styles
+
+The <code>btnStyle</code> prop controls the button's shape.
+
+<table className="bg-table">
+  <thead>
+    <tr><th>Style</th><th>Input value</th><th>What it does</th><th>When to use</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Default</td>
+      <td><code>btnStyle="default"</code></td>
+      <td>Single button, single click target</td>
+      <td>Most cases</td>
+    </tr>
+    <tr>
+      <td>Divided (split button)</td>
+      <td><code>btnStyle="divided"</code></td>
+      <td>Left section = main action, right section = chevron/secondary action</td>
+      <td>When one button needs two related actions (e.g. "Save" + "Save & Close")</td>
+    </tr>
+  </tbody>
+</table>
+
+The divided style emits two separate events: `buttonClick` (left section) and `dividerClick` (right section).
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## All inputs & outputs
+
+<ArgTypes of={ButtonStories} />
+
+</div>
+
+---
+
+---
+
+<div className="bg-section">
+
+## Usage examples
+
+### Minimal
+```html
+<ds-button label="Save"></ds-button>
+```
+
+### Destructive action with error type
+```html
+<ds-button
+  label="Delete Patient"
+  type="error"
+  (buttonClick)="onDelete()">
+</ds-button>
+```
+
+### Icon + label
+```html
+<ds-button
+  label="Download"
+  type="secondary"
+  [icon]="downloadSvg"
+  (buttonClick)="onDownload()">
+</ds-button>
+```
+
+### Icon-only (must have aria-label)
+```html
+<ds-button
+  [icon]="settingsSvg"
+  [iconOnly]="true"
+  type="secondary"
+  aria-label="Open settings"
+  (buttonClick)="openSettings()">
+</ds-button>
+```
+
+### Divided split button
+```html
+<ds-button
+  label="Save"
+  type="primary"
+  btnStyle="divided"
+  (buttonClick)="onSave()"
+  (dividerClick)="openSaveMenu()">
+</ds-button>
+```
+
+### With counter
+```html
+<ds-button
+  label="Inbox"
+  type="secondary"
+  [counter]="unreadCount">
+</ds-button>
+```
+
+### Disabled
+```html
+<ds-button
+  label="Submit"
+  type="primary"
+  [disabled]="form.invalid">
+</ds-button>
+```
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## States
+
+| State | How to trigger | Visual |
+|-------|---------------|--------|
+| Default | Normal render | Base background and border |
+| Hover | Mouse over (not disabled) | Slightly darker background |
+| Disabled | `[disabled]="true"` | Gray background `#f7f7f7`, gray border `#ebebeb`, gray text `#717171`, cursor: not-allowed |
+| Focus | Tab key or click-and-hold | 2px outline using `--button-focus-color` |
+| Active | Mouse down | Browser default or same as hover |
+
+The **disabled state cannot be hovered** — pointer-events are disabled. Do not rely on hover for disabled buttons in tests.
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## Accessibility
+
+<table className="bg-table">
+  <thead>
+    <tr><th>Requirement</th><th>Why</th><th>How</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Icon-only buttons must have a label</td>
+      <td>Screen readers cannot describe an SVG icon</td>
+      <td>Add <code>aria-label="Description"</code> on <code>&lt;ds-button&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Disabled must use <code>[disabled]</code> input</td>
+      <td>Native <code>disabled</code> attribute is needed for assistive tech</td>
+      <td>Use <code>[disabled]="true"</code>, not just CSS opacity</td>
+    </tr>
+    <tr>
+      <td>Error buttons need confirmation</td>
+      <td>Irreversible actions must be confirmed before executing</td>
+      <td>Show a confirm modal or inline confirmation step</td>
+    </tr>
+    <tr>
+      <td>Focus is always visible</td>
+      <td>Keyboard users must see where focus is</td>
+      <td>Built-in — do not override <code>outline: none</code> on <code>:focus-visible</code></td>
+    </tr>
+    <tr>
+      <td>Alert indicator needs hidden text</td>
+      <td>The red dot has no text — screen readers skip it</td>
+      <td>Add <code>&lt;span class="sr-only"&gt;Has notifications&lt;/span&gt;</code> near the button</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## QA checklist
+
+When testing any screen that contains a button:
+
+- [ ] Each page/modal has at most **one** primary button
+- [ ] Clicking a disabled button triggers **no** action and emits **no** event
+- [ ] Icon-only buttons have a visible tooltip or `aria-label`
+- [ ] Error-type buttons open a confirmation dialog before executing the action
+- [ ] Tab key focuses the button and shows the focus ring
+- [ ] Counter chip displays the correct number from the data source
+- [ ] Alert indicator dot appears only when the condition is true
+- [ ] Divided button: left click → `buttonClick` event, right click → `dividerClick` event
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## Token reference
+
+The button reads these CSS custom properties. Override at the `:root` or scoped selector to theme.
+
+| Token | Default | Controls |
+|-------|---------|----------|
+| `--button-primary-bg` | `#e9f5f3` | Primary default background |
+| `--button-primary-bg-hover` | `#d7e5e3` | Primary hover background |
+| `--button-primary-border` | `#53cbbd` | Primary border (single, 1px) |
+| `--button-primary-text` | `#000000` | Primary label colour |
+| `--button-secondary-bg` | `#ebebeb` | Secondary background |
+| `--button-secondary-border` | `#e1e1e1` | Secondary border |
+| `--button-error-bg` | `#d82727` | Error background |
+| `--button-warning-bg` | `#fcde71` | Warning background |
+| `--button-disabled-bg` | `#f7f7f7` | Disabled background |
+| `--button-disabled-border` | `#ebebeb` | Disabled border |
+| `--button-disabled-text` | `#717171` | Disabled text |
+| `--button-focus-color` | `var(--color-border-focus)` | Focus ring colour |
+| `--button-radius` | `4px` | Corner radius |
+| `--button-md-height` | `24px` | Medium height |
+| `--button-alert-bg` | `#d82727` | Alert indicator dot |
+
+</div>
+
+---
+
+<div className="bg-section">
+
+## Changelog
+
+| Version | Change |
+|---------|--------|
+| v3 | Single-border primary — removed double border (outer + inner box-shadow). Border unified to `#53cbbd` (1px solid). Error hover background corrected to `#d82727`. |
+| v2 | Token sync with Figma CODE-A-TON Library — new stroke-width token, divider border tokens. |
+| v1 | Initial release. |
+
+</div>
