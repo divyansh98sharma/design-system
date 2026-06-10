@@ -35,7 +35,6 @@ export { ScrollbarComponent }       from './scrollbar/scrollbar.component';
 export type { ScrollbarOrientation } from './scrollbar/scrollbar.component';
 
 export { ToggleComponent }          from './toggle/toggle.component';
-export type { ToggleTheme }         from './toggle/toggle.component';
 
 export { TooltipComponent }         from './tooltip/tooltip.component';
 export type { TooltipPosition }     from './tooltip/tooltip.component';
