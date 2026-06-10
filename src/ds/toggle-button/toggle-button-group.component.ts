@@ -24,6 +24,7 @@ export interface ToggleButtonItem {
 }
 
 export type ToggleColor =
+  | 'primary'
   | 'user'
   | 'admin'
   | 'secondary'
@@ -32,9 +33,6 @@ export type ToggleColor =
   | 'sunoh';
 
 export type ToggleSize = 'sm' | 'md' | 'lg';
-
-/** Built-in checkmark SVG shown in the selected state (label buttons). */
-const CHECK_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13,3.5 6,12.5 3,8.5"/></svg>`;
 
 @Component({
   selector: 'ds-toggle-button-group',
@@ -49,10 +47,10 @@ export class ToggleButtonGroupComponent {
   @Input() options: ToggleButtonItem[] = [];
 
   /** Color theme applied to the selected button and group border. */
-  @Input() color: ToggleColor = 'user';
+  @Input() color: ToggleColor = 'primary';
 
-  /** Height / padding scale: `sm` = 24 px, `md` = 32 px, `lg` = 40 px. */
-  @Input() size: ToggleSize = 'md';
+  /** Height / padding scale: `sm` = 24 px (Figma default), `md` = 32 px, `lg` = 40 px. */
+  @Input() size: ToggleSize = 'sm';
 
   /**
    * When `true`, multiple buttons can be selected simultaneously.
@@ -74,9 +72,6 @@ export class ToggleButtonGroupComponent {
   @Output() valueChange = new EventEmitter<string | string[]>();
 
   private sanitizer = inject(DomSanitizer);
-
-  /** Pre-sanitised checkmark icon rendered in selected label-buttons. */
-  readonly checkIcon: SafeHtml = this.sanitizer.bypassSecurityTrustHtml(CHECK_SVG);
 
   /** Returns a sanitised SafeHtml for user-supplied icon SVGs. */
   safeIcon(svg: string): SafeHtml {
