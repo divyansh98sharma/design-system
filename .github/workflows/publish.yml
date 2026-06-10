@@ -10,24 +10,30 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write   # required for npm Trusted Publishing (OIDC) — no token needed
+      id-token: write   # required for npm Trusted Publishing (OIDC)
 
     steps:
       - uses: actions/checkout@v6
 
-      # NOTE: deliberately NO `registry-url` here. When set, setup-node writes an
-      # .npmrc with a placeholder _authToken, which makes npm attempt token auth
-      # (and fail) instead of the OIDC trusted-publishing handshake. The registry
-      # and public access come from package.json `publishConfig` instead.
+      # registry-url makes setup-node write the registry into the userconfig
+      # .npmrc (npm needs that to anchor the OIDC exchange). It ALSO writes a
+      # placeholder _authToken, which we strip below so npm uses OIDC instead
+      # of attempting (failed) token auth.
       - uses: actions/setup-node@v6
         with:
           node-version: 22
           cache: npm
+          registry-url: https://registry.npmjs.org
 
-      - name: Update npm (Trusted Publishing needs npm >= 11.5.1)
+      - name: Update npm + force OIDC (strip placeholder token)
         run: |
           npm install -g npm@latest
           npm --version
+          if [ -n "$NPM_CONFIG_USERCONFIG" ] && [ -f "$NPM_CONFIG_USERCONFIG" ]; then
+            sed -i.bak '/_authToken/d' "$NPM_CONFIG_USERCONFIG"
+            echo "---- userconfig .npmrc after stripping token ----"
+            cat "$NPM_CONFIG_USERCONFIG"
+          fi
 
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
@@ -35,7 +41,7 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
-      # No NODE_AUTH_TOKEN / .npmrc token: npm authenticates via the OIDC
-      # trusted-publisher rule configured for this repo + workflow on npmjs.com.
+      # No token configured -> npm authenticates via the OIDC trusted-publisher
+      # rule (divyansh98sharma/design-system + publish.yml) on npmjs.com.
       - name: Publish to npm
         run: npm publish ./dist/ecw-ds --provenance
