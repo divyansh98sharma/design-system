@@ -39,7 +39,7 @@
     "@angular/platform-browser-dynamic": "^21.2.15",
     "@chromatic-com/storybook": "^5.2.1",
     "@compodoc/compodoc": "^1.2.1",
-    "@storybook/addon-a11y": "^10.4.2",
+    "@storybook/addon-a11y": "^10.4.3",
     "@storybook/addon-docs": "^10.4.3",
     "@storybook/addon-onboarding": "^10.4.2",
     "@storybook/angular": "^10.4.3",
