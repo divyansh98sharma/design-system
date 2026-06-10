@@ -305,13 +305,14 @@
   // ----------------------------------------------------------
   // Popover
   // ----------------------------------------------------------
-  --popover-width: 378px;
-  --popover-bg: var(--color-surface);
-  --popover-radius: var(--radius-standard);
-  --popover-shadow: 0 8px 16px -4px rgba(2, 13, 33, 0.16);
-  --popover-border-color: var(--color-secondary-50);
-  --popover-padding-x: 14px;
-  --popover-text-color: var(--color-text-primary);
+  // Aligned to CODE-A-TON Library Figma palette
+  --popover-width: 440px;
+  --popover-bg: #ffffff;
+  --popover-radius: 8px;
+  --popover-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+  --popover-border-color: #e1e1e1;
+  --popover-padding-x: 16px;
+  --popover-text-color: #000000;
   --popover-input-height: 24px;
   --popover-input-border: var(--color-border-strong);
   --popover-btn-height: 28px;
