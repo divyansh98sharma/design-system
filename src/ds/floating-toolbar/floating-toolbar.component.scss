@@ -1,0 +1,97 @@
+// ─── Floating Toolbar (CODE-A-TON Library spec) ─────────────────────────────
+
+:host { display: inline-flex; }
+
+.ds-floating-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 52px;
+  min-height: 200px;
+  background: #e6f4f3;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-family-base);
+}
+
+.ds-floating-toolbar__list {
+  flex: 1 0 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ds-floating-toolbar__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  width: 100%;
+  background: transparent;
+  border: 0;
+  color: #000000;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+
+  &:hover { background: rgba(0, 123, 149, 0.08); }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--color-border-focus);
+  }
+
+  &--selected {
+    background: #007b95;
+    color: #ffffff;
+
+    &:hover { background: #02506f; }
+  }
+}
+
+.ds-floating-toolbar__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+
+  /* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+  ::ng-deep svg { display: block; width: 100%; height: 100%; }
+}
+
+.ds-floating-toolbar__label {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 48px;
+}
+
+.ds-floating-toolbar__more {
+  width: 100%;
+  padding: 4px 0;
+  background: transparent;
+  border: 0;
+  color: #02506f;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--color-border-focus);
+  }
+}
