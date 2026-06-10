@@ -1,0 +1,31 @@
+<aside class="ds-left-panel-queue" [class.ds-left-panel-queue--collapsed]="collapsed" aria-label="Queue panel">
+  <div class="ds-left-panel-queue__inner">
+    @if (!collapsed) {
+      <header class="ds-left-panel-queue__header">
+        <div class="ds-left-panel-queue__toolbar"><ng-content select="[ds-queue-toolbar]"></ng-content></div>
+      </header>
+
+      @if (showSearch) {
+        <div class="ds-left-panel-queue__search"><ng-content select="[ds-queue-search]"></ng-content></div>
+      }
+
+      @if (showQuickSelect) {
+        <div class="ds-left-panel-queue__quick-select"><ng-content select="[ds-queue-quick-select]"></ng-content></div>
+      }
+
+      <div class="ds-left-panel-queue__body"><ng-content></ng-content></div>
+
+      <footer class="ds-left-panel-queue__footer"><ng-content select="[ds-queue-pagination]"></ng-content></footer>
+    }
+  </div>
+
+  <button
+    type="button"
+    class="ds-left-panel-queue__tab"
+    [attr.aria-label]="collapsed ? 'Expand ' + title : 'Collapse ' + title"
+    [attr.aria-expanded]="!collapsed"
+    (click)="toggle()"
+  >
+    <span class="ds-left-panel-queue__tab-text">{{ title }}</span>
+  </button>
+</aside>
