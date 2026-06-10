@@ -368,15 +368,17 @@
   // ----------------------------------------------------------
   // Tabs (shared)
   // ----------------------------------------------------------
+  // Tabs — CODE-A-TON Library Figma source of truth
   --tab-height: 24px;
-  --tab-font-size: var(--font-size-12);
-  --tab-gap: var(--spacing-x-small);
-  --tab-padding-y: var(--spacing-x-small);
-  --tab-padding-x: var(--spacing-small);
-  --tab-radius: var(--radius-standard);
-  --tab-text-color: var(--color-text-primary);
-  --tab-active-bg: var(--color-surface);
-  --tab-border-color: var(--color-secondary-base);
+  --tab-font-size: 12px;
+  --tab-gap: 4px;
+  --tab-padding-y: 4px;
+  --tab-padding-x: 8px;
+  --tab-radius: 4px;
+  --tab-text-color: #000000;
+  --tab-active-bg: #f5f0ed;
+  --tab-active-border: #ba654e;
+  --tab-border-color: #e1e1e1;
   --tab-transition: 120ms ease;
   --tab-user-color: var(--color-user-base);
   --tab-user-bg: var(--color-user-5);
