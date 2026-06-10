@@ -1,0 +1,77 @@
+// ─── Patient Summary (CODE-A-TON Library spec) ──────────────────────────────
+
+:host { display: block; }
+
+.ds-patient-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: linear-gradient(135deg, #f1fbff 0%, #e9f5f3 100%);
+  border: 1px solid #4de0cf;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+
+  &--on-card {
+    background: #ffffff;
+    border-color: #ebebeb;
+  }
+
+  &--filled.ds-patient-summary--on-card {
+    background: #f1fbff;
+    border-color: #007b95;
+  }
+}
+
+.ds-patient-summary__header {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-patient-summary__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #007b95;
+
+  svg { display: block; width: 100%; height: 100%; }
+}
+
+.ds-patient-summary__title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #007b95;
+}
+
+.ds-patient-summary__body {
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+
+  p { margin: 0; }
+}
+
+.ds-patient-summary__empty { color: #4b586b; }
+
+.ds-patient-summary__generate {
+  align-self: flex-start;
+  margin-top: 4px;
+  height: 24px;
+  padding: 4px 8px;
+  background: #e9f5f3;
+  border: 0.5px solid #4de0cf;
+  box-shadow: inset 0 0 0 0.5px #13b8a6;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  cursor: pointer;
+
+  &:hover { background: #d7e5e3; }
+}
