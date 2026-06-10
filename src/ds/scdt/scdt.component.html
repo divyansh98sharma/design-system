@@ -1,0 +1,14 @@
+<section class="ds-scdt" [class.ds-scdt--modal]="variant === 'modal'" [class.ds-scdt--popover]="variant === 'popover'">
+  <header class="ds-scdt__header">
+    <h2 class="ds-scdt__title">{{ title }}</h2>
+    <button type="button" class="ds-scdt__close" aria-label="Dismiss" (click)="dismiss.emit()">
+      <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path d="M12.59 3.41L11.17 2 8 5.17 4.83 2 3.41 3.41 6.59 6.59 3.41 9.76 4.83 11.17 8 7.99l3.17 3.18 1.42-1.41L9.41 6.59z"/>
+      </svg>
+    </button>
+  </header>
+  <div class="ds-scdt__body">
+    @if (body) { <p>{{ body }}</p> }
+    <ng-content></ng-content>
+  </div>
+</section>
