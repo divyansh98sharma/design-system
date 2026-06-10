@@ -4,43 +4,27 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-/**
- * Chip / tag state — controls background colour and border colour.
- *
- * | State       | Background | Border    |
- * |-------------|-----------|-----------|
- * | `default`   | `#fbfbfb` | `#bcbcbc` |
- * | `active`    | `#f1fef8` | `#018145` |
- * | `error`     | `#ffefef` | `#d82727` |
- * | `warning`   | `#fff9eb` | `#fbce2a` |
- * | `in-process`| `#f1fbff` | `#0378a7` |
- * | `ai`        | `#f7f2ff` | `#7d58da` |
- */
-export type ChipState =
-  | 'default'
-  | 'active'
-  | 'error'
-  | 'warning'
-  | 'in-process'
-  | 'ai';
+export type ChipType =
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'blue'
+  | 'purple'
+  | 'white'
+  | 'gray'
+  | 'ai'
+  | 'action'
+  | 'selected'
+  | 'structured';
 
-/**
- * Chip / tag component — pill-shaped label used for status, categories, or
- * filtering.
- *
- * **Anatomy (all optional):**
- * `[badge] [icon] label [close ×]`
- *
- * - **Badge** — 16 × 16 px filled circle with a single letter (e.g. provider
- *   initial "P").
- * - **Icon** — 16 × 16 px SVG icon; supply a custom `iconPath` or use the
- *   built-in defaults (tag icon for standard states, sparkles for `ai`).
- * - **Label** — primary text, 12 px regular.
- * - **Close** — 16 × 16 px × button that emits `closed`.
- */
+export type ChipSize = 'sm' | 'lg';
+
 @Component({
   selector: 'ds-chip',
   standalone: true,
@@ -50,59 +34,26 @@ export type ChipState =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChipComponent {
-  /** Colour state applied to the chip border and background. */
-  @Input() state: ChipState = 'default';
-
-  /** Text label displayed in the chip. */
-  @Input() label = 'Label';
-
-  /** Show the left badge circle. */
-  @Input() showBadge = true;
-
-  /** Letter rendered inside the badge circle. */
-  @Input() badgeLetter = 'P';
-
-  /**
-   * Background colour of the badge circle.
-   * Defaults to the user/base blue (`#0378a7`).
-   */
-  @Input() badgeColor = '#0378a7';
-
-  /** Show the icon slot between the badge and label. */
+  @Input() type: ChipType = 'gray';
+  @Input() size: ChipSize = 'sm';
+  @Input() label = 'Chip Label';
   @Input() showIcon = true;
+  @Input() showCounter = false;
+  @Input() counter: number | string = 999;
+  /** Selected state — applies the active treatment (relevant for `type=ai`: full brand gradient + white medium text). */
+  @Input() selected = false;
 
-  /**
-   * Custom SVG `<path d="…">` data for the icon.
-   * When omitted, a built-in default is used based on the chip `state`.
-   * Use `viewBox="0 0 24 24"` paths — the icon is rendered at 16 × 16 px.
-   */
-  @Input() iconPath: string | null = null;
-
-  /** Show the close × button at the right edge. */
-  @Input() showClose = true;
-
-  /** Emits when the close button is clicked. */
-  @Output() closed = new EventEmitter<void>();
-
-  /** Emits when the chip body is clicked. */
-  @Output() chipClick = new EventEmitter<void>();
-
-  // ─── Computed icon path ────────────────────────────────────────────────────
-
-  get resolvedIconPath(): string {
-    if (this.iconPath) return this.iconPath;
-    if (this.state === 'ai') {
-      // Auto-awesome / sparkles
-      return 'M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5z';
-    }
-    // Label / tag icon
-    return 'M17.63 5.84C17.27 5.33 16.67 5 16 5L5 5.01C3.9 5.01 3 5.9 3 7v10c0 1.1.9 1.99 2 1.99L16 19c.67 0 1.27-.33 1.63-.84L22 12l-4.37-6.16z';
+  @Input() set icon(svg: string | undefined) {
+    this.safeIcon = svg ? this.sanitizer.bypassSecurityTrustHtml(svg) : null;
   }
 
-  get hostClasses(): Record<string, boolean> {
-    return {
-      'ds-chip': true,
-      [`ds-chip--${this.state}`]: true,
-    };
+  @Output() chipClick = new EventEmitter<void>();
+
+  safeIcon: SafeHtml | null = null;
+  private sanitizer = inject(DomSanitizer);
+
+  get hostClass(): string {
+    const sel = this.selected ? ' ds-chip--is-selected' : '';
+    return `ds-chip ds-chip--${this.type} ds-chip--${this.size}${sel}`;
   }
 }
