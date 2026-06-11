@@ -28,15 +28,15 @@ Angular 21 component library with design tokens, Storybook documentation, access
 | npm | 11+ |
 | Angular CLI | 21+ |
 
-### 1 — Clone and install
+### 1 — Install
 
 ```bash
-git clone https://github.com/divyansh98sharma/design-system.git
-cd design-system
-npm install --legacy-peer-deps
+npm install @sharma-divyansh/eclinicalworks
 ```
 
-> `--legacy-peer-deps` is required because `@storybook/test-runner` has not yet released a version declaring compatibility with Storybook 10.
+The library is published to the public npm registry, so no authentication is needed to install it. Angular 21+ packages (`@angular/core`, `@angular/common`, `@angular/forms`, `@angular/cdk`, …) are **peer dependencies** — your application must provide them.
+
+> Contributing to the design system itself rather than consuming it? See [Development setup](#development-setup) to clone and run it locally.
 
 ### 2 — Import design tokens
 
@@ -44,13 +44,15 @@ Add the token stylesheet to your application's global styles. Tokens are CSS cus
 
 ```scss
 /* styles.scss */
-@use 'path/to/design-system/src/ds/tokens/index';
+@use '@sharma-divyansh/eclinicalworks/tokens/index' as *;
 ```
 
-Or via `angular.json`:
+If Sass can't resolve the package path, add `node_modules` to your Sass load paths in `angular.json`:
 
 ```json
-"styles": ["src/ds/tokens/index.scss"]
+"stylePreprocessorOptions": {
+  "includePaths": ["node_modules"]
+}
 ```
 
 Once imported, every token is available globally:
@@ -68,7 +70,7 @@ Once imported, every token is available globally:
 All components are standalone Angular 21 components. Import them directly into any `@Component` or `NgModule` imports array.
 
 ```typescript
-import { ButtonComponent } from './ds/button/button.component';
+import { ButtonComponent } from '@sharma-divyansh/eclinicalworks';
 
 @Component({
   selector: 'app-my-feature',
@@ -100,6 +102,16 @@ See **Foundations → Color Palette** and **Foundations → Typography** in Stor
 ---
 
 ## Development setup
+
+To work on the design system itself, clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/divyansh98sharma/design-system.git
+cd design-system
+npm install --legacy-peer-deps
+```
+
+> `--legacy-peer-deps` is required because `@storybook/test-runner` has not yet released a version declaring compatibility with Storybook 10.
 
 ```bash
 # Start Storybook dev server → http://localhost:6006
