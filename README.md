@@ -14,6 +14,7 @@ Angular 21 component library with design tokens, Storybook documentation, access
 - [Contributing](#contributing)
 - [Deprecation policy](#deprecation-policy)
 - [CI](#ci)
+- [Releasing](#releasing)
 
 ---
 
@@ -320,3 +321,61 @@ Two GitHub Actions jobs run on every push and pull request to `main`:
 | **Visual Tests (Chromatic)** | Sends snapshots to Chromatic for visual diffing |
 
 To enable Chromatic, add a `CHROMATIC_PROJECT_TOKEN` secret in **Settings → Secrets → Actions**.
+
+---
+
+## Releasing
+
+The library is published to the **public npm registry** as
+[`@sharma-divyansh/eclinicalworks`](https://www.npmjs.com/package/@sharma-divyansh/eclinicalworks).
+Anyone can install it with no authentication:
+
+```bash
+npm install @sharma-divyansh/eclinicalworks
+```
+
+Publishing is automated via **npm Trusted Publishing (OIDC)** — there is **no
+npm token to manage or rotate**. The `.github/workflows/publish.yml` workflow
+runs whenever a GitHub **Release** is published, builds the library with
+ng-packagr, and publishes it (with build provenance) using a short-lived OIDC
+credential trusted by npm.
+
+### Cutting a release
+
+> **The one rule:** bump the version *before* tagging. npm publishes the
+> `version` field from `package.json` (not the git tag), and a version can
+> never be republished — so every release starts with a version bump.
+
+1. **Bump the version** on `main`:
+
+   ```bash
+   npm version patch --no-git-tag-version   # 1.0.1 -> 1.0.2 (use minor / major as needed)
+   ```
+
+   Commit and merge it to `main` (semver: `patch` = fixes, `minor` = new
+   components/features, `major` = breaking changes).
+
+2. **Publish a GitHub Release** with a matching tag:
+
+   ```bash
+   gh release create v1.0.2 --target main --title "v1.0.2" --generate-notes
+   ```
+
+   …or via the UI: **Releases → Draft new release → choose tag `v1.0.2` → Publish release**.
+
+3. **Done.** The workflow builds and publishes automatically (~1–2 min). Verify:
+
+   ```bash
+   npm view @sharma-divyansh/eclinicalworks version
+   ```
+
+### Notes
+
+- **No local publishing.** Do not run `npm publish` by hand and do not put an
+  npm token in `~/.npmrc` — OIDC handles authentication in CI.
+- **Trusted Publisher config** lives on npmjs.com (package → *Settings →
+  Trusted Publisher*): repository `divyansh98sharma/design-system`, workflow
+  `publish.yml`. It must match the workflow for OIDC to succeed.
+- **If a release fails**, check `gh run list --workflow=publish.yml`. The most
+  common cause is forgetting step 1 (the version already exists) — bump and
+  release again.
